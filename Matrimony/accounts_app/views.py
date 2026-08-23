@@ -11,6 +11,7 @@ from django.utils.html import strip_tags
 import requests
 from django.conf import settings as django_settings
 import random
+import os
 import json
 
 def send_fast2sms_otp(mobile, otp):
@@ -83,6 +84,7 @@ def send_professional_otp_email(to_email, otp, title="Verification OTP"):
 
 
 import random
+import os
 import json
 
 def safe_delete_user(user):
