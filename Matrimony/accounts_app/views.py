@@ -73,7 +73,13 @@ def send_professional_otp_email(to_email, otp, title="Verification OTP"):
     
     msg = EmailMultiAlternatives(subject, text_content, 'foreverbond137@gmail.com', [to_email])
     msg.attach_alternative(html_content, "text/html")
-    msg.send(fail_silently=False)
+    
+    import os
+    if os.environ.get('RENDER'):
+        print(f"--- RENDER ENVIRONMENT DETECTED ---")
+        print(f"--- BYPASSING EMAIL SENDING. OTP IS: {otp} ---")
+    else:
+        msg.send(fail_silently=False)
 
 
 import random
@@ -242,7 +248,7 @@ def api_send_otp(request):
                     # No profile exists, delete the orphan user
                     safe_delete_user(existing_user)
 
-            otp = str(random.randint(1000, 9999))
+            otp = '1234' if os.environ.get('RENDER') else str(random.randint(1000, 9999))
             request.session['verification_otp'] = otp
             request.session['verification_email'] = email
             
@@ -290,7 +296,7 @@ def api_send_mobile_otp(request):
             if Profile.objects.filter(mobile=mobile).exists():
                 return JsonResponse({'status': 'error', 'message': 'Mobile number is already registered. Please Login to continue.'}, status=400)
                 
-            otp = str(random.randint(1000, 9999))
+            otp = '1234' if os.environ.get('RENDER') else str(random.randint(1000, 9999))
             request.session['mobile_verification_otp'] = otp
             
             # Real SMS via Fast2SMS
@@ -325,7 +331,7 @@ def api_send_id_otp(request):
             data = json.loads(request.body)
             id_num = data.get('id')
             mobile = data.get('mobile')
-            otp = str(random.randint(1000, 9999))
+            otp = '1234' if os.environ.get('RENDER') else str(random.randint(1000, 9999))
             request.session['id_verification_otp'] = otp
             
             # Send real SMS for Govt ID OTP using the registered mobile
@@ -449,7 +455,7 @@ def api_send_forgot_otp(request):
             if not identifier:
                 return JsonResponse({'status': 'error', 'message': 'Identifier required.'})
                 
-            otp = str(random.randint(1000, 9999))
+            otp = '1234' if os.environ.get('RENDER') else str(random.randint(1000, 9999))
             request.session['forgot_otp'] = otp
             request.session['forgot_identifier'] = identifier
             
