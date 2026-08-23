@@ -9,6 +9,28 @@ try:
     User = get_user_model()
     if not User.objects.filter(username='misalomkar555@gmail.com').exists():
         User.objects.create_superuser('misalomkar555@gmail.com', 'misalomkar555@gmail.com', 'Omkar@1234')
+        from django.contrib.auth.models import User
+        from profiles_app.models import Profile
+        from datetime import date
+        import random
+        if Profile.objects.count() < 10:
+            first_names_m = ['Aarav', 'Vihaan', 'Aditya', 'Rohan', 'Kabir', 'Aryan', 'Dhruv', 'Ishaan', 'Karan', 'Rahul']
+            first_names_f = ['Aanya', 'Diya', 'Sanya', 'Priya', 'Kavya', 'Riya', 'Ananya', 'Myra', 'Sneha', 'Neha']
+            last_names = ['Sharma', 'Patil', 'Deshmukh', 'Singh', 'Gupta', 'Khan', 'Syed', 'Thomas', 'Kaur', 'Gill']
+            cities = ['Mumbai', 'Pune', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata', 'Ahmedabad']
+            for rel, castes in religions_castes.items():
+                for caste in castes:
+                    for gender in ['Male', 'Female']:
+                        for i in range(2):
+                            is_male = gender == 'Male'
+                            fname = random.choice(first_names_m) if is_male else random.choice(first_names_f)
+                            lname = random.choice(last_names)
+                            username = f'{fname.lower()}_{caste.lower()}_{random.randint(100,999)}'
+                            user, created = User.objects.get_or_create(username=username, defaults={'email': f'{username}@example.com'})
+                            if created:
+                                user.set_password('password123')
+                                user.save()
+                                Profile.objects.create(user=user, full_name=f'{fname} {lname}', gender=gender, dob=date(1995, 1, 1), religion=rel, caste=caste, city=random.choice(cities), is_photo_approved=True)
 except Exception:
     pass
 
@@ -55,5 +77,27 @@ try:
         ]
         for name, price, dur, feat in plans:
             MembershipPlan.objects.get_or_create(name=name, defaults={'price': price, 'duration_months': dur, 'features': feat, 'is_active': True})
+        from django.contrib.auth.models import User
+        from profiles_app.models import Profile
+        from datetime import date
+        import random
+        if Profile.objects.count() < 10:
+            first_names_m = ['Aarav', 'Vihaan', 'Aditya', 'Rohan', 'Kabir', 'Aryan', 'Dhruv', 'Ishaan', 'Karan', 'Rahul']
+            first_names_f = ['Aanya', 'Diya', 'Sanya', 'Priya', 'Kavya', 'Riya', 'Ananya', 'Myra', 'Sneha', 'Neha']
+            last_names = ['Sharma', 'Patil', 'Deshmukh', 'Singh', 'Gupta', 'Khan', 'Syed', 'Thomas', 'Kaur', 'Gill']
+            cities = ['Mumbai', 'Pune', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata', 'Ahmedabad']
+            for rel, castes in religions_castes.items():
+                for caste in castes:
+                    for gender in ['Male', 'Female']:
+                        for i in range(2):
+                            is_male = gender == 'Male'
+                            fname = random.choice(first_names_m) if is_male else random.choice(first_names_f)
+                            lname = random.choice(last_names)
+                            username = f'{fname.lower()}_{caste.lower()}_{random.randint(100,999)}'
+                            user, created = User.objects.get_or_create(username=username, defaults={'email': f'{username}@example.com'})
+                            if created:
+                                user.set_password('password123')
+                                user.save()
+                                Profile.objects.create(user=user, full_name=f'{fname} {lname}', gender=gender, dob=date(1995, 1, 1), religion=rel, caste=caste, city=random.choice(cities), is_photo_approved=True)
 except Exception:
     pass
