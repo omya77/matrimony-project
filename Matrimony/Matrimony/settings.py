@@ -32,6 +32,7 @@ SECRET_KEY = 'django-insecure-&^h)=c30buy56uqt3x0m!esz&+de1p#5pw13a7i5)i)alw)5j+
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://matrimony-project-bahb.onrender.com', 'https://*.onrender.com']
 
 # Fast2SMS Integration
 FAST2SMS_API_KEY = os.environ.get('FAST2SMS_API_KEY', '')
