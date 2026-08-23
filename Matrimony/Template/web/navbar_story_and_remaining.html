@@ -1,0 +1,595 @@
+<!-- second_navbar_start  -->
+<!-- ================= START: BANNER + STICKY FLOATING NAVBAR SYSTEM (STRICT COLOR ACCENT UPDATE) ================= -->
+
+<!-- main_navbar_start   -->
+<!-- ================= START: 100% WIDE FLOATING GLASSMORPHIC NAVBAR WITH DYNAMIC ACTIVE STATE ================= -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<div
+  id="stickyNavWrapper"
+  class="w-100 transition-all"
+  style="
+    position: sticky;
+    top: 0;
+    z-index: 1040;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px) saturate(190%);
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(
+        90deg,
+        rgba(233, 64, 87, 0.1) 0%,
+        #e94057 50%,
+        rgba(233, 64, 87, 0.1) 100%
+      )
+      2;
+    box-shadow: 0 8px 32px rgba(233, 64, 87, 0.04);
+    padding: 14px 0px;
+    font-family: &quot;Inter&quot;, sans-serif;
+    transition: all 0.4s ease;
+  "
+>
+  <nav class="navbar navbar-expand-lg w-100 py-3">
+    <div
+      class="container-fluid px-4 px-md-5 d-flex justify-content-between align-items-center"
+    >
+      <!-- Brand Logo Area (Left Anchor) -->
+      <a
+        class="navbar-brand d-flex align-items-center gap-2.5 m-0"
+        href="{% url 'Home' %}"
+      >
+        <div
+          class="d-flex align-items-center justify-content-center rounded-3"
+          style="background: linear-gradient(135deg, #e94057 0%, #facc15 100%); 
+            
+            width: 38px;
+            height: 38px;
+            box-shadow: 0 4px 14px rgba(233, 64, 87, 0.2);
+          "
+        >
+              <i class="fa-solid fa-ring" style="font-size: 18px; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important;"></i>
+            </div>
+        <div class="d-flex flex-column">
+          <span
+            style="
+              font-family: &quot;Poppins&quot;, sans-serif;
+              font-weight: 850;
+              font-size: 21px;
+              color: #1e293b;
+              letter-spacing: -0.8px;
+              line-height: 1;
+            "
+          >
+            Forever<span style="color: #e94057">Bond</span>
+          </span>
+          <span
+            style="
+              font-size: 8px;
+              font-weight: 800;
+              color: #e94057;
+              letter-spacing: 1.8px;
+              text-transform: uppercase;
+              margin-top: 3px;
+              opacity: 0.85;
+            "
+          >
+            Verified • Secure
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Links - Natural Flexbox Centering -->
+      <div
+        class="collapse navbar-collapse justify-content-center d-none d-lg-flex"
+      >
+        <ul
+          class="navbar-nav gap-1"
+          style="
+            background: #fff5f6;
+            padding: 5px;
+            border-radius: 999px;
+            border: 1px solid rgba(233, 64, 87, 0.12);
+          "
+        >
+          <li class="nav-item">
+            <a href="{% url 'Home' %}" class="nav-link ultra-nav-link">
+              <i class="fa-solid fa-house"></i> <span>HOME</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'story_page' %}" class="nav-link ultra-nav-link">
+              <i class="fa-solid fa-bell-concierge"></i>
+              <span>STORIES</span>
+            </a>
+          </li>
+
+          <!-- BLOG DROPDOWN MENU -->
+          <li class="nav-item dropdown custom-premium-dropdown">
+            <a
+              href="javascript:void(0);"
+              class="nav-link ultra-nav-link dropdown-toggle transition-all"
+              data-bs-toggle="dropdown"
+              role="button"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-newspaper"></i> <span>BLOG</span>
+            </a>
+            <ul
+              class="dropdown-menu border-0 shadow-lg dynamic-glass-dropdown"
+              style="
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(15px);
+                border-radius: 16px;
+                padding: 8px;
+                border: 1px solid rgba(233, 64, 87, 0.1) !important;
+                margin-top: 10px;
+              "
+            >
+              <li>
+                <a
+                  class="dropdown-item custom-drop-item"
+                  href="{% url 'Latest_article' %}"
+                >
+                  <i class="fa-solid fa-book-open" style="color: #e94057"></i>
+                  Latest Articles
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item custom-drop-item"
+                  href="{% url 'relationship_tips' %}"
+                >
+                  <i class="fa-solid fa-handshake" style="color: #e94057"></i>
+                  Relationship Tips
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item custom-drop-item"
+                  href="{% url 'marriage_advice' %}"
+                >
+                  <i class="fa-solid fa-ring" style="color: #e94057"></i>
+                  Marriage Advice
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'contact' %}" class="nav-link ultra-nav-link">
+              <i class="fa-solid fa-envelope"></i> <span>CONTACT</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Mobile Menu Toggler -->
+      <button
+        class="navbar-toggler border-0 p-1 d-lg-none"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#mobileOffcanvas"
+        aria-controls="mobileOffcanvas"
+        style="outline: none; box-shadow: none"
+      >
+        <i
+          class="fa-solid fa-bars-staggered"
+          style="color: #e94057; font-size: 22px"
+        ></i>
+      </button>
+
+      <!-- Right Action Block (Right Anchor) -->
+      <div class="d-none d-lg-flex align-items-center gap-3 m-0">
+        <!-- Support / Helpline Info (Space Filler & Trust Factor) -->
+        <div class="d-flex align-items-center gap-2 me-2">
+          <div
+            class="d-flex align-items-center justify-content-center rounded-circle"
+            style="
+              width: 36px;
+              height: 36px;
+              background: rgba(233, 64, 87, 0.08);
+              color: #e94057;
+            "
+          >
+            <i class="fa-solid fa-phone-volume" style="font-size: 14px"></i>
+          </div>
+          <div class="d-flex flex-column">
+            <span
+              style="
+                font-size: 10px;
+                font-weight: 700;
+                color: #64748b;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              "
+              >Need Help?</span
+            >
+            <a
+              href="tel:+91 8262802961"
+              class="text-decoration-none support-phone-link"
+              style="
+                font-size: 14.5px;
+                font-weight: 800;
+                color: #1e293b;
+                font-family: &quot;Inter&quot;, sans-serif;
+              "
+              >+91 8262802961</a
+            >
+          </div>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div
+          style="
+            height: 30px;
+            width: 1.5px;
+            background: rgba(233, 64, 87, 0.15);
+          "
+        ></div>
+
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- ================= MOBILE OFFCANVAS PANEL WITH ACCORDION COLLAPSE FIXED ================= -->
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="mobileOffcanvas"
+  aria-labelledby="mobileOffcanvasLabel"
+  style="
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(233, 64, 87, 0.08);
+    width: 290px;
+  "
+>
+  <div class="offcanvas-header border-bottom border-light py-4">
+    <h5
+      class="offcanvas-title"
+      id="mobileOffcanvasLabel"
+      style="
+        font-family: &quot;Poppins&quot;, sans-serif;
+        font-weight: 800;
+        color: #1e293b;
+      "
+    >
+      Forever<span style="color: #e94057">Bond</span>
+    </h5>
+    <button
+      type="button"
+      class="btn-close text-reset"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+      style="box-shadow: none"
+    ></button>
+  </div>
+  <div
+    class="offcanvas-body d-flex flex-column justify-content-between py-4"
+    style="background: #fff5f6"
+  >
+    <ul class="nav flex-column gap-2" id="mobileNavList">
+      <li class="nav-item">
+        <a href="{% url 'Home' %}" class="nav-link mobile-nav-link">
+          <i class="fa-solid fa-house"></i> HOME
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'story_page' %}" class="nav-link mobile-nav-link">
+          <i class="fa-solid fa-bell-concierge"></i> STORIES
+        </a>
+      </li>
+
+      <!-- Mobile Blog Menu with Accordion Collapse Structure -->
+      <li class="nav-item">
+        <a
+          class="nav-link mobile-nav-link d-flex justify-content-between align-items-center dropdown-toggle-custom"
+          data-bs-toggle="collapse"
+          href="#mobileBlogCollapse"
+          role="button"
+          aria-expanded="false"
+        >
+          <span><i class="fa-solid fa-newspaper"></i> BLOG</span>
+          <i
+            class="fa-solid fa-chevron-down ms-auto"
+            style="font-size: 11px"
+          ></i>
+        </a>
+        <div class="collapse ps-3 mt-1" id="mobileBlogCollapse">
+          <ul
+            class="nav flex-column gap-1"
+            style="
+              border-left: 1px dashed rgba(233, 64, 87, 0.3);
+              padding-left: 10px;
+            "
+          >
+            <li>
+              <a
+                class="nav-link mobile-nav-link py-2"
+                style="font-size: 13.5px"
+                href="{% url 'Latest_article' %}"
+              >
+                <i class="fa-solid fa-book-open"></i> Latest Articles
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link mobile-nav-link py-2"
+                style="font-size: 13.5px"
+                href="{% url 'relationship_tips' %}"
+              >
+                <i class="fa-solid fa-handshake"></i> Relationship Tips
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link mobile-nav-link py-2"
+                style="font-size: 13.5px"
+                href="{% url 'marriage_advice' %}"
+              >
+                <i class="fa-solid fa-ring"></i> Marriage Advice
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'contact' %}" class="nav-link mobile-nav-link">
+          <i class="fa-solid fa-envelope"></i> CONTACT
+        </a>
+      </li>
+    </ul>
+
+
+  </div>
+</div>
+
+<style>
+  /* Removed .absolute-center-links to let Flexbox handle responsive spacing natively */
+
+  /* Core Desktop Navigation Link Structure */
+  .ultra-nav-link {
+    font-family: "Inter", sans-serif;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    letter-spacing: 0.8px;
+    padding: 8px 24px !important;
+    border-radius: 999px;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .ultra-nav-link i {
+    font-size: 11.5px;
+    color: #e94057;
+    opacity: 0.7;
+    transition: transform 0.2s ease;
+  }
+
+  /* Standard Hover State (For non-active items) */
+  .ultra-nav-link:hover,
+  .custom-premium-dropdown:hover .ultra-nav-link {
+    color: #e94057 !important;
+    background: rgba(233, 64, 87, 0.08);
+  }
+  .ultra-nav-link:hover i {
+    transform: translateY(-1px);
+  }
+
+  /* CRITICAL FIX: Active Link Styling & Persistent Hover Text visibility */
+  .active-premium-link,
+  .active-premium-link:hover,
+  .custom-premium-dropdown .ultra-nav-link.active-premium-link:hover {
+    color: #ffffff !important;
+    background: #e94057 !important;
+    box-shadow: 0 4px 12px rgba(233, 64, 87, 0.25) !important;
+  }
+  .active-premium-link i,
+  .active-premium-link:hover i {
+    color: #ffffff !important;
+    opacity: 1 !important;
+  }
+
+  /* Bootstrap Dropdown Arrow Removal */
+  .dropdown-toggle::after {
+    display: none !important;
+  }
+
+  /* Elegant Glassmorphic Dropdown Item Design */
+  .custom-drop-item {
+    font-family: "Inter", sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #4b5563;
+    padding: 10px 16px;
+    margin: 2px 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+  }
+  .custom-drop-item:hover {
+    background: #fff5f6 !important;
+    color: #e94057 !important;
+    transform: translateX(3px);
+  }
+  .custom-drop-item i {
+    font-size: 12px;
+    transition: transform 0.2s ease;
+  }
+  .custom-drop-item:hover i {
+    transform: scale(1.1);
+  }
+
+  /* Support Phone Link Hover */
+  .support-phone-link {
+    transition: color 0.3s ease;
+  }
+  .support-phone-link:hover {
+    color: #e94057 !important;
+  }
+
+  /* Luxury Membership Button Framework */
+  .ultimate-action-btn {
+    background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+    color: #ffffff !important;
+    font-family: "Inter", sans-serif;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.6px;
+    padding: 11px 26px !important;
+    border-radius: 999px !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(233, 64, 87, 0.2);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .ultimate-action-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #ff5c75 0%, #e94057 100%);
+    box-shadow: 0 8px 22px rgba(233, 64, 87, 0.35);
+  }
+
+  /* Mobile Sheet Styling Integration */
+  .mobile-nav-link {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #475569 !important;
+    padding: 12px 16px !important;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+  }
+  .mobile-nav-link i {
+    color: #e94057;
+    width: 18px;
+  }
+  .mobile-nav-link:hover {
+    background: rgba(233, 64, 87, 0.05);
+    color: #e94057 !important;
+  }
+
+  /* Mobile Active Fixes */
+  .active-mobile,
+  .active-mobile:hover {
+    background: rgba(233, 64, 87, 0.1) !important;
+    color: #e94057 !important;
+  }
+  .active-mobile i {
+    color: #e94057 !important;
+  }
+
+  /* Scroll State Engine Modifier */
+  .nav-scrolled-wide {
+    padding: 8px 0px !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    box-shadow: 0 10px 35px rgba(233, 64, 87, 0.06) !important;
+  }
+
+  /* Desktop Hover Trigger Mechanism for Dropdowns */
+  @media (min-width: 992px) {
+    .custom-premium-dropdown:hover .dropdown-menu {
+      display: block !important;
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    .dropdown-menu {
+      display: none;
+      transition: all 0.3s ease;
+      transform: translateY(10px);
+    }
+  }
+</style>
+
+<!-- 6. Scripts: AOS Trigger + Sticky Scroll Engine + Automatic Intelligent Active Class Linker -->
+<script>
+  // AOS Initialization
+  if (typeof AOS !== "undefined") {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }
+
+  // Dynamic Full Width Scroll Transition Engine
+  window.addEventListener("scroll", function () {
+    const stickyWrapper = document.getElementById("stickyNavWrapper");
+    if (window.scrollY > 180) {
+      stickyWrapper.classList.add("nav-scrolled-wide");
+    } else {
+      stickyWrapper.classList.remove("nav-scrolled-wide");
+    }
+  });
+
+  // INTELLIGENT AUTOMATIC ACTIVE LINK DETECTOR (Pure JS Engine)
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPath = window.location.pathname;
+
+    // 1. Process Desktop Navigation links
+    const desktopLinks = document.querySelectorAll(".ultra-nav-link");
+    desktopLinks.forEach((link) => {
+      const linkHref = link.getAttribute("href");
+      if (
+        linkHref &&
+        (linkHref === currentPath ||
+          (currentPath === "/" && linkHref.includes("index.html")))
+      ) {
+        link.classList.add("active-premium-link");
+      }
+    });
+
+    // 2. Process Desktop Nested Dropdown Items inside Blog
+    const dropdownItems = document.querySelectorAll(".custom-drop-item");
+    dropdownItems.forEach((item) => {
+      const itemHref = item.getAttribute("href");
+      if (
+        itemHref &&
+        (itemHref === currentPath ||
+          (currentPath === "/" && itemHref.includes("index.html")))
+      ) {
+        // Dropdown item ko highlight karne ke sath Parent Blog button ko active look dena
+        const parentDropdown = item.closest(".custom-premium-dropdown");
+        if (parentDropdown) {
+          const mainToggle = parentDropdown.querySelector(".ultra-nav-link");
+          if (mainToggle) mainToggle.classList.add("active-premium-link");
+        }
+      }
+    });
+
+    // 3. Process Mobile Sheet Layout navigation links
+    const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+    mobileLinks.forEach((mobLink) => {
+      const mobHref = mobLink.getAttribute("href");
+      if (
+        mobHref &&
+        (mobHref === currentPath ||
+          (currentPath === "/" && mobHref.includes("index.html")))
+      ) {
+        mobLink.classList.add("active-mobile");
+
+        // Agar page mobile accordion collapse ke andar hai to wrapper open status active karega
+        const parentCollapse = mobLink.closest(".collapse");
+        if (parentCollapse) {
+          parentCollapse.classList.add("show");
+          // Parent headers highlight tracker
+          const toggler = document.querySelector(
+            `[href="#${parentCollapse.id}"]`,
+          );
+          if (toggler) toggler.classList.add("active-mobile");
+        }
+      }
+    });
+  });
+</script>
+<!-- ================= END NAVBAR STRUCT ================= -->
+
+
+
+

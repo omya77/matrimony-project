@@ -1,0 +1,228 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}Approved Profiles - Admin Panel{% endblock %}
+
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row">
+        <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Approved Profiles</h1>
+        </div>
+    </div>
+
+    <!-- PENDING PROFILES TABLE -->
+    <div class="card-panel mb-5">
+        <h3 class="card-title" style="margin-bottom: 20px;">Pending Approvals</h3>
+        
+        <div class="table-responsive">
+            <table class="custom-table" style="box-shadow: 0 0 0 1px #e2e8f0; border-radius: 8px; overflow: hidden;">
+                <thead style="background: #f8fafc;">
+                    <tr>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">User Details</th>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">Contact Info</th>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">Joined At</th>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">Status</th>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0; text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in pending_profiles %}
+                    <tr class="table-row-hover">
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-avatar" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    {% if profile.photo %}
+                                        <img src="{{ profile.photo.url }}" alt="">
+                                    {% else %}
+                                        <i class="fa-solid fa-user text-muted"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="user-details">
+                                    <span class="name" style="font-size: 0.95rem;">{{ profile.full_name|default:profile.user.username }}</span>
+                                    <span class="id" style="color: #64748b; font-size: 0.75rem;">{{ profile.user.email|default:"No Email" }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="font-size: 0.9rem; color: #334155;"><i class="fa-solid fa-phone me-2 text-muted"></i>{{ profile.phone_number|default:"N/A" }}</div>
+                            <div style="font-size: 0.8rem; color: #64748b;"><i class="fa-solid fa-location-dot me-2 text-muted"></i>{{ profile.city|default:"City" }}</div>
+                        </td>
+                        <td>{{ profile.created_at|date:"d M Y, h:i A" }}</td>
+                        <td><span class="status-badge pending">Pending</span></td>
+                        <td class="text-center" style="white-space: nowrap; display: flex; gap: 8px; justify-content: center;">
+                            <button onclick="approveUser({{ profile.id }})" class="btn btn-sm btn-outline-success" style="padding: 6px 12px; font-size: 1rem;" title="Approve"><i class="fa-solid fa-check"></i></button>
+                            <button onclick="deleteUser({{ profile.id }})" class="btn btn-sm btn-outline-danger" style="padding: 6px 12px; font-size: 1rem;" title="Reject"><i class="fa-solid fa-xmark"></i></button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted" style="padding: 40px;">
+                            <div style="font-size: 2rem; color: #e2e8f0; margin-bottom: 10px;"><i class="fa-regular fa-face-smile"></i></div>
+                            <div style="font-weight: 500;">No pending approvals!</div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- APPROVED PROFILES TABLE -->
+    <div class="card-panel">
+        <h3 class="card-title" style="margin-bottom: 20px;">Approved Profiles Directory</h3>
+        
+        <div class="table-responsive">
+            <table class="custom-table" style="box-shadow: 0 0 0 1px #e2e8f0; border-radius: 8px; overflow: hidden;">
+                <thead style="background: #f8fafc;">
+                    <tr>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">Matrimony ID</th>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">User Details</th>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">Contact Info</th>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">Status</th>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">Payment Status</th>
+                        <th style="padding: 16px 20px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0; text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in approved_profiles %}
+                    <tr class="table-row-hover">
+                        <td style="font-weight: 700; padding-left: 20px;">
+                            <span style="background: rgba(255, 77, 109, 0.1); color: #ff4d6d; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(255, 77, 109, 0.2);">
+                                <i class="fa-solid fa-fingerprint me-1" style="font-size: 0.8rem;"></i> {{ profile.matrimony_id }}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-avatar" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    {% if profile.photo %}
+                                        <img src="{{ profile.photo.url }}" alt="">
+                                    {% else %}
+                                        <i class="fa-solid fa-user text-muted"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="user-details">
+                                    <span class="name" style="font-size: 0.95rem;">{{ profile.full_name|default:profile.user.username }}</span>
+                                    <span class="id" style="color: #64748b; font-size: 0.75rem;"><i class="fa-regular fa-envelope me-1"></i>{{ profile.user.email|default:"No Email" }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="font-weight: 500; color: #334155;">{{ profile.mobile|default:profile.user.username }}</div>
+                            <div style="font-size: 0.75rem; color: #94a3b8;"><i class="fa-solid fa-location-dot me-1"></i>{{ profile.city|default:"Location Pending" }}</div>
+                        </td>
+                        <td>
+                            <span class="status-badge verified">Approved</span>
+                        </td>
+                        <td>
+                            {% if profile.payment_status == 'Paid' %}
+                            <span class="status-badge verified">Paid</span>
+                            {% else %}
+                            <span class="status-badge pending" style="background: #f59e0b; color: white;">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center" style="white-space: nowrap; display: flex; gap: 8px; justify-content: center;">
+                            {% if profile.payment_status != 'Paid' %}
+                            <button onclick="sendPaymentLink('{{ profile.user.id }}', '{{ profile.mobile|default:profile.user.username }}', '{{ profile.full_name|default:'User'|escapejs }}')" class="btn btn-sm action-btn-hover" style="background: rgba(34, 197, 94, 0.1); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.2); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: all 0.3s ease;" title="Resend Link">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </button>
+                            {% endif %}
+                            <button onclick="deleteUser('{{ profile.id }}')" class="btn btn-sm action-btn-hover" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: all 0.3s ease;" title="Delete">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted" style="padding: 40px;">
+                            <div style="font-size: 3rem; color: #e2e8f0; margin-bottom: 15px;"><i class="fa-solid fa-folder-open"></i></div>
+                            <div style="font-weight: 500;">No approved profiles yet.</div>
+                            <div style="font-size: 0.85rem; margin-top: 5px;">Once users are approved, they will appear here.</div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function approveUser(profileId) {
+    if(confirm('Are you sure you want to approve this user? They will be granted a Matrimony ID and access to the platform.')) {
+        
+        // Open empty tab synchronously to bypass popup blocker
+        let whatsappTab = window.open('about:blank', '_blank');
+        
+        fetch('/admin_panel/api/approve_user/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ profile_id: profileId })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === 'success') {
+                if (data.whatsapp_url) {
+                    whatsappTab.location.href = data.whatsapp_url;
+                } else {
+                    whatsappTab.close();
+                }
+                
+                // Small delay to let WhatsApp load before page reload
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+            } else {
+                whatsappTab.close();
+                alert('Error: ' + data.message);
+            }
+        });
+    }
+}
+
+function deleteUser(profileId) {
+    if(confirm('Are you sure you want to PERMANENTLY DELETE this user from the database? This action cannot be undone.')) {
+        fetch('/admin_panel/api/delete_user/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ profile_id: profileId })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === 'success') {
+                location.reload();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        });
+    }
+}
+
+function sendPaymentLink(userId, mobile, name) {
+    if (!mobile) return;
+    
+    // Format mobile number
+    let cleanMobile = mobile;
+    if (!cleanMobile.startsWith('+')) {
+        if (cleanMobile.length === 10) {
+            cleanMobile = "91" + cleanMobile;
+        } else {
+            cleanMobile = cleanMobile.replace(/^0+/, '');
+        }
+    } else {
+        cleanMobile = cleanMobile.replace('+', '');
+    }
+    
+    const paymentUrl = window.location.origin + "/payments/pay_link/" + userId + "/";
+    const msg = `Hello ${name},\n\nCongratulations! Your profile registration on ForeverBond Matrimony has been successfully approved by the admin. 🎉\n\nTo get full access to all profiles and features, please complete your payment using the secure link below:\n${paymentUrl}\n\nOnce your payment is completed, you can directly go to the login page, enter your username and password, and enjoy full access to all pages and features on ForeverBond!`;
+    
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=${cleanMobile}&text=${encodeURIComponent(msg)}`;
+    window.open(whatsappUrl, '_blank');
+}
+</script>
+{% endblock %}

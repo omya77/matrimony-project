@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForeverBond</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- url_icon  -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/web/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/web/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      href="/static/web/images/favicon.png"
+      type="image/svg+xml"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+
+    <style>
+      :root {
+        --primary: #e94057;
+        --accent: #d4af37;
+        --gradient: linear-gradient(135deg, #e94057 0%, #f27121 100%);
+        --radius: 16px;
+        --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: #333;
+        background: #faf8f9;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* ---------- BUTTONS (all hover effects) ---------- */
+      .btn-premium {
+        background: var(--gradient);
+        color: #fff !important;
+        border: none;
+        border-radius: 30px;
+        padding: 10px 28px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: var(--transition);
+        box-shadow: 0 4px 20px rgba(233, 64, 87, 0.35);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .btn-premium:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 10px 35px rgba(233, 64, 87, 0.5);
+        color: #fff !important;
+        background: var(--gradient);
+      }
+
+      .btn-outline-premium {
+        background: transparent;
+        color: var(--primary) !important;
+        border: 2px solid var(--primary);
+        border-radius: 30px;
+        padding: 7px 18px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .btn-outline-premium:hover {
+        background: var(--primary);
+        color: #fff !important;
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 6px 20px rgba(233, 64, 87, 0.3);
+        border-color: var(--primary);
+      }
+
+      .btn-close-white:hover {
+        opacity: 1 !important;
+        transform: rotate(90deg);
+        transition: 0.3s;
+      }
+
+      /* ---------- HERO ---------- */
+      .hero-section {
+        height: 250px;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url("https://www.ezhavamangalyam.com/matrimonials/images/ezhava_thiyya_matrimony.jpg")
+            no-repeat center/cover;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        position: relative;
+        margin-bottom: 30px;
+      }
+
+      .hero-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .floating-heart {
+        position: absolute;
+        color: rgba(233, 64, 87, 0.2);
+        animation: float 4s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0);
+          opacity: 0;
+        }
+
+        50% {
+          opacity: 0.7;
+        }
+
+        100% {
+          transform: translateY(-40px) rotate(20deg);
+          opacity: 0;
+        }
+      }
+
+      /* ---------- FEATURED CARD ---------- */
+      .featured-card {
+        background: #fff;
+        border-radius: var(--radius);
+        border: 2px solid var(--accent);
+        box-shadow: 0 15px 35px rgba(212, 175, 55, 0.12);
+        overflow: hidden;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .featured-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient);
+      }
+
+      .featured-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+      }
+
+      .badge-gold {
+        background: rgba(214, 175, 55, 0.15);
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        border-radius: 30px;
+        padding: 3px 12px;
+        font-size: 0.65rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .badge-verified {
+        background: rgba(40, 167, 69, 0.12);
+        color: #28a745;
+        border: 1px solid #28a745;
+        border-radius: 30px;
+        padding: 3px 12px;
+        font-size: 0.65rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      /* ---------- STORY CARDS ---------- */
+      .story-card {
+        background: #fff;
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition: var(--transition);
+        height: 100%;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        position: relative;
+      }
+
+      .story-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient);
+        opacity: 0;
+        transition: var(--transition);
+        z-index: 2;
+      }
+
+      .story-card:hover::before {
+        opacity: 1;
+      }
+
+      .story-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(233, 64, 87, 0.12);
+        border-color: rgba(233, 64, 87, 0.15);
+      }
+
+      .img-zoom-container {
+        overflow: hidden;
+        position: relative;
+        height: 210px;
+      }
+
+      .img-zoom-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .story-card:hover .img-zoom-container img {
+        transform: scale(1.08);
+      }
+
+      .img-zoom-container .filter-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(233, 64, 87, 0) 40%,
+          rgba(233, 64, 87, 0.3) 100%
+        );
+        opacity: 0;
+        transition: var(--transition);
+        z-index: 1;
+      }
+
+      .story-card:hover .filter-overlay {
+        opacity: 1;
+      }
+
+      .img-zoom-container .card-badge-top {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 3;
+      }
+
+      .img-zoom-container .card-badge-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 30px 12px 12px;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        opacity: 0;
+        transition: var(--transition);
+        z-index: 2;
+      }
+
+      .story-card:hover .card-badge-bottom {
+        opacity: 1;
+      }
+
+      .story-card .card-content {
+        padding: 18px 16px 18px;
+        position: relative;
+        background: #fff;
+      }
+
+      .story-card .couple-icon {
+        width: 42px;
+        height: 42px;
+        background: var(--gradient);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.1rem;
+        position: absolute;
+        top: -21px;
+        right: 16px;
+        box-shadow: 0 4px 18px rgba(233, 64, 87, 0.35);
+        z-index: 5;
+        transition: var(--transition);
+      }
+
+      .story-card:hover .couple-icon {
+        transform: rotate(10deg) scale(1.05);
+      }
+
+      /* ---------- DIVIDER ---------- */
+      .creative-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin: 10px 0;
+      }
+
+      .creative-divider .line {
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary),
+          transparent
+        );
+        max-width: 60px;
+      }
+
+      .creative-divider .diamond {
+        width: 8px;
+        height: 8px;
+        background: var(--gradient);
+        transform: rotate(45deg);
+        border-radius: 2px;
+      }
+
+      /* ---------- SHARE SECTION ---------- */
+      .share-section {
+        background: transparent;
+        border-radius: 20px;
+        padding: 20px 0;
+        position: relative;
+      }
+
+      .share-section::before {
+        display: none;
+      }
+
+      .glass-form-container {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: var(--radius);
+        padding: 20px 24px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+      }
+
+      .glass-form-container .form-label {
+        font-weight: 600;
+        font-size: 0.75rem;
+        margin-bottom: 3px;
+        color: #555;
+      }
+
+      .form-control {
+        border-radius: 8px;
+        padding: 7px 14px;
+        font-size: 0.82rem;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background: rgba(255, 255, 255, 0.95);
+        transition: var(--transition);
+        width: 100%;
+        height: 38px;
+      }
+
+      .form-control:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(233, 64, 87, 0.1);
+        outline: none;
+      }
+
+      textarea.form-control {
+        height: 65px;
+        resize: vertical;
+      }
+
+      .invalid-feedback {
+        display: none;
+        font-size: 0.7rem;
+        color: #dc3545;
+      }
+
+      .was-validated .form-control:invalid ~ .invalid-feedback {
+        display: block;
+      }
+
+      /* ---------- COUPLE IMAGE ---------- */
+      .couple-image-wrapper {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(233, 64, 87, 0.12);
+        transition: var(--transition);
+        height: 100%;
+        min-height: 380px;
+        background: linear-gradient(135deg, #ffe6ea, #fff0f3);
+      }
+
+      .couple-image-wrapper:hover {
+        transform: scale(1.01);
+        box-shadow: 0 25px 60px rgba(233, 64, 87, 0.18);
+      }
+
+      .couple-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .couple-image-wrapper:hover img {
+        transform: scale(1.03);
+      }
+
+      .couple-image-wrapper .overlay-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 50px 24px 24px;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        color: #fff;
+      }
+
+      .couple-image-wrapper .overlay-text h5 {
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+      }
+
+      .couple-image-wrapper .overlay-text p {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        margin-bottom: 0;
+      }
+
+      .couple-image-wrapper .floating-badge {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        padding: 8px 16px;
+        border-radius: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        font-weight: 600;
+        font-size: 0.75rem;
+        color: var(--primary);
+        z-index: 2;
+      }
+
+      .couple-image-wrapper .floating-badge i {
+        margin-right: 6px;
+      }
+
+      /* ---------- BACK TO TOP ---------- */
+      #backToTop {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 40px;
+        height: 40px;
+        background: var(--gradient);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(233, 64, 87, 0.4);
+        z-index: 1000;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: var(--transition);
+      }
+
+      #backToTop:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 25px rgba(233, 64, 87, 0.55);
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (max-width: 992px) {
+        .couple-image-wrapper {
+          min-height: 280px;
+          margin-top: 20px;
+        }
+
+        .glass-form-container {
+          padding: 16px 18px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 1.8rem;
+        }
+
+        .hero-section {
+          height: 200px;
+        }
+
+        .couple-image-wrapper {
+          min-height: 220px;
+        }
+
+        .featured-card .fs-2 {
+          font-size: 1.5rem !important;
+        }
+
+        .btn-premium {
+          padding: 8px 20px;
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .hero-title {
+          font-size: 1.5rem;
+        }
+
+        .hero-section {
+          height: 170px;
+        }
+
+        .glass-form-container {
+          padding: 14px;
+        }
+
+        .btn-premium {
+          padding: 7px 16px;
+          font-size: 0.75rem;
+        }
+
+        .couple-image-wrapper {
+          min-height: 180px;
+        }
+
+        .form-control {
+          font-size: 0.75rem;
+          height: 34px;
+        }
+
+        textarea.form-control {
+          height: 50px;
+        }
+
+        .story-card .couple-icon {
+          width: 36px;
+          height: 36px;
+          font-size: 0.9rem;
+          top: -18px;
+          right: 12px;
+        }
+
+        .couple-image-wrapper .overlay-text h5 {
+          font-size: 1.1rem;
+        }
+
+        .couple-image-wrapper .overlay-text p {
+          font-size: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include "web/navbar_story_and_remaining.html" %}
+    <!-- Messages -->
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <i
+        class="fa-solid fa-heart floating-heart fs-2"
+        style="left: 10%; top: 20%; animation-delay: 0s"
+      ></i>
+      <i
+        class="fa-solid fa-heart floating-heart fs-3"
+        style="left: 80%; top: 15%; animation-delay: 1.5s"
+      ></i>
+      <i
+        class="fa-solid fa-heart floating-heart fs-4"
+        style="left: 45%; top: 60%; animation-delay: 3s"
+      ></i>
+      <div class="container px-3 px-md-4">
+        <div class="row">
+          <div class="col-lg-8">
+            <h1 class="hero-title">Success Stories</h1>
+            <p class="lead text-white-50 mb-0 fs-6">
+              Real couples. Real journeys. One trusted platform.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED STORY -->
+    <section class="container px-3 px-md-4 mb-4">
+      <div class="text-center mb-3">
+        <h6
+          class="text-uppercase fw-bold"
+          style="color: var(--primary); letter-spacing: 2px; font-size: 0.7rem"
+        >
+          <i class="fa-regular fa-star me-1"></i> Our Best Highlight
+        </h6>
+        <h2 class="fw-bold fs-2">Featured Destiny Match</h2>
+        <div class="creative-divider">
+          <span class="line"></span><span class="diamond"></span
+          ><span class="line"></span>
+        </div>
+      </div>
+
+      <div class="featured-card p-3 p-md-4">
+        <div class="row align-items-center g-3">
+          <div class="col-lg-5">
+            <img
+              src="https://m.media-amazon.com/images/I/71MLS74q2jL._AC_UF894,1000_QL80_.jpg"
+              alt="Couple"
+              class="img-fluid rounded-4 w-100 shadow-sm"
+              style="object-fit: cover; max-height: 300px; width: 100%"
+            />
+          </div>
+          <div class="col-lg-7 px-lg-3">
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <span class="badge-verified"
+                ><i class="fa-solid fa-circle-check"></i> Verified</span
+              >
+              <span
+                class="badge-gold"
+                style="
+                  background: rgba(233, 64, 87, 0.08);
+                  border-color: var(--primary);
+                  color: var(--primary);
+                "
+                ><i class="fa-regular fa-heart"></i> Love Story</span
+              >
+            </div>
+            <h3 class="fw-bold mb-1 fs-2">Rohan &amp; Ishita</h3>
+            <p class="text-muted small mb-2">
+              <i class="fa-regular fa-calendar text-danger me-2"></i>Married on
+              October 14, 2024
+            </p>
+            <div class="row g-2 mb-2 bg-light p-2 rounded-3">
+              <div class="col-sm-6">
+                <p class="mb-0 text-muted small">
+                  <i class="fa-solid fa-location-dot me-2 text-danger"></i
+                  >Location
+                </p>
+                <h6 class="fw-bold mb-0 fs-6">Mumbai, Maharashtra</h6>
+              </div>
+              <div class="col-sm-6">
+                <p class="mb-0 text-muted small">
+                  <i class="fa-regular fa-clock me-2 text-danger"></i>Member
+                  Since
+                </p>
+                <h6 class="fw-bold mb-0 fs-6">January 2023</h6>
+              </div>
+            </div>
+            <p
+              class="text-secondary mb-2"
+              style="font-size: 0.85rem; line-height: 1.6"
+            >
+              "Finding the right person felt daunting until we crossed paths on
+              ForeverYours. Our conversations flowed effortlessly, revealing
+              shared values and an undeniable connection that felt destined."
+            </p>
+            <button
+              class="btn-premium"
+              onclick="
+                openModal(
+                  'Rohan & Ishita',
+                  'https://m.media-amazon.com/images/I/71MLS74q2jL._AC_UF894,1000_QL80_.jpg',
+                  'October 14, 2024',
+                  'Mumbai, Maharashtra',
+                  'January 2023',
+                )
+              "
+            >
+              <i class="fa-regular fa-book-open"></i> Read Full Story
+              <i class="fa-solid fa-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORIES GRID -->
+    <section class="container px-3 px-md-4 mb-4">
+      <div class="text-center mb-3">
+        <h6
+          class="text-uppercase fw-bold"
+          style="color: var(--primary); letter-spacing: 2px; font-size: 0.7rem"
+        >
+          <i class="fa-regular fa-images me-1"></i> Inspiration Gallery
+        </h6>
+        <h2 class="fw-bold fs-2">More Beautiful Beginnings</h2>
+        <div class="creative-divider">
+          <span class="line"></span><span class="diamond"></span
+          ><span class="line"></span>
+        </div>
+        <p class="text-muted small mt-1">
+          Heartwarming stories of couples who found their perfect match
+        </p>
+      </div>
+      <div class="row g-3" id="storyCards"></div>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="storyModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 overflow-hidden shadow-lg">
+          <div class="modal-body p-0">
+            <div class="position-relative">
+              <img
+                id="modalImg"
+                src=""
+                alt="Couple"
+                class="w-100"
+                style="height: 280px; object-fit: cover"
+              />
+              <button
+                type="button"
+                class="btn-close btn-close-white position-absolute top-0 end-0 m-3 p-2 bg-dark rounded-circle"
+                data-bs-dismiss="modal"
+                style="opacity: 0.8; width: 30px; height: 30px"
+              ></button>
+            </div>
+            <div class="p-4 p-lg-5">
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <span class="badge-verified"
+                  ><i class="fa-solid fa-circle-check"></i> Verified Story</span
+                >
+                <span
+                  class="badge-gold"
+                  style="
+                    background: rgba(233, 64, 87, 0.08);
+                    border-color: var(--primary);
+                    color: var(--primary);
+                  "
+                  ><i class="fa-regular fa-heart"></i> Love Story</span
+                >
+              </div>
+              <h2 id="modalNames" class="fw-bold mb-2 fs-2"></h2>
+              <div
+                class="row g-2 text-muted small mb-3 py-2 border-top border-bottom"
+              >
+                <div class="col-6 col-sm-3">
+                  <i class="fa-regular fa-calendar text-danger me-1"></i>
+                  Date:<br /><strong id="modalDate" class="text-dark"></strong>
+                </div>
+                <div class="col-6 col-sm-3">
+                  <i class="fa-solid fa-location-dot text-danger me-1"></i>
+                  Location:<br /><strong
+                    id="modalLoc"
+                    class="text-dark"
+                  ></strong>
+                </div>
+                <div class="col-6 col-sm-3">
+                  <i class="fa-regular fa-clock text-danger me-1"></i>
+                  Since:<br /><strong
+                    id="modalSince"
+                    class="text-dark"
+                  ></strong>
+                </div>
+                <div class="col-6 col-sm-3">
+                  <i class="fa-regular fa-heart text-danger me-1"></i>
+                  Status:<br /><strong class="text-dark"
+                    >Happily Married</strong
+                  >
+                </div>
+              </div>
+              <h5 class="fw-bold mb-2">
+                <i class="fa-regular fa-book-open text-danger me-2"></i>Their
+                Journey
+              </h5>
+              <p
+                id="modalStory"
+                class="text-secondary mb-3"
+                style="font-size: 0.9rem; line-height: 1.7"
+              ></p>
+              <div
+                class="bg-light p-3 rounded-3 border-start border-4 border-danger"
+              >
+                <h6 class="fw-bold mb-1">
+                  <i class="fa-solid fa-quote-left me-2 text-danger"></i>Family
+                  Testimonial
+                </h6>
+                <p class="small text-muted mb-0" style="font-style: italic">
+                  "The transparency and verification assurance provided by the
+                  team helped us proceed with absolute confidence." — Parents
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHARE YOUR STORY FORM SECTION -->
+    <section class="container px-3 px-md-4 mb-4">
+      <div class="share-section">
+        <div class="row align-items-stretch g-4">
+          <!-- LEFT: Form -->
+          <div class="col-lg-7">
+            <div class="text-start mb-3">
+              <h2 class="fw-bold fs-2">Share Your Story</h2>
+              <p class="text-muted">
+                Found your soulmate? Share your beautiful journey with the
+                world.
+              </p>
+              <div
+                class="creative-divider"
+                style="justify-content: flex-start; margin: 6px 0 0 0"
+              >
+                <span class="line" style="max-width: 40px"></span
+                ><span class="diamond"></span>
+              </div>
+            </div>
+
+            <div class="glass-form-container">
+              <form id="storyForm" class="needs-validation" novalidate action="{% url 'submit_story' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label"><i class="fa-regular fa-user text-danger me-1"></i>Couple Names</label>
+                    <input type="text" class="form-control" name="couple_name" placeholder="e.g., Rohan & Ishita" required />
+                    <div class="invalid-feedback">Please provide couple names</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label"><i class="fa-regular fa-calendar text-danger me-1"></i>Wedding Date</label>
+                    <input type="date" class="form-control" name="wedding_date" required />
+                    <div class="invalid-feedback">Please select date</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label"><i class="fa-regular fa-heart text-danger me-1"></i>Your Love Story</label>
+                    <textarea class="form-control" name="story_text" rows="3" placeholder="Tell us how you met and fell in love..." required></textarea>
+                    <div class="invalid-feedback">Please share your love story</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label"><i class="fa-regular fa-image text-danger me-1"></i>Wedding Photo</label>
+                    <input type="file" class="form-control" name="photo" accept="image/*" required style="padding: 5px 12px; height: auto" />
+                    <div class="invalid-feedback">Please upload a wedding photo</div>
+                  </div>
+                  <div class="col-12 text-center mt-3">
+                    <button type="submit" class="btn-premium px-5">
+                      <i class="fa-regular fa-paper-plane me-2"></i> Submit Story <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- RIGHT: Attractive Couple Image -->
+          <div class="col-lg-5">
+            <div class="couple-image-wrapper">
+              <div class="floating-badge">
+                <i class="fa-solid fa-star"></i> Featured Match
+              </div>
+              <img
+                src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=800"
+                alt="Happy Couple"
+                loading="lazy"
+              />
+              <div class="overlay-text">
+                <h5>
+                  <i class="fa-solid fa-heart text-danger me-2"></i> Start Your
+                  Story Today
+                </h5>
+                <p>
+                  Join thousands of happy couples who found love on our platform
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACK TO TOP -->
+    <button id="backToTop" title="Go to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- SCRIPTS -->
+    <script>
+      const stories = [
+        {% for s in stories %}
+        {
+          id: {{ s.id }},
+          names: "{{ s.couple_name|escapejs }}",
+          date: "{{ s.wedding_date|date:'M d, Y' }}",
+          img: "{% if s.photo %}{{ s.photo.url }}{% else %}https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=800{% endif %}",
+          story: "{{ s.story_text|escapejs }}",
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+      ];
+
+      function renderCards() {
+        const container = document.getElementById("storyCards");
+        if (container) {
+          container.innerHTML = stories
+            .map(
+              (s) => `
+                  <div class="col-12 col-md-6 col-lg-4">
+                      <div class="story-card">
+                          <div class="img-zoom-container">
+                              <img src="${s.img}" alt="${s.names}" loading="lazy">
+                              <div class="filter-overlay"></div>
+                              <span class="badge-verified card-badge-top" style="font-size:0.6rem; padding:2px 10px;"><i class="fa-solid fa-circle-check text-success"></i> Verified</span>
+                              <div class="card-badge-bottom"><span class="badge bg-danger bg-opacity-75 rounded-pill px-2 py-1 small"><i class="fa-regular fa-heart me-1"></i> Love Story</span></div>
+                          </div>
+                          <div class="card-content">
+                              <div class="couple-icon"><i class="fa-regular fa-heart"></i></div>
+                              <h4 class="fw-bold mb-0 fs-5">${s.names}</h4>
+                              <div class="d-flex justify-content-between text-muted small mb-1">
+                                  <span><i class="fa-solid fa-location-dot me-1 text-danger"></i> India</span>
+                                  <span><i class="fa-regular fa-calendar me-1 text-danger"></i> ${s.date}</span>
+                              </div>
+                              <p class="text-secondary small mb-2" style="font-size:0.75rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${s.story}</p>
+                              <button class="btn-outline-premium w-100 justify-content-center" onclick="openModal('${s.names}','${s.img}','${s.date}','India','Member')">
+                                  <i class="fa-regular fa-book-open me-1"></i> Read Full Journey <i class="fa-solid fa-arrow-right ms-1"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              `
+            )
+            .join("");
+        }
+      }
+      renderCards();
+
+      function openModal(names, img, date, location, since) {
+        document.getElementById("modalNames").textContent = names;
+        document.getElementById("modalImg").src = img;
+        document.getElementById("modalDate").textContent = date;
+        document.getElementById("modalLoc").textContent = location;
+        document.getElementById("modalSince").textContent = since;
+        const storyObj = stories.find(s => s.names === names);
+        document.getElementById("modalStory").textContent = storyObj ? storyObj.story : "Our unique match began with a profile recommendation...";
+
+        if (typeof bootstrap !== "undefined") {
+          new bootstrap.Modal(document.getElementById("storyModal")).show();
+        }
+      }
+
+      const sForm = document.getElementById("storyForm");
+      if (sForm) {
+        sForm.addEventListener("submit", function (e) {
+          if (!this.checkValidity()) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+          this.classList.add("was-validated");
+        }, false);
+      }
+
+      window.addEventListener("scroll", function () {
+        const btn = document.getElementById("backToTop");
+        if (btn) {
+          btn.style.display = window.scrollY > 200 ? "flex" : "none";
+        }
+      });
+
+      const bttBtn = document.getElementById("backToTop");
+      if (bttBtn) {
+        bttBtn.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+    </script>
+
+    <!-- FOOTER -->
+    <footer
+      class="w-100 position-relative transition-all"
+      style="
+            background: linear-gradient(180deg, #ffffff 0%, #fff5f6 100%);
+            box-shadow: 0 -10px 40px rgba(233, 64, 87, 0.04);
+            margin-top: 120px;
+            padding: 40px 0 30px 0;
+            font-family: 'Inter', sans-serif;
+        }"
+    >
+      <!-- Top Premium Accent Line -->
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(
+            90deg,
+            #e94057 0%,
+            #facc15 50%,
+            #e94057 100%
+          );
+          opacity: 0.8;
+        "
+      ></div>
+
+      <div class="container-fluid px-5">
+        <div class="row align-items-center justify-content-between gy-4">
+          <!-- Left Side -->
+          <div class="col-12 col-md-auto text-center text-md-start">
+            <div class="d-flex flex-column gap-1">
+              <div
+                class="d-flex align-items-center justify-content-center justify-content-md-start gap-2"
+              >
+                <span
+                  style="
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                    font-weight: 800;
+                    font-size: 16px;
+                    color: #1e293b;
+                    letter-spacing: -0.5px;
+                  "
+                >
+                  Forever<span style="color: #e94057">Bond</span>
+                </span>
+                <span
+                  class="badge"
+                  style="
+                    background: rgba(233, 64, 87, 0.1);
+                    color: #e94057;
+                    font-size: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                  "
+                  >PREMIUM</span
+                >
+              </div>
+              <span
+                style="
+                  font-size: 12px;
+                  color: #94a3b8;
+                  font-weight: 500;
+                  letter-spacing: 0.2px;
+                "
+              >
+                &copy; 2026 ForeverBond Matrimony. All Rights Sacred.
+              </span>
+            </div>
+          </div>
+
+          <!-- Center Side -->
+          <div class="col-12 col-md-auto text-center">
+            <div
+              class="d-inline-flex align-items-center px-4 py-2 rounded-pill shadow-sm"
+              style="
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(233, 64, 87, 0.15);
+                backdrop-filter: blur(5px);
+                gap: 10px;
+                box-shadow: 0 4px 15px rgba(233, 64, 87, 0.03) !important;
+              "
+            >
+              <div
+                class="d-flex align-items-center justify-content-center rounded-circle"
+                style="background: #e94057; width: 22px; height: 22px"
+              >
+                <i
+                  class="fa-solid fa-shield-halved text-white"
+                  style="font-size: 10px"
+                ></i>
+              </div>
+              <span
+                style="
+                  font-size: 11.5px;
+                  color: #475569;
+                  font-weight: 700;
+                  letter-spacing: 0.5px;
+                  text-transform: uppercase;
+                "
+              >
+                End-to-End Encrypted Data Verification
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Side -->
+          <div class="col-12 col-md-auto">
+            <div
+              class="d-flex justify-content-center justify-content-md-end align-items-center gap-4"
+            >
+              <!-- Trust Indicator 1 -->
+              <div
+                class="d-flex align-items-center gap-2 premium-footer-icon"
+                style="cursor: default"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                  style="
+                    background: #ffffff;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #e2e8f0;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-lock"
+                    style="color: #64748b; font-size: 12px"
+                  ></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: #94a3b8;
+                      font-weight: 600;
+                      line-height: 1;
+                    "
+                    >Security</span
+                  >
+                  <span
+                    style="font-size: 12px; color: #334155; font-weight: 700"
+                    >SSL Secure</span
+                  >
+                </div>
+              </div>
+
+              <!-- Divider -->
+              <span style="color: #e2e8f0; font-weight: 300; font-size: 20px"
+                >|</span
+              >
+
+              <!-- Trust Indicator 2 -->
+              <div
+                class="d-flex align-items-center gap-2 premium-footer-icon"
+                style="cursor: default"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                  style="
+                    background: #ffffff;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #e2e8f0;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-user-shield"
+                    style="color: #64748b; font-size: 12px"
+                  ></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: #94a3b8;
+                      font-weight: 600;
+                      line-height: 1;
+                    "
+                    >Privacy</span
+                  >
+                  <span
+                    style="font-size: 12px; color: #334155; font-weight: 700"
+                    >100% Verified</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+    <script src="/static/web/js/global-interactions.js"></script>
+  </body>
+</html>
+

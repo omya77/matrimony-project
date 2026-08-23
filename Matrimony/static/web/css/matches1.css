@@ -1,0 +1,583 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+.mmHeroV2{
+    width:100%;
+    height:300px;
+    position:relative;
+    overflow:hidden;
+}
+
+.mmHeroV2Bg{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:1.5s;
+}
+
+.mmHeroV2:hover .mmHeroV2Bg{
+    transform:scale(1.08);
+}
+
+/* Light Overlay */
+.mmHeroV2Overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.18);
+}
+
+/* Center Content */
+
+.mmHeroV2Content{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+    text-align:center;
+    color:#fff;
+    z-index:10;
+}
+
+/* Badge */
+
+.mmHeroV2Badge{
+    display:inline-block;
+    padding:8px 22px;
+    background:#E91E63;
+    border-radius:50px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+/* Main Heading */
+
+.mmHeroV2Content h1{
+    font-size:52px;
+    font-weight:800;
+    line-height:1.1;
+    margin-bottom:12px;
+    text-shadow:0 4px 15px rgba(0,0,0,.25);
+}
+
+.mmHeroV2Content h1 span{
+    display:block;
+    color:#FFD4E3;
+}
+
+/* Subtitle */
+
+.mmHeroV2Content p{
+    font-size:18px;
+    font-weight:400;
+    color:#fff;
+    letter-spacing:.5px;
+    text-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.mmHeroV2{
+    height:250px;
+}
+
+.mmHeroV2Content h1{
+    font-size:30px;
+}
+
+.mmHeroV2Content p{
+    font-size:14px;
+}
+
+.mmHeroV2Badge{
+    font-size:12px;
+}
+
+}
+
+
+
+/*======================================
+        GOOGLE FONT
+=======================================*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#fff7f9;
+}
+
+/*======================================
+        FILTER SECTION
+=======================================*/
+
+.mmFilterProSection{
+    width:100%;
+    padding:0 20px;
+    position:relative;
+    margin-top:-50px;
+    z-index:50;
+}
+
+.mmFilterProBox{
+
+    width:100%;
+    max-width:1240px;
+
+    margin:auto;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:18px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,minmax(220px,1fr));
+
+    gap:18px;
+
+    box-shadow:
+    0 15px 40px rgba(255,71,126,.12);
+
+    border:1px solid #ffe2eb;
+
+}
+
+/*======================================
+          FILTER ITEM
+=======================================*/
+
+.mmFilterProItem{
+
+    height:76px;
+
+    background:#fff;
+
+    border:1px solid #f3d9e2;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 18px;
+
+    transition:.30s;
+
+}
+
+.mmFilterProItem:hover{
+
+    border-color:#ff4d86;
+
+    box-shadow:
+    0 10px 25px rgba(255,77,134,.12);
+
+}
+
+/*======================================
+            ICON
+=======================================*/
+
+.mmFilterProItem i{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fff2f6;
+
+    color:#ff2d75;
+
+    font-size:18px;
+
+    margin-right:14px;
+
+    flex-shrink:0;
+
+}
+
+/*======================================
+          TEXT AREA
+=======================================*/
+
+.mmFilterProText{
+
+    flex:1;
+
+}
+
+.mmFilterProText label{
+
+    display:block;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    color:#444;
+
+    margin-bottom:5px;
+
+}
+
+.mmFilterProText select{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#666;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+}
+
+/*======================================
+       LARGE DESKTOP
+=======================================*/
+
+@media(max-width:1400px){
+
+.mmFilterProBox{
+
+grid-template-columns:
+repeat(4,1fr);
+
+}
+
+}
+
+/*======================================
+        LAPTOP
+=======================================*/
+
+@media(max-width:1200px){
+
+.mmFilterProSection{
+
+padding:0 15px;
+
+}
+
+.mmFilterProBox{
+
+gap:15px;
+
+padding:15px;
+
+}
+
+}
+
+
+/*======================================
+            BUTTON AREA
+=======================================*/
+
+.mmFilterProButtons{
+
+    grid-column:1/-1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-top:10px;
+
+}
+
+/* Search Button */
+
+.mmFilterSearchBtn{
+
+    min-width:220px;
+    height:52px;
+
+    border:none;
+    outline:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(90deg,#ff4d86,#e91e63);
+
+    color:#fff;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    box-shadow:0 12px 25px rgba(233,30,99,.25);
+
+}
+
+.mmFilterSearchBtn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 18px 35px rgba(233,30,99,.35);
+
+}
+
+/* Reset Button */
+
+.mmFilterResetBtn{
+
+    min-width:180px;
+    height:52px;
+
+    border:2px solid #ff4d86;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    color:#ff2d75;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+}
+
+.mmFilterResetBtn:hover{
+
+    background:#ff4d86;
+
+    color:#fff;
+
+}
+
+/*======================================
+          TABLET (992px)
+=======================================*/
+
+@media(max-width:992px){
+
+.mmFilterProBox{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+/*======================================
+          MOBILE (768px)
+=======================================*/
+
+@media(max-width:768px){
+
+.mmFilterProSection{
+
+margin-top:20px;
+
+padding:0 15px;
+
+}
+
+.mmFilterProBox{
+
+grid-template-columns:1fr;
+
+padding:18px;
+
+gap:14px;
+
+border-radius:18px;
+
+}
+
+.mmFilterProItem{
+
+height:68px;
+
+padding:0 15px;
+
+}
+
+.mmFilterProItem i{
+
+width:38px;
+height:38px;
+
+font-size:16px;
+
+margin-right:12px;
+
+}
+
+.mmFilterProText label{
+
+font-size:11px;
+
+}
+
+.mmFilterProText select{
+
+font-size:14px;
+
+}
+
+.mmFilterProButtons{
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+.mmFilterSearchBtn,
+.mmFilterResetBtn{
+
+width:100%;
+
+min-width:100%;
+
+}
+
+}
+
+/*======================================
+        SMALL MOBILE (480px)
+=======================================*/
+
+@media(max-width:480px){
+
+.mmFilterProSection{
+
+padding:0 10px;
+
+}
+
+.mmFilterProBox{
+
+padding:14px;
+
+border-radius:16px;
+
+}
+
+.mmFilterProItem{
+
+height:64px;
+
+padding:0 12px;
+
+}
+
+.mmFilterProItem i{
+
+width:34px;
+height:34px;
+
+font-size:15px;
+
+}
+
+.mmFilterProText label{
+
+font-size:10px;
+
+}
+
+.mmFilterProText select{
+
+font-size:13px;
+
+}
+
+.mmFilterSearchBtn,
+.mmFilterResetBtn{
+
+height:48px;
+
+font-size:14px;
+
+}
+
+}
+
+/*======================================
+        EXTRA SMALL (360px)
+=======================================*/
+
+@media(max-width:360px){
+
+.mmFilterProItem{
+
+height:60px;
+
+}
+
+.mmFilterProItem i{
+
+width:32px;
+height:32px;
+
+font-size:14px;
+
+}
+
+.mmFilterSearchBtn,
+.mmFilterResetBtn{
+
+height:45px;
+
+font-size:13px;
+
+}
+
+}

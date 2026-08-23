@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Settings - ForeverBond</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/static/web/images/favicon.png" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+    <link rel="stylesheet" href="/static/web/css/footer.css" />
+  
+    <style>
+      body {
+        background: #f8fafc;
+        font-family: 'Inter', sans-serif;
+      }
+      
+      /* Premium Settings Layout */
+      .settings-container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+      
+      .settings-header {
+        margin-bottom: 30px;
+      }
+      .settings-header h2 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        color: #0f172a;
+        letter-spacing: -0.5px;
+      }
+      
+      /* Sidebar Menu */
+      .settings-sidebar {
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        padding: 20px 10px;
+        position: sticky;
+        top: 100px;
+      }
+      
+      .nav-pills .nav-link {
+        color: #64748b;
+        font-weight: 600;
+        padding: 14px 20px;
+        border-radius: 12px;
+        margin-bottom: 8px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      
+      .nav-pills .nav-link:hover {
+        background: rgba(233, 64, 87, 0.05);
+        color: #e94057;
+      }
+      
+      .nav-pills .nav-link.active {
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        color: #ffffff;
+        box-shadow: 0 4px 15px rgba(233, 64, 87, 0.2);
+      }
+      
+      .nav-pills .nav-link i {
+        font-size: 18px;
+        width: 24px;
+        text-align: center;
+      }
+      
+      /* Content Cards */
+      .settings-card {
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0,0,0,0.02);
+        overflow: hidden;
+        margin-bottom: 24px;
+        animation: fadeIn 0.4s ease-out;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .settings-card-header {
+        padding: 24px 30px;
+        border-bottom: 1px solid #f1f5f9;
+        background: #fff;
+      }
+      
+      .settings-card-header h5 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        color: #1e293b;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      
+      .settings-card-body {
+        padding: 30px;
+      }
+      
+      /* Toggle Switch Styling */
+      .custom-switch {
+        width: 50px;
+        height: 26px;
+        cursor: pointer;
+        background-color: #cbd5e1;
+        border: none;
+        box-shadow: none !important;
+        transition: background-color 0.3s ease;
+      }
+      .custom-switch:checked {
+        background-color: #e94057;
+        border-color: #e94057;
+      }
+      
+      .setting-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px dashed #e2e8f0;
+      }
+      .setting-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      
+      .setting-meta h6 {
+        font-weight: 700;
+        color: #334155;
+        margin-bottom: 4px;
+      }
+      .setting-meta p {
+        color: #64748b;
+        font-size: 13.5px;
+        margin-bottom: 0;
+      }
+      
+      /* Forms & Buttons */
+      .form-control, .form-select {
+        border-radius: 12px;
+        padding: 12px 16px;
+        border: 1px solid #e2e8f0;
+        background: #f8fafc;
+        font-weight: 500;
+        color: #334155;
+      }
+      .form-control:focus, .form-select:focus {
+        border-color: #e94057;
+        box-shadow: 0 0 0 3px rgba(233, 64, 87, 0.1);
+        background: #ffffff;
+      }
+      
+      .btn-primary-custom {
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        color: #fff;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-primary-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(233, 64, 87, 0.25);
+        color: #fff;
+      }
+      
+      .btn-danger-custom {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        padding: 12px 28px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-danger-custom:hover {
+        background: #ef4444;
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(239, 68, 68, 0.25);
+      }
+      
+      /* Status Alerts */
+      .status-alert {
+        border-radius: 16px;
+        border: none;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .status-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    {% include "web/secondary_navbar.html" %}
+
+    <div class="settings-container">
+        <div class="settings-header">
+            <h2>Account <span style="color: #e94057;">Settings</span></h2>
+            <p class="text-muted">Manage your profile visibility, security, and verification.</p>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 mb-4">
+                <div class="settings-sidebar">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="v-pills-privacy-tab" data-bs-toggle="pill" data-bs-target="#v-pills-privacy" type="button" role="tab" aria-controls="v-pills-privacy" aria-selected="true">
+                            <i class="fa-solid fa-shield-halved"></i> Privacy
+                        </button>
+                        <button class="nav-link" id="v-pills-kyc-tab" data-bs-toggle="pill" data-bs-target="#v-pills-kyc" type="button" role="tab" aria-controls="v-pills-kyc" aria-selected="false">
+                            <i class="fa-solid fa-id-card"></i> KYC Verification
+                        </button>
+                        <button class="nav-link" id="v-pills-notif-tab" data-bs-toggle="pill" data-bs-target="#v-pills-notif" type="button" role="tab" aria-controls="v-pills-notif" aria-selected="false">
+                            <i class="fa-solid fa-bell"></i> Notifications
+                        </button>
+                        <button class="nav-link" id="v-pills-security-tab" data-bs-toggle="pill" data-bs-target="#v-pills-security" type="button" role="tab" aria-controls="v-pills-security" aria-selected="false">
+                            <i class="fa-solid fa-lock"></i> Security
+                        </button>
+                        <button class="nav-link text-danger" id="v-pills-danger-tab" data-bs-toggle="pill" data-bs-target="#v-pills-danger" type="button" role="tab" aria-controls="v-pills-danger" aria-selected="false" style="margin-top: 20px;">
+                            <i class="fa-solid fa-trash"></i> Delete Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="col-lg-9">
+                <div class="tab-content" id="v-pills-tabContent">
+                    
+                    <!-- PRIVACY TAB -->
+                    <div class="tab-pane fade show active" id="v-pills-privacy" role="tabpanel" aria-labelledby="v-pills-privacy-tab">
+                        <div class="settings-card">
+                            <div class="settings-card-header">
+                                <h5><i class="fa-solid fa-eye text-primary"></i> Profile Visibility & Privacy</h5>
+                            </div>
+                            <div class="settings-card-body">
+                                <div class="setting-item pt-0">
+                                    <div class="setting-meta">
+                                        <h6>Blur Profile Photos</h6>
+                                        <p>Hide your photos from free/unconnected users.</p>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input custom-switch" type="checkbox" id="photoBlurToggle" {% if request.user.profile.blur_profile_photo %}checked{% endif %}>
+                                    </div>
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-meta">
+                                        <h6>Hide Contact Information</h6>
+                                        <p>Only premium members you accept can see your number.</p>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input custom-switch" type="checkbox" id="contactHideToggle" {% if request.user.profile.hide_contact_info %}checked{% endif %}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KYC TAB -->
+                    <div class="tab-pane fade" id="v-pills-kyc" role="tabpanel" aria-labelledby="v-pills-kyc-tab">
+                        <div class="settings-card">
+                            <div class="settings-card-header">
+                                <h5><i class="fa-solid fa-circle-check text-success"></i> Trust & Verification (KYC)</h5>
+                            </div>
+                            <div class="settings-card-body">
+                                {% if request.user.kyc and request.user.kyc.status == 'Approved' %}
+                                <div class="alert status-alert alert-success" role="alert">
+                                    <div class="status-icon bg-white text-success shadow-sm">
+                                        <i class="fa-solid fa-shield-check"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">KYC Verified</h6>
+                                        <p class="mb-0 small">Your identity has been verified. You now have a trusted badge on your profile.</p>
+                                    </div>
+                                </div>
+                                {% elif request.user.kyc and request.user.kyc.status == 'Pending' %}
+                                <div class="alert status-alert alert-warning" role="alert">
+                                    <div class="status-icon bg-white text-warning shadow-sm">
+                                        <i class="fa-solid fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1 fw-bold">Verification Pending</h6>
+                                        <p class="mb-0 small">Your {{ request.user.kyc.document_type }} is currently under review by our team.</p>
+                                    </div>
+                                </div>
+                                {% else %}
+                                    {% if request.user.kyc and request.user.kyc.status == 'Rejected' %}
+                                    <div class="alert status-alert alert-danger mb-4" role="alert">
+                                        <div class="status-icon bg-white text-danger shadow-sm">
+                                            <i class="fa-solid fa-triangle-exclamation"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">Verification Rejected</h6>
+                                            <p class="mb-0 small">Your previous document was rejected. Please upload a clear Government ID.</p>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    <p class="text-muted mb-4">Upload a valid Government ID to get a Verified Badge. Verified profiles get 5x more responses and higher trust.</p>
+                                    
+                                    <form action="{% url 'upload_kyc' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                        {% csrf_token %}
+                                        <div class="row g-4 mb-4">
+                                            <div class="col-md-6">
+                                                <label class="form-label text-dark fw-bold mb-2">Document Type</label>
+                                                <select class="form-select" name="document_type" required>
+                                                    <option value="" disabled selected>Select ID Proof...</option>
+                                                    <option value="Aadhar">Aadhar Card</option>
+                                                    <option value="PAN">PAN Card</option>
+                                                    <option value="Passport">Passport</option>
+                                                </select>
+                                                <div class="invalid-feedback">Please select a document type.</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label text-dark fw-bold mb-2">Upload File (Image/PDF)</label>
+                                                <input type="file" class="form-control" name="document_file" accept="image/jpeg,image/png,application/pdf" required>
+                                                <div class="invalid-feedback">Please select a file to upload.</div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary-custom"><i class="fa-solid fa-cloud-arrow-up me-2"></i> Submit for Verification</button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NOTIFICATIONS TAB -->
+                    <div class="tab-pane fade" id="v-pills-notif" role="tabpanel" aria-labelledby="v-pills-notif-tab">
+                        <div class="settings-card">
+                            <div class="settings-card-header">
+                                <h5><i class="fa-solid fa-bell-concierge text-warning"></i> Notification Preferences</h5>
+                            </div>
+                            <div class="settings-card-body">
+                                <div class="setting-item pt-0">
+                                    <div class="setting-meta">
+                                        <h6>Email Notifications</h6>
+                                        <p>Receive daily matches, messages, and profile views via email.</p>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input custom-switch" type="checkbox" id="emailNotifToggle" {% if request.user.profile.email_notifications %}checked{% endif %}>
+                                    </div>
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-meta">
+                                        <h6>SMS Alerts</h6>
+                                        <p>Get instant SMS alerts for express interests and premium requests.</p>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input custom-switch" type="checkbox" id="smsNotifToggle" {% if request.user.profile.sms_alerts %}checked{% endif %}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECURITY TAB -->
+                    <div class="tab-pane fade" id="v-pills-security" role="tabpanel" aria-labelledby="v-pills-security-tab">
+                        <div class="settings-card">
+                            <div class="settings-card-header">
+                                <h5><i class="fa-solid fa-key text-info"></i> Security & Password</h5>
+                            </div>
+                            <div class="settings-card-body">
+                                <form id="passwordForm">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Current Password</label>
+                                        <input type="password" id="currentPassword" class="form-control" placeholder="Enter current password">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">New Password</label>
+                                        <input type="password" id="newPassword" class="form-control" placeholder="Enter new password">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label fw-bold">Confirm New Password</label>
+                                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm new password">
+                                    </div>
+                                    <button id="updatePasswordBtn" class="btn btn-primary-custom" type="button">Update Password</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DANGER TAB -->
+                    <div class="tab-pane fade" id="v-pills-danger" role="tabpanel" aria-labelledby="v-pills-danger-tab">
+                        <div class="settings-card border-danger">
+                            <div class="settings-card-header bg-danger text-white">
+                                <h5 class="text-white"><i class="fa-solid fa-triangle-exclamation"></i> Danger Zone</h5>
+                            </div>
+                            <div class="settings-card-body text-center py-5">
+                                <div class="mb-4">
+                                    <i class="fa-solid fa-user-xmark text-danger" style="font-size: 60px;"></i>
+                                </div>
+                                <h4 class="fw-bold">Delete Your Account</h4>
+                                <p class="text-muted mb-4 max-w-md mx-auto" style="max-width: 400px;">
+                                    Once you delete your account, there is no going back. All your photos, chats, matches, and profile data will be permanently wiped.
+                                </p>
+                                <button id="deleteAccountBtn" class="btn btn-danger-custom"><i class="fa-solid fa-trash me-2"></i> Yes, Delete My Account</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/web/js/navbar.js?v=5"></script>
+    <script src="/static/web/js/global-interactions.js?v=2"></script>
+
+    {% include "web/footer.html" %}
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Form Validation for KYC
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+
+        // Toggles AJAX
+        const toggles = ['photoBlurToggle', 'contactHideToggle', 'emailNotifToggle', 'smsNotifToggle'];
+        toggles.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('change', function() {
+                    const data = {
+                        blurProfilePhoto: document.getElementById('photoBlurToggle').checked,
+                        hideContactInfo: document.getElementById('contactHideToggle').checked,
+                        emailNotifications: document.getElementById('emailNotifToggle').checked,
+                        smsAlerts: document.getElementById('smsNotifToggle').checked
+                    };
+                    
+                    fetch('/accounts/settings/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.status !== 'success') {
+                            alert('Failed to update settings: ' + data.message);
+                        } else {
+                            alert('Settings updated successfully!');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Something went wrong!');
+                    });
+                });
+            }
+        });
+        
+        // Update Password
+        const updatePasswordBtn = document.getElementById('updatePasswordBtn');
+        if (updatePasswordBtn) {
+            updatePasswordBtn.addEventListener('click', function() {
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (!currentPassword || !newPassword || !confirmPassword) {
+                    alert('Please fill all password fields.');
+                    return;
+                }
+                
+                if (newPassword !== confirmPassword) {
+                    alert('New passwords do not match.');
+                    return;
+                }
+                
+                updatePasswordBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Updating...';
+                updatePasswordBtn.disabled = true;
+                
+                fetch('/accounts/update-password/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({
+                        current_password: currentPassword,
+                        new_password: newPassword
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    updatePasswordBtn.innerHTML = 'Update Password';
+                    updatePasswordBtn.disabled = false;
+                    
+                    if (data.status === 'success') {
+                        alert(data.message);
+                        document.getElementById('passwordForm').reset();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    updatePasswordBtn.innerHTML = 'Update Password';
+                    updatePasswordBtn.disabled = false;
+                    alert('Something went wrong!');
+                });
+            });
+        }
+    
+        // Delete Account
+        const deleteBtn = document.getElementById('deleteAccountBtn');
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', function() {
+                if (confirm('Are you absolutely sure you want to delete your account? This action CANNOT be undone.')) {
+                    fetch('/accounts/delete-account/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            alert('Your account has been deleted.');
+                            window.location.href = '/';
+                        } else {
+                            alert('Error: ' + data.message);
+                        }
+                    })
+                    .catch(err => console.error(err));
+                }
+            });
+        }
+    });
+    </script>
+  </body>
+</html>

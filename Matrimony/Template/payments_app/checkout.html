@@ -1,0 +1,324 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Membership - ForeverBond</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      background: linear-gradient(135deg, #fff0f2 0%, #fdf5f6 50%, #fef8f8 100%);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(233, 64, 87, 0.15);
+    }
+    
+    .pricing-card.popular {
+      border: 2px solid #e94057;
+      transform: scale(1.05);
+      z-index: 10;
+      background: white;
+    }
+    
+    .pricing-card.popular:hover {
+      transform: scale(1.05) translateY(-10px);
+    }
+    
+    .popular-badge {
+      position: absolute;
+      top: 20px;
+      right: -35px;
+      background: #e94057;
+      color: white;
+      padding: 5px 40px;
+      font-size: 12px;
+      font-weight: 700;
+      transform: rotate(45deg);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .plan-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .plan-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 15px;
+    }
+    
+    .plan-price {
+      font-size: 42px;
+      font-weight: 800;
+      color: #e94057;
+      margin-bottom: 10px;
+    }
+    
+    .plan-price span {
+      font-size: 16px;
+      color: #64748b;
+      font-weight: 500;
+    }
+    
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      margin: 30px 0;
+      text-align: left;
+      flex-grow: 1;
+    }
+    
+    .plan-features li {
+      margin-bottom: 15px;
+      color: #475569;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .plan-features li i {
+      color: #10b981;
+      font-size: 18px;
+    }
+    
+    .btn-pay {
+      background: linear-gradient(135deg, #e94057 0%, #ff7aa2 100%);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 0;
+      font-weight: 600;
+      font-size: 16px;
+      width: 100%;
+      transition: all 0.3s;
+      box-shadow: 0 10px 20px rgba(233, 64, 87, 0.2);
+    }
+    
+    .btn-pay:hover {
+      box-shadow: 0 15px 25px rgba(233, 64, 87, 0.4);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container py-5">
+    
+    <div class="text-center mb-5">
+      <h1 class="fw-bold" style="color: #1e293b; font-family: 'Poppins', sans-serif;">Unlock Premium Matches</h1>
+      <p class="text-muted fs-5">Choose the perfect plan to find your life partner faster.</p>
+    </div>
+
+    <div class="row align-items-center justify-content-center g-4">
+      
+      <!-- GOLD PLAN -->
+      <div class="col-lg-4 col-md-6">
+        <div class="pricing-card">
+          <i class="fa-solid fa-medal plan-icon"></i>
+          <h3 class="plan-name">Gold</h3>
+          <div class="plan-price">₹999<span> / 3 months</span></div>
+          
+          <ul class="plan-features">
+            <li><i class="fa-solid fa-circle-check"></i> Unlock Verified Matches</li>
+            <li><i class="fa-solid fa-circle-check"></i> Send Unlimited Interests</li>
+            <li><i class="fa-solid fa-circle-check"></i> View Contact Details (Up to 50)</li>
+            <li style="color: #cbd5e1;"><i class="fa-solid fa-circle-xmark" style="color: #cbd5e1;"></i> Priority Customer Support</li>
+          </ul>
+          
+          <button class="btn-pay" onclick="initiatePayment(999, 'Gold Plan')">Select Gold</button>
+        </div>
+      </div>
+
+      <!-- DIAMOND PLAN (POPULAR) -->
+      <div class="col-lg-4 col-md-6">
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <i class="fa-solid fa-gem plan-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); -webkit-background-clip: text;"></i>
+          <h3 class="plan-name">Diamond</h3>
+          <div class="plan-price" style="color: #8b5cf6;">₹1999<span> / 6 months</span></div>
+          
+          <ul class="plan-features">
+            <li><i class="fa-solid fa-circle-check"></i> All Gold Features</li>
+            <li><i class="fa-solid fa-circle-check"></i> View Contact Details (Up to 150)</li>
+            <li><i class="fa-solid fa-circle-check"></i> Premium Profile Badge</li>
+            <li><i class="fa-solid fa-circle-check"></i> Priority Profile Placement</li>
+          </ul>
+          
+          <button class="btn-pay" style="background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);" onclick="initiatePayment(1999, 'Diamond Plan')">Select Diamond</button>
+        </div>
+      </div>
+
+      <!-- PLATINUM PLAN -->
+      <div class="col-lg-4 col-md-6">
+        <div class="pricing-card">
+          <i class="fa-solid fa-crown plan-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); -webkit-background-clip: text;"></i>
+          <h3 class="plan-name">Platinum</h3>
+          <div class="plan-price" style="color: #d97706;">₹2999<span> / 12 months</span></div>
+          
+          <ul class="plan-features">
+            <li><i class="fa-solid fa-circle-check"></i> All Diamond Features</li>
+            <li><i class="fa-solid fa-circle-check"></i> Unlimited Contact Views</li>
+            <li><i class="fa-solid fa-circle-check"></i> Personal Relationship Manager</li>
+            <li><i class="fa-solid fa-circle-check"></i> 100% Refund if no match found</li>
+          </ul>
+          
+          <button class="btn-pay" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);" onclick="initiatePayment(2999, 'Platinum Plan')">Select Platinum</button>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- TEST BYPASS BUTTON FOR DEVELOPMENT ONLY -->
+    <div class="text-center mt-5">
+      <button onclick="bypassPayment()" class="btn btn-outline-secondary" style="border-radius: 20px; font-size: 14px;">
+        <i class="fa-solid fa-bug"></i> Test Bypass (Simulate Success)
+      </button>
+    </div>
+
+  </div>
+
+
+  <!-- RAZORPAY CHECKOUT SCRIPT -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  
+  <script>
+    function initiatePayment(amount, planName) {
+        
+        // 1. Ask our backend to create an Order first
+        fetch('/payments/api/create_order/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ amount: amount, plan_name: planName })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // 2. We have the Order ID, now open Razorpay Checkout UI
+                openRazorpayCheckout(data.order_id, data.amount, planName);
+            } else {
+                alert("Error creating order: " + data.message);
+            }
+        })
+        .catch(err => {
+            console.error("Payment Initiation Error:", err);
+            alert("Something went wrong. Please try again.");
+        });
+    }
+    
+    function openRazorpayCheckout(orderId, amountInPaise, planName) {
+        // We use the Razorpay Key passed from Django context
+        var rzpKey = "{{ razorpay_key_id }}";
+        
+        var options = {
+            "key": rzpKey,
+            "amount": amountInPaise, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "ForeverBond Matrimony",
+            "description": "Payment for " + planName,
+            "image": "https://cdn-icons-png.flaticon.com/512/3656/3656839.png", // Example Logo
+            "order_id": orderId, // This is the Order ID created in the Backend API
+            
+            // This handler is called upon successful payment!
+            "handler": function (response) {
+                // We send the success details to our backend for Verification
+                verifyPaymentSignature(response);
+            },
+            "prefill": {
+                "name": "{{ request.user.profile.full_name|default:'User' }}",
+                "email": "{{ request.user.email }}",
+                "contact": "{{ request.user.profile.mobile|default:'9999999999' }}"
+            },
+            "theme": {
+                "color": "#e94057"
+            }
+        };
+        
+        var rzp1 = new Razorpay(options);
+        
+        rzp1.on('payment.failed', function (response){
+            console.error(response.error);
+            alert("Payment Failed! Reason: " + response.error.description);
+        });
+        
+        rzp1.open();
+    }
+    
+    function verifyPaymentSignature(response) {
+        // Send tokens back to server to unlock the profile
+        fetch('/payments/api/verify_payment/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_signature: response.razorpay_signature
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === 'success') {
+                // Payment verified! Redirect to matches page.
+                window.location.href = '/interactions/matches/today/';
+            } else {
+                alert("Payment Verification Failed: " + data.message);
+            }
+        });
+    }
+
+    function bypassPayment() {
+        if(confirm("This is for developer testing only. It will mock a successful payment and unlock your profile. Continue?")) {
+            // Fake a successful response object
+            verifyPaymentSignature({
+                razorpay_payment_id: "pay_mock_123456",
+                razorpay_order_id: "order_mock_" + Math.floor(Math.random() * 1000000),
+                razorpay_signature: "mock_signature_bypass"
+            });
+        }
+    }
+  </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/web/js/navbar.js"></script>
+    <script src="/static/web/js/global-interactions.js"></script>
+  </body>
+</html>

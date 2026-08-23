@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Weekly Matches</title>
+</head>
+<body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f7f6; padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); padding: 40px 30px; text-align: center;">
+                            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">SoulMate</h1>
+                            <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">We found some amazing matches for you!</p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 40px 30px;">
+                            <p style="margin: 0 0 20px 0; font-size: 16px; color: #333333; line-height: 1.5;">
+                                Hi <strong>{{ user_profile.full_name|default:user_profile.user.username }}</strong>,
+                            </p>
+                            <p style="margin: 0 0 30px 0; font-size: 16px; color: #555555; line-height: 1.5;">
+                                Based on your preferences and our AI recommendation engine, here are the top profiles that match your criteria this week:
+                            </p>
+
+                            <!-- Matches Grid -->
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                {% for match_data in top_matches %}
+                                <tr>
+                                    <td style="padding-bottom: 25px;">
+                                        <table width="100%" cellpadding="15" cellspacing="0" border="0" style="background-color: #f9fafb; border-radius: 8px; border: 1px solid #e5e7eb;">
+                                            <tr>
+                                                <td width="100" valign="top" style="text-align: center;">
+                                                    {% if match_data.profile.photo %}
+                                                    <img src="{{ site_url }}{{ match_data.profile.photo.url }}" alt="Profile" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid #e94057;">
+                                                    {% else %}
+                                                    <img src="https://ui-avatars.com/api/?name={{ match_data.profile.full_name|default:'User'|urlencode }}&background=e94057&color=fff" alt="Profile" style="width: 90px; height: 90px; border-radius: 50%; border: 2px solid #e94057;">
+                                                    {% endif %}
+                                                </td>
+                                                <td valign="top">
+                                                    <h3 style="margin: 0 0 5px 0; color: #1f2937; font-size: 18px;">{{ match_data.profile.full_name|default:"User" }}</h3>
+                                                    <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 14px;">
+                                                        {{ match_data.profile.age|default:'N/A' }} Yrs • {{ match_data.profile.city|default:'Location N/A' }}
+                                                    </p>
+                                                    <p style="margin: 0 0 10px 0; color: #6b7280; font-size: 14px;">
+                                                        {{ match_data.profile.profession|default:'Profession N/A' }}
+                                                    </p>
+                                                    <div>
+                                                        <span style="display: inline-block; background-color: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">
+                                                            {{ match_data.score }}% Match
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td width="120" valign="middle" align="center">
+                                                    <a href="{{ site_url }}/profiles/who-viewed-me/" style="display: inline-block; background-color: #e94057; color: #ffffff; text-decoration: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">View Profile</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+
+                            <p style="margin: 30px 0 0 0; font-size: 16px; color: #333333; text-align: center;">
+                                Don't wait! Login to connect with them before they find someone else.
+                            </p>
+                            <div style="text-align: center; margin-top: 25px;">
+                                <a href="{{ site_url }}/accounts/login/" style="display: inline-block; background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); color: #ffffff; text-decoration: none; padding: 14px 30px; border-radius: 30px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 10px rgba(233, 64, 87, 0.3);">Login to Your Account</a>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #1f2937; padding: 30px; text-align: center; color: #9ca3af; font-size: 13px;">
+                            <p style="margin: 0 0 10px 0;">&copy; {% now "Y" %} SoulMate Matrimony. All rights reserved.</p>
+                            <p style="margin: 0;">You received this email because you are a registered user. To unsubscribe, update your settings in the app.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

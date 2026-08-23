@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForeverBond</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- url_icon  -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/web/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/web/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      href="/static/web/images/favicon.png"
+      type="image/svg+xml"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- AOS Animation -->
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- CSS -->
+
+<link rel="stylesheet" href="/static/web/css/nearby-match.css?v=20260727_v8" />
+<link rel="stylesheet" href="/static/web/css/navbar.css" />
+
+<style>
+  /* Hero Banner Overrides - Compact Height, Proper Royal Colors & Professional Font Sizes */
+  .pm-hero-section {
+    min-height: 240px !important;
+    padding: 24px 0 40px !important;
+    background-color: #2a0812 !important;
+    background:
+      linear-gradient(135deg, rgba(233, 64, 87, 0.95) 0%, rgba(255, 75, 114, 0.90) 50%, rgba(219, 39, 119, 0.85) 100%),
+      url('/static/web/images/background_hero.jpg') center/cover no-repeat !important;
+  }
+  /* Glowing background aura on right side to eliminate empty void */
+  .pm-hero-section::after {
+    content: '' !important;
+    position: absolute !important;
+    right: -5% !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    max-width: 600px !important; width: 100% !important;
+    height: 600px !important;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.35) 0%, rgba(255, 122, 162, 0.25) 45%, transparent 70%) !important;
+    border-radius: 50% !important;
+    filter: blur(40px) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    display: block !important;
+    opacity: 1 !important;
+  }
+  .pm-hero-content h1 {
+    font-size: clamp(2.0rem, 3.8vw, 2.7rem) !important;
+    font-weight: 850 !important;
+    line-height: 1.15 !important;
+    margin-bottom: 12px !important;
+  }
+  .pm-hero-content p {
+    font-size: 0.96rem !important;
+    line-height: 1.55 !important;
+    color: rgba(255,255,255,0.92) !important;
+    margin-bottom: 20px !important;
+  }
+  .pm-stat-num {
+    font-size: 1.55rem !important;
+    font-weight: 800 !important;
+  }
+  .pm-hero-image {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    width: 100% !important;
+    text-align: right !important;
+  }
+  .pm-hero-image-frame {
+    width: auto !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    display: inline-block !important;
+  }
+  .pm-hero-image-frame img {
+    max-width: 520px !important; width: 100% !important;
+    max-width: 100% !important;
+    height: 270px !important;
+    object-fit: cover !important;
+    border-radius: 26px !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.3) !important;
+    display: block !important;
+    margin-left: auto !important;
+  }
+  
+  /* OVERRIDE GLOBAL CSS LEAKS CAUSING WHITE BACKGROUNDS */
+  .pm-hero-content, .pm-hero-stats, .pm-stat, .pm-stat-num, .pm-stat-label {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .pm-hero-content h1, .pm-hero-content p {
+    background: transparent !important;
+  }
+  
+  .pm-filter-section {
+    margin-top: 15px !important;
+  }
+  @media (max-width: 991px) {
+    .pm-hero-section {
+      padding: 30px 0 45px !important;
+    }
+    .pm-hero-image {
+      justify-content: center !important;
+    }
+    .pm-hero-image-frame,
+    .pm-hero-image-frame img {
+      max-width: 380px !important;
+      height: 220px !important;
+    }
+    .pm-filter-section {
+      margin-top: 15px !important;
+    }
+  }
+  @media (max-width: 768px) {
+    .pm-hero-content h1 {
+      font-size: 1.75rem !important;
+    }
+    .pm-stat-num {
+      font-size: 1.35rem !important;
+    }
+    .pm-hero-image-frame,
+    .pm-hero-image-frame img {
+      max-width: 100% !important;
+      height: 200px !important;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+
+
+
+   {% include 'web/secondary_navbar.html' %}
+
+
+<!-- ===========================
+Hero Section Start
+=========================== -->
+
+<!-- Radar sweep element -->
+<div class="pm-radar-sweep"></div>
+
+<section class="pm-hero-section">
+
+  <div class="container">
+    <div class="row align-items-center gy-4">
+
+      <!-- LEFT: Text Content -->
+      <div class="col-lg-6">
+        <div class="pm-hero-content">
+
+          <!-- Eyebrow -->
+          <div class="pm-hero-eyebrow">
+            <span class="dot"></span>
+            Live Nearby Matches
+          </div>
+
+          <!-- Heading -->
+          <h1>
+            Find Love<br>
+            <span class="grad-text">Near You</span>
+          </h1>
+
+          <!-- Subtext -->
+          <p>
+            Discover <strong>{{ page_obj.paginator.count|default:"0" }} verified profiles</strong>
+            {% if request.GET.location %} near <strong>{{ request.GET.location }}</strong>{% elif request.user.profile.city %} near <strong>{{ request.user.profile.city }}</strong>{% else %} in your city{% endif %}.
+            Real people, real connections — right in your neighbourhood.
+          </p>
+
+          <!-- Badges -->
+          <div class="pm-hero-badges">
+            <div class="pm-badge">
+              <span class="badge-icon"><i class="fa-solid fa-location-dot"></i></span>
+              Nearest First
+            </div>
+            <div class="pm-badge">
+              <span class="badge-icon"><i class="fa-solid fa-shield-halved"></i></span>
+              Verified Only
+            </div>
+            <div class="pm-badge">
+              <span class="badge-icon"><i class="fa-solid fa-bolt"></i></span>
+              Instant Connect
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="pm-hero-stats">
+            <div class="pm-stat">
+              <span class="pm-stat-num">{{ page_obj.paginator.count|default:"0" }}+</span>
+              <span class="pm-stat-label">Profiles Found</span>
+            </div>
+            <div class="pm-stat">
+              <span class="pm-stat-num">98%</span>
+              <span class="pm-stat-label">Verified Users</span>
+            </div>
+            <div class="pm-stat">
+              <span class="pm-stat-num">5 KM</span>
+              <span class="pm-stat-label">Closest Match</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: Image with floating cards -->
+      <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
+        <div class="pm-hero-image ms-lg-auto text-lg-end text-center" style="display: flex; justify-content: flex-end; width: 100%;">
+          <div class="pm-hero-image-frame ms-lg-auto me-lg-0 mx-auto" style="display: inline-block; width: auto; max-width: 100%; margin-left: auto;">
+
+            <img src="/static/web/images/nearby_map.jpg"
+                 class="img-fluid"
+                 alt="Premium Nearby Match Map">
+
+            <!-- Bottom-left float card -->
+            <div class="pm-hero-float-card">
+              <div class="float-icon">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <div class="float-text">
+                <p>Matches Today</p>
+                <b>{{ page_obj.paginator.count|default:"0" }} Profiles</b>
+              </div>
+            </div>
+
+            <!-- Top-right float card -->
+            <div class="pm-hero-float-card-2">
+              <span class="pulse-dot"></span>
+              <span>Live Search Active</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="pm-scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+
+</section>
+
+
+<!-- ===========================
+Filter Section Start
+=========================== -->
+
+<section class="pm-filter-section">
+
+    <div class="container">
+
+        <div class="pm-filter-card">
+            <form method="GET" action="{% url 'nearby_match' %}">
+
+            <div class="pm-filter-heading">
+                <div class="pm-filter-icon">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div>
+                    <h2>Find Nearby Matches</h2>
+                    <p>Filter verified profiles by location, age, religion and more.</p>
+                </div>
+            </div>
+
+            <div class="row g-3">
+
+                <!-- Age -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pm-filter-group">
+                        <label class="pm-filter-label">Age Range</label>
+                        <div class="pm-filter-input-wrap">
+                            <input type="text" name="age" class="form-control pm-filter-input"
+                                   list="pm-age-list" placeholder="e.g. 26 - 30" value="{{ request.GET.age }}">
+                            <i class="fa-solid fa-cake-candles fi-icon"></i>
+                        </div>
+                        <datalist id="pm-age-list">
+                            <option value="21 - 25"><option value="26 - 30">
+                            <option value="31 - 35"><option value="36 - 40"><option value="40+">
+                        </datalist>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pm-filter-group">
+                        <label class="pm-filter-label">Location / City</label>
+                        <div class="pm-filter-input-wrap">
+                            <input type="text" name="location" class="form-control pm-filter-input"
+                                   list="pm-location-list" placeholder="e.g. Pune, Mumbai" value="{{ request.GET.location }}">
+                            <i class="fa-solid fa-location-dot fi-icon"></i>
+                        </div>
+                        <datalist id="pm-location-list">
+                            <option value="Pune"><option value="Mumbai"><option value="Nashik">
+                            <option value="Nagpur"><option value="Kolhapur">
+                            <option value="Aurangabad"><option value="Hyderabad"><option value="Bangalore">
+                        </datalist>
+                    </div>
+                </div>
+
+                <!-- Distance -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pm-filter-group">
+                        <label class="pm-filter-label">Distance</label>
+                        <div class="pm-filter-input-wrap">
+                            <input type="text" name="distance" class="form-control pm-filter-input"
+                                   list="pm-distance-list" placeholder="e.g. 25 KM" value="{{ request.GET.distance }}">
+                            <i class="fa-solid fa-route fi-icon"></i>
+                        </div>
+                        <datalist id="pm-distance-list">
+                            <option value="5 KM"><option value="10 KM"><option value="25 KM">
+                            <option value="50 KM"><option value="100 KM"><option value="Anywhere">
+                        </datalist>
+                    </div>
+                </div>
+
+                <!-- Religion -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="pm-filter-group">
+                        <label class="pm-filter-label">Religion</label>
+                        <div class="pm-filter-input-wrap">
+                            <input type="text" name="religion" class="form-control pm-filter-input"
+                                   list="pm-religion-list" placeholder="e.g. Hindu, Muslim" value="{{ request.GET.religion }}">
+                            <i class="fa-solid fa-om fi-icon"></i>
+                        </div>
+                        <datalist id="pm-religion-list">
+                            <option value="Hindu"><option value="Muslim">
+                            <option value="Christian"><option value="Sikh">
+                            <option value="Jain"><option value="Buddhist">
+                        </datalist>
+                    </div>
+                </div>
+
+                <!-- Caste -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="pm-filter-group">
+                        <label class="pm-filter-label">Caste / Community</label>
+                        <div class="pm-filter-input-wrap">
+                            <input type="text" name="caste" class="form-control pm-filter-input"
+                                   list="pm-caste-list" placeholder="e.g. Maratha, Brahmin" value="{{ request.GET.caste }}">
+                            <i class="fa-solid fa-users fi-icon"></i>
+                        </div>
+                        <datalist id="pm-caste-list">
+                            <option value="Maratha"><option value="Brahmin">
+                            <option value="Rajput"><option value="Jat">
+                            <option value="Yadav"><option value="Kayastha">
+                        </datalist>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Buttons -->
+            <div class="pm-filter-buttons">
+                <a href="?" class="pm-reset-btn">
+                    <i class="fa-solid fa-rotate-left"></i> Reset
+                </a>
+                <button type="submit" class="pm-search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search Nearby
+                </button>
+            </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="pm-nearby-summary">
+
+<div class="container">
+
+<div class="pm-summary-left">
+
+<h3>
+    Showing {{ matches.paginator.count }} profiles
+    {% if request.GET.location %} near {{ request.GET.location }}
+    {% elif request.user.profile.city %} near {{ request.user.profile.city }}
+    {% else %} nearby {% endif %}
+</h3>
+<p>
+    {% if request.GET.distance %} within {{ request.GET.distance }} {% endif %}
+</p>
+
+</div>
+
+<div class="pm-summary-right">
+
+<select>
+
+<option>
+Nearest First
+</option>
+
+<option>
+Highest Match
+</option>
+
+<option>
+Recently Active
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==============================
+     PROFILE SECTION START
+================================= -->
+
+
+<section class="pm-profile-section">
+
+
+<div class="pm-profile-container">
+
+
+
+<!-- Dynamic Profiles Loop -->
+{% for match in matches %}
+<div class="pm-profile-card">
+
+    <!-- Photo -->
+    <div class="pm-profile-image-box">
+        <img src="{% if match.photo and match.is_photo_approved %}{{ match.photo.url }}?v={{ match.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ match.full_name|default:'User'|urlencode }}&background=e94057&color=fff&size=400{% endif %}"
+             alt="{{ match.full_name|default:'Profile' }}" loading="lazy">
+
+        <!-- Top badges -->
+        <div class="pm-profile-header">
+            {% if match.approval_status == 'Approved' %}
+            <span class="pm-verified-badge"><i class="fa-solid fa-circle-check" style="margin-right:4px;font-size:0.7rem;"></i>Verified</span>
+            {% else %}<span></span>{% endif %}
+            <button class="pm-bookmark-btn" title="Save Profile">
+                <i class="fa-regular fa-bookmark"></i>
+            </button>
+        </div>
+
+        <!-- Match score pill -->
+        <div class="pm-match-score">
+            <b>95%</b>&nbsp;<span>Match</span>
+        </div>
+
+        <!-- Name + age overlaid on photo -->
+        <div class="pm-photo-info">
+            <h3>{{ match.full_name|default:'ForeverBond User' }}</h3>
+            <p class="pm-age">
+                <span>{{ match.age|default:'N/A' }} Yrs</span>
+                <span class="age-sep"></span>
+                <span>{{ match.height|default:'N/A' }}</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Card Body -->
+    <div class="pm-profile-details">
+
+        <!-- Coloured tag pills -->
+        <div class="pm-tag-row">
+            <span class="pm-tag pm-tag-edu">
+                <i class="fa-solid fa-graduation-cap"></i>
+                {{ match.highest_education|default:'N/A'|truncatechars:14 }}
+            </span>
+            <span class="pm-tag pm-tag-prof">
+                <i class="fa-solid fa-briefcase"></i>
+                {{ match.profession|default:'N/A'|truncatechars:14 }}
+            </span>
+            <span class="pm-tag pm-tag-lang">
+                <i class="fa-solid fa-language"></i>
+                {{ match.mother_tongue|default:'N/A' }}
+            </span>
+            <span class="pm-tag pm-tag-rel">
+                <i class="fa-solid fa-om"></i>
+                {{ match.religion|default:'N/A' }}
+            </span>
+        </div>
+
+        <!-- Location strip -->
+        <div class="pm-loc-strip">
+            <div class="loc-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <span class="loc-text">
+                {{ match.city|default:'N/A' }}{% if match.state %}, {{ match.state }}{% endif %}
+            </span>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="pm-card-buttons">
+            <button type="button" class="pm-biodata-btn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#profileModal{{ match.user.id }}">
+                <i class="fa-regular fa-eye"></i> View Full Profile
+            </button>
+        </div>
+
+    </div>
+</div>
+{% empty %}
+<div class="pm-empty-state">
+    <i class="fa-solid fa-users-slash"></i>
+    <h4>No Nearby Matches Found</h4>
+    <p>Try expanding your distance or adjusting your filters to discover more profiles.</p>
+</div>
+{% endfor %}
+
+
+
+</section>
+
+
+<!-- ==============================
+     PROFILE SECTION END
+================================= -->
+
+
+<!-- =================================
+     PAGINATION SECTION START
+================================== -->
+
+<section class="pm-pagination-section">
+    {% if matches.has_other_pages %}
+    <div class="pm-pagination">
+        {% if matches.has_previous %}
+        <a href="?page={{ matches.previous_page_number }}" class="pm-page-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+            <span style="margin-right: 5px;">&#10094;</span> Previous
+        </a>
+        {% else %}
+        <button class="pm-page-btn" disabled style="opacity: 0.5; cursor: not-allowed; display: inline-flex; align-items: center; justify-content: center;">
+            <span style="margin-right: 5px;">&#10094;</span> Previous
+        </button>
+        {% endif %}
+
+        {% for num in matches.paginator.page_range %}
+            {% if matches.number == num %}
+            <button class="pm-page-number pm-active">{{ num }}</button>
+            {% elif num > matches.number|add:'-3' and num < matches.number|add:'3' %}
+            <a href="?page={{ num }}" class="pm-page-number" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; color: inherit;">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if matches.has_next %}
+        <a href="?page={{ matches.next_page_number }}" class="pm-page-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+            Next <span style="margin-left: 5px;">&#10095;</span>
+        </a>
+        {% else %}
+        <button class="pm-page-btn" disabled style="opacity: 0.5; cursor: not-allowed; display: inline-flex; align-items: center; justify-content: center;">
+            Next <span style="margin-left: 5px;">&#10095;</span>
+        </button>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
+
+<!-- =================================
+     PAGINATION SECTION END
+================================== -->
+
+
+<!-- google map -->
+
+
+<section class="pm-map-section">
+
+<div class="container">
+
+<div class="pm-map-heading">
+  <div class="pm-map-eyebrow">
+    <i class="fa-solid fa-map-location-dot"></i> Live Map View
+  </div>
+  <h2><span class="grad">Nearby</span> Match Locations</h2>
+  <p>See exactly where your matches are — explore the interactive map and click any pin to view profiles.</p>
+</div>
+
+<!-- Map wrapper handles rounded clipping; inner div is the Leaflet target -->
+<div class="pm-map-wrapper">
+  <!-- Loading overlay shown while geocoding -->
+  <div id="map-loading-overlay">
+    <div class="map-spinner"></div>
+    <span>Loading match locations…</span>
+  </div>
+  <div class="pm-map-box" id="nearbyMap"></div>
+</div>
+
+</div>
+
+</section>
+
+<!-- =================================
+     PAGINATION SECTION START
+================================== -->
+<section class="pm-pagination-section" style="padding: 40px 0; display: flex; justify-content: center;">
+    {% if page_obj.has_other_pages %}
+    <div class="pm-pagination" style="display: flex; gap: 8px;">
+        {% if page_obj.has_previous %}
+        <a href="?location={{ request.GET.location|urlencode }}&distance={{ request.GET.distance|urlencode }}&age={{ request.GET.age|urlencode }}&religion={{ request.GET.religion|urlencode }}&caste={{ request.GET.caste|urlencode }}&page={{ page_obj.previous_page_number }}" class="pm-page-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; border-radius: 20px; background: white; color: var(--slate-dark); font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid var(--glass-border);">
+            <span style="margin-right: 5px;">&#10094;</span> Previous
+        </a>
+        {% else %}
+        <button class="pm-page-btn" disabled style="opacity: 0.5; cursor: not-allowed; display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; border-radius: 20px; background: white; color: var(--slate-dark); font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid var(--glass-border);">
+            <span style="margin-right: 5px;">&#10094;</span> Previous
+        </button>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <button class="pm-page-number pm-active" style="padding: 10px 16px; border-radius: 20px; background: linear-gradient(135deg, var(--rose) 0%, var(--pink) 100%); color: white; font-weight: bold; border: none; box-shadow: 0 4px 15px rgba(233, 64, 87, 0.2);">{{ num }}</button>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?location={{ request.GET.location|urlencode }}&distance={{ request.GET.distance|urlencode }}&age={{ request.GET.age|urlencode }}&religion={{ request.GET.religion|urlencode }}&caste={{ request.GET.caste|urlencode }}&page={{ num }}" class="pm-page-number" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; color: var(--slate-dark); padding: 10px 16px; border-radius: 20px; background: white; font-weight: 600; border: 1px solid var(--glass-border);">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <a href="?location={{ request.GET.location|urlencode }}&distance={{ request.GET.distance|urlencode }}&age={{ request.GET.age|urlencode }}&religion={{ request.GET.religion|urlencode }}&caste={{ request.GET.caste|urlencode }}&page={{ page_obj.next_page_number }}" class="pm-page-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; border-radius: 20px; background: white; color: var(--slate-dark); font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid var(--glass-border);">
+            Next <span style="margin-left: 5px;">&#10095;</span>
+        </a>
+        {% else %}
+        <button class="pm-page-btn" disabled style="opacity: 0.5; cursor: not-allowed; display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; border-radius: 20px; background: white; color: var(--slate-dark); font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid var(--glass-border);">
+            Next <span style="margin-left: 5px;">&#10095;</span>
+        </button>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
+<!-- =================================
+     PAGINATION SECTION END
+================================== -->
+
+   <footer class="sm-footer">
+      <div class="footer-radial-aura"></div>
+      <div class="sm-container">
+        <div class="footer-main-row">
+          <div class="footer-brand-col">
+            <h2
+              class="footer-main-logo d-flex align-items-center gap-2"
+              style="
+                font-family: &quot;Poppins&quot;, sans-serif;
+                font-weight: 900;
+                font-size: 28px;
+                letter-spacing: -0.8px;
+                line-height: 1;
+                margin: 0;
+                padding: 0;
+              "
+            >
+              <!-- Interactive Pulsing Premium Heart Icon -->
+              <span
+                class="d-flex align-items-center justify-content-center"
+                style="
+                  background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+                  width: 38px;
+                  height: 38px;
+                  border-radius: 10px;
+                  box-shadow: 0 4px 15px rgba(233, 64, 87, 0.25);
+                  animation: heartSmoothPulse 2s infinite ease-in-out;
+                "
+              >
+                <i
+                  class="fa-solid fa-heart text-white"
+                  style="font-size: 16px"
+                ></i>
+              </span>
+
+              <!-- Typography Brand Identity -->
+              <span
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    #0f172a 30%,
+                    #334155 100%
+                  );
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  padding-left: 2px;
+                "
+              >
+                Forever<span
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #e94057 0%,
+                      #facc15 100%
+                    );
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                  "
+                  >Bond</span
+                >
+              </span>
+            </h2>
+
+            <!-- Core CSS Keyframe Injection (Aap ise apne CSS file ya global <style> me bhi daal sakte hain) -->
+            <style>
+              @keyframes heartSmoothPulse {
+                0% {
+                  transform: scale(1);
+                }
+                50% {
+                  transform: scale(1.05);
+                  box-shadow: 0 6px 20px rgba(233, 64, 87, 0.4);
+                }
+                100% {
+                  transform: scale(1);
+                }
+              }
+            </style>
+            <p class="footer-brand-tagline">
+              India's trusted choice for premium, private and verified
+              matchmaking networks.
+            </p>
+          </div>
+
+          <div class="footer-link-col">
+              <h4>Search</h4>
+              <ul>
+                <li><a href="{% url 'basic_search' %}">Basic Search</a></li>
+                <li><a href="{% url 'advanced_search' %}">Advanced Filter</a></li>
+                <li><a href="{% url 'ai_search' %}">AI Match Finder</a></li>
+              </ul>
+            </div>
+
+          <div class="footer-link-col">
+              <h4>Profiles</h4>
+              <ul>
+                <li><a href="{% url 'recomended_matches' %}">Top Matches</a></li>
+                <li><a href="{% url 'saved_profiles' %}">Saved Profiles</a></li>
+                <li><a href="{% url 'verified_profiles' %}">Verified Profiles</a></li>
+              </ul>
+            </div>
+
+          <div class="footer-link-col">
+              <h4>Support</h4>
+              <ul>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'contact' %}">FAQs</a></li>
+                <li><a href="{{ global_privacy_policy_url }}">Privacy Policy</a></li>
+              </ul>
+            </div>
+
+          <div class="footer-badges-col">
+            <div class="badge-strip-node">
+              <i class="fa-solid fa-shield-halved badge-rose"></i>100% Verified
+            </div>
+            <div class="badge-strip-node">
+              <i class="fa-solid fa-lock badge-gold"></i>Private &amp; Secure
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+          <p class="advanced-copyright-txt">
+            &copy; 2026
+            <span class="signature-rose-txt">ForeverBond</span> Matrimony. All
+            rights reserved.
+          </p>
+          <div class="footer-social-spheres">
+            <a href="https://www.instagram.com/omya_.x07" target="_blank" aria-label="Instagram" class="social-sphere-item"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="https://www.facebook.com/omkar.misal.587" target="_blank" aria-label="Facebook" class="social-sphere-item"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="https://www.linkedin.com/in/omkar-misal-aa191336b/" target="_blank" aria-label="LinkedIn" class="social-sphere-item"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+            <a href="https://www.youtube.com/@OmkarMisal-ug8ks" target="_blank" aria-label="YouTube" class="social-sphere-item"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+<script src="/static/web/js/global-interactions.js"></script>
+
+<!-- Dynamic Filtering Script Removed (Backend Filtering Now Active) -->
+<script>
+    // Filtering is handled via form GET request to Django backend
+</script>
+
+
+<!-- Global Profile Modals -->
+{% for match in matches %}
+    {% include 'web/profile_modal.html' %}
+{% endfor %}
+
+<script>
+function toggleSaveProfile(profileId, btnElement) {
+    const icon = btnElement.querySelector('i');
+    
+    fetch('/interactions/api/save-profile/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            'profile_id': profileId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'saved') {
+            icon.classList.remove('bi-bookmark');
+            icon.classList.add('bi-bookmark-fill');
+            // alert(data.message);
+        } else if (data.status === 'unsaved') {
+            icon.classList.remove('bi-bookmark-fill');
+            icon.classList.add('bi-bookmark');
+            // alert(data.message);
+        } else {
+            alert(data.message || 'Error occurred');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while saving profile.');
+    });
+}
+</script>
+
+<!-- Leaflet CSS & JS for Dynamic Map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const mapContainer = document.getElementById('nearbyMap');
+    const loadingOverlay = document.getElementById('map-loading-overlay');
+    if (!mapContainer) return;
+
+    // ── Custom Rose-Colored SVG Marker ──────────────────────────────────────
+    function makeRoseIcon(count) {
+        const size = count > 1 ? 42 : 36;
+        const badge = count > 1
+            ? `<text x="50%" y="32%" dominant-baseline="middle" text-anchor="middle"
+                   font-family="Poppins,sans-serif" font-size="11" font-weight="bold"
+                   fill="white">${count > 9 ? '9+' : count}</text>`
+            : '';
+        const svgStr = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size + 8}" viewBox="0 0 ${size} ${size + 8}">
+            <defs>
+                <radialGradient id="g" cx="40%" cy="35%">
+                    <stop offset="0%" stop-color="#ff7aa2"/>
+                    <stop offset="100%" stop-color="#e94057"/>
+                </radialGradient>
+                <filter id="sh">
+                    <feDropShadow dx="0" dy="3" stdDeviation="3" flood-opacity="0.3"/>
+                </filter>
+            </defs>
+            <circle cx="${size/2}" cy="${size/2}" r="${size/2 - 2}" fill="url(#g)" filter="url(#sh)"/>
+            <path d="M${size/2},${size + 4} L${size/2 - 6},${size - 4} L${size/2 + 6},${size - 4} Z" fill="#e94057"/>
+            <path d="M${size/2 - 5},${size/2 - 4} C${size/2 - 5},${size/2 - 8} ${size/2 + 5},${size/2 - 8} ${size/2 + 5},${size/2 - 4} C${size/2 + 5},${size/2} ${size/2},${size/2 + 6} ${size/2},${size/2 + 6} C${size/2},${size/2 + 6} ${size/2 - 5},${size/2} ${size/2 - 5},${size/2 - 4} Z" fill="white" opacity="0.9"/>
+            ${badge}
+        </svg>`;
+        const blob = new Blob([svgStr], {type: 'image/svg+xml'});
+        const url = URL.createObjectURL(blob);
+        return L.icon({
+            iconUrl: url,
+            iconSize: [size, size + 8],
+            iconAnchor: [size/2, size + 8],
+            popupAnchor: [0, -(size + 8)]
+        });
+    }
+
+    // ── Initialize Map ──────────────────────────────────────────────────────
+    const map = L.map('nearbyMap', { zoomControl: true }).setView([20.5937, 78.9629], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // ── Profile Data from Django Template ──────────────────────────────────
+    const profilesData = [
+        {% for match in matches %}
+        {
+            id: "{{ match.user.id }}",
+            name: "{{ match.full_name|escapejs }}",
+            city: "{{ match.city|escapejs }}",
+            photo: "{% if match.photo and match.is_photo_approved %}{{ match.photo.url|escapejs }}{% else %}https://ui-avatars.com/api/?name={{ match.full_name|urlencode }}&background=e94057&color=fff{% endif %}"
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ];
+
+    const targetLocation = "{{ target_location|default:''|escapejs }}";
+
+    // ── Group profiles by city ──────────────────────────────────────────────
+    const cityGroups = {};
+    profilesData.forEach(p => {
+        const city = (p.city || '').trim();
+        if (!city) return;
+        if (!cityGroups[city]) cityGroups[city] = [];
+        cityGroups[city].push(p);
+    });
+
+    const uniqueCities = Object.keys(cityGroups);
+
+    // Hide loading overlay after all geocoding finishes
+    const totalRequests = (targetLocation ? 1 : 0) + uniqueCities.length;
+    let completedRequests = 0;
+    function checkDone() {
+        completedRequests++;
+        if (completedRequests >= totalRequests && loadingOverlay) {
+            loadingOverlay.style.opacity = '0';
+            setTimeout(() => loadingOverlay.style.display = 'none', 400);
+        }
+    }
+
+    if (totalRequests === 0 && loadingOverlay) {
+        loadingOverlay.style.opacity = '0';
+        setTimeout(() => loadingOverlay.style.display = 'none', 400);
+    }
+
+    // ── Nominatim Geocoder ─────────────────────────────────────────────────
+    // Uses countrycode=in to restrict results to India for higher accuracy.
+    async function geocodeCity(city) {
+        const url = `https://nominatim.openstreetmap.org/search?format=json&countrycodes=in&limit=1&q=${encodeURIComponent(city + ', India')}`;
+        const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+        const data = await res.json();
+        if (data && data.length > 0) {
+            return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+        }
+        return null;
+    }
+
+    // ── Plot target location (center + radius circle) ──────────────────────
+    async function plotTargetLocation(city) {
+        try {
+            const coords = await geocodeCity(city);
+            if (coords) {
+                map.setView([coords.lat, coords.lon], 9);
+                L.circle([coords.lat, coords.lon], {
+                    color: '#e94057',
+                    fillColor: '#f43f5e',
+                    fillOpacity: 0.08,
+                    weight: 1.5,
+                    radius: 40000
+                }).addTo(map).bindTooltip(`📍 ${city}`, { permanent: false, className: '' });
+            }
+        } catch(e) {
+            console.warn('Target geocoding failed:', city, e);
+        } finally {
+            checkDone();
+        }
+    }
+
+    // ── Plot city markers ──────────────────────────────────────────────────
+    async function plotCityMarker(city) {
+        try {
+            const coords = await geocodeCity(city);
+            if (!coords) return;
+
+            const profiles = cityGroups[city];
+            const icon = makeRoseIcon(profiles.length);
+            const marker = L.marker([coords.lat, coords.lon], { icon }).addTo(map);
+
+            // Build rich popup
+            let popupHtml = `<div style="text-align:center;font-family:'Poppins',sans-serif;min-width:160px;">`;
+            popupHtml += `<p style="color:#e94057;font-weight:700;font-size:14px;margin:0 0 10px;">
+                          <i class="fa-solid fa-location-dot"></i> ${city}
+                          <span style="background:#fff0f2;color:#e94057;border-radius:20px;padding:1px 8px;font-size:12px;margin-left:6px;">${profiles.length} match${profiles.length > 1 ? 'es' : ''}</span>
+                          </p>`;
+            popupHtml += `<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:260px;">`;
+
+            profiles.slice(0, 6).forEach(p => {
+                const firstName = p.name ? p.name.split(' ')[0] : 'User';
+                popupHtml += `
+                    <div style="display:flex;flex-direction:column;align-items:center;cursor:pointer;width:60px;"
+                         onclick="(function(){ var btn = document.querySelector('[data-bs-target=\'#profileModal${p.id}\']'); if(btn) btn.click(); })()">
+                        <img src="${p.photo}"
+                             style="width:46px;height:46px;border-radius:50%;object-fit:cover;
+                                    border:2.5px solid #e94057;box-shadow:0 3px 10px rgba(233,64,87,0.25);"
+                             onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=e94057&color=fff'">
+                        <span style="font-size:10px;margin-top:4px;color:#1e293b;font-weight:600;
+                                     text-overflow:ellipsis;overflow:hidden;white-space:nowrap;max-width:100%;">${firstName}</span>
+                    </div>`;
+            });
+
+            if (profiles.length > 6) {
+                popupHtml += `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:60px;">
+                    <div style="width:46px;height:46px;border-radius:50%;background:#fff0f2;
+                                border:2px solid #e94057;display:flex;align-items:center;justify-content:center;
+                                font-size:13px;font-weight:700;color:#e94057;">+${profiles.length - 6}</div>
+                    <span style="font-size:10px;margin-top:4px;color:#94a3b8;">more</span>
+                </div>`;
+            }
+
+            popupHtml += `</div></div>`;
+            marker.bindPopup(popupHtml, { maxWidth: 300 });
+        } catch(e) {
+            console.warn('City marker geocoding failed:', city, e);
+        } finally {
+            checkDone();
+        }
+    }
+
+    // ── Kick off geocoding with rate-limit delays ──────────────────────────
+    if (targetLocation) plotTargetLocation(targetLocation);
+    else if (uniqueCities.length > 0) plotTargetLocation(uniqueCities[0]);
+
+    uniqueCities.forEach((city, idx) => {
+        // Stagger requests by 1.2 s each to respect Nominatim's 1 req/sec policy
+        setTimeout(() => plotCityMarker(city), idx * 1200);
+    });
+});
+</script>
+
+</body>
+
+</html>

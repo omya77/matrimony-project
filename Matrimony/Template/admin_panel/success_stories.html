@@ -1,0 +1,57 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% block title %}Manage Success Stories{% endblock %}
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row mb-4">
+        <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Manage Success Stories</h1>
+    </div>
+    <div class="card-panel glass-card p-4">
+        <div class="table-responsive">
+            <table class="table custom-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Couple Name</th>
+                        <th>Wedding Date</th>
+                        <th>Story</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in stories %}
+                    <tr>
+                        <td class="fw-bold">{{ s.couple_name }}</td>
+                        <td>{{ s.wedding_date }}</td>
+                        <td>{{ s.story_text|truncatechars:50 }}</td>
+                        <td>
+                            {% if s.is_approved %}
+                            <span class="badge bg-success rounded-pill">Approved</span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark rounded-pill">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button onclick="toggleStory({{ s.id }}, this)" class="btn btn-sm {% if s.is_approved %}btn-outline-danger{% else %}btn-success{% endif %} rounded-pill">
+                                {% if s.is_approved %}Revoke{% else %}Approve{% endif %}
+                            </button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="5" class="text-center py-4 text-muted">No success stories yet.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+function toggleStory(id, btn) {
+    btn.innerHTML = '...';
+    fetch('/admin_panel/api/toggle-story-status/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ story_id: id })
+    }).then(r => r.json()).then(data => location.reload());
+}
+</script>
+{% endblock %}

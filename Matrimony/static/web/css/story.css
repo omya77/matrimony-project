@@ -1,0 +1,305 @@
+/* --- Custom Premium Styles --- */
+body {
+    background-color: #fcf8f8;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Premium Hero Section (Updated Height to 260px & Adjusted Layout) --- */
+.premium-hero {
+    position: relative;
+    height: 260px;
+    /* बॅनरची उंची २६० पिक्सेल केली आहे */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 4px solid #dc3545;
+    background: #000;
+}
+
+.premium-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* नवीन सुंदर वेडिंग इमेज */
+    background: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=cover') center/cover;
+    /* ओपॅसिटी कमी केली आहे (0.45 केली आहे जेणेकरून इमेज स्पष्ट दिसेल) */
+    opacity: 0.45;
+    z-index: 1;
+}
+
+/* इमेज स्पष्ट दिसताना अक्षरे ठळक दिसण्यासाठी हलका गडद ओव्हरले */
+.premium-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
+    /* टेक्स्ट सावलीमुळे अक्षरे बॅकग्राउंडवर उठून दिसतात */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    /* कमी उंचीनुसार फॉन्ट साईझ ३.२ वरून २.२ केली आहे */
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.hero-title span {
+    color: #ff4d5b;
+    /* अधिक ठळक लाल रंग */
+}
+
+.hero-subtitle {
+    font-size: 1.05rem;
+    /* सबटायटलची साईझ देखील थोडी कमी केली आहे */
+    color: #f8f9fa;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.stat-item h3 {
+    font-size: 1.6rem;
+    /* स्टॅट्सची फॉन्ट साईझ २.२ वरून १.६ केली आहे जेणेकरून ते २६० पिक्सेलमध्ये व्यवस्थित बसेल */
+    font-weight: 700;
+    color: #ff4d5b;
+    margin-bottom: 0px;
+}
+
+.stat-item p {
+    font-size: 0.75rem;
+    /* स्टॅट्स टेक्स्ट बारीक केला आहे */
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+}
+
+/* --- Section Header --- */
+.section-title {
+    color: #dc3545;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #dc3545;
+    border-radius: 2px;
+}
+
+/* --- Story Cards --- */
+.story-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0e6e6;
+    transition: transform 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+}
+
+.img-zoom-container {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.img-zoom-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-badge-top {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #198754;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.card-badge-bottom {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: white;
+    z-index: 2;
+    font-size: 0.85rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.filter-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.7));
+    z-index: 1;
+}
+
+.card-content {
+    padding: 25px 20px 20px 20px;
+    position: relative;
+}
+
+.couple-icon {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    background: #dc3545;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-premium {
+    background: transparent;
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-outline-premium:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* --- Premium Form Setup --- */
+.form-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0e6e6;
+}
+
+.form-label i {
+    color: #dc3545;
+}
+
+.btn-premium {
+    background: linear-gradient(135deg, #dc3545, #b01a2b);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-premium:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* --- Right Hero Showcase Image --- */
+.couple-image-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+    min-height: 450px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.couple-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.floating-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+    color: white;
+    padding: 40px 20px 20px 20px;
+}
+
+/* --- Utility --- */
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}

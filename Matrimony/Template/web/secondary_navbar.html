@@ -1,0 +1,1210 @@
+<style>
+  /* Global Image Centering Fix */
+  img {
+      object-position: center !important;
+  }
+</style>
+<style>
+/* ==========================================================================
+   ? ULTIMATE CHAMAK (GLOBAL PREMIUM GLOW & SHINE) ?
+   ========================================================================== */
+
+/* 1. Global Animated Gradient Background */
+body {
+    background: linear-gradient(-45deg, #fffafa, #ffeef2, #fffdfa, #fdf5f7) !important;
+    background-size: 400% 400% !important;
+    animation: gradientBG 15s ease infinite !important;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 2. Global Breathing Glow for Premium Elements */
+@keyframes breathingGlow {
+    0% { box-shadow: 0 0 15px rgba(233, 64, 87, 0.4), 0 0 25px rgba(233, 64, 87, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(255, 122, 162, 0.8), 0 0 40px rgba(233, 64, 87, 0.6); }
+    100% { box-shadow: 0 0 15px rgba(233, 64, 87, 0.4), 0 0 25px rgba(233, 64, 87, 0.2); }
+}
+
+/* 3. Global Shimmer Sweep Effect */
+@keyframes shimmerSweep {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* 4. Soft Floating Animation */
+@keyframes floatSoft {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+/* --- ALL BUTTONS SHINE --- */
+.btn, button, input[type="submit"] {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    transition: all 0.4s ease !important;
+}
+
+/* Apply Shimmer to ALL Buttons */
+.btn::after, button::after, input[type="submit"]::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    transform: skewX(-25deg);
+    animation: shimmerSweep 3s infinite linear;
+    pointer-events: none;
+}
+
+.btn:hover, button:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 35px rgba(255, 122, 162, 0.9) !important;
+    border-color: #fff !important;
+}
+
+/* Apply specific glow to primary/premium buttons */
+.btn-primary, .btn-premium-gradient, .btn-select, .btn-pay, .btn-danger {
+    animation: breathingGlow 3s infinite alternate !important;
+}
+
+/* --- ALL CARDS & CONTAINERS (GLASSMORPHISM & GLOW) --- */
+.card, .glass-card, .pricing-card, .vp-card, .profile-card, .container > .row > div > div {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(233, 64, 87, 0.2) !important;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(233, 64, 87, 0.08) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover, .glass-card:hover, .pricing-card:hover, .vp-card:hover, .profile-card:hover {
+    animation: floatSoft 2s infinite ease-in-out;
+    box-shadow: 0 15px 45px rgba(233, 64, 87, 0.3), 0 0 30px rgba(255, 122, 162, 0.5) !important;
+    border-color: rgba(233, 64, 87, 0.7) !important;
+}
+
+/* --- ALL HEADINGS GRADIENT --- */
+.page-title, .vp-title {
+    background: linear-gradient(to right, #e94057, #8a2387, #e94057);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shimmerSweep 4s infinite linear;
+    font-weight: 800 !important;
+}
+
+/* --- NAVBAR GLOW --- */
+.navbar, .topbar {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(15px) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+.nav-link {
+    transition: all 0.3s ease !important;
+    position: relative;
+}
+.nav-link:hover {
+    color: #e94057 !important;
+    text-shadow: 0 0 15px rgba(233, 64, 87, 0.6);
+    transform: translateY(-1px);
+}
+
+</style>
+<style>
+/* --- ? CHAMAK (PREMIUM SHINE & GLOW) EFFECTS ? --- */
+
+/* 1. Global Breathing Glow for Premium Elements */
+@keyframes breathingGlow {
+    0% { box-shadow: 0 0 10px rgba(233, 64, 87, 0.4), 0 0 20px rgba(233, 64, 87, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(255, 122, 162, 0.7), 0 0 30px rgba(233, 64, 87, 0.5); }
+    100% { box-shadow: 0 0 10px rgba(233, 64, 87, 0.4), 0 0 20px rgba(233, 64, 87, 0.2); }
+}
+
+/* 2. Shimmer Sweep Effect */
+@keyframes shimmerSweep {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* 3. Floating Animation for Cards */
+@keyframes floatSoft {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+/* Apply Glow to Specific Buttons */
+.btn-primary, .btn-premium-gradient, .btn-select, .btn-pay {
+    position: relative;
+    overflow: hidden;
+    animation: breathingGlow 3s infinite alternate !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.3s ease;
+}
+
+/* Apply Shimmer to Buttons */
+.btn-primary::before, .btn-premium-gradient::before, .btn-select::before, .btn-pay::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: skewX(-25deg);
+    animation: shimmerSweep 4s infinite linear;
+    pointer-events: none;
+}
+
+.btn-primary:hover, .btn-premium-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 122, 162, 0.9) !important;
+}
+
+/* Apply Floating and Glow to Cards */
+.glass-card, .pricing-card, .vp-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(233, 64, 87, 0.15) !important;
+}
+.glass-card:hover, .pricing-card:hover, .vp-card:hover {
+    animation: floatSoft 2s infinite ease-in-out;
+    box-shadow: 0 15px 35px rgba(233, 64, 87, 0.2), 0 0 20px rgba(255, 122, 162, 0.4) !important;
+    border-color: rgba(233, 64, 87, 0.5) !important;
+}
+
+/* Gradient Text for Headings */
+.page-title, .vp-title {
+    background: linear-gradient(to right, #e94057, #8a2387, #e94057);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shimmerSweep 5s infinite linear;
+}
+
+/* Make Navbar links pop */
+.nav-link { font-weight: 600; font-size: 15px; letter-spacing: 0.5px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; padding: 10px 15px !important; border-radius: 8px; color: #475569 !important; }
+.nav-link:hover { color: #e94057 !important; background: rgba(233, 64, 87, 0.05); transform: translateY(-2px); }
+
+</style>
+<!-- ================= START: HYPER-PREMIUM ANTI-DEFLECTION GLASSMORPHIC NAVBAR ================= -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <div
+      id="stickyNavWrapper" class="w-100" style="position: sticky; top: 0; z-index: 1040; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04); padding: 8px 0; transition: all 0.3s ease;"
+    >
+      <nav
+        class="navbar navbar-expand-lg w-100 py-3 m-0 border-0"
+        style="position: relative"
+      >
+        <div
+          class="container-fluid px-4 px-md-5 d-flex justify-content-between align-items-center position-relative"
+        >
+          <!-- Brand Logo Area (Static Left Anchor Frame) -->
+          <a
+            class="navbar-brand d-flex align-items-center gap-3 m-0 p-0"
+            href="/"
+            style="flex-shrink: 0"
+          >
+            <div
+              class="d-flex align-items-center justify-content-center rounded-3"
+              style="background: linear-gradient(135deg, #e94057 0%, #facc15 100%); 
+                
+                width: 38px;
+                height: 38px;
+                box-shadow: 0 4px 14px rgba(233, 64, 87, 0.25);
+                flex-shrink: 0;
+              "
+            >
+              <i class="fa-solid fa-ring" style="font-size: 18px; color: #ffffff !important;" style="font-size: 18px; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important;"></i>
+            </div>
+            <div class="d-flex flex-column m-0 p-0">
+              <span
+                style="
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                  font-weight: 850;
+                  font-size: 21px;
+                  color: #0f172a !important; -webkit-text-fill-color: #0f172a !important;
+                  letter-spacing: -0.8px;
+                  line-height: 1;
+                "
+              >
+                Forever<span style="color: #e94057">Bond</span>
+              </span>
+              <span
+                style="
+                  font-size: 8px;
+                  font-weight: 800;
+                  color: #e94057;
+                  letter-spacing: 1.8px;
+                  text-transform: uppercase;
+                  margin-top: 4px;
+                  opacity: 0.9;
+                "
+              >
+                Verified • Secure
+              </span>
+            </div>
+          </a>
+
+          <!-- Desktop Links - Perfectly Balanced Symmetrical Central Menu -->
+          <div
+            class="collapse navbar-collapse d-none d-lg-flex absolute-center-links"
+          >
+            <ul
+              class="navbar-nav gap-1 align-items-center m-0"
+              style="display: flex; flex-direction: row; gap: 20px;"
+            >
+              <!-- HOME LINK -->
+              <li class="nav-item custom-premium-dropdown">
+                <a
+                  href="/"
+                  class="nav-link ultra-nav-link"
+                >
+                  <i class="fa-solid fa-house"></i>
+                  <span>HOME</span>
+                </a>
+              </li>
+              <!-- SEARCH DROPDOWN -->
+              <li class="nav-item dropdown custom-premium-dropdown">
+                <a
+                  href="javascript:void(0);"
+                  class="nav-link ultra-nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <span>SEARCH</span>
+                </a>
+                <ul
+                  class="dropdown-menu border-0 shadow-lg dynamic-glass-dropdown"
+                >
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/interactions/search/basic/"
+                      ><i
+                        class="fa-solid fa-list-check"
+                        style="color: #e94057"
+                      ></i>
+                      Basic Search</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/interactions/search/advanced/"
+                      ><i
+                        class="fa-solid fa-sliders"
+                        style="color: #e94057"
+                      ></i>
+                      Advance Search</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/interactions/search/ai/"
+                      ><i class="fa-solid fa-brain" style="color: #e94057"></i>
+                      AI Match Founder</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/interactions/search/saved/"
+                      ><i
+                        class="fa-solid fa-bookmark"
+                        style="color: #e94057"
+                      ></i>
+                      Saved Searches</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <!-- MATCHES DROPDOWN -->
+              <li class="nav-item dropdown custom-premium-dropdown">
+                <a
+                  href="javascript:void(0);"
+                  class="nav-link ultra-nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid fa-heart-pulse"></i> <span>MATCHES</span>
+                </a>
+                <ul
+                  class="dropdown-menu border-0 shadow-lg dynamic-glass-dropdown"
+                >
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/interactions/matches/today/"
+                      ><i
+                        class="fa-solid fa-calendar-day"
+                        style="color: #e94057"
+                      ></i>
+                      Todays Matches</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/interactions/matches/recommended/"
+                      ><i class="fa-solid fa-star" style="color: #e94057"></i>
+                      Recommended Matches</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/interactions/matches/Ai-match/"
+                      ><i
+                        class="fa-solid fa-wand-magic-sparkles"
+                        style="color: #e94057"
+                      ></i>
+                      AI Matches</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/interactions/matches/nearby/"
+                      ><i
+                        class="fa-solid fa-location-dot"
+                        style="color: #e94057"
+                      ></i>
+                      Nearby Matches</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/profiles/saved-profiles/"
+                      ><i
+                        class="fa-solid fa-bookmark"
+                        style="color: #e94057"
+                      ></i>
+                      Saved Matches</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <!-- PROFILES DROPDOWN -->
+              <li class="nav-item dropdown custom-premium-dropdown">
+                <a
+                  href="javascript:void(0);"
+                  class="nav-link ultra-nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid fa-users"></i> <span>PROFILES</span>
+                </a>
+                <ul
+                  class="dropdown-menu border-0 shadow-lg dynamic-glass-dropdown"
+                >
+                  <li>
+                    {% if not request.user.is_authenticated or request.user.profile.gender == 'Male' %}
+<a
+                      class="dropdown-item custom-drop-item"
+                      href="/interactions/featured/brides/"
+                      ><i class="fa-solid fa-person-dress" style="color: #e94057; margin-right: 8px;"></i> 
+                      Featured Brides</a
+                    >
+{% endif %}
+                  </li>
+                  <li>
+                    {% if not request.user.is_authenticated or request.user.profile.gender == 'Female' %}
+<a
+                      class="dropdown-item custom-drop-item"
+                      href="/interactions/featured/grooms/"
+                      ><i class="fa-solid fa-person" style="color: #e94057; margin-right: 8px;"></i> 
+                      Featured Grooms</a
+                    >
+{% endif %}
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/profiles/verified-profiles/"
+                      ><i class="fa-solid fa-user-shield" style="color: #e94057; margin-right: 8px;"></i> 
+                      Verified Profiles</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/profiles/saved-profiles/"
+                      ><i class="fa-solid fa-bookmark" style="color: #e94057; margin-right: 8px;"></i> 
+                      Saved Profiles</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Mobile Right Trigger Cluster -->
+          <div class="d-flex align-items-center gap-3 d-lg-none">
+            <a href="/interactions/requests/" class="text-decoration-none position-relative d-inline-block py-1">
+              <i class="fa-solid fa-heart" style="font-size: 18px; color: #e94057;"></i>
+              {% if unread_requests_count > 0 %}<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 8px; padding: 2px 4px; background-color: #e94057 !important;">{{ unread_requests_count }}</span>{% endif %}
+            </a>
+            <a href="/interactions/chat/" class="text-decoration-none position-relative d-inline-block py-1">
+              <i class="fa-brands fa-facebook-messenger" style="font-size: 18px; color: #64748b;"></i>
+              {% if unread_messages_count > 0 %}<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style="font-size: 8px; padding: 2px 4px; background-color: #3b82f6 !important;">{{ unread_messages_count }}</span>{% endif %}
+            </a>
+                          <div class="dropdown custom-notification-dropdown d-inline-block">
+    <a href="javascript:void(0)" onclick="markNotificationsRead()" class="position-relative text-decoration-none py-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+      <i class="fa-solid fa-bell" style="color: #64748b; font-size: 20px"></i>
+      {% if unread_notifications_count > 0 %}
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 8px; padding: 3px 5px; background: #e94057 !important;" id="notif-badge">{{ unread_notifications_count }}</span>
+      {% endif %}
+    </a>
+    <div class="dropdown-menu dropdown-menu-end shadow-lg border-0 p-0" style="width: 300px; max-width: 85vw; border-radius: 16px; margin-top: 15px; z-index: 1050; overflow: hidden;">
+      <div class="p-3 border-bottom d-flex justify-content-between align-items-center" style="background: #f8fafc;">
+        <h6 class="m-0" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #1e293b;">Notifications</h6>
+        {% if unread_notifications_count > 0 %}
+        <span class="badge" style="background: #e94057; font-size: 10px;" id="notif-text">{{ unread_notifications_count }} New</span>
+        {% endif %}
+      </div>
+      <div class="notification-list" style="max-height: 250px; overflow-y: auto;">
+        {% for notif in notifications %}
+        <a href="{{ notif.link|default:'javascript:void(0);' }}" class="dropdown-item d-flex align-items-start gap-3 p-3 border-bottom text-wrap" style="white-space: normal; {% if not notif.is_read %}background-color: #f1f5f9;{% endif %}">
+          <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px; background: rgba(233, 64, 87, 0.1); color: #e94057;">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <div>
+            <p class="m-0" style="font-size: 13px; color: #334155; line-height: 1.4;">{{ notif.message }}</p>
+            <small style="color: #94a3b8; font-size: 11px;">{{ notif.created_at|timesince }} ago</small>
+          </div>
+        </a>
+        {% empty %}
+        <div class="p-4 text-center">
+            <p class="text-muted" style="font-size:13px; margin:0;">No notifications yet.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+            <button
+              class="navbar-toggler border-0 p-1"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileOffcanvas"
+              aria-controls="mobileOffcanvas"
+              style="outline: none; box-shadow: none"
+            >
+              <i
+                class="fa-solid fa-bars-staggered"
+                style="color: #e94057; font-size: 22px"
+              ></i>
+            </button>
+          </div>
+
+          <!-- Right Action Block (Static Right Anchor Frame - Width Guard Active) -->
+          <div
+            class="d-none d-lg-flex align-items-center gap-4 m-0 p-0 justify-content-end"
+            style="width: max-content; min-width: 180px; flex-shrink: 0"
+          >
+            <!-- Requests & Chat -->
+            <a href="/interactions/requests/" class="text-decoration-none position-relative hover-scale d-inline-block py-1" title="Requests & Connections">
+              <i class="fa-solid fa-heart" style="font-size: 20px; color: #e94057;"></i>
+              {% if unread_requests_count > 0 %}<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 9px; padding: 3px 5px; background-color: #e94057 !important;">{{ unread_requests_count }}</span>{% endif %}
+            </a>
+            <a href="/interactions/chat/" class="text-decoration-none position-relative hover-scale d-inline-block py-1" title="Messages">
+              <i class="fa-brands fa-facebook-messenger" style="font-size: 20px; color: #64748b;"></i>
+              {% if unread_messages_count > 0 %}<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style="font-size: 9px; padding: 3px 5px; background-color: #3b82f6 !important;">{{ unread_messages_count }}</span>{% endif %}
+            </a>
+            <div style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 5px;"></div>
+
+            <!-- Notification Center -->
+                          <div class="dropdown custom-notification-dropdown d-inline-block">
+    <a href="javascript:void(0)" onclick="markNotificationsRead()" class="position-relative text-decoration-none py-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+      <i class="fa-solid fa-bell" style="color: #64748b; font-size: 20px"></i>
+      {% if unread_notifications_count > 0 %}
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 8px; padding: 3px 5px; background: #e94057 !important;" id="notif-badge">{{ unread_notifications_count }}</span>
+      {% endif %}
+    </a>
+    <div class="dropdown-menu dropdown-menu-end shadow-lg border-0 p-0" style="width: 300px; max-width: 85vw; border-radius: 16px; margin-top: 15px; z-index: 1050; overflow: hidden;">
+      <div class="p-3 border-bottom d-flex justify-content-between align-items-center" style="background: #f8fafc;">
+        <h6 class="m-0" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #1e293b;">Notifications</h6>
+        {% if unread_notifications_count > 0 %}
+        <span class="badge" style="background: #e94057; font-size: 10px;" id="notif-text">{{ unread_notifications_count }} New</span>
+        {% endif %}
+      </div>
+      <div class="notification-list" style="max-height: 250px; overflow-y: auto;">
+        {% for notif in notifications %}
+        <a href="{{ notif.link|default:'javascript:void(0);' }}" class="dropdown-item d-flex align-items-start gap-3 p-3 border-bottom text-wrap" style="white-space: normal; {% if not notif.is_read %}background-color: #f1f5f9;{% endif %}">
+          <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px; background: rgba(233, 64, 87, 0.1); color: #e94057;">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <div>
+            <p class="m-0" style="font-size: 13px; color: #334155; line-height: 1.4;">{{ notif.message }}</p>
+            <small style="color: #94a3b8; font-size: 11px;">{{ notif.created_at|timesince }} ago</small>
+          </div>
+        </a>
+        {% empty %}
+        <div class="p-4 text-center">
+            <p class="text-muted" style="font-size:13px; margin:0;">No notifications yet.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+            <!-- User Profile Dropdown System -->
+            <div class="dropdown custom-user-avatar-dropdown position-relative d-flex align-items-center gap-2">
+  <a href="/profiles/my-profile/" class="hover-scale" style="display: block;">
+    <div class="position-relative" style="width: 38px; height: 38px; flex-shrink: 0; overflow: hidden; border-radius: 50%;">
+    <img src="{% if request.user.profile.photo %}{{ request.user.profile.photo.url }}?v={{ request.user.profile.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff{% endif %}" alt="User Profile" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff';" class="rounded-circle border" width="38" height="38" style="width: 38px; height: 38px; object-fit: cover; border-color: rgba(233, 64, 87, 0.4) !important; padding: 1.5px; display: block; color: transparent;" />
+    <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width: 10px; height: 10px"></span>
+  </div>
+  </a>
+  <a href="javascript:void(0)" class="text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button" style="cursor: pointer;">
+    <div class="d-flex flex-column text-start justify-content-center" style="max-width: 100px">
+    <span style="font-size: 13px; font-weight: 700; color: #1e293b; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Hi, {{ request.user.profile.full_name|default:request.user.username|truncatechars:15 }}</span>
+    <span class="d-flex align-items-center gap-1" style="font-size: 9px; font-weight: 800; color: #facc15; letter-spacing: 0.3px;"><i class="fa-solid fa-crown" style="font-size: 8px"></i> {% if request.user.profile.payment_status == "Paid" %}PREMIUM{% else %}BASIC{% endif %}</span>
+  </div>
+  </a>
+<div class="dropdown-menu dropdown-menu-end shadow-lg border-0 p-4" style="width: 280px; max-width: 90vw; border-radius: 20px; background: #ffffff; margin-top: 15px; z-index: 1050;">
+    <div class="text-center">
+        <div class="position-relative d-inline-block mb-3" style="width: 80px; height: 80px; overflow: hidden; border-radius: 50%;">
+            <img src="{% if request.user.profile.photo %}{{ request.user.profile.photo.url }}?v={{ request.user.profile.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff{% endif %}" alt="{{ request.user.profile.full_name|default:request.user.username }}" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff';" class="rounded-circle" width="80" height="80" style="width: 80px; height: 80px; object-fit: cover; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: block; color: transparent;">
+            <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width: 15px; height: 15px; transform: translate(-10px, -5px);"></span>
+        </div>
+        <h5 style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #1e293b; margin-bottom: 5px; word-break: break-word; white-space: pre-wrap;">{{ request.user.profile.full_name|default:request.user.username }}</h5>
+        <p style="font-size: 13px; color: #64748b; line-height: 1.5; margin-bottom: 15px; word-break: break-all; white-space: normal;">
+            {{ request.user.email }}<br>
+            <span class="badge bg-danger text-white mt-1">Profile ID: {{ request.user.profile.matrimony_id|default:"Pending" }}</span>
+        </p>
+        <a href="/profiles/my-profile/" class="btn text-white w-100 rounded-pill py-2" style="background: #a16238; font-weight: 600; font-size: 14px; border: none; box-shadow: 0 4px 10px rgba(161, 98, 56, 0.3);">
+            View your Profile
+        </a>
+    </div>
+    
+    <hr style="opacity: 0.1; margin: 20px 0 10px;">
+    
+                    <div class="d-flex flex-column gap-1" style="font-size: 14px;">
+                    <a href="/interactions/matches/today/" class="dropdown-item d-flex align-items-center gap-3 rounded py-2" style="color: #475569; font-weight: 500; transition: background 0.2s;">
+                        <i class="fa-solid fa-gauge" style="font-size: 16px; color: #94a3b8; width: 20px; text-align: center;"></i> My Dashboard
+                    </a>
+                    <a href="/accounts/settings/" class="dropdown-item d-flex align-items-center gap-3 rounded py-2" style="color: #475569; font-weight: 500; transition: background 0.2s;">
+                        <i class="fa-solid fa-gear" style="font-size: 16px; color: #94a3b8; width: 20px; text-align: center;"></i> Settings
+                    </a>
+                    <a href="/payments/billing/" class="dropdown-item d-flex align-items-center gap-3 rounded py-2" style="color: #475569; font-weight: 500; transition: background 0.2s;">
+                        <i class="fa-solid fa-file-invoice-dollar" style="font-size: 16px; color: #94a3b8; width: 20px; text-align: center;"></i> Billing & Invoices
+                    </a>
+                    <a href="/accounts/logout/" class="dropdown-item d-flex align-items-center gap-3 rounded py-2" style="color: #475569; font-weight: 500; transition: background 0.2s;">
+                        <i class="fa-solid fa-right-from-bracket" style="font-size: 16px; color: #e94057; width: 20px; text-align: center;"></i> Sign out
+                    </a>
+                </div>
+</div>
+              
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ================= MOBILE CANVAS CONTAINER SYSTEM ================= -->
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="mobileOffcanvas"
+      aria-labelledby="mobileOffcanvasLabel"
+      style="
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(25px);
+        border-left: 1px solid rgba(233, 64, 87, 0.08);
+        width: 290px;
+      "
+    >
+      <div class="offcanvas-header border-bottom border-light py-4">
+        <div class="d-flex align-items-center gap-2.5">
+          <div style="width: 35px; height: 35px; overflow: hidden; border-radius: 50%; flex-shrink: 0;">
+            <img src="{% if request.user.profile.photo %}{{ request.user.profile.photo.url }}?v={{ request.user.profile.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff{% endif %}"
+              alt="User Profile"
+              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff';"
+              class="rounded-circle border"
+              width="35" height="35"
+              style="
+                width: 35px;
+                height: 35px;
+                object-fit: cover;
+                border-color: #e94057 !important;
+                flex-shrink: 0;
+                display: block;
+                color: transparent;
+              "
+            />
+          </div>
+          <h5
+            class="offcanvas-title m-0"
+            id="mobileOffcanvasLabel"
+            style="
+              font-family: &quot;Poppins&quot;, sans-serif;
+              font-weight: 800;
+              font-size: 16px;
+              color: #1e293b;
+            "
+          >
+            {{ request.user.profile.full_name }}</h5></div><button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+          style="box-shadow: none"
+        ></button>
+      </div>
+
+      <div
+        class="offcanvas-body d-flex flex-column justify-content-between py-4"
+        style="background: #fff5f6"
+      >
+        <ul class="nav flex-column gap-2" id="mobileNavList">
+          <!-- HOME MOBILE -->
+          <li class="nav-item">
+            <a
+              class="nav-link mobile-nav-link d-flex justify-content-between align-items-center"
+              href="/"
+            >
+              <span><i class="fa-solid fa-house"></i> HOME</span>
+            </a>
+          </li>
+          <!-- SEARCH MOBILE COLLAPSE -->
+          <li class="nav-item">
+            <a
+              class="nav-link mobile-nav-link d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse"
+              href="#mobSearchCollapse"
+              role="button"
+              aria-expanded="false"
+            >
+              <span><i class="fa-solid fa-magnifying-glass"></i> SEARCH</span>
+              <i
+                class="fa-solid fa-chevron-down ms-auto"
+                style="font-size: 11px"
+              ></i>
+            </a>
+            <div class="collapse ps-3 mt-1" id="mobSearchCollapse">
+              <ul
+                class="nav flex-column gap-1"
+                style="
+                  border-left: 1px dashed rgba(233, 64, 87, 0.3);
+                  padding-left: 10px;
+                "
+              >
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/interactions/search/basic/"
+                    ><i class="fa-solid fa-list-check"></i> Basic Search</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/interactions/search/advanced/"
+                    ><i class="fa-solid fa-sliders"></i> Advance Search</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/interactions/matches/Ai-match/"
+                    ><i class="fa-solid fa-brain"></i> AI Match Founder</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/interactions/search/saved/"
+                    ><i class="fa-solid fa-bookmark"></i> Saved Searches</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- MATCHES MOBILE COLLAPSE -->
+          <li class="nav-item">
+            <a
+              class="nav-link mobile-nav-link d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse"
+              href="#mobMatchesCollapse"
+              role="button"
+              aria-expanded="false"
+            >
+              <span><i class="fa-solid fa-heart-pulse"></i> MATCHES</span>
+              <i
+                class="fa-solid fa-chevron-down ms-auto"
+                style="font-size: 11px"
+              ></i>
+            </a>
+            <div class="collapse ps-3 mt-1" id="mobMatchesCollapse">
+              <ul
+                class="nav flex-column gap-1"
+                style="
+                  border-left: 1px dashed rgba(233, 64, 87, 0.3);
+                  padding-left: 10px;
+                "
+              >
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/interactions/matches/today/"
+                    ><i class="fa-solid fa-calendar-day"></i> Todays Matches</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/interactions/matches/recommended/"
+                    ><i class="fa-solid fa-star"></i> Recommended Matches</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/interactions/matches/Ai-match/"
+                    ><i class="fa-solid fa-wand-magic-sparkles"></i> AI
+                    Matches</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/interactions/matches/nearby/"
+                    ><i class="fa-solid fa-location-dot"></i> Nearby Matches</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- PROFILES MOBILE COLLAPSE -->
+          <li class="nav-item">
+            <a
+              class="nav-link mobile-nav-link d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse"
+              href="#mobProfilesCollapse"
+              role="button"
+              aria-expanded="false"
+            >
+              <span><i class="fa-solid fa-users"></i> PROFILES</span>
+              <i
+                class="fa-solid fa-chevron-down ms-auto"
+                style="font-size: 11px"
+              ></i>
+            </a>
+            <div class="collapse ps-3 mt-1" id="mobProfilesCollapse">
+              <ul
+                class="nav flex-column gap-1"
+                style="
+                  border-left: 1px dashed rgba(233, 64, 87, 0.3);
+                  padding-left: 10px;
+                "
+              >
+                <li>
+                  {% if not request.user.is_authenticated or request.user.profile.gender == 'Male' %}
+<a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/interactions/featured/brides/"
+                    ><i class="fa-solid fa-person-dress" style="color: #e94057; margin-right: 8px;"></i>  Featured Brides</a
+                  >
+{% endif %}
+                </li>
+                <li>
+                  {% if not request.user.is_authenticated or request.user.profile.gender == 'Female' %}
+<a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/interactions/featured/grooms/"
+                    ><i class="fa-solid fa-person" style="color: #e94057; margin-right: 8px;"></i>  Featured Grooms</a
+                  >
+{% endif %}
+                </li>
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/profiles/verified-profiles/"
+                    ><i class="fa-solid fa-user-shield"></i> Verified
+                    Profiles</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/profiles/saved-profiles/"
+                    ><i class="fa-solid fa-bookmark" style="color: #e94057; margin-right: 8px;"></i>  Saved Profiles</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Mobile Bottom Panel Actions -->
+        <div class="w-100 pt-3 d-flex flex-column gap-2">
+          <a
+            href="/interactions/matches/today/"
+            class="btn ultimate-action-btn w-100 text-center justify-content-center d-flex align-items-center gap-2"
+          >
+            <i class="fa-solid fa-gauge"></i> <span>MY DASHBOARD</span>
+          </a>
+          <a
+            href="/accounts/login/"
+            class="btn btn-light w-100 text-center justify-content-center d-flex align-items-center gap-2 border-0"
+            style="
+              border-radius: 999px;
+              padding: 11px 26px;
+              font-weight: 700;
+              font-size: 13px;
+              color: #ef4444;
+              background: rgba(239, 68, 68, 0.08);
+            "
+          >
+            <i class="fa-solid fa-right-from-bracket"></i> <span>LOGOUT</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      /* ANTI-DEFLECTION DRIVER MECHANISM */
+      @media (min-width: 992px) {
+        .absolute-center-links {
+          position: absolute !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          width: max-content !important;
+          display: flex !important;
+          justify-content: center !important;
+          z-index: 5;
+        }
+      }
+
+      .hover-scale:hover {
+        transform: scale(1.05);
+      }
+
+      /* Core Desktop Navigation Styles */
+      .ultra-nav-link {
+        font-family: "Inter", sans-serif;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        color: #475569 !important;
+        letter-spacing: 0.8px;
+        padding: 9px 26px !important;
+        border-radius: 999px;
+        transition:
+          color 0.2s ease,
+          background-color 0.2s ease,
+          box-shadow 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-sizing: border-box;
+        white-space: nowrap;
+        border: none !important;
+        background: transparent;
+      }
+      .ultra-nav-link i {
+        font-size: 12px;
+        color: #e94057;
+        opacity: 0.8;
+      }
+
+      .ultra-nav-link:hover,
+      .custom-premium-dropdown:hover > .ultra-nav-link {
+        color: #e94057 !important;
+        background: rgba(233, 64, 87, 0.08) !important;
+      }
+
+      /* Fixed Target Active Styles */
+      .ultra-nav-link.active-premium-link,
+      .ultra-nav-link.active-premium-link:hover,
+      .custom-premium-dropdown:hover > .ultra-nav-link.active-premium-link {
+        color: #ffffff !important;
+        background: #e94057 !important;
+        box-shadow: 0 4px 14px rgba(233, 64, 87, 0.3) !important;
+      }
+      .ultra-nav-link.active-premium-link i,
+      .ultra-nav-link.active-premium-link:hover i {
+        color: #ffffff !important;
+        opacity: 1 !important;
+      }
+
+      /* Clean Premium Glassmorphic Dropdown Layering */
+      .dynamic-glass-dropdown {
+        display: none;
+        position: absolute !important;
+        top: 100% !important;
+        margin-top: 8px !important;
+        background: rgba(255, 255, 255, 0.96) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-radius: 16px !important;
+        padding: 8px !important;
+        border: 1px solid rgba(233, 64, 87, 0.1) !important;
+        box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08) !important;
+        min-width: 210px !important;
+        width: max-content !important;
+        z-index: 1100 !important;
+        transform: none !important; /* Disables Popper.js layout break shift */
+      }
+
+      /* Align Right User Profile Panel Dropdown */
+      .custom-user-avatar-dropdown .dynamic-glass-dropdown {
+        right: 0 !important;
+        left: auto !important;
+      }
+
+      .dropdown-toggle::after {
+        display: none !important;
+      }
+
+      /* Dropdown Menu Items */
+      .custom-drop-item {
+        font-family: "Inter", sans-serif;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #334155;
+        padding: 10px 16px;
+        margin: 2px 0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+      }
+      .custom-drop-item:hover {
+        background: #fff5f6 !important;
+        color: #e94057 !important;
+        transform: translateX(4px);
+      }
+      .custom-drop-item i {
+        font-size: 12px;
+      }
+
+      /* Call-To-Action Framework Buttons */
+      .ultimate-action-btn {
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        color: #ffffff !important;
+        font-family: "Inter", sans-serif;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.6px;
+        padding: 11px 26px !important;
+        border-radius: 999px !important;
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(233, 64, 87, 0.2);
+        transition: all 0.3s ease;
+      }
+      .ultimate-action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(233, 64, 87, 0.35);
+      }
+
+      /* Mobile Sheet Rulesets */
+      .mobile-nav-link {
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        color: #475569 !important;
+        padding: 12px 16px !important;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+      }
+      .mobile-nav-link i {
+        color: #e94057;
+        width: 18px;
+      }
+      .mobile-nav-link:hover {
+        background: rgba(233, 64, 87, 0.05);
+        color: #e94057 !important;
+      }
+      .active-mobile,
+      .active-mobile:hover {
+        background: rgba(233, 64, 87, 0.1) !important;
+        color: #e94057 !important;
+      }
+
+      /* Condensed Scroll Engine Modifier */
+      .nav-scrolled-wide {
+        padding: 10px 0px !important;
+        background: rgba(255, 255, 255, 0.96) !important;
+        box-shadow: 0 10px 30px rgba(233, 64, 87, 0.05) !important;
+      }
+
+      /* Safe Native Pure CSS Dropdown Triggers */
+      @media (min-width: 992px) {
+        .custom-premium-dropdown:hover .dynamic-glass-dropdown,
+        .custom-user-avatar-dropdown:hover .dynamic-glass-dropdown {
+          display: block !important;
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    
+</style>
+
+    <!-- 6. Real-Time Router Logic Engine Script -->
+    <script>
+      if (typeof AOS !== "undefined") {
+        AOS.init({ duration: 800, once: true });
+      }
+
+      window.addEventListener("scroll", function () {
+        const stickyWrapper = document.getElementById("stickyNavWrapper");
+        if (window.scrollY > 120) {
+          stickyWrapper.classList.add("nav-scrolled-wide");
+        } else {
+          stickyWrapper.classList.remove("nav-scrolled-wide");
+        }
+      });
+
+      // Intelligent Route Highlighter System
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentPath = window.location.pathname.split("/").pop();
+        const activePage = currentPath === "" ? "/" : currentPath;
+
+        // 1. Desktop Central Link Highlighting
+        const desktopLinks = document.querySelectorAll(".ultra-nav-link");
+        desktopLinks.forEach((link) => {
+          if (link.getAttribute("href") === activePage) {
+            link.classList.add("active-premium-link");
+          }
+        });
+
+        // 2. Desktop Nested Dropdown Triggers
+        const dropdownItems = document.querySelectorAll(".custom-drop-item");
+        dropdownItems.forEach((item) => {
+          if (item.getAttribute("href") === activePage) {
+            const parentDropdown = item.closest(".custom-premium-dropdown");
+            if (parentDropdown) {
+              const mainToggle =
+                parentDropdown.querySelector(".ultra-nav-link");
+              if (mainToggle) mainToggle.classList.add("active-premium-link");
+            }
+          }
+        });
+
+        // 3. Mobile Navigation Layout Auto-expand
+        const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+        mobileLinks.forEach((mobLink) => {
+          if (mobLink.getAttribute("href") === activePage) {
+            mobLink.classList.add("active-mobile");
+            const parentCollapse = mobLink.closest(".collapse");
+            if (parentCollapse) {
+              parentCollapse.classList.add("show");
+              const toggler = document.querySelector(
+                `[href="#${parentCollapse.id}"]`,
+              );
+              if (toggler) toggler.classList.add("active-mobile");
+            }
+          }
+        });
+      });
+    </script>
+    <!-- ================= END NAVBAR STRUCT ================= -->
+
+<script>
+function markNotificationsRead() {
+    fetch('/interactions/api/mark-notifications-read/', {
+        method: 'POST',
+        headers: {'X-CSRFToken': '{{ csrf_token }}'}
+    }).then(res => {
+        if(res.ok) {
+            document.querySelectorAll('#notif-badge').forEach(b => b.style.display = 'none');
+            document.querySelectorAll('#notif-text').forEach(t => t.style.display = 'none');
+        }
+    });
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Auto Logout Script for 10 minutes of inactivity
+  (function() {
+    let idleTimeout;
+    const IDLE_TIME_MS = 600000; // 10 minutes
+
+    function resetIdleTimer() {
+      clearTimeout(idleTimeout);
+      idleTimeout = setTimeout(() => {
+        window.location.href = '/accounts/logout/'; // Redirect to logout, which takes them to login
+      }, IDLE_TIME_MS);
+    }
+
+    // Listen to standard activity events
+    window.onload = resetIdleTimer;
+    document.onmousemove = resetIdleTimer;
+    document.onkeypress = resetIdleTimer;
+    document.ontouchstart = resetIdleTimer;
+    document.onclick = resetIdleTimer;
+    document.onscroll = resetIdleTimer;
+  })();
+</script>
+
+<script>
+  // Global Notification Polling Script
+  (function() {
+    let lastMessageCount = -1;
+    setInterval(() => {
+      fetch('/interactions/api/navbar-counts/')
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success') {
+            const currentMessageCount = data.unread_messages_count;
+            if (lastMessageCount !== -1 && currentMessageCount > lastMessageCount) {
+              if (window.showSmToast) {
+                window.showSmToast('You received a new message!', 'info');
+              } else {
+                alert('You received a new message!');
+              }
+            }
+            lastMessageCount = currentMessageCount;
+            
+            // Optionally update navbar badges if they exist
+            // (You can add specific IDs to badges later to update them directly)
+          }
+        })
+        .catch(err => console.error(err));
+    }, 5000); // Poll every 5 seconds
+  })();
+</script>

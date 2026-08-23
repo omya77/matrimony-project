@@ -1,0 +1,601 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recommended Matches | ForeverBond</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/static/web/images/favicon.png" />
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+    <link rel="stylesheet" href="/static/web/css/footer.css" />
+    
+    <style>
+        body {
+            background: #fdf2f4;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* ULTIMATE ROYAL HERO BANNER — COMPACT & PROPER CURATED COLORS */
+        .recom-hero {
+            position: relative;
+            padding: 42px 0 65px 0; /* Reduced height as requested! */
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+            background: #2a0812;
+            min-height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Slow Zooming Image Background */
+        .recom-hero-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') center/cover;
+            animation: slowZoom 25s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+        
+        /* Rich Royal Rose & Gold Gradient Overlay (User's Exact Color Palette!) */
+        .recom-hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(233, 64, 87, 0.92) 0%, rgba(255, 92, 117, 0.84) 45%, rgba(212, 175, 55, 0.72) 100%);
+            z-index: 2;
+        }
+        
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+        
+        /* Floating Golden Dust Particles */
+        .dust-particle {
+            position: absolute;
+            background: #facc15;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #facc15, 0 0 16px #d4af37;
+            z-index: 3;
+            animation: floatUp infinite linear;
+            opacity: 0;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(50px) scale(0); opacity: 0; }
+            20% { opacity: 0.85; transform: translateY(0) scale(1); }
+            80% { opacity: 0.85; transform: translateY(-80px) scale(1); }
+            100% { transform: translateY(-130px) scale(0); opacity: 0; }
+        }
+        
+        /* Content Styling */
+        .recom-hero-content {
+            position: relative;
+            z-index: 4;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .royal-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #facc15);
+            color: #1e293b;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 750;
+            margin-bottom: 14px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.38);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        /* Proper responsive font size instead of gigantic 58px! */
+        .hero-title {
+            font-size: clamp(2.0rem, 3.8vw, 2.8rem);
+            font-weight: 850;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 12px;
+            color: #ffffff;
+            line-height: 1.15;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            letter-spacing: -0.8px;
+        }
+        .hero-title span {
+            color: #facc15; /* Vibrant Gold */
+            font-family: 'Playfair Display', serif; /* Elegant serif */
+            font-style: italic;
+            font-weight: 600;
+            padding: 0 4px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.28);
+        }
+        
+        /* Proper font size instead of 19px */
+        .hero-subtitle {
+            font-size: 0.96rem;
+            color: rgba(255,255,255,0.94);
+            max-width: 580px;
+            margin: 0 auto;
+            font-weight: 400;
+            line-height: 1.55;
+        }
+        
+        /* Curved SVG Bottom — Compact height! */
+        .hero-wave {
+            position: absolute;
+            bottom: -2px; /* Prevent tiny gaps */
+            left: 0;
+            width: 100%;
+            height: 38px; /* Reduced from 80px */
+            z-index: 5;
+        }
+        .hero-wave svg {
+            width: 100%;
+            height: 100%;
+            fill: #fdf2f4; /* Matches body background */
+        }
+
+        @media (max-width: 768px) {
+            .recom-hero { padding: 36px 0 55px 0; min-height: 210px; }
+            .hero-title { font-size: 1.75rem; }
+            .hero-subtitle { font-size: 0.88rem; }
+            .hero-wave { height: 28px; }
+        }
+
+        /* Clean Premium Grid */
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 60px 30px; /* High vertical gap for the overlapping avatars */
+            max-width: 1200px;
+            margin: 30px auto 0 auto;
+            padding: 0 20px 80px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .profile-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(233,64,87,0.08);
+            position: relative;
+            padding: 0 20px 25px 20px;
+            transition: 0.4s;
+            border: 1px solid #ffe4e8;
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(233,64,87,0.15);
+            border-color: #ffb3c1;
+        }
+        
+        /* Card Header Banner */
+        .card-header-banner {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 70px;
+            background: linear-gradient(135deg, #ffe4e8, #fff0f2);
+            border-radius: 20px 20px 0 0;
+            z-index: 0;
+        }
+
+        /* Circular Avatar overlapping */
+        .avatar-container {
+            width: 130px;
+            height: 130px;
+            margin: -65px auto 15px auto;
+            position: relative;
+            z-index: 2;
+            border-radius: 50%;
+            padding: 5px;
+            background: #fff;
+            box-shadow: 0 8px 20px rgba(233,64,87,0.15);
+        }
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 50%;
+            background: #f1f5f9;
+        }
+        .match-badge {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e94057;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 10px rgba(233,64,87,0.3);
+        }
+        
+        .premium-crown {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 3;
+            border: 2px solid #fff;
+        }
+
+        /* Profile Info Centered */
+        .profile-info {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+        .profile-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 2px;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .verify-icon {
+            color: #38bdf8;
+            font-size: 16px;
+        }
+        .profile-id {
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        /* Grid for details inside the card */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: #fff0f2;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+        .info-item {
+            font-size: 13px;
+            color: #475569;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .info-item i {
+            color: #e94057;
+            width: 16px;
+            text-align: center;
+            margin-top: 2px;
+        }
+        .info-item span {
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        /* Actions */
+        .card-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .btn-view {
+            flex: 1;
+            background: #fff;
+            color: #e94057;
+            border: 1px solid #ffb3c1;
+            padding: 10px 0;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-view:hover {
+            background: #fff0f2;
+            border-color: #e94057;
+        }
+        .btn-connect {
+            flex: 1;
+            background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+            color: #fff;
+            border: none;
+            padding: 10px 0;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(233, 64, 87, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-connect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 64, 87, 0.4);
+        }
+
+        /* Empty State */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 20px;
+            border: 2px dashed #ffb3c1;
+            margin-top: -30px;
+        }
+        .empty-state i {
+            font-size: 60px;
+            color: #e94057;
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+        .empty-state h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 10px;
+        }
+        
+        /* Pagination */
+        .advanced-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            list-style: none;
+            padding: 0;
+            margin: -20px 0 80px 0;
+        }
+        .advanced-pagination .page-link {
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            color: #e94057;
+            border: 1px solid #ffe4e8;
+            font-weight: 600;
+            text-decoration: none;
+            background: #fff;
+            transition: 0.3s;
+        }
+        .advanced-pagination .page-link:hover {
+            background: #fff0f2;
+        }
+        .advanced-pagination .active .page-link {
+            background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 10px rgba(233,64,87,0.3);
+        }
+        .advanced-pagination .disabled .page-link {
+            color: #cbd5e1;
+            border-color: #f1f5f9;
+            background: #f8fafc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    {% include 'web/secondary_navbar.html' %}
+
+    <div class="recom-hero" id="particles-container">
+        <!-- Background Elements -->
+        <div class="recom-hero-bg"></div>
+        <div class="recom-hero-overlay"></div>
+        
+        <!-- Content -->
+        <div class="recom-hero-content">
+            <div class="royal-badge"><i class="fa-solid fa-crown" style="margin-right: 5px;"></i> Exclusive Recommendations</div>
+            <h1 class="hero-title">Your Perfect <span>Soulmate</span> Awaits</h1>
+            <p class="hero-subtitle">Based on your partner preferences for age, religion, and lifestyle. Discover premium profiles handpicked exclusively for you.</p>
+        </div>
+        
+        <!-- Bottom Wave -->
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,0 C480,140 960,140 1440,0 L1440,120 L0,120 Z"></path>
+            </svg>
+        </div>
+    </div>
+
+    <div class="matches-grid">
+        {% for match in matches %}
+        <div class="profile-card">
+            <div class="card-header-banner"></div>
+            
+            <div class="avatar-container">
+                {% if match.payment_status == 'Paid' %}
+                <div class="premium-crown" title="Premium Member"><i class="fa-solid fa-crown"></i></div>
+                {% endif %}
+                <img src="{% if match.photo and match.is_photo_approved %}{{ match.photo.url }}?v={{ match.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ match.full_name|default:'User'|urlencode }}&background=e94057&color=fff{% endif %}" alt="{{ match.full_name }}">
+                <div class="match-badge">Top Pick</div>
+            </div>
+            
+            <div class="profile-info">
+                <h3 class="profile-name">
+                    {{ match.full_name|default:'ForeverBond User' }}
+                    {% if match.approval_status == 'Approved' %}<i class="fa-solid fa-circle-check verify-icon" title="Verified Profile"></i>{% endif %}
+                </h3>
+                <div class="profile-id">ID: FB{{ match.user.id|add:"1000" }}</div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item" title="Age & Height"><i class="fa-solid fa-user"></i> <span>{{ match.age|default:"N/A" }} Yrs<br>{{ match.height|default:"N/A" }}</span></div>
+                <div class="info-item" title="Location"><i class="fa-solid fa-location-dot"></i> <span>{{ match.city|default:"N/A" }}<br>{{ match.state|default:"" }}</span></div>
+                <div class="info-item" title="Education"><i class="fa-solid fa-graduation-cap"></i> <span>{{ match.highest_education|default:"N/A" }}</span></div>
+                <div class="info-item" title="Profession"><i class="fa-solid fa-briefcase"></i> <span>{{ match.profession|default:"N/A" }}</span></div>
+                <div class="info-item" title="Religion"><i class="fa-solid fa-om"></i> <span>{{ match.religion|default:"N/A" }}<br>{{ match.caste|default:"" }}</span></div>
+                <div class="info-item" title="Mother Tongue"><i class="fa-solid fa-language"></i> <span>{{ match.mother_tongue|default:"N/A" }}</span></div>
+            </div>
+
+            <div class="card-actions">
+                <button class="btn-view" data-bs-toggle="modal" data-bs-target="#profileModal{{ match.user.id }}">
+                    <i class="fa-regular fa-eye"></i> View Profile
+                </button>
+             {% if match.interest_status == 'pending' %}
+                 <button type="button" class="btn-connect" style="background: #6c757d; color: #fff; cursor: not-allowed;" disabled>
+                    <i class="fa-solid fa-check"></i> Pending
+                 </button>
+             {% elif match.interest_status == 'accepted' %}
+                 <button type="button" class="btn-connect" style="background: #28a745; color: #fff; cursor: not-allowed;" disabled>
+                    <i class="fa-solid fa-heart"></i> Connected
+                 </button>
+             {% else %}
+                 <button type="button" class="btn-connect" onclick="sendInterest('{{ match.user.id }}', this)">
+                    <i class="fa-solid fa-heart"></i> Connect
+                 </button>
+             {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <h3>No recommendations found</h3>
+            <p style="color: #64748b; font-size: 16px; margin-bottom: 25px;">Please update your partner preferences to see better matches.</p>
+            <a href="/profile/edit/" class="btn" style="background: linear-gradient(135deg, #e94057, #ff5c75); color:#fff; padding: 12px 30px; border-radius: 30px; font-weight:600; border: none;">Edit Preferences</a>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <nav class="pagination-container">
+      <ul class="advanced-pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="fa-solid fa-arrow-left"></i></a></li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link"><i class="fa-solid fa-arrow-left"></i></span></li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li class="page-item active"><a class="page-link" href="javascript:void(0);">{{ num }}</a></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+        
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="fa-solid fa-arrow-right"></i></a></li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link"><i class="fa-solid fa-arrow-right"></i></span></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <!-- Modals -->
+    {% for match in matches %}
+        {% include 'web/profile_modal.html' %}
+    {% endfor %}
+
+    {% include 'web/footer.html' %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/web/js/navbar.js?v=5"></script>
+    <script>
+    function sendInterest(receiverId, btnElement) {
+        btnElement.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        fetch('/interactions/api/express-interest/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') || '' },
+            body: JSON.stringify({ receiver_id: receiverId })
+        }).then(res => res.json()).then(data => {
+            if(data.status === 'pending') {
+                btnElement.innerHTML = '<i class="fa-solid fa-check"></i> Sent';
+                btnElement.disabled = true;
+                btnElement.style.background = '#6c757d';
+            } else if (data.status === 'accepted') {
+                btnElement.innerHTML = '<i class="fa-solid fa-heart"></i> Connected';
+                btnElement.disabled = true;
+                btnElement.style.background = '#28a745';
+            } else if (data.status === 'cancelled') {
+                btnElement.innerHTML = '<i class="fa-solid fa-heart"></i> Connect';
+                btnElement.disabled = false;
+                btnElement.style.background = 'linear-gradient(135deg, #e94057 0%, #ff5c75 100%)';
+            } else {
+                alert(data.message);
+                btnElement.innerHTML = '<i class="fa-solid fa-heart"></i> Connect';
+            }
+        }).catch(err => {
+            alert('Error sending interest');
+            btnElement.innerHTML = '<i class="fa-solid fa-heart"></i> Connect';
+        });
+    }
+    </script>
+    
+    <!-- Golden Dust Particles Generator -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 20; // Number of particles
+            
+            for (let i = 0; i < particleCount; i++) {
+                let particle = document.createElement('div');
+                particle.className = 'dust-particle';
+                
+                // Random properties
+                let size = Math.random() * 3 + 2; // 2px to 5px
+                let left = Math.random() * 100; // 0% to 100%
+                let duration = Math.random() * 8 + 6; // 6s to 14s
+                let delay = Math.random() * 10; // 0s to 10s delay
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = left + '%';
+                particle.style.bottom = '-10px';
+                particle.style.animationDuration = duration + 's';
+                particle.style.animationDelay = delay + 's';
+                
+                container.appendChild(particle);
+            }
+        });
+    </script>
+</body>
+</html>

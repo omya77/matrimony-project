@@ -1,0 +1,2292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForeverBond</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- url_icon  -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/web/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/web/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      href="/static/web/images/favicon.png"
+      type="image/svg+xml"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- AOS Animation -->
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+    <link rel="stylesheet" href="/static/web/css/index.css" />
+  </head>
+  <body>
+    <!-- top_navbar_start -->
+    <div class="topbar">
+      <div class="container-fluid px-4">
+        <div class="topbar-inner">
+          <!-- LEFT -->
+          <div class="topbar-left d-none d-lg-flex">
+            <a href="tel:+91 8262802961">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 82628 02961</span>
+            </a>
+
+            <span class="divider"></span>
+
+            <a href="mailto:info@soulmate.com">
+              <i class="fa-solid fa-envelope"></i>
+              <span>info@soulmate.com</span>
+            </a>
+          </div>
+
+          <!-- CENTER -->
+          <div class="topbar-center">
+            <i class="fa-solid fa-heart"></i>
+            <span>India's Trusted Premium Matrimony</span>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="topbar-right">
+            <!-- LANGUAGE DROPDOWN -->
+            <div class="lang-dropdown">
+              <button class="lang-btn" id="langBtn">
+                <i class="fa-solid fa-globe"></i>
+                <span id="currentLanguage">English</span>
+                <i class="fa-solid fa-angle-down"></i>
+              </button>
+
+              <div class="lang-menu" id="langMenu">
+                <button class="lang-item" data-lang="en">🇺🇸 English</button>
+                <button class="lang-item" data-lang="hi">🇮🇳 हिन्दी</button>
+                <button class="lang-item" data-lang="mr">🇮🇳 मराठी</button>
+              </div>
+            </div>
+
+            <a href="/accounts/login/" class="top-btn login-btn">
+              <i class="fa-solid fa-right-to-bracket"></i>
+              Login
+            </a>
+
+            <a href="/accounts/register/" class="top-btn register-btn">
+              <i class="fa-solid fa-user-plus"></i>
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- second_navbar_start  -->
+    <!-- ================= START: BANNER + STICKY FLOATING NAVBAR SYSTEM (STRICT COLOR ACCENT UPDATE) ================= -->
+
+    <!-- 1. Matrimony Banner Section -->
+    <section class="matrimony-banner">
+      <div class="leaf-bg left-leaf"></div>
+      <div class="leaf-bg right-leaf"></div>
+
+      <div class="banner-container">
+        <div class="banner-left">
+          <div class="tagline">
+            <i
+              class="fa-solid fa-sparkles gold-text"
+              style="color: #facc15"
+            ></i>
+            Find Your
+          </div>
+          <h1
+            class="main-title"
+            style="font-family: &quot;Poppins&quot;, sans-serif; font-size: clamp(32px, 4vw, 56px); line-height: 1.2;"
+          >
+            {{ website_heading }} <span class="heart-icon" style="font-size: 0.6em;">❤️</span>
+          </h1>
+          <p
+            class="sub-text"
+            style="font-family: &quot;Inter&quot;, sans-serif; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 10px; font-size: 15px; line-height: 1.5; color: #555; max-max-width: 500px; width: 100%;"
+          >
+            {{ website_description }}
+          </p>
+        </div>
+
+        <div class="banner-middle">
+          <div class="feature-item">
+            <div
+              class="icon-wrapper"
+              style="background: rgba(233, 64, 87, 0.1); color: #e94057"
+            >
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <span>Verified Profiles</span>
+          </div>
+          <div class="feature-divider"></div>
+          <div class="feature-item">
+            <div
+              class="icon-wrapper"
+              style="background: rgba(233, 64, 87, 0.1); color: #e94057"
+            >
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <span>100% Privacy Assured</span>
+          </div>
+          <div class="feature-divider"></div>
+          <div class="feature-item">
+            <div
+              class="icon-wrapper"
+              style="background: rgba(233, 64, 87, 0.1); color: #e94057"
+            >
+              <i class="fa-solid fa-heart-circle-check"></i>
+            </div>
+            <span>Serious Matrimony</span>
+          </div>
+        </div>
+
+        <div class="banner-right">
+          <div class="couple-img-container">
+            <img src="/static/web/images/couple.png" alt="Couple" class="couple-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- main_navbar_start   -->
+    <!-- ================= START: 100% WIDE FLOATING GLASSMORPHIC NAVBAR WITH DYNAMIC ACTIVE STATE ================= -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <div
+      id="stickyNavWrapper"
+      class="w-100 transition-all"
+      style="
+        position: sticky;
+        top: 0;
+        z-index: 1040;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(20px) saturate(190%);
+        -webkit-backdrop-filter: blur(20px) saturate(190%);
+        border-bottom: 2px solid transparent;
+        border-image: linear-gradient(
+            90deg,
+            rgba(233, 64, 87, 0.1) 0%,
+            #e94057 50%,
+            rgba(233, 64, 87, 0.1) 100%
+          )
+          2;
+        box-shadow: 0 8px 32px rgba(233, 64, 87, 0.04);
+        padding: 14px 0px;
+        font-family: &quot;Inter&quot;, sans-serif;
+        transition: all 0.4s ease;
+      "
+    >
+      <nav class="navbar navbar-expand-lg w-100 p-0">
+        <div
+          class="container-fluid px-4 px-md-5 d-flex justify-content-between align-items-center"
+        >
+          <!-- Brand Logo Area (Left Anchor) -->
+          <a
+            class="navbar-brand d-flex align-items-center gap-2.5 m-0"
+            href="/"
+          >
+            <div
+              class="d-flex align-items-center justify-content-center rounded-3"
+              style="background: linear-gradient(135deg, #e94057 0%, #facc15 100%); 
+                
+                width: 38px;
+                height: 38px;
+                box-shadow: 0 4px 14px rgba(233, 64, 87, 0.2);
+              "
+            >
+              <i class="fa-solid fa-ring text-white" style="font-size: 15px"></i>
+            </div>
+            <div class="d-flex flex-column">
+              <span
+                style="
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                  font-weight: 850;
+                  font-size: 21px;
+                  color: #1e293b;
+                  letter-spacing: -0.8px;
+                  line-height: 1;
+                "
+              >
+                Forever<span style="color: #e94057">Bond</span>
+              </span>
+              <span
+                style="
+                  font-size: 8px;
+                  font-weight: 800;
+                  color: #e94057;
+                  letter-spacing: 1.8px;
+                  text-transform: uppercase;
+                  margin-top: 3px;
+                  opacity: 0.85;
+                "
+              >
+                Verified • Secure
+              </span>
+            </div>
+          </a>
+
+          <!-- Desktop Links - Perfectly Absolute Centered Menu with Blog Dropdown -->
+          <div
+            class="collapse navbar-collapse justify-content-center d-none d-lg-flex absolute-center-links"
+          >
+            <ul
+              class="navbar-nav gap-1"
+              style="
+                background: #fff5f6;
+                padding: 5px;
+                border-radius: 999px;
+                border: 1px solid rgba(233, 64, 87, 0.12);
+              "
+            >
+              <li class="nav-item">
+                <a href="/home/" class="nav-link ultra-nav-link">
+                  <i class="fa-solid fa-house"></i> <span>HOME</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/stories/" class="nav-link ultra-nav-link">
+                  <i class="fa-solid fa-bell-concierge"></i>
+                  <span>STORIES</span>
+                </a>
+              </li>
+
+              <!-- BLOG DROPDOWN MENU -->
+              <li class="nav-item dropdown custom-premium-dropdown">
+                <a
+                  href="javascript:void(0);"
+                  class="nav-link ultra-nav-link dropdown-toggle transition-all"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid fa-newspaper"></i> <span>BLOG</span>
+                </a>
+                <ul
+                  class="dropdown-menu border-0 shadow-lg dynamic-glass-dropdown"
+                  style="
+                    background: rgba(255, 255, 255, 0.95);
+                    backdrop-filter: blur(15px);
+                    border-radius: 16px;
+                    padding: 8px;
+                    border: 1px solid rgba(233, 64, 87, 0.1) !important;
+                    margin-top: 10px;
+                  "
+                >
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/latest-article/"
+                    >
+                      <i
+                        class="fa-solid fa-book-open"
+                        style="color: #e94057"
+                      ></i>
+                      Latest Articles
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/relationship-tips/"
+                    >
+                      <i
+                        class="fa-solid fa-handshake"
+                        style="color: #e94057"
+                      ></i>
+                      Relationship Tips
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item custom-drop-item"
+                      href="/marriage-advice/"
+                    >
+                      <i class="fa-solid fa-ring" style="color: #e94057"></i>
+                      Marriage Advice
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a href="/contact/" class="nav-link ultra-nav-link">
+                  <i class="fa-solid fa-envelope"></i> <span>CONTACT</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Mobile Menu Toggler -->
+          <button
+            class="navbar-toggler border-0 p-1 d-lg-none"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#mobileOffcanvas"
+            aria-controls="mobileOffcanvas"
+            style="outline: none; box-shadow: none"
+          >
+            <i
+              class="fa-solid fa-bars-staggered"
+              style="color: #e94057; font-size: 22px"
+            ></i>
+          </button>
+
+          <!-- Right Action Block (Right Anchor) -->
+          <div class="d-none d-lg-flex align-items-center m-0">
+            <a
+              href="/accounts/registration/"
+              class="btn ultimate-action-btn d-flex align-items-center gap-2"
+            >
+              <i
+                class="fa-solid fa-rocket"
+                style="font-size: 12px; color: #ffffff"
+              ></i>
+              <span>GET STARTED</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ================= MOBILE OFFCANVAS PANEL WITH ACCORDION COLLAPSE FIXED ================= -->
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="mobileOffcanvas"
+      aria-labelledby="mobileOffcanvasLabel"
+      style="
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        border-left: 1px solid rgba(233, 64, 87, 0.08);
+        width: 290px;
+      "
+    >
+      <div class="offcanvas-header border-bottom border-light py-4">
+        <h5
+          class="offcanvas-title"
+          id="mobileOffcanvasLabel"
+          style="
+            font-family: &quot;Poppins&quot;, sans-serif;
+            font-weight: 800;
+            color: #1e293b;
+          "
+        >
+          Forever<span style="color: #e94057">Bond</span>
+        </h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+          style="box-shadow: none"
+        ></button>
+      </div>
+      <div
+        class="offcanvas-body d-flex flex-column justify-content-between py-4"
+        style="background: #fff5f6"
+      >
+        <ul class="nav flex-column gap-2" id="mobileNavList">
+          <li class="nav-item">
+            <a href="/" class="nav-link mobile-nav-link">
+              <i class="fa-solid fa-house"></i> HOME
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/stories/" class="nav-link mobile-nav-link">
+              <i class="fa-solid fa-bell-concierge"></i> STORIES
+            </a>
+          </li>
+
+          <!-- Mobile Blog Menu with Accordion Collapse Structure -->
+          <li class="nav-item">
+            <a
+              class="nav-link mobile-nav-link d-flex justify-content-between align-items-center dropdown-toggle-custom"
+              data-bs-toggle="collapse"
+              href="#mobileBlogCollapse"
+              role="button"
+              aria-expanded="false"
+            >
+              <span><i class="fa-solid fa-newspaper"></i> BLOG</span>
+              <i
+                class="fa-solid fa-chevron-down ms-auto"
+                style="font-size: 11px"
+              ></i>
+            </a>
+            <div class="collapse ps-3 mt-1" id="mobileBlogCollapse">
+              <ul
+                class="nav flex-column gap-1"
+                style="
+                  border-left: 1px dashed rgba(233, 64, 87, 0.3);
+                  padding-left: 10px;
+                "
+              >
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/latest-article/"
+                  >
+                    <i class="fa-solid fa-book-open"></i> Latest Articles
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/relationship-tips/"
+                  >
+                    <i class="fa-solid fa-handshake"></i> Relationship Tips
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="nav-link mobile-nav-link py-2"
+                    style="font-size: 13.5px"
+                    href="/marriage-advice/"
+                  >
+                    <i class="fa-solid fa-ring"></i> Marriage Advice
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="/contact/" class="nav-link mobile-nav-link">
+              <i class="fa-solid fa-envelope"></i> CONTACT
+            </a>
+          </li>
+        </ul>
+
+        <div class="w-100 pt-4">
+          <a
+            href="/accounts/registration/"
+            class="btn ultimate-action-btn w-100 text-center justify-content-center d-flex align-items-center gap-2"
+          >
+            <i class="fa-solid fa-rocket" style="color: #ffffff"></i>
+            <span>GET STARTED</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      /* Absolute Symmetry Configurations */
+      @media (min-width: 992px) {
+        .absolute-center-links {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Core Desktop Navigation Link Structure */
+      .ultra-nav-link {
+        font-family: "Inter", sans-serif;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        color: #64748b !important;
+        letter-spacing: 0.8px;
+        padding: 8px 24px !important;
+        border-radius: 999px;
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .ultra-nav-link i {
+        font-size: 11.5px;
+        color: #e94057;
+        opacity: 0.7;
+        transition: transform 0.2s ease;
+      }
+
+      /* Standard Hover State (For non-active items) */
+      .ultra-nav-link:hover,
+      .custom-premium-dropdown:hover .ultra-nav-link {
+        color: #e94057 !important;
+        background: rgba(233, 64, 87, 0.08);
+      }
+      .ultra-nav-link:hover i {
+        transform: translateY(-1px);
+      }
+
+      /* CRITICAL FIX: Active Link Styling & Persistent Hover Text visibility */
+      .active-premium-link,
+      .active-premium-link:hover,
+      .custom-premium-dropdown .ultra-nav-link.active-premium-link:hover {
+        color: #ffffff !important;
+        background: #e94057 !important;
+        box-shadow: 0 4px 12px rgba(233, 64, 87, 0.25) !important;
+      }
+      .active-premium-link i,
+      .active-premium-link:hover i {
+        color: #ffffff !important;
+        opacity: 1 !important;
+      }
+
+      /* Bootstrap Dropdown Arrow Removal */
+      .dropdown-toggle::after {
+        display: none !important;
+      }
+
+      /* Elegant Glassmorphic Dropdown Item Design */
+      .custom-drop-item {
+        font-family: "Inter", sans-serif;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #4b5563;
+        padding: 10px 16px;
+        margin: 2px 0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+      }
+      .custom-drop-item:hover {
+        background: #fff5f6 !important;
+        color: #e94057 !important;
+        transform: translateX(3px);
+      }
+      .custom-drop-item i {
+        font-size: 12px;
+        transition: transform 0.2s ease;
+      }
+      .custom-drop-item:hover i {
+        transform: scale(1.1);
+      }
+
+      /* Glowing Animated Button Framework */
+      @keyframes gradientShine {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+      }
+      .ultimate-action-btn {
+        background: linear-gradient(135deg, #e94057 0%, #facc15 50%, #e94057 100%);
+        background-size: 200% auto;
+        color: #ffffff !important;
+        font-family: "Inter", sans-serif;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.6px;
+        padding: 11px 26px !important;
+        border-radius: 999px !important;
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(233, 64, 87, 0.4);
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: gradientShine 3s ease infinite;
+      }
+      .ultimate-action-btn:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(233, 64, 87, 0.6);
+        color: #ffffff !important;
+      }
+
+      /* Mobile Sheet Styling Integration */
+      .mobile-nav-link {
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        color: #475569 !important;
+        padding: 12px 16px !important;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+      }
+      .mobile-nav-link i {
+        color: #e94057;
+        width: 18px;
+      }
+      .mobile-nav-link:hover {
+        background: rgba(233, 64, 87, 0.05);
+        color: #e94057 !important;
+      }
+
+      /* Mobile Active Fixes */
+      .active-mobile,
+      .active-mobile:hover {
+        background: rgba(233, 64, 87, 0.1) !important;
+        color: #e94057 !important;
+      }
+      .active-mobile i {
+        color: #e94057 !important;
+      }
+
+      /* Scroll State Engine Modifier */
+      .nav-scrolled-wide {
+        padding: 8px 0px !important;
+        background: rgba(255, 255, 255, 0.94) !important;
+        box-shadow: 0 10px 35px rgba(233, 64, 87, 0.06) !important;
+      }
+
+      /* Desktop Hover Trigger Mechanism for Dropdowns */
+      @media (min-width: 992px) {
+        .custom-premium-dropdown:hover .dropdown-menu {
+          display: block !important;
+          opacity: 1;
+          transform: translateY(0);
+          visibility: visible;
+        }
+        .dropdown-menu {
+          display: none;
+          transition: all 0.3s ease;
+          transform: translateY(10px);
+        }
+      }
+    </style>
+
+    <!-- 6. Scripts: AOS Trigger + Sticky Scroll Engine + Automatic Intelligent Active Class Linker -->
+    <script>
+      // AOS Initialization
+      if (typeof AOS !== "undefined") {
+        AOS.init({
+          duration: 800,
+          once: true,
+        });
+      }
+
+      // Dynamic Full Width Scroll Transition Engine
+      window.addEventListener("scroll", function () {
+        const stickyWrapper = document.getElementById("stickyNavWrapper");
+        if (window.scrollY > 180) {
+          stickyWrapper.classList.add("nav-scrolled-wide");
+        } else {
+          stickyWrapper.classList.remove("nav-scrolled-wide");
+        }
+      });
+
+      // INTELLIGENT AUTOMATIC ACTIVE LINK DETECTOR (Pure JS Engine)
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentPath = window.location.pathname.split("/").pop();
+
+        // Default fallback path to home if empty root address
+        const activePage = currentPath === "" ? "index.html" : currentPath;
+
+        // 1. Process Desktop Navigation links
+        const desktopLinks = document.querySelectorAll(".ultra-nav-link");
+        desktopLinks.forEach((link) => {
+          const linkHref = link.getAttribute("href");
+          if (linkHref === activePage) {
+            link.classList.add("active-premium-link");
+          }
+        });
+
+        // 2. Process Desktop Nested Dropdown Items inside Blog
+        const dropdownItems = document.querySelectorAll(".custom-drop-item");
+        dropdownItems.forEach((item) => {
+          if (item.getAttribute("href") === activePage) {
+            // Dropdown item ko highlight karne ke sath Parent Blog button ko active look dena
+            const parentDropdown = item.closest(".custom-premium-dropdown");
+            if (parentDropdown) {
+              const mainToggle =
+                parentDropdown.querySelector(".ultra-nav-link");
+              if (mainToggle) mainToggle.classList.add("active-premium-link");
+            }
+          }
+        });
+
+        // 3. Process Mobile Sheet Layout navigation links
+        const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+        mobileLinks.forEach((mobLink) => {
+          const mobHref = mobLink.getAttribute("href");
+          if (mobHref === activePage) {
+            mobLink.classList.add("active-mobile");
+
+            // Agar page mobile accordion collapse ke andar hai to wrapper open status active karega
+            const parentCollapse = mobLink.closest(".collapse");
+            if (parentCollapse) {
+              parentCollapse.classList.add("show");
+              // Parent headers highlight tracker
+              const toggler = document.querySelector(
+                `[href="#${parentCollapse.id}"]`,
+              );
+              if (toggler) toggler.classList.add("active-mobile");
+            }
+          }
+        });
+      });
+    </script>
+    <!-- ================= END NAVBAR STRUCT ================= -->
+    <!-- 4. Pure Custom Styles Core Matrix -->
+    <style>
+      /* Absolute Symmetry Configurations */
+      @media (min-width: 992px) {
+        .absolute-center-links {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Core Link Interface styling */
+      .ultra-nav-link {
+        font-family: "Inter", sans-serif;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        color: #64748b !important;
+        letter-spacing: 0.8px;
+        padding: 8px 24px !important;
+        border-radius: 999px;
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .ultra-nav-link i {
+        font-size: 11.5px;
+        color: #e94057;
+        opacity: 0.7;
+        transition: transform 0.2s ease;
+      }
+      .ultra-nav-link:hover {
+        color: #e94057 !important;
+        background: rgba(233, 64, 87, 0.08);
+      }
+      .ultra-nav-link:hover i {
+        transform: translateY(-1px);
+      }
+
+      /* Active State (Strict Rose Red Base) */
+      .active-premium-link {
+        color: #ffffff !important;
+        background: #e94057 !important;
+        box-shadow: 0 4px 12px rgba(233, 64, 87, 0.25) !important;
+      }
+      .active-premium-link i {
+        color: #ffffff !important;
+        opacity: 1 !important;
+      }
+
+      /* Rounded Gradient Button Frame with Strict Soft Pink Hover Animation */
+      .ultimate-action-btn {
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        color: #ffffff !important;
+        font-family: "Inter", sans-serif;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.6px;
+        padding: 11px 26px !important;
+        border-radius: 999px !important;
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(233, 64, 87, 0.2);
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .ultimate-action-btn:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(135deg, #ff5c75 0%, #e94057 100%);
+        box-shadow: 0 8px 22px rgba(233, 64, 87, 0.35);
+      }
+
+      /* Mobile Sheet Interfaces */
+      .mobile-nav-link {
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        color: #475569 !important;
+        padding: 12px 16px !important;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .active-mobile {
+        background: rgba(233, 64, 87, 0.1) !important;
+        color: #e94057 !important;
+      }
+
+      /* Micro Scroll State Modifiers */
+      .nav-scrolled-wide {
+        padding: 8px 0px !important;
+        background: rgba(255, 255, 255, 0.94) !important;
+        box-shadow: 0 10px 35px rgba(233, 64, 87, 0.06) !important;
+      }
+    </style>
+
+    <!-- 5. AOS Trigger + Sticky Scroll Logic Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // AOS Initialization
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // Dynamic Full Width Scroll Transition Engine
+      window.addEventListener("scroll", function () {
+        const stickyWrapper = document.getElementById("stickyNavWrapper");
+        if (window.scrollY > 180) {
+          stickyWrapper.classList.add("nav-scrolled-wide");
+        } else {
+          stickyWrapper.classList.remove("nav-scrolled-wide");
+        }
+      });
+    </script>
+
+    <!-- second_navbar_end -->
+
+    <!-- Font Awesome 6 & Google Fonts (Include in your <head> if missing) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Poppins:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <section class="adv-about-section position-relative overflow-hidden py-5">
+      <!-- Subtle Background Decorative Gradients -->
+      <div class="bg-glow-pink"></div>
+      <div class="bg-glow-gold"></div>
+
+      <div class="container position-relative py-5">
+        <div class="row align-items-stretch g-5">
+          <!-- LEFT SIDE: Premium Asymmetric Image Stack & Statistics Grid -->
+          <div class="col-xl-6 col-lg-6 position-relative">
+            <div class="premium-image-composition h-100 min-h-400">
+              <!-- Abstract Background Shape Frame -->
+              <div class="shape-backdrop"></div>
+
+              <!-- Main Hero Image (Asymmetrical Rounded Border) -->
+              <div class="main-img-holder">
+                <img
+                  src="https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?q=80&w=700&auto=format&fit=crop"
+                  alt="Premium Matrimony Couple"
+                  class="img-fluid adv-hero-img"
+                />
+              </div>
+
+              <!-- Floating Ultra-Glassmorphism Stat Widget -->
+              <div class="floating-glass-stat shadow-lg animate-float">
+                <div class="stat-icon-wrapper">
+                  <i class="fa-solid fa-heart-circle-check"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-num">50K+</span>
+                  <span class="stat-lbl">Happy Marriages</span>
+                </div>
+              </div>
+
+              <!-- Decorative Floating Gold Accent Ring -->
+              <div class="gold-accent-ring"></div>
+            </div>
+          </div>
+
+          <!-- RIGHT SIDE: Advanced Editorial Text Layout & Interactive Pillars -->
+          <div
+            class="col-xl-6 col-lg-6 d-flex flex-column justify-content-center"
+          >
+            <div class="adv-content-wrapper ps-xl-4">
+              <!-- Super Title -->
+              <span class="adv-subtitle-tag mb-2 d-inline-block">
+                <i class="fa-solid fa-crown me-2 gold-text"></i>A Premium
+                Matchmaking Space
+              </span>
+
+              <!-- Main Heading with Split Gradient Accent -->
+              <h2 class="adv-title mb-4">
+                Where Modern Love Meets <br />
+                <span class="gradient-text">Sacred Traditions</span>
+              </h2>
+
+              <!-- Description Paragraphs -->
+              <p class="adv-lead-para mb-3">
+                <strong>Find Your ForeverBond</strong> isn't just another casual
+                swipe-to-match app. It is an elite, highly curated matrimonial
+                platform engineered specifically for individuals aiming for
+                intentional, lifelong partnerships.
+              </p>
+
+              <p class="adv-body-para mb-4">
+                We understand that marriage is a coming together of minds,
+                values, and families.
+                <!-- By stripping away artificial noise, we
+                offer an environment protected by state-of-the-art secure
+                screening algorithms and comprehensive ID checks, ensuring every
+                profile you view represents a real person looking for real
+                commitment. -->
+              </p>
+
+              <!-- Feature Stack (Modern Row Layout instead of Grid) -->
+              <div class="luxury-features-stack mb-5">
+                <div class="luxury-item">
+                  <div class="luxury-number">01</div>
+                  <div class="luxury-text">
+                    <h6>Rigorous 4-Step Verification</h6>
+                    <p>
+                      Profiles are cross-checked via Mobile, Government ID
+                      tokens, and social footprints to eliminate bots.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="luxury-item">
+                  <div class="luxury-number">02</div>
+                  <div class="luxury-text">
+                    <h6>Intuitive Compatibility Matrix</h6>
+                    <p>
+                      Advanced matchmaking logic aligning lifestyle choices,
+                      career aspirations, and cultural values.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="luxury-item">
+                  <div class="luxury-number">03</div>
+                  <div class="luxury-text">
+                    <h6>Discreet Privacy Safe</h6>
+                    <p>
+                      Complete authority over who views your photos,
+                      coordinates, or background information.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ultimate CTA Layout with Animation Hooks -->
+              <div class="d-flex flex-wrap align-items-center gap-4">
+                <a href="javascript:void(0);" class="adv-btn-premium">
+                  <span>Find Your Match</span>
+                  <div class="btn-icon">
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                  </div>
+                </a>
+                <a
+                  href="tel:+918262802961"
+                  class="adv-link-phone text-decoration-none"
+                >
+                  <div class="phone-icon-circle">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+                  <div class="phone-text">
+                    <span>Call Concierge</span>
+                    <strong>+91 82628 02961</strong>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- about_second_js  -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const elementsToAnimate = document.querySelectorAll(
+          ".main-img-holder, .floating-glass-stat, .adv-subtitle-tag, .adv-title, .adv-lead-para, .adv-body-para, .luxury-item",
+        );
+
+        const cleanObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, index) => {
+              if (entry.isIntersecting) {
+                // Creates an incremental beautiful staggered build up appearance effect
+                setTimeout(() => {
+                  entry.target.style.opacity = "1";
+                  entry.target.style.transform = "translateY(0) scale(1)";
+                }, index * 80);
+                cleanObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+
+        elementsToAnimate.forEach((element) => {
+          element.style.opacity = "0";
+          element.style.transform = "translateY(25px)";
+          element.style.transition =
+            "all 0.7s cubic-bezier(0.215, 0.610, 0.355, 1)";
+          cleanObserver.observe(element);
+        });
+      });
+    </script>
+
+    <!-- Mission & Vision Section -->
+    <section class="adv-mission-section position-relative overflow-hidden py-2">
+      <!-- Symmetrical background glows to transition from the previous section -->
+      <div class="bg-glow-pink-right"></div>
+
+      <div class="container position-relative py-5">
+        <div class="row align-items-center g-5">
+          <!-- LEFT SIDE: Content Grid (Mission & Vision Statements) -->
+          <div class="col-lg-7 order-2 order-lg-1">
+            <div class="adv-content-wrapper pe-xl-4">
+              <!-- Subtitle Tag -->
+              <span class="adv-subtitle-tag mb-2 d-inline-block">
+                <i class="fa-solid fa-compass me-2 gold-text"></i>Our Purpose &
+                Future
+              </span>
+
+              <!-- Section Heading -->
+              <h2 class="adv-title mb-5">
+                Guided by Trust, Built for <br />
+                <span class="gradient-text">Lifelong Companionship</span>
+              </h2>
+
+              <!-- Vision Card (Premium Glassmorphic) -->
+              <div class="mv-glass-card mb-4">
+                <div class="mv-icon-box vision-bg">
+                  <i class="fa-solid fa-eye"></i>
+                </div>
+                <div class="mv-text-box">
+                  <h3>Our Vision</h3>
+                  <p>
+                    To become India’s most revered and trusted matrimonial
+                    ecosystem, where technology seamlessly serves human emotion.
+                    We envision a future where finding a life partner is
+                    completely stripped of anxieties, uncertainty, and
+                    superficiality, replacing them with clarity, safety, and
+                    genuine cultural alignment.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Mission Card (Premium Glassmorphic) -->
+              <div class="mv-glass-card">
+                <div class="mv-icon-box mission-bg">
+                  <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <div class="mv-text-box">
+                  <h3>Our Mission</h3>
+                  <p>
+                    Our mission is to empower singles and families by providing
+                    an uncompromisingly secure, authenticated matchmaking
+                    platform. We are committed to maintaining a 100% verified
+                    member base, innovating intelligent compatibility tracking,
+                    and offering dignified, transparent services that transform
+                    your search into a beautiful, memorable journey.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT SIDE: Abstract Decorative Core Values Frame -->
+          <div
+            class="col-lg-5 order-1 order-lg-2 text-center position-relative"
+          >
+            <div class="values-interactive-box mx-auto">
+              <!-- Circular Core Badge -->
+              <div class="core-hub animate-pulse">
+                <img
+                  src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=500&auto=format&fit=crop"
+                  alt="Matrimony Ritual"
+                  class="img-fluid hub-img"
+                />
+                <div class="hub-overlay-text">ForeverBond</div>
+              </div>
+
+              <!-- Orbiting Value Tags (Floating Luxury Accents) -->
+              <div class="orbit-tag tag-1 animate-float-slow">
+                <i class="fa-solid fa-shield-cat gold-text me-2"></i> Integrity
+              </div>
+              <div class="orbit-tag tag-2 animate-float">
+                <i class="fa-solid fa-hand-holding-heart color-rose me-2"></i>
+                Empathy
+              </div>
+              <div class="orbit-tag tag-3 animate-float-slow">
+                <i class="fa-solid fa-infinity gold-text me-2"></i> Commitment
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Premium Horizon Orbit Timeline Section -->
+    <section
+      class="horizon-orbit-section position-relative overflow-hidden py-5"
+      style="
+        background-color: #ffffff;
+        background-image: radial-gradient(
+          rgba(233, 64, 87, 0.04) 1.5px,
+          transparent 1.5px
+        );
+        background-size: 24px 24px;
+      "
+    >
+      <style>
+        .horizon-orbit-section {
+          position: relative;
+          padding: 80px 0;
+        }
+        .orbit-blur-glow {
+          position: absolute;
+          max-width: 500px; width: 100%;
+          height: 500px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: radial-gradient(
+            circle,
+            rgba(233, 64, 87, 0.03) 0%,
+            rgba(255, 255, 255, 0) 70%
+          );
+          pointer-events: none;
+          z-index: 1;
+        }
+        .horizon-track-line {
+          position: absolute;
+          top: 85px;
+          left: 5%;
+          right: 5%;
+          height: 3px;
+          background: linear-gradient(
+            90deg,
+            rgba(233, 64, 87, 0.1) 0%,
+            #e94057 50%,
+            rgba(250, 204, 21, 0.2) 100%
+          );
+          border-radius: 99px;
+          z-index: 1;
+          overflow: hidden;
+        }
+        .horizon-track-line::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(250, 204, 21, 0.8),
+            transparent
+          );
+          animation: trace-glow 4s infinite linear;
+        }
+        @keyframes trace-glow {
+          0% {
+            left: -50%;
+          }
+          100% {
+            left: 100%;
+          }
+        }
+        .orbit-timeline-wrapper {
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          width: 100%;
+          z-index: 2;
+          padding: 40px 0;
+        }
+        .orbit-node-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          flex: 1;
+          position: relative;
+          z-index: 2;
+          transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .orbit-node-item:hover {
+          transform: translateY(-8px);
+        }
+        .orbit-circle-outer {
+          position: relative;
+          width: 90px;
+          height: 90px;
+          border-radius: 50%;
+          background: #ffffff;
+          border: 1.5px solid rgba(233, 64, 87, 0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+          box-shadow: 0 10px 30px rgba(233, 64, 87, 0.03);
+          transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .orbit-node-item:hover .orbit-circle-outer {
+          border-color: #e94057;
+          box-shadow: 0 15px 35px rgba(233, 64, 87, 0.15);
+          transform: rotate(5deg);
+        }
+        .orbit-circle-inner {
+          width: 66px;
+          height: 66px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+          font-size: 1.3rem;
+          box-shadow: 0 8px 20px rgba(233, 64, 87, 0.1);
+          transition: all 0.3s ease;
+        }
+        .rose-grad {
+          background: linear-gradient(135deg, #ff607e 0%, #e94057 100%);
+        }
+        .intense-rose-grad {
+          background: linear-gradient(135deg, #e94057 0%, #facc15 100%);
+          box-shadow: 0 0 25px rgba(233, 64, 87, 0.35);
+        }
+        .gold-grad {
+          background: linear-gradient(135deg, #facc15 0%, #d4af37 100%);
+        }
+        .ultimate-dark-grad {
+          background: #1e293b;
+          border: 1px solid #facc15;
+          color: #facc15 !important;
+        }
+        .focus-orbit-step .orbit-circle-outer {
+          border-color: #e94057 !important;
+          box-shadow: 0 0 25px rgba(233, 64, 87, 0.25) !important;
+          animation: breathe-active 2.5s infinite ease-in-out;
+        }
+        @keyframes breathe-active {
+          0%,
+          100% {
+            transform: scale(1);
+            box-shadow: 0 0 25px rgba(233, 64, 87, 0.25);
+          }
+          50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(233, 64, 87, 0.4);
+          }
+        }
+        .orbit-number {
+          position: absolute;
+          top: -6px;
+          right: -6px;
+          font-family: "Poppins", sans-serif;
+          font-weight: 800;
+          font-size: 0.72rem;
+          background: #fff0f2;
+          color: #e94057;
+          border: 1px solid rgba(233, 64, 87, 0.15);
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 8px rgba(233, 64, 87, 0.08);
+          z-index: 5;
+        }
+        .focus-orbit-step .orbit-number {
+          background: #e94057;
+          color: #ffffff;
+          border-color: #e94057;
+        }
+        .orbit-meta-content {
+          padding: 0 10px;
+        }
+        .orbit-meta-content h3 {
+          font-family: "Poppins", sans-serif;
+          font-weight: 750;
+          font-size: 16px;
+          color: #2d2033;
+          margin-bottom: 6px;
+          transition: color 0.3s ease;
+        }
+        .orbit-node-item:hover h3 {
+          color: #e94057;
+        }
+        .orbit-meta-content p {
+          font-size: 12.5px;
+          color: #64748b;
+          margin-bottom: 0;
+          line-height: 1.5;
+        }
+        /* Mobile Adapters */
+        @media (max-width: 1199.98px) {
+          .orbit-timeline-wrapper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+          }
+          .horizon-track-line {
+            display: none;
+          }
+        }
+        @media (max-width: 767.98px) {
+          .orbit-timeline-wrapper {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+          }
+        }
+        @media (max-width: 480px) {
+          .orbit-timeline-wrapper {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+          .orbit-node-item {
+            flex-direction: row;
+            text-align: left;
+            gap: 20px;
+          }
+          .orbit-circle-outer {
+            margin-bottom: 0;
+          }
+        }
+      </style>
+      <div class="orbit-blur-glow"></div>
+
+      <div class="container position-relative">
+        <!-- Header Block -->
+        <div class="row mb-5 text-center">
+          <div class="col-lg-8 mx-auto">
+            <span class="adv-subtitle-tag mb-2 d-inline-block">
+              <i
+                class="fa-solid fa-feather-pointed me-2"
+                style="color: #e94057"
+              ></i
+              >Pure Elegance
+            </span>
+            <h2
+              class="adv-title"
+              style="
+                font-family: &quot;Poppins&quot;, sans-serif;
+                font-weight: 850;
+                font-size: 2.5rem;
+                background: linear-gradient(135deg, #e94057 0%, #facc15 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              "
+            >
+              How Your Story Unfolds
+            </h2>
+            <div
+              class="title-divider mx-auto mt-3"
+              style="
+                width: 60px;
+                height: 3px;
+                background: linear-gradient(90deg, #e94057, #facc15);
+                border-radius: 99px;
+              "
+            ></div>
+          </div>
+        </div>
+
+        <!-- The Minimalist Orbit Row -->
+        <div class="orbit-timeline-wrapper mt-5">
+          <!-- Horizontal Connecting Smooth Track Line -->
+          <div class="horizon-track-line"></div>
+
+          <!-- STEP 1 -->
+          <div class="orbit-node-item">
+            <div class="orbit-circle-outer">
+              <div class="orbit-circle-inner rose-grad">
+                <i class="fa-solid fa-user-plus"></i>
+              </div>
+              <span class="orbit-number">01</span>
+            </div>
+            <div class="orbit-meta-content">
+              <h3>Register</h3>
+              <p>Quick secure onboarding process.</p>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="orbit-node-item">
+            <div class="orbit-circle-outer">
+              <div class="orbit-circle-inner rose-grad">
+                <i class="fa-solid fa-id-card"></i>
+              </div>
+              <span class="orbit-number">02</span>
+            </div>
+            <div class="orbit-meta-content">
+              <h3>Profile</h3>
+              <p>Add your life preferences.</p>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="orbit-node-item">
+            <div class="orbit-circle-outer">
+              <div class="orbit-circle-inner rose-grad">
+                <i class="fa-solid fa-user-shield"></i>
+              </div>
+              <span class="orbit-number">03</span>
+            </div>
+            <div class="orbit-meta-content">
+              <h3>Verify</h3>
+              <p>Get your official trust badge.</p>
+            </div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="orbit-node-item focus-orbit-step">
+            <div class="orbit-circle-outer">
+              <div class="orbit-circle-inner intense-rose-grad">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <span class="orbit-number">04</span>
+            </div>
+            <div class="orbit-meta-content">
+              <h3>Discover</h3>
+              <p>Find matches that resonate.</p>
+            </div>
+          </div>
+
+          <!-- STEP 5 -->
+          <div class="orbit-node-item">
+            <div class="orbit-circle-outer">
+              <div class="orbit-circle-inner rose-grad">
+                <i class="fa-solid fa-comments"></i>
+              </div>
+              <span class="orbit-number">05</span>
+            </div>
+            <div class="orbit-meta-content">
+              <h3>Connect</h3>
+              <p>Start private smart chats.</p>
+            </div>
+          </div>
+
+          <!-- STEP 6 -->
+          <div class="orbit-node-item">
+            <div class="orbit-circle-outer">
+              <div class="orbit-circle-inner gold-grad">
+                <i class="fa-solid fa-gem"></i>
+              </div>
+              <span class="orbit-number">06</span>
+            </div>
+            <div class="orbit-meta-content">
+              <h3>Engage</h3>
+              <p>Commit to a future together.</p>
+            </div>
+          </div>
+
+          <!-- STEP 7 -->
+          <div class="orbit-node-item">
+            <div class="orbit-circle-outer">
+              <div class="orbit-circle-inner ultimate-dark-grad">
+                <i class="fa-solid fa-hands-holding-heart"></i>
+              </div>
+              <span
+                class="orbit-number"
+                style="
+                  background: #1e293b;
+                  color: #facc15;
+                  border-color: #facc15;
+                "
+              >
+                <i class="fa-solid fa-infinity" style="font-size: 8px"></i>
+              </span>
+            </div>
+            <div class="orbit-meta-content">
+              <h3
+                style="
+                  background: linear-gradient(135deg, #d4af37 0%, #e94057 100%);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                "
+              >
+                Marriage
+              </h3>
+              <p>Celebrate eternal togetherness.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Families Trust Us Section -->
+    <section
+      class="trust-features-section position-relative overflow-hidden py-5"
+    >
+      <div class="trust-ambient-glow"></div>
+
+      <div class="container py-5 position-relative">
+        <div class="row align-items-center g-5">
+          <!-- LEFT SIDE: Bold Minimal Typography & Promise Statement -->
+          <div class="col-lg-5">
+            <div class="trust-brand-statement">
+              <span class="adv-subtitle-tag mb-2 d-inline-block">
+                <i class="fa-solid fa-shield-halved me-2 pink-text"></i>100%
+                Verification
+              </span>
+              <h2 class="adv-title text-start mb-4">
+                Why Indian Families Truly Trust Us
+              </h2>
+              <p class="trust-lead-text">
+                Rishte sirf do logon ke nahi, do parivaaron ke hote hain. Isliye
+                humne banaya hai ek aisa surakshit mahaul jahan bharosa sabse
+                pehle aata hai.
+              </p>
+
+              <!-- Subtle Floating Counter Line -->
+              <div
+                class="trust-badge-line mt-5 d-none d-lg-flex align-items-center gap-4"
+              >
+                <div class="trust-mini-stat">
+                  <span class="stat-num pink-text">100%</span>
+                  <span class="stat-lbl">Verified Profiles</span>
+                </div>
+                <div class="stat-vertical-line"></div>
+                <div class="trust-mini-stat">
+                  <span class="stat-num gold-text">Safe</span>
+                  <span class="stat-lbl">Family Environment</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT SIDE: Open-Row Feature Showcase (No Card Backgrounds) -->
+          <div class="col-lg-7">
+            <div class="trust-rows-stack ps-xl-5">
+              <!-- FEATURE 1: Genuine Members -->
+              <div class="trust-row-item">
+                <div class="trust-icon-wrap">
+                  <div class="trust-icon-circle rose-light-bg">
+                    <i class="fa-solid fa-user-check"></i>
+                  </div>
+                  <div class="trust-vertical-link"></div>
+                </div>
+                <div class="trust-text-wrap">
+                  <h3>Genuine Members Only</h3>
+                  <p>
+                    Har ek profile kadi jaanch aur multi-layered screening se
+                    guzarti hai. Yahan aapko sirf serious aur shaadi ke liye
+                    committed log hi milenge.
+                  </p>
+                </div>
+              </div>
+
+              <!-- FEATURE 2: Secure Platform -->
+              <div class="trust-row-item">
+                <div class="trust-icon-wrap">
+                  <div class="trust-icon-circle rose-light-bg">
+                    <i class="fa-solid fa-lock"></i>
+                  </div>
+                  <div class="trust-vertical-link"></div>
+                </div>
+                <div class="trust-text-wrap">
+                  <h3>Secure Platform</h3>
+                  <p>
+                    Aapka data aur digital footprint hamari top priority hai.
+                    High-end encryption aur secure servers aapki information ko
+                    hamesha safe rakhte hain.
+                  </p>
+                </div>
+              </div>
+
+              <!-- FEATURE 3: Family Values -->
+              <div class="trust-row-item">
+                <div class="trust-icon-wrap">
+                  <div class="trust-icon-circle gold-light-bg">
+                    <i class="fa-solid fa-hands-praying"></i>
+                  </div>
+                  <div class="trust-vertical-link"></div>
+                </div>
+                <div class="trust-text-wrap">
+                  <h3 class="gold-accent-head">Rooted in Family Values</h3>
+                  <p>
+                    Hum samajhte hain parivaar ki ahmiyat. Hamara platform
+                    filters aur preferences ko is tarah set karta hai jo Indian
+                    culture aur values se match karein.
+                  </p>
+                </div>
+              </div>
+
+              <!-- FEATURE 4: Privacy -->
+              <div class="trust-row-item">
+                <div class="trust-icon-wrap">
+                  <div class="trust-icon-circle rose-light-bg">
+                    <i class="fa-solid fa-eye-slash"></i>
+                  </div>
+                  <div class="trust-vertical-link"></div>
+                </div>
+                <div class="trust-text-wrap">
+                  <h3>Complete Privacy Control</h3>
+                  <p>
+                    Apni marzi ke malik aap hain. Apne photos, contact number
+                    aur personal details kisko dikhani hain aur kisko nahi, yeh
+                    sab aap control kar sakte hain.
+                  </p>
+                </div>
+              </div>
+
+              <!-- FEATURE 5: Safe Communication -->
+              <div class="trust-row-item pb-0">
+                <div class="trust-icon-wrap">
+                  <div class="trust-icon-circle ultimate-dark-bg">
+                    <i class="fa-solid fa-shield-heart"></i>
+                  </div>
+                </div>
+                <div class="trust-text-wrap">
+                  <h3 class="gold-gradient-txt">Safe & Smart Communication</h3>
+                  <p>
+                    Bina apna personal number share kiye, aap hamare secure
+                    internal messaging aur call features ke zariye comfortable
+                    hokar baat aage badha sakte hain.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Our Promise Premium Section -->
+    <section class="brand-promise-section position-relative overflow-hidden">
+      <!-- Soft Ambient Light Fluid Background -->
+      <div class="promise-ambient-orb"></div>
+
+      <div class="container py-3 position-relative">
+        <!-- Section Title Block with Precise Spacing -->
+        <div class="row mb-5 text-center">
+          <div class="col-lg-8 mx-auto">
+            <span class="adv-subtitle-tag mb-2 d-inline-block">
+              <i class="fa-solid fa-handshake-angle me-2 pink-text"></i
+              >Commitment
+            </span>
+            <h2 class="adv-title">Our Sacred Promise To You</h2>
+            <div class="title-divider mx-auto mt-3"></div>
+          </div>
+        </div>
+
+        <!-- The Open Pillar Layout Grid (No Cards, Pure Space) -->
+        <div
+          class="row g-5 mt-3 row-cols-1 row-cols-md-3 justify-content-center"
+        >
+          <!-- PROMISE 1: Privacy -->
+          <div class="col animate-promise-pillar">
+            <div class="promise-open-pillar">
+              <div class="promise-meta-header">
+                <div class="promise-icon-light rose-text">
+                  <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <span class="promise-serial">01 / PROMISE</span>
+              </div>
+              <h3>Absolute Privacy</h3>
+              <p>
+                Hum vaada karte hain ki aapki marzi ke bina aapka photo, contact
+                number ya identity kisi bhi teesre vyakti ke sath share nahi ki
+                jayegi. Controls hamesha aapke hath mein rahenge.
+              </p>
+              <div class="promise-accent-line line-rose"></div>
+            </div>
+          </div>
+
+          <!-- PROMISE 2: Zero Fake Profiles -->
+          <div class="col animate-promise-pillar">
+            <div class="promise-open-pillar">
+              <div class="promise-meta-header">
+                <div class="promise-icon-light pink-text">
+                  <i class="fa-solid fa-user-xmark"></i>
+                </div>
+                <span class="promise-serial">02 / PROMISE</span>
+              </div>
+              <h3>Zero Tolerance For Fakes</h3>
+              <p>
+                Hamara vaada hai ek saaf aur sacha environment. Koi bhi fake
+                account ya spammer platform par bachti nahi hai, hum har ek
+                reported account ko 24 ghante mein screen karte hain.
+              </p>
+              <div class="promise-accent-line line-pink"></div>
+            </div>
+          </div>
+
+          <!-- PROMISE 3: No Hidden Charges -->
+          <div class="col animate-promise-pillar">
+            <div class="promise-open-pillar">
+              <div class="promise-meta-header">
+                <div class="promise-icon-light gold-text">
+                  <i class="fa-solid fa-receipt"></i>
+                </div>
+                <span class="promise-serial gold-txt-tag">03 / PROMISE</span>
+              </div>
+              <h3 class="gold-gradient-title">100% Transparency</h3>
+              <p>
+                Koi hidden subscription charges nahi, koi dhokhadhadi nahi. Jo
+                bhi pricing plans hain, woh bilkul transparent hain taaki aap
+                bina kisi fikar ke apna sahi jeevansathi dundh sakein.
+              </p>
+              <div class="promise-accent-line line-gold"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium Open Typography Pillars Section -->
+    <section
+      class="premium-pillars-section position-relative overflow-hidden py-5"
+    >
+      <div class="pillars-ambient-blur"></div>
+
+      <div class="container py-5 position-relative">
+        <!-- Section Header Setup -->
+        <div class="row mb-5 text-center">
+          <div class="col-lg-8 mx-auto">
+            <span class="adv-subtitle-tag mb-2 d-inline-block">
+              <i class="fa-solid fa-gem me-2 gold-text"></i>Our Elements
+            </span>
+            <h2 class="adv-title">Core Assurances For Your Journey</h2>
+            <div class="title-divider mx-auto mt-3"></div>
+          </div>
+        </div>
+
+        <!-- 4 Columns Horizontal Slide Rows Layout (No Cards) -->
+        <div class="row g-5 mt-2 row-cols-1 row-cols-md-2 row-cols-lg-4">
+          <!-- PILLAR 1: 100% Secure -->
+          <div class="col">
+            <div class="open-pillar-item">
+              <div class="pillar-top-meta">
+                <span class="pillar-huge-num text-stroke-rose">01</span>
+                <div class="pillar-mini-line line-rose"></div>
+              </div>
+              <div class="pillar-body-wrap">
+                <h3>100% Secure</h3>
+                <p>
+                  End-to-end data safety aur premium privacy controls jo aapki
+                  photos aur contact details ko hamesha secure rakhte hain.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PILLAR 2: Verified Community -->
+          <div class="col">
+            <div class="open-pillar-item">
+              <div class="pillar-top-meta">
+                <span class="pillar-huge-num text-stroke-pink">02</span>
+                <div class="pillar-mini-line line-pink"></div>
+              </div>
+              <div class="pillar-body-wrap">
+                <h3>Verified Community</h3>
+                <p>
+                  Har ek member ka mandatory registration checklist aur direct
+                  verification process taaki aapko sirf real matches milein.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PILLAR 3: AI Technology -->
+          <div class="col">
+            <div class="open-pillar-item">
+              <div class="pillar-top-meta">
+                <span class="pillar-huge-num text-stroke-gold">03</span>
+                <div class="pillar-mini-line line-gold"></div>
+              </div>
+              <div class="pillar-body-wrap">
+                <h3 class="gold-gradient-txt">AI Technology</h3>
+                <p>
+                  Smart matchmaking algorithms jo aapke behavior, background aur
+                  values ko analyze karke accurate recommendations dete hain.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PILLAR 4: Dedicated Support -->
+          <div class="col">
+            <div class="open-pillar-item">
+              <div class="pillar-top-meta">
+                <span class="pillar-huge-num text-stroke-dark">04</span>
+                <div class="pillar-mini-line line-dark"></div>
+              </div>
+              <div class="pillar-body-wrap">
+                <h3>Dedicated Support</h3>
+                <p>
+                  Hamari team hamesha aapke sath hai. Kisi bhi sawal ya query ke
+                  liye direct instant assistance aur personalized help desk.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium Cinematic CTA Section with Background Image -->
+    <section
+      class="cinematic-cta-section position-relative overflow-hidden py-6"
+      style="
+        background: linear-gradient(
+          180deg,
+          #fff7f8 0%,
+          #ffffff 55%,
+          #fffbf2 100%
+        );
+        padding: 90px 0;
+        isolation: isolate;
+      "
+      data-aos="fade-up"
+    >
+      <!-- Subtle Tech/Luxury Grid Overlay -->
+      <div
+        style="
+          position: absolute;
+          inset: 0;
+          opacity: 0.05;
+          background-image: radial-gradient(#e94057 1px, transparent 0);
+          background-size: 24px 24px;
+          z-index: 1;
+        "
+      ></div>
+
+      <!-- Luxury Animated Glow Spheres -->
+      <div
+        class="cta-fluid-glow-left"
+        style="
+          position: absolute;
+          max-width: 450px; width: 100%;
+          height: 450px;
+          left: -100px;
+          top: -100px;
+          background: radial-gradient(
+            circle,
+            rgba(233, 64, 87, 0.12) 0%,
+            rgba(233, 64, 87, 0) 70%
+          );
+          filter: blur(80px);
+          z-index: 1;
+          pointer-events: none;
+          animation: drift-left 10s ease-in-out infinite alternate;
+        "
+      ></div>
+      <div
+        class="cta-fluid-glow-right"
+        style="
+          position: absolute;
+          max-width: 500px; width: 100%;
+          height: 500px;
+          right: -120px;
+          bottom: -120px;
+          background: radial-gradient(
+            circle,
+            rgba(250, 204, 21, 0.12) 0%,
+            rgba(250, 204, 21, 0) 70%
+          );
+          filter: blur(90px);
+          z-index: 1;
+          pointer-events: none;
+          animation: drift-right 12s ease-in-out infinite alternate;
+        "
+      ></div>
+
+      <div
+        class="container position-relative text-center z-index-3"
+        style="z-index: 3"
+      >
+        <div class="row justify-content-center">
+          <div class="col-xl-9 col-lg-10" style="margin: 0 auto">
+            <!-- Premium Glass Card with Gradient Borders -->
+            <div
+              class="cta-glass-card"
+              style="
+                position: relative;
+                background: rgba(255, 255, 255, 0.75);
+                backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
+                border: 2px solid rgba(233, 64, 87, 0.15);
+                border-radius: 36px;
+                padding: 70px 45px;
+                box-shadow:
+                  0 30px 60px rgba(233, 64, 87, 0.08),
+                  0 0 50px rgba(250, 204, 21, 0.05) inset;
+                overflow: hidden;
+              "
+            >
+              <!-- Sparkle icon header -->
+              <div
+                class="cta-icon-sparkle mb-4 d-flex align-items-center justify-content-center"
+                style="
+                  width: 70px;
+                  height: 70px;
+                  margin: 0 auto;
+                  background: #fff0f2;
+                  border: 2px solid rgba(233, 64, 87, 0.2);
+                  border-radius: 50%;
+                  font-size: 26px;
+                  color: #e94057;
+                  animation: heartBeat 2s infinite ease-in-out;
+                  box-shadow: 0 0 20px rgba(233, 64, 87, 0.1);
+                "
+              >
+                <i class="fa-solid fa-heart"></i>
+              </div>
+
+              <!-- Main Title -->
+              <h2
+                class="cta-main-title mb-3"
+                style="
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                  font-weight: 800;
+                  font-size: 38px;
+                  color: #2d2033;
+                  letter-spacing: -0.8px;
+                "
+              >
+                Ready to find your
+                <span
+                  class="gradient-text-rose-gold"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #e94057 0%,
+                      #facc15 100%
+                    );
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                  "
+                  >ForeverBond?</span
+                >
+              </h2>
+
+              <p
+                class="cta-sub-text mb-5"
+                style="
+                  max-width: 600px;
+                  margin: 0 auto 40px auto;
+                  font-size: 15.5px;
+                  color: #64748b;
+                  line-height: 1.7;
+                  font-weight: 500;
+                "
+              >
+                Join thousands of verified members today and take the first step
+                towards a beautiful, secure, and lifelong journey of love and
+                togetherness.
+              </p>
+
+              <!-- Interactive Buttons -->
+              <div
+                class="cta-button-wrap d-flex justify-content-center gap-3 flex-wrap"
+                style="margin-bottom: 45px"
+              >
+                <a
+                  href="/accounts/register/"
+                  class="premium-interactive-btn d-inline-flex align-items-center justify-content-center gap-2"
+                  style="
+                    padding: 14px 38px;
+                    border-radius: 30px;
+                    background: linear-gradient(
+                      135deg,
+                      #e94057 0%,
+                      #facc15 100%
+                    );
+                    color: white;
+                    font-weight: 700;
+                    font-size: 14.5px;
+                    text-decoration: none;
+                    box-shadow: 0 8px 24px rgba(233, 64, 87, 0.2);
+                    transition: all 0.3s ease;
+                  "
+                  onmouseover="
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow =
+                      '0 12px 30px rgba(233, 64, 87, 0.35)';
+                  "
+                  onmouseout="
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 8px 24px rgba(233, 64, 87, 0.2)';
+                  "
+                >
+                  <span>Register Now</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a
+                  href="/accounts/registration/"
+                  class="secondary-ghost-btn d-inline-flex align-items-center justify-content-center"
+                  style="
+                    padding: 13px 38px;
+                    border-radius: 30px;
+                    background: rgba(255, 255, 255, 0.8);
+                    border: 1.5px solid rgba(233, 64, 87, 0.25);
+                    color: #e94057;
+                    font-weight: 700;
+                    font-size: 14.5px;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+                    backdrop-filter: blur(10px);
+                  "
+                  onmouseover="
+                    this.style.background = 'rgba(233, 64, 87, 0.05)';
+                    this.style.transform = 'translateY(-3px)';
+                  "
+                  onmouseout="
+                    this.style.background = 'rgba(255, 255, 255, 0.8)';
+                    this.style.transform = 'translateY(0)';
+                  "
+                >
+                  <span>Premium Plans</span>
+                </a>
+              </div>
+
+              <!-- Trust Stripe Badges -->
+              <div
+                class="cta-trust-strip d-flex justify-content-center align-items-center gap-4 flex-wrap"
+                style="
+                  border-top: 1px solid rgba(233, 64, 87, 0.1);
+                  padding-top: 25px;
+                  color: #475569;
+                  font-size: 13px;
+                  font-weight: 600;
+                "
+              >
+                <span style="display: flex; align-items: center; gap: 8px">
+                  <i
+                    class="fa-solid fa-circle-check"
+                    style="color: #e94057"
+                  ></i>
+                  100% Verified Profiles
+                </span>
+                <span
+                  class="d-none d-sm-inline"
+                  style="color: rgba(233, 64, 87, 0.255)"
+                  >|</span
+                >
+                <span style="display: flex; align-items: center; gap: 8px">
+                  <i
+                    class="fa-solid fa-shield-halved"
+                    style="color: #e94057"
+                  ></i>
+                  Safe & Secure Matchmaking
+                </span>
+                <span
+                  class="d-none d-sm-inline"
+                  style="color: rgba(233, 64, 87, 0.255)"
+                  >|</span
+                >
+                <span style="display: flex; align-items: center; gap: 8px">
+                  <i class="fa-solid fa-users" style="color: #e94057"></i>
+                  50,000+ Happy Couples
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!--       ADVANCED LUXURY EDITORIAL FOOTER     -->
+    <!-- ========================================== -->
+
+    <footer
+      class="w-100 position-relative transition-all"
+      style="
+            background: linear-gradient(180deg, #ffffff 0%, #fff5f6 100%);
+            box-shadow: 0 -10px 40px rgba(233, 64, 87, 0.04);
+            margin-top: 120px;
+            padding: 40px 0 30px 0;
+            font-family: 'Inter', sans-serif;
+        }"
+    >
+      <!-- Top Premium Accent Line (Rose Red to Gold Gradient Split) -->
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(
+            90deg,
+            #e94057 0%,
+            #facc15 50%,
+            #e94057 100%
+          );
+          opacity: 0.8;
+        "
+      ></div>
+
+      <div class="container-fluid px-5">
+        <!-- Main Footer Functional Body -->
+        <div class="row align-items-center justify-content-between gy-4">
+          <!-- Left Side: Brand & Fine Print -->
+          <div class="col-12 col-md-auto text-center text-md-start">
+            <div class="d-flex flex-column gap-1">
+              <div
+                class="d-flex align-items-center justify-content-center justify-content-md-start gap-2"
+              >
+                <span
+                  style="
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                    font-weight: 800;
+                    font-size: 16px;
+                    color: #1e293b;
+                    letter-spacing: -0.5px;
+                  "
+                >
+                  Forever<span style="color: #e94057">Bond</span>
+                </span>
+                <span
+                  class="badge"
+                  style="
+                    background: rgba(233, 64, 87, 0.1);
+                    color: #e94057;
+                    font-size: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                  "
+                  >PREMIUM</span
+                >
+              </div>
+              <span
+                style="
+                  font-size: 12px;
+                  color: #94a3b8;
+                  font-weight: 500;
+                  letter-spacing: 0.2px;
+                "
+              >
+                &copy; 2026 ForeverBond Matrimony. All Rights Sacred.
+              </span>
+            </div>
+          </div>
+
+          <!-- Center Side: Premium Glass-morphic Security Pill -->
+          <div class="col-12 col-md-auto text-center">
+            <div
+              class="d-inline-flex align-items-center px-4 py-2 rounded-pill shadow-sm"
+              style="
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(233, 64, 87, 0.15);
+                backdrop-filter: blur(5px);
+                gap: 10px;
+                box-shadow: 0 4px 15px rgba(233, 64, 87, 0.03) !important;
+              "
+            >
+              <div
+                class="d-flex align-items-center justify-content-center rounded-circle"
+                style="background: #e94057; width: 22px; height: 22px"
+              >
+                <i
+                  class="fa-solid fa-shield-halved text-white"
+                  style="font-size: 10px"
+                ></i>
+              </div>
+              <span
+                style="
+                  font-size: 11.5px;
+                  color: #475569;
+                  font-weight: 700;
+                  letter-spacing: 0.5px;
+                  text-transform: uppercase;
+                "
+              >
+                End-to-End Encrypted Data Verification
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Side: Luxury Trust Indicators -->
+          <div class="col-12 col-md-auto">
+            <div
+              class="d-flex justify-content-center justify-content-md-end align-items-center gap-4"
+            >
+              <!-- Trust Vector 1 -->
+              <div
+                class="d-flex align-items-center gap-2 premium-footer-icon"
+                style="cursor: default"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                  style="
+                    background: #ffffff;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #e2e8f0;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-lock"
+                    style="color: #64748b; font-size: 12px"
+                  ></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: #94a3b8;
+                      font-weight: 600;
+                      line-height: 1;
+                    "
+                    >Security</span
+                  >
+                  <span
+                    style="font-size: 12px; color: #334155; font-weight: 700"
+                    >SSL Secure</span
+                  >
+                </div>
+              </div>
+
+              <!-- Divider Vertical Line -->
+              <span style="color: #e2e8f0; font-weight: 300; font-size: 20px"
+                >|</span
+              >
+
+              <!-- Trust Vector 2 -->
+              <div
+                class="d-flex align-items-center gap-2 premium-footer-icon"
+                style="cursor: default"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                  style="
+                    background: #ffffff;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #e2e8f0;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-user-shield"
+                    style="color: #64748b; font-size: 12px"
+                  ></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: #94a3b8;
+                      font-weight: 600;
+                      line-height: 1;
+                    "
+                    >Privacy</span
+                  >
+                  <span
+                    style="font-size: 12px; color: #334155; font-weight: 700"
+                    >100% Verified</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+  <script src="/static/web/js/global-interactions.js"></script>
+</body>
+</html>

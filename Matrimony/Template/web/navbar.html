@@ -1,0 +1,438 @@
+<style>
+  /* Global Image Centering Fix */
+  img {
+      object-position: center !important;
+  }
+</style>
+
+<!-- top_navbar_start -->
+    <div class="topbar">
+      <div class="container-fluid px-4">
+        <div class="topbar-inner">
+          <!-- LEFT -->
+          <div class="topbar-left d-none d-lg-flex">
+            <a href="tel:+918262802961">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 82628 02961</span>
+            </a>
+            <span class="divider"></span>
+            <a href="mailto:info@ForeverBond.com">
+              <i class="fa-solid fa-envelope"></i>
+              <span>info@ForeverBond.com</span>
+            </a>
+          </div>
+
+          <!-- CENTER -->
+          <div class="topbar-center">
+            <i class="fa-solid fa-heart"></i>
+            <span>India's Trusted Premium Matrimony</span>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="topbar-right">
+            <!-- Language dropdown and buttons will be injected dynamically by navbar.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- top_navbar_end -->
+
+    <!-- main_navbar_start -->
+    <div
+      id="stickyNavWrapper"
+      class="w-100 transition-all"
+      style="
+        position: sticky;
+        top: 0;
+        z-index: 1040;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(20px) saturate(190%);
+        -webkit-backdrop-filter: blur(20px) saturate(190%);
+        border-bottom: 2px solid transparent;
+        border-bottom: 1px solid rgba(0,0,0,0.05);"
+    >
+      <nav class="navbar navbar-expand-lg w-100 py-3">
+        <div class="container-fluid px-4 px-md-5 d-flex justify-content-between align-items-center">
+          <!-- Brand Logo Area -->
+          <a class="navbar-brand d-flex align-items-center gap-2.5 m-0" href="/home/">
+            <div
+              class="d-flex align-items-center justify-content-center rounded-3"
+              style="background: linear-gradient(135deg, #e94057 0%, #facc15 100%); 
+                
+                width: 38px;
+                height: 38px;
+                box-shadow: 0 4px 14px rgba(233, 64, 87, 0.2);
+              "
+            >
+              <i class="fa-solid fa-ring" style="font-size: 18px; color: #ffffff !important;" style="font-size: 18px; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important;"></i>
+            </div>
+            <div class="d-flex flex-column">
+              <span
+                style="
+                  font-family: 'Poppins', sans-serif;
+                  font-weight: 850;
+                  font-size: 21px;
+                  color: #1e293b;
+                  letter-spacing: -0.8px;
+                  line-height: 1;
+                "
+              >
+                Forever<span style="color: #e94057">Bond</span>
+              </span>
+              <span
+                style="
+                  font-size: 8px;
+                  font-weight: 800;
+                  color: #e94057;
+                  letter-spacing: 1.8px;
+                  text-transform: uppercase;
+                  margin-top: 3px;
+                  opacity: 0.85;
+                "
+              >
+                Verified • Secure
+              </span>
+            </div>
+          </a>
+
+          <!-- Desktop Links -->
+          <div class="collapse navbar-collapse justify-content-center d-none d-lg-flex flex-grow-1">
+            <ul
+              class="navbar-nav gap-1"
+              style="
+                background: #fff5f6;
+                padding: 5px;
+                border-radius: 999px;
+                border: 1px solid rgba(233, 64, 87, 0.12);
+                display: flex;
+                flex-direction: row;
+              "
+            >
+              <li class="nav-item">
+                <a href="/home/" class="nav-link ultra-nav-link" style="font-size: 13px; font-weight: 700; color: #64748b; padding: 8px 24px; border-radius: 999px; display: flex; align-items: center; gap: 7px; text-decoration: none;">
+                  <i class="fa-solid fa-house" style="font-size: 11.5px; color: #e94057;"></i> <span>HOME</span>
+                </a>
+              </li>
+              {% if request.user.is_authenticated and request.user.profile.payment_status == "Paid" %}
+              <li class="nav-item">
+                <a href="/interactions/search/basic/" class="nav-link ultra-nav-link" style="font-size: 13px; font-weight: 700; color: #64748b; padding: 8px 24px; border-radius: 999px; display: flex; align-items: center; gap: 7px; text-decoration: none;">
+                  <i class="fa-solid fa-magnifying-glass" style="font-size: 11.5px; color: #e94057;"></i> <span>SEARCHES</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/interactions/matches/today/" class="nav-link ultra-nav-link" style="font-size: 13px; font-weight: 700; color: #64748b; padding: 8px 24px; border-radius: 999px; display: flex; align-items: center; gap: 7px; text-decoration: none;">
+                  <i class="fa-solid fa-users" style="font-size: 11.5px; color: #e94057;"></i> <span>MATCHES</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/profiles/my-profile/" class="nav-link ultra-nav-link" style="font-size: 13px; font-weight: 700; color: #64748b; padding: 8px 24px; border-radius: 999px; display: flex; align-items: center; gap: 7px; text-decoration: none;">
+                  <i class="fa-solid fa-user-circle" style="font-size: 11.5px; color: #e94057;"></i> <span>PROFILES</span>
+                </a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a href="/stories/" class="nav-link ultra-nav-link" style="font-size: 13px; font-weight: 700; color: #64748b; padding: 8px 24px; border-radius: 999px; display: flex; align-items: center; gap: 7px; text-decoration: none;">
+                  <i class="fa-solid fa-bell-concierge" style="font-size: 11.5px; color: #e94057;"></i> <span>STORIES</span>
+                </a>
+              </li>
+
+              <!-- BLOG DROPDOWN MENU -->
+              <li class="nav-item dropdown custom-premium-dropdown" style="position: relative;">
+                <a
+                  href="javascript:void(0);"
+                  class="nav-link ultra-nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                  aria-expanded="false"
+                  style="font-size: 13px; font-weight: 700; color: #64748b; padding: 8px 24px; border-radius: 999px; display: flex; align-items: center; gap: 7px; text-decoration: none;"
+                >
+                  <i class="fa-solid fa-newspaper" style="font-size: 11.5px; color: #e94057;"></i> <span>BLOG</span>
+                </a>
+                <ul
+                  class="dropdown-menu border-0 shadow-lg dynamic-glass-dropdown"
+                  style="
+                    background: rgba(255, 255, 255, 0.95);
+                    backdrop-filter: blur(15px);
+                    border-radius: 16px;
+                    padding: 8px;
+                    border: 1px solid rgba(233, 64, 87, 0.1) !important;
+                    margin-top: 10px;
+                  "
+                >
+                  <li><a class="dropdown-item custom-drop-item" href="/latest-article/" style="font-size:13.5px; font-weight:600; padding:10px 16px; border-radius:10px; display:flex; align-items:center; gap:10px; text-decoration:none;"><i class="fa-solid fa-book-open" style="color: #e94057"></i> Latest Articles</a></li>
+                  <li><a class="dropdown-item custom-drop-item" href="/relationship-tips/" style="font-size:13.5px; font-weight:600; padding:10px 16px; border-radius:10px; display:flex; align-items:center; gap:10px; text-decoration:none;"><i class="fa-solid fa-handshake" style="color: #e94057"></i> Relationship Tips</a></li>
+                  <li><a class="dropdown-item custom-drop-item" href="/marriage-advice/" style="font-size:13.5px; font-weight:600; padding:10px 16px; border-radius:10px; display:flex; align-items:center; gap:10px; text-decoration:none;"><i class="fa-solid fa-ring" style="font-size: 18px; color: #ffffff !important;" style="color: #e94057"></i> Marriage Advice</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a href="/contact/" class="nav-link ultra-nav-link" style="font-size: 13px; font-weight: 700; color: #64748b; padding: 8px 24px; border-radius: 999px; display: flex; align-items: center; gap: 7px; text-decoration: none;">
+                  <i class="fa-solid fa-envelope" style="font-size: 11.5px; color: #e94057;"></i> <span>CONTACT</span>
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+
+                    <!-- Mobile Menu Toggler -->
+          <button
+            class="navbar-toggler border-0 p-1 d-lg-none"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#mobileOffcanvas"
+            aria-controls="mobileOffcanvas"
+            style="outline: none; box-shadow: none"
+          >
+            <i class="fa-solid fa-bars-staggered" style="color: #e94057; font-size: 22px"></i>
+          </button>
+
+          <!-- Right Action Block (Right Anchor) -->
+          <div class="d-none d-lg-flex align-items-center gap-4 m-0">
+            {% if request.user.is_authenticated and request.user.profile %}
+            <!-- Notifications & Messages -->
+            <a href="/interactions/requests/" class="text-decoration-none position-relative hover-scale d-inline-block py-1" title="Requests & Connections">
+              <i class="fa-solid fa-heart" style="font-size: 20px; color: #e94057;"></i>
+              <span id="nav-req-badge-desktop" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 9px; padding: 3px 5px; background-color: #e94057 !important; display: {% if unread_requests_count > 0 %}inline-block{% else %}none{% endif %};">{{ unread_requests_count }}</span>
+            </a>
+            <a href="/interactions/chat/" class="text-decoration-none position-relative hover-scale d-inline-block py-1" title="Messages">
+              <i class="fa-brands fa-facebook-messenger" style="font-size: 20px; color: #64748b;"></i>
+              <span id="nav-msg-badge-desktop" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style="font-size: 9px; padding: 3px 5px; display: {% if unread_messages_count > 0 %}inline-block{% else %}none{% endif %};">{{ unread_messages_count }}</span>
+            </a>
+            <div style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 5px;"></div>
+
+            <!-- User Profile Dropdown System -->
+            <div class="dropdown custom-user-avatar-dropdown position-relative d-flex align-items-center gap-2">
+              <a href="/profiles/my-profile/" class="hover-scale" style="display: block;">
+                <div class="position-relative" style="width: 38px; height: 38px; flex-shrink: 0">
+                <img src="{% if request.user.profile.photo %}{{ request.user.profile.photo.url }}?v={{ request.user.profile.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff{% endif %}" alt="User Profile" class="rounded-circle border" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff';" style="width: 38px; height: 38px; object-fit: cover; border-color: rgba(233, 64, 87, 0.4) !important; padding: 1.5px;" />
+                <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width: 10px; height: 10px"></span>
+              </div>
+              </a>
+              <a href="javascript:void(0)" class="text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button" style="cursor: pointer;">
+                <div class="d-flex flex-column text-start justify-content-center" style="max-width: 100px">
+                <span style="font-size: 13px; font-weight: 700; color: #1e293b; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Hi, {{ request.user.profile.full_name|default:request.user.username|truncatechars:15 }}</span>
+                <span class="d-flex align-items-center gap-1" style="font-size: 9px; font-weight: 800; color: #facc15; letter-spacing: 0.3px;"><i class="fa-solid fa-crown" style="font-size: 8px"></i> {% if request.user.profile.payment_status == "Paid" %}PREMIUM{% else %}BASIC{% endif %}</span>
+              </div>
+              </a>
+            <div class="dropdown-menu dropdown-menu-end shadow-lg border-0 p-4" style="width: 280px; max-width: 90vw; border-radius: 20px; background: #ffffff; margin-top: 15px; z-index: 1050;">
+                <div class="text-center">
+                    <div class="position-relative d-inline-block mb-3">
+                        <img src="{% if request.user.profile.photo %}{{ request.user.profile.photo.url }}?v={{ request.user.profile.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff{% endif %}" alt="{{ request.user.profile.full_name|default:request.user.username }}" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff';" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width: 15px; height: 15px; transform: translate(-10px, -5px);"></span>
+                    </div>
+                    <h5 style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #1e293b; margin-bottom: 5px; word-break: break-word; white-space: pre-wrap;">{{ request.user.profile.full_name|default:request.user.username }}</h5>
+                    <p style="font-size: 13px; color: #64748b; line-height: 1.5; margin-bottom: 15px; word-break: break-all; white-space: normal;">
+                        {{ request.user.email }}<br>
+                        <span class="badge bg-danger text-white mt-1">Profile ID: {{ request.user.profile.matrimony_id|default:"Pending" }}</span>
+                    </p>
+                    <a href="/profiles/my-profile/" class="btn text-white w-100 rounded-pill py-2" style="background: #a16238; font-weight: 600; font-size: 14px; border: none; box-shadow: 0 4px 10px rgba(161, 98, 56, 0.3);">
+                        View your Profile
+                    </a>
+                </div>
+                
+                <hr style="opacity: 0.1; margin: 20px 0 10px;">
+                
+                                <div class="d-flex flex-column gap-1" style="font-size: 14px;">
+                    <a href="/interactions/matches/today/" class="dropdown-item d-flex align-items-center gap-3 rounded py-2" style="color: #475569; font-weight: 500; transition: background 0.2s;">
+                        <i class="fa-solid fa-gauge" style="font-size: 16px; color: #94a3b8; width: 20px; text-align: center;"></i> My Dashboard
+                    </a>
+                    <a href="/accounts/settings/" class="dropdown-item d-flex align-items-center gap-3 rounded py-2" style="color: #475569; font-weight: 500; transition: background 0.2s;">
+                        <i class="fa-solid fa-gear" style="font-size: 16px; color: #94a3b8; width: 20px; text-align: center;"></i> Settings
+                    </a>
+                    <a href="/payments/billing/" class="dropdown-item d-flex align-items-center gap-3 rounded py-2" style="color: #475569; font-weight: 500; transition: background 0.2s;">
+                        <i class="fa-solid fa-file-invoice-dollar" style="font-size: 16px; color: #94a3b8; width: 20px; text-align: center;"></i> Billing & Invoices
+                    </a>
+                    <a href="/accounts/logout/" class="dropdown-item d-flex align-items-center gap-3 rounded py-2" style="color: #475569; font-weight: 500; transition: background 0.2s;">
+                        <i class="fa-solid fa-right-from-bracket" style="font-size: 16px; color: #e94057; width: 20px; text-align: center;"></i> Sign out
+                    </a>
+                </div>
+            </div>
+            </div>
+            {% else %}
+            <a href="/accounts/login/" class="text-decoration-none" style="font-family: 'Inter', sans-serif; font-weight: 700; color: #1e293b; font-size: 15px; transition: color 0.3s;">Login</a>
+            <a
+              href="/accounts/register/"
+              class="btn-premium-gradient d-flex align-items-center gap-2 text-decoration-none"
+              style="background: linear-gradient(135deg, #e94057 0%, #ff7aa2 100%); color: #fff; padding: 10px 24px; border-radius: 25px; font-weight: 600; box-shadow: 0 4px 15px rgba(233, 64, 87, 0.2); font-size: 14px;"
+            >
+              <span>Register Free</span>
+              <i class="fa-solid fa-arrow-right" style="font-size: 13px;"></i>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+            <script>
+        // Real-Time Notification Poller
+        function updateNavbarCounts() {
+          fetch('/interactions/api/navbar-counts/')
+            .then(res => res.json())
+            .then(data => {
+              if(data.status === 'success') {
+                const reqIds = ['nav-req-badge-desktop', 'nav-req-badge-mobile'];
+                const msgIds = ['nav-msg-badge-desktop', 'nav-msg-badge-mobile'];
+                
+                reqIds.forEach(id => {
+                  const el = document.getElementById(id);
+                  if(el) {
+                    el.innerText = data.unread_requests_count;
+                    el.style.display = data.unread_requests_count > 0 ? 'inline-block' : 'none';
+                  }
+                });
+                msgIds.forEach(id => {
+                  const el = document.getElementById(id);
+                  if(el) {
+                    el.innerText = data.unread_messages_count;
+                    el.style.display = data.unread_messages_count > 0 ? 'inline-block' : 'none';
+                  }
+                });
+              }
+            }).catch(err => console.error(err));
+        }
+        
+        {% if request.user.is_authenticated %}
+        setInterval(updateNavbarCounts, 10000);
+        {% endif %}
+      </script>
+    </nav>
+    </div>
+    <!-- main_navbar_end -->
+
+    <!-- ================= MOBILE OFFCANVAS PANEL ================= -->
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="mobileOffcanvas"
+      aria-labelledby="mobileOffcanvasLabel"
+      style="
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        border-left: 1px solid rgba(233, 64, 87, 0.08);
+        width: 290px;
+      "
+    >
+      <div class="offcanvas-header border-bottom border-light py-4">
+        <h5
+          class="offcanvas-title"
+          id="mobileOffcanvasLabel"
+          style="
+            font-family: &quot;Poppins&quot;, sans-serif;
+            font-weight: 800;
+            color: #1e293b;
+          "
+        >
+          Forever<span style="color: #e94057">Bond</span>
+        </h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+          style="box-shadow: none"
+        ></button>
+      </div>
+      <div
+        class="offcanvas-body d-flex flex-column justify-content-between py-4"
+        style="background: #fff5f6"
+      >
+        <ul class="nav flex-column gap-2" id="mobileNavList">
+          <li class="nav-item">
+            <a href="/home/" class="nav-link mobile-nav-link" style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; display:flex; align-items:center; gap:10px; text-decoration:none;">
+              <i class="fa-solid fa-house" style="color:#e94057; width:18px;"></i> HOME
+            </a>
+          </li>
+          {% if request.user.is_authenticated and request.user.profile.payment_status == "Paid" %}
+          <li class="nav-item">
+            <a href="/interactions/search/basic/" class="nav-link mobile-nav-link" style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; display:flex; align-items:center; gap:10px; text-decoration:none;">
+              <i class="fa-solid fa-magnifying-glass" style="color:#e94057; width:18px;"></i> SEARCHES
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/interactions/matches/today/" class="nav-link mobile-nav-link" style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; display:flex; align-items:center; gap:10px; text-decoration:none;">
+              <i class="fa-solid fa-users" style="color:#e94057; width:18px;"></i> MATCHES
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/profiles/my-profile/" class="nav-link mobile-nav-link d-flex align-items-center justify-content-between" style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; text-decoration:none;">
+              <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-user-circle" style="color:#e94057; width:18px;"></i> PROFILES</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/interactions/requests/" class="nav-link mobile-nav-link d-flex align-items-center justify-content-between" style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; text-decoration:none;">
+              <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-heart" style="color:#e94057; width:18px;"></i> REQUESTS</span>
+              <span id="nav-req-badge-mobile" class="badge rounded-pill bg-danger" style="font-size: 11px; display: {% if unread_requests_count > 0 %}inline-block{% else %}none{% endif %};">{{ unread_requests_count }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/interactions/chat/" class="nav-link mobile-nav-link d-flex align-items-center justify-content-between" style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; text-decoration:none;">
+              <span class="d-flex align-items-center gap-2"><i class="fa-brands fa-facebook-messenger" style="color:#64748b; width:18px;"></i> MESSAGES</span>
+              <span id="nav-msg-badge-mobile" class="badge rounded-pill bg-primary" style="font-size: 11px; display: {% if unread_messages_count > 0 %}inline-block{% else %}none{% endif %};">{{ unread_messages_count }}</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a href="/stories/" class="nav-link mobile-nav-link" style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; display:flex; align-items:center; gap:10px; text-decoration:none;">
+              <i class="fa-solid fa-bell-concierge" style="color:#e94057; width:18px;"></i> STORIES
+            </a>
+          </li>
+
+          {% if request.user.is_authenticated and request.user.profile %}
+          <li class="nav-item">
+            <a href="/interactions/requests/" class="nav-link mobile-nav-link d-flex align-items-center justify-content-between" style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; text-decoration:none;">
+              <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-heart" style="color:#e94057; width:18px;"></i> REQUESTS</span>
+              <span id="nav-req-badge-mobile" class="badge rounded-pill bg-danger" style="font-size: 11px; display: {% if unread_requests_count > 0 %}inline-block{% else %}none{% endif %};">{{ unread_requests_count }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/interactions/chat/" class="nav-link mobile-nav-link d-flex align-items-center justify-content-between" style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; text-decoration:none;">
+              <span class="d-flex align-items-center gap-2"><i class="fa-brands fa-facebook-messenger" style="color:#64748b; width:18px;"></i> MESSAGES</span>
+              <span id="nav-msg-badge-mobile" class="badge rounded-pill bg-primary" style="font-size: 11px; display: {% if unread_messages_count > 0 %}inline-block{% else %}none{% endif %};">{{ unread_messages_count }}</span>
+            </a>
+          </li>
+          {% endif %}
+
+          <!-- Mobile Blog Collapse -->
+          <li class="nav-item">
+            <a
+              class="nav-link mobile-nav-link d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse"
+              href="#mobileBlogCollapse"
+              role="button"
+              aria-expanded="false"
+              style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; display:flex; align-items:center; gap:10px; text-decoration:none;"
+            >
+              <span><i class="fa-solid fa-newspaper" style="color:#e94057; width:18px;"></i> BLOG</span>
+              <i class="fa-solid fa-chevron-down ms-auto" style="font-size: 11px"></i>
+            </a>
+            <div class="collapse ps-3 mt-1" id="mobileBlogCollapse">
+              <ul class="nav flex-column gap-1" style="border-left: 1px dashed rgba(233, 64, 87, 0.3); padding-left: 10px;">
+                <li><a class="nav-link mobile-nav-link py-2" style="font-size: 13.5px; text-decoration:none;" href="/latest-article/"><i class="fa-solid fa-book-open"></i> Latest Articles</a></li>
+                <li><a class="nav-link mobile-nav-link py-2" style="font-size: 13.5px; text-decoration:none;" href="/relationship-tips/"><i class="fa-solid fa-handshake"></i> Relationship Tips</a></li>
+                <li><a class="nav-link mobile-nav-link py-2" style="font-size: 13.5px; text-decoration:none;" href="/marriage-advice/"><i class="fa-solid fa-ring" style="font-size: 18px; color: #ffffff !important;"></i> Marriage Advice</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="/contact/" class="nav-link mobile-nav-link" style="font-size:15px; font-weight:700; color:#475569; padding:12px 16px; display:flex; align-items:center; gap:10px; text-decoration:none;">
+              <i class="fa-solid fa-envelope" style="color:#e94057; width:18px;"></i> CONTACT
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

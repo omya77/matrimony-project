@@ -1,0 +1,113 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}ID Proof (KYC) Verification - Admin Panel{% endblock %}
+
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row mb-4">
+        <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">ID Proof Verifications</h1>
+            <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Review and approve member KYC documents (Aadhar, PAN, Passport).</p>
+        </div>
+    </div>
+
+    <!-- Pending KYC -->
+    <div class="card-panel fade-in-up delay-1">
+        <div class="card-header">
+            <h3 class="card-title">Pending Verifications</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Document Type</th>
+                        <th>Submitted At</th>
+                        <th>Document Proof</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doc in pending_docs %}
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-avatar">
+                                    {% if doc.user.profile.photo %}
+                                        <img src="{{ doc.user.profile.photo.url }}" alt="Profile">
+                                    {% else %}
+                                        {{ doc.user.username|make_list|first|upper }}
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <div style="font-weight: 600; color: #0f172a;">{{ doc.user.first_name }} {{ doc.user.last_name }}</div>
+                                    <div style="font-size: 0.8rem; color: #64748b;">{{ doc.user.email }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span style="font-weight: 600;">{{ doc.document_type }}</span></td>
+                        <td>{{ doc.submitted_at|date:"d M Y, h:i A" }}</td>
+                        <td>
+                            {% if doc.document_file %}
+                                <a href="{{ doc.document_file.url }}" target="_blank" class="btn-link"><i class="fa-solid fa-up-right-from-square"></i> View Document</a>
+                            {% else %}
+                                <span class="text-muted">No File</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <form method="POST" style="display: inline-block;">
+                                {% csrf_token %}
+                                <input type="hidden" name="doc_id" value="{{ doc.id }}">
+                                <button type="submit" name="action" value="Approve" class="btn btn-sm btn-outline-success" style="padding: 6px 12px; font-weight: 600; border-radius: 8px;">Approve</button>
+                                <button type="submit" name="action" value="Reject" class="btn btn-sm btn-outline-danger" style="padding: 6px 12px; font-weight: 600; border-radius: 8px; margin-left: 5px;">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="5" class="text-center text-muted py-4">No pending KYC verifications found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- History -->
+    <div class="card-panel fade-in-up delay-2 mt-4">
+        <div class="card-header">
+            <h3 class="card-title">Recent History</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Document Type</th>
+                        <th>Submitted At</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doc in history_docs %}
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: #0f172a;">{{ doc.user.username }}</div>
+                        </td>
+                        <td>{{ doc.document_type }}</td>
+                        <td>{{ doc.submitted_at|date:"d M Y" }}</td>
+                        <td>
+                            {% if doc.status == 'Approved' %}
+                                <span class="status-badge verified">Approved</span>
+                            {% else %}
+                                <span class="status-badge flagged">Rejected</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="4" class="text-center text-muted">No history found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

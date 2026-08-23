@@ -1,0 +1,201 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}View Profile - Admin Panel{% endblock %}
+
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <!-- Header -->
+    <div class="page-title-row mb-4 d-flex justify-content-between align-items-center">
+        <div>
+            <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm mb-2 rounded-pill">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </a>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">
+                {{ profile.full_name|default:profile.user.username }}'s Profile
+            </h1>
+            <p class="text-muted mb-0">Matrimony ID: {{ profile.matrimony_id|default:'N/A' }}</p>
+        </div>
+        <div>
+            <span class="badge {% if profile.is_online %}bg-success{% else %}bg-secondary{% endif %} rounded-pill py-2 px-3">
+                {% if profile.is_online %}<i class="fa-solid fa-circle text-white me-1" style="font-size: 8px;"></i> Online{% else %}Offline{% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Left Column: Photo & Quick Info -->
+        <div class="col-md-4">
+            <div class="card-panel glass-card p-4 text-center">
+                <div class="mb-4 position-relative d-inline-block">
+                    {% if profile.photo %}
+                        <img src="{{ profile.photo.url }}" alt="Profile Photo" class="rounded-circle shadow" style="width: 180px; height: 180px; object-fit: cover; border: 4px solid #fff;">
+                    {% else %}
+                        <img src="https://ui-avatars.com/api/?name={{ profile.full_name|urlencode }}&background=ff4d6d&color=fff&size=180" class="rounded-circle shadow" style="border: 4px solid #fff;">
+                    {% endif %}
+                    {% if profile.is_verified %}
+                    <span class="position-absolute bottom-0 end-0 badge bg-primary rounded-circle p-2 shadow" title="KYC Verified" style="transform: translate(-10px, -10px);">
+                        <i class="fa-solid fa-check text-white"></i>
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <h4 class="fw-bold mb-1">{{ profile.full_name|default:profile.user.username }}</h4>
+                <p class="text-muted mb-3">{{ profile.age|default:'N/A' }} Yrs • {{ profile.height|default:'N/A' }} • {{ profile.marital_status|default:'N/A' }}</p>
+                
+                <div class="d-flex justify-content-center gap-2 mb-4">
+                    <span class="badge bg-light text-dark border rounded-pill px-3 py-2">
+                        <i class="fa-solid fa-envelope text-muted me-1"></i> {{ profile.user.email }}
+                    </span>
+                </div>
+                
+                <div class="text-start">
+                    <h6 class="text-muted text-uppercase small fw-bold mb-3">System Status</h6>
+                    <ul class="list-group list-group-flush rounded shadow-sm">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Approval
+                            <span class="badge {% if profile.approval_status == 'Approved' %}bg-success{% elif profile.approval_status == 'Rejected' %}bg-danger{% else %}bg-warning text-dark{% endif %} rounded-pill">
+                                {{ profile.approval_status }}
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Account
+                            <span class="badge {% if profile.user.is_active %}bg-success{% else %}bg-danger{% endif %} rounded-pill">
+                                {% if profile.user.is_active %}Active{% else %}Blocked{% endif %}
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Membership
+                            <span class="badge {% if profile.payment_status == 'Paid' %}bg-premium{% else %}bg-secondary{% endif %} rounded-pill">
+                                {{ profile.payment_status }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Detailed Tabs -->
+        <div class="col-md-8">
+            <div class="card-panel glass-card p-4">
+                <ul class="nav nav-pills custom-pills mb-4" id="profileTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active rounded-pill" data-bs-toggle="pill" data-bs-target="#basic" type="button" role="tab">Personal Details</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#edu" type="button" role="tab">Education & Career</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#pref" type="button" role="tab">Preferences</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#gallery" type="button" role="tab">Gallery ({{ gallery|length }})</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="profileTabsContent">
+                    <!-- Basic Tab -->
+                    <div class="tab-pane fade show active" id="basic" role="tabpanel">
+                        <div class="row g-4">
+                            <div class="col-md-12">
+                                <h6 class="text-muted mb-3"><i class="fa-solid fa-address-card me-2"></i>About</h6>
+                                <p class="bg-light p-3 rounded" style="font-size:0.95rem;">
+                                    {{ profile.about_me|default:"User has not provided an about me." }}
+                                </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Mobile Number</label>
+                                <div class="fw-bold">{{ profile.mobile|default:"-" }}</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Date of Birth</label>
+                                <div class="fw-bold">{{ profile.dob|default:"-" }}</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Religion / Caste</label>
+                                <div class="fw-bold">{{ profile.religion|default:"-" }} / {{ profile.caste|default:"-" }}</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Mother Tongue</label>
+                                <div class="fw-bold">{{ profile.mother_tongue|default:"-" }}</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Location</label>
+                                <div class="fw-bold">{{ profile.city|default:"-" }}, {{ profile.state|default:"-" }}</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Family Type</label>
+                                <div class="fw-bold">{{ profile.family_type|default:"-" }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edu Tab -->
+                    <div class="tab-pane fade" id="edu" role="tabpanel">
+                        <div class="row g-4">
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Highest Education</label>
+                                <div class="fw-bold">{{ profile.highest_education|default:"-" }}</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Profession</label>
+                                <div class="fw-bold">{{ profile.profession|default:"-" }}</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Annual Income</label>
+                                <div class="fw-bold">{{ profile.annual_income|default:"-" }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preferences Tab -->
+                    <div class="tab-pane fade" id="pref" role="tabpanel">
+                        <div class="row g-4">
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Preferred Age Range</label>
+                                <div class="fw-bold">{% if profile.pref_age_min %}{{ profile.pref_age_min }} to {{ profile.pref_age_max }} Yrs{% else %}-{% endif %}</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="text-muted small mb-1">Preferred Religion</label>
+                                <div class="fw-bold">{{ profile.pref_religion|default:"-" }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Tab -->
+                    <div class="tab-pane fade" id="gallery" role="tabpanel">
+                        <div class="row g-3">
+                            {% for photo in gallery %}
+                            <div class="col-4 col-sm-3">
+                                <img src="{{ photo.photo.url }}" class="img-fluid rounded shadow-sm" style="height: 120px; width: 100%; object-fit: cover;" alt="Gallery">
+                            </div>
+                            {% empty %}
+                            <div class="col-12 text-center py-5 text-muted">
+                                <i class="fa-regular fa-images fa-3x mb-3 text-light"></i>
+                                <div>No gallery photos uploaded.</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.custom-pills .nav-link {
+    color: #64748b;
+    font-weight: 500;
+    margin-right: 5px;
+}
+.custom-pills .nav-link.active {
+    background: linear-gradient(135deg, #ff4d6d, #ff758c);
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
+}
+.bg-premium {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #fff;
+}
+</style>
+{% endblock %}

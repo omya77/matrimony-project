@@ -1,0 +1,178 @@
+            
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method.'}, status=405)
+
+@login_required(login_url='/accounts/login/')
+def fetch_messages(request, user_id):
+    if request.method == 'GET':
+        try:
+            # Check if interest is accepted
+            interest = InterestRequest.objects.filter(
+                (Q(sender=request.user, receiver_id=user_id) | Q(sender_id=user_id, receiver=request.user)),
+                status='accepted'
+            ).exists()
+            
+            if not interest:
+                return JsonResponse({'status': 'error', 'message': 'You cannot view chats for this user.'}, status=403)
+                
+            messages = ChatMessage.objects.filter(
+                (Q(sender=request.user, receiver_id=user_id) | Q(sender_id=user_id, receiver=request.user))
+            ).order_by('timestamp')
+            
+            # Mark unread messages sent to the current user as read
+            unread_msgs = messages.filter(receiver=request.user, is_read=False)
+            unread_msgs.update(is_read=True)
+            
+            msgs_data = []
+            for m in messages:
+                # Skip messages deleted by current user
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method.'}, status=405)
+
+
+
+@csrf_exempt
+@login_required(login_url='/accounts/login/')
+def api_save_profile(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            profile_id = data.get('profile_id')
+            if not profile_id:
+                return JsonResponse({'status': 'error', 'message': 'Profile ID required.'}, status=400)
+                
+            from interactions_app.models import SavedProfile
+            from profiles_app.models import Profile
+            
+            profile_to_save = Profile.objects.get(id=profile_id)
+            
+            # Create or delete saved profile (toggle functionality)
+            saved_profile, created = SavedProfile.objects.get_or_create(
+                user=request.user,
+                profile=profile_to_save
+            )
+            
+            if not created:
+                saved_profile.delete()
+                return JsonResponse({'status': 'unsaved', 'message': 'Profile removed from saved.'})
+            
+            return JsonResponse({'status': 'saved', 'message': 'Profile saved successfully!'})
+        except Profile.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Profile not found.'}, status=404)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method.'}, status=405)
+
+@csrf_exempt
+@login_required(login_url='/accounts/login/')
+def api_delete_chat(request, user_id):
+    if request.method == 'POST':
+        try:
+            import json
+            data = {}
+            if request.body:
+                data = json.loads(request.body)
+            delete_type = data.get('delete_type', 'for_me')
+            
+            from .models import ChatMessage
+            from django.db.models import Q
+            from django.contrib.auth.models import User
+            other_user = User.objects.get(id=user_id)
+            
+            messages = ChatMessage.objects.filter(
+                Q(sender=request.user, receiver=other_user) | 
+                Q(sender=other_user, receiver=request.user)
+            )
+            
+            if delete_type == 'for_me':
+                for msg in messages:
+                    if msg.sender == request.user:
+                        msg.deleted_by_sender = True
+                    if msg.receiver == request.user:
+                        msg.deleted_by_receiver = True
+                    msg.save()
+                return JsonResponse({'status': 'success', 'message': 'Chat deleted for you.'})
+        except User.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'User not found.'}, status=404)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method.'}, status=405)
+
+@csrf_exempt
+@login_required(login_url='/accounts/login/')
+def api_mark_notifications_read(request):
+    if request.method == 'POST':
+        try:
+            from .models import Notification
+            Notification.objects.filter(user=request.user, is_read=False).update(is_read=True)
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+    return JsonResponse({'status': 'error'}, status=405)
+
+from django.http import JsonResponse
+from .models import BlockList, Report
+from django.contrib.auth.models import User
+import json
+
+@login_required
+def block_user(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user_id = data.get('user_id')
+        try:
+            blocked = User.objects.get(id=user_id)
+            BlockList.objects.get_or_create(blocker=request.user, blocked_user=blocked)
+            return JsonResponse({'status': 'success', 'message': 'User blocked successfully.'})
+        except User.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'User not found.'})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request.'})
+
+@login_required
+def report_user(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user_id = data.get('user_id')
+        reason = data.get('reason', 'Inappropriate behavior')
+        try:
+            reported = User.objects.get(id=user_id)
+            Report.objects.create(reporter=request.user, reported_user=reported, reason=reason)
+            return JsonResponse({'status': 'success', 'message': 'User reported successfully.'})
+        except User.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'User not found.'})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request.'})
+@csrf_exempt
+@login_required(login_url='/accounts/login/')
+def api_delete_message(request, msg_id):
+    if request.method == 'POST':
+        try:
+            import json
+            data = {}
+            if request.body:
+                data = json.loads(request.body)
+            delete_type = data.get('delete_type', 'for_me')
+            
+            from .models import ChatMessage
+            msg = ChatMessage.objects.get(id=msg_id)
+            
+            if delete_type == 'for_me':
+                if msg.sender == request.user:
+                    msg.deleted_by_sender = True
+                elif msg.receiver == request.user:
+                    msg.deleted_by_receiver = True
+                else:
+                    return JsonResponse({'status': 'error', 'message': 'Permission denied.'}, status=403)
+                msg.save()
+            elif delete_type == 'for_everyone':
+                if msg.sender == request.user:
+                    msg.delete()
+                else:
+                    return JsonResponse({'status': 'error', 'message': 'Permission denied.'}, status=403)
+                
+            return JsonResponse({'status': 'success', 'message': 'Message deleted successfully.'})
+        except ChatMessage.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Message not found.'}, status=404)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method.'}, status=405)

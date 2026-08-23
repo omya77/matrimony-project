@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <link rel="icon" type="image/png" href="/static/web/images/favicon.png">
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Matrimony Hero</title>
+
+    <link rel="stylesheet" href="/static/web/css/matches1.css" />
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+    </script>
+    <div class="top-navbar-placeholder"></div>
+
+    <div class="nav-container">
+      <nav class="secondary-navbar">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="/" class="nav-link"
+              ><i class="fa-solid fa-house"></i> HOME</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a href="javascript:void(0);" data-bs-toggle="dropdown" class="nav-link"
+              ><i class="fa-solid fa-magnifying-glass"></i> SEARCH
+              <i class="fa-solid fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-menu">
+              <a href="/interactions/search/basic/" class="dropdown-item"
+                ><i class="fa-solid fa-sliders"></i> Basic Search</a
+              >
+              <a href="/interactions/search/advanced/" class="dropdown-item"
+                ><i class="fa-solid fa-filter"></i> Advanced Search</a
+              >
+              <a href="/interactions/search/ai/" class="dropdown-item"
+                ><i class="fa-solid fa-wand-magic-sparkles"></i> AI Match Finder
+                <span class="ai-badge">New</span></a
+              >
+              <a href="/interactions/search/saved/" class="dropdown-item"
+                ><i class="fa-solid fa-bookmark"></i> Saved Searches</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="javascript:void(0);" data-bs-toggle="dropdown" class="nav-link"
+              ><i class="fa-solid fa-heart"></i> MATCHES
+              <i class="fa-solid fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-menu">
+              <a href="/interactions/matches/today/" class="dropdown-item"
+                ><i class="fa-solid fa-calendar-day"></i> Today's Matches</a
+              >
+              <a href="/interactions/matches/recommended/" class="dropdown-item"
+                ><i class="fa-solid fa-star"></i> Recommended Matches</a
+              >
+              <a href="/interactions/matches/Ai-match/" class="dropdown-item"
+                ><i class="fa-solid fa-brain"></i> AI Matches</a
+              >
+              <a href="/interactions/matches/nearby/" class="dropdown-item"
+                ><i class="fa-solid fa-location-dot"></i> Nearby Matches</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="javascript:void(0);" data-bs-toggle="dropdown" class="nav-link"
+              ><i class="fa-solid fa-user"></i> PROFILES
+              <i class="fa-solid fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-menu">
+              {% if not request.user.is_authenticated or request.user.profile.gender == 'Male' %}
+<a href="/interactions/featured/brides/" class="dropdown-item"
+                ><i class="fa-solid fa-person-dress" style="color: #e94057; margin-right: 8px;"></i>  Featured Brides</a
+              >
+{% endif %}
+              {% if not request.user.is_authenticated or request.user.profile.gender == 'Female' %}
+<a href="/interactions/featured/grooms/" class="dropdown-item"
+                ><i class="fa-solid fa-person" style="color: #e94057; margin-right: 8px;"></i>  Featured Grooms</a
+              >
+{% endif %}
+              <a href="/profiles/verified-profiles/" class="dropdown-item"
+                ><i class="fa-solid fa-user-shield" style="color: #e94057; margin-right: 8px;"></i>  Verified Profiles</a
+              >
+              <a href="/profiles/saved-profiles/" class="dropdown-item"
+                ><i class="fa-solid fa-bookmark" style="color: #e94057; margin-right: 8px;"></i>  Saved Profiles</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="/stories/" class="nav-link"
+              ><i class="fa-solid fa-bell-concierge"></i> STORIES</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a href="/latest-article/" data-bs-toggle="dropdown" class="nav-link"
+              ><i class="fa-solid fa-newspaper"></i> BLOG
+              <i class="fa-solid fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-menu">
+              <a href="/latest-article/" class="dropdown-item"
+                ><i class="fa-solid fa-book-open"></i> Latest Articles</a
+              >
+              <a href="/relationship-tips/" class="dropdown-item"
+                ><i class="fa-solid fa-handshake"></i> Relationship Tips</a
+              >
+              <a href="/marriage-advice/" class="dropdown-item"
+                ><i class="fa-solid fa-ring"></i> Marriage Advice</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="/contact/" class="nav-link"
+              ><i class="fa-solid fa-envelope"></i> CONTACT
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+    <!-- second_navbar_end -->
+
+    <section class="mmHeroV2">
+      <!-- Background Image -->
+      <img
+        src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80"
+        class="mmHeroV2Bg"
+        alt="Wedding Couple"
+      />
+
+      <!-- Overlay -->
+      <div class="mmHeroV2Overlay"></div>
+
+      <!-- Left Content -->
+      <div class="mmHeroV2Content">
+        <span class="mmHeroV2Badge"> ❤️ Today's Updates </span>
+
+        <h1>
+          Find Your Perfect
+          <span>Marathi Life Partner</span>
+        </h1>
+
+        <p>
+          520+ New Profiles Added Today <br />
+          Trusted • Verified • Genuine Members
+        </p>
+
+        <div class="mmHeroV2Dots">
+          <span class="active"></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- ===========================
+      Matrimony Filter Box
+============================ -->
+
+    <section class="mmFilterProSection">
+      <div class="mmFilterProBox">
+        <!-- Row 1 -->
+
+        <div class="mmFilterProItem">
+          <i class="fa-regular fa-calendar-days"></i>
+
+          <div class="mmFilterProText">
+            <label>Age</label>
+
+            <select>
+              <option>21 - 28</option>
+              <option>29 - 35</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mmFilterProItem">
+          <i class="fa-solid fa-graduation-cap"></i>
+
+          <div class="mmFilterProText">
+            <label>Education</label>
+
+            <select>
+              <option>Select Education</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mmFilterProItem">
+          <i class="fa-solid fa-briefcase"></i>
+
+          <div class="mmFilterProText">
+            <label>Profession</label>
+
+            <select>
+              <option>Select Profession</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mmFilterProItem">
+          <i class="fa-solid fa-ruler-vertical"></i>
+
+          <div class="mmFilterProText">
+            <label>Height</label>
+
+            <select>
+              <option>Select Height</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+
+        <div class="mmFilterProItem">
+          <i class="fa-regular fa-comments"></i>
+
+          <div class="mmFilterProText">
+            <label>Mother Tongue</label>
+
+            <select>
+              <option>Select Language</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mmFilterProItem">
+          <i class="fa-regular fa-building"></i>
+
+          <div class="mmFilterProText">
+            <label>Religion</label>
+
+            <select>
+              <option>Select Religion</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mmFilterProItem">
+          <i class="fa-solid fa-shield-heart"></i>
+
+          <div class="mmFilterProText">
+            <label>Caste</label>
+
+            <select>
+              <option>Select Caste</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mmFilterProItem">
+          <i class="fa-solid fa-location-dot"></i>
+
+          <div class="mmFilterProText">
+            <label>Location</label>
+
+            <select>
+              <option>Select Location</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="mmFilterProButtons">
+          <button class="mmFilterSearchBtn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            Search Matches
+          </button>
+
+          <button class="mmFilterResetBtn">
+            <i class="fa-solid fa-rotate-left"></i>
+
+            Reset Filters
+          </button>
+        </div>
+      </div>
+    </section>
+    <footer class="sm-footer">
+      <div class="footer-radial-aura"></div>
+      <div class="sm-container">
+        <div class="footer-main-row">
+          <div class="footer-brand-col">
+            <h2 class="footer-main-logo">
+              <i class="fa-solid fa-heart"></i>ForeverBond
+            </h2>
+            <p class="footer-brand-tagline">
+              India's trusted choice for premium, private and verified
+              matchmaking networks.
+            </p>
+          </div>
+
+          <div class="footer-link-col">
+              <h4>Search</h4>
+              <ul>
+                <li><a href="{% url 'basic_search' %}">Basic Search</a></li>
+                <li><a href="{% url 'advanced_search' %}">Advanced Filter</a></li>
+                <li><a href="{% url 'ai_search' %}">AI Match Finder</a></li>
+              </ul>
+            </div>
+
+          <div class="footer-link-col">
+              <h4>Profiles</h4>
+              <ul>
+                <li><a href="{% url 'recomended_matches' %}">Top Matches</a></li>
+                <li><a href="{% url 'saved_profiles' %}">Saved Profiles</a></li>
+                <li><a href="{% url 'verified_profiles' %}">Verified Profiles</a></li>
+              </ul>
+            </div>
+
+          <div class="footer-link-col">
+              <h4>Support</h4>
+              <ul>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'contact' %}">FAQs</a></li>
+                <li><a href="{{ global_privacy_policy_url }}">Privacy Policy</a></li>
+              </ul>
+            </div>
+
+          <div class="footer-badges-col">
+            <div class="badge-strip-node">
+              <i class="fa-solid fa-shield-halved badge-rose"></i>100% Verified
+            </div>
+            <div class="badge-strip-node">
+              <i class="fa-solid fa-lock badge-gold"></i>Private &amp; Secure
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+          <p class="advanced-copyright-txt">
+            &copy; 2026
+            <span class="signature-rose-txt">ForeverBond</span> Matrimony. All
+            rights reserved.
+          </p>
+          <div class="footer-social-spheres">
+            <a href="https://www.instagram.com/omya_.x07" target="_blank" aria-label="Instagram" class="social-sphere-item"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="https://www.facebook.com/omkar.misal.587" target="_blank" aria-label="Facebook" class="social-sphere-item"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="https://www.linkedin.com/in/omkar-misal-aa191336b/" target="_blank" aria-label="LinkedIn" class="social-sphere-item"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+            <a href="https://www.youtube.com/@OmkarMisal-ug8ks" target="_blank" aria-label="YouTube" class="social-sphere-item"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+<script src="/static/web/js/global-interactions.js"></script>
+</body>
+</html>
+

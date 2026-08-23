@@ -1,0 +1,220 @@
+{% load interaction_tags %}
+<!-- Ultra Premium Profile Modal -->
+<div class="modal fade" id="profileModal{{ match.user.id }}" tabindex="-1" aria-labelledby="profileModalLabel{{ match.user.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    {% get_interaction_status request.user match.user as int_status %}
+    <div class="modal-content" style="border-radius: 20px; border: none; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.2); background: #ffffff;">
+      
+      <!-- Stunning Header (Reduced Height) -->
+      <div style="position: relative; height: 120px; background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); overflow: hidden;">
+         <!-- Decorative Background Elements -->
+         <div style="position: absolute; top: -30px; left: -30px; width: 150px; height: 150px; background: rgba(255,255,255,0.15); border-radius: 50%; filter: blur(20px);"></div>
+         <div style="position: absolute; bottom: -30px; right: -30px; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%; filter: blur(30px);"></div>
+         
+         <!-- Close Button -->
+         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 15px; right: 15px; z-index: 10; opacity: 0.8;"></button>
+         
+         <!-- Curved Bottom using SVG -->
+         <svg style="position: absolute; bottom: -2px; left: 0; width: 100%; height: 35px;" viewBox="0 0 1440 100" preserveAspectRatio="none">
+             <path d="M0,100 C320,0 1120,0 1440,100 Z" fill="#ffffff"></path>
+         </svg>
+      </div>
+      
+      <!-- Modal Body (Reduced Padding) -->
+      <div class="modal-body" style="padding: 0 30px 25px 30px; position: relative; text-align: center;">
+          
+          <!-- Centered Profile Image (Reduced Size) -->
+          <div style="margin-top: -65px; margin-bottom: 12px; position: relative; display: inline-block;">
+              <img src="{% if match.photo and match.is_photo_approved %}{{ match.photo.url }}?v={{ match.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ match.full_name|default:'User'|urlencode }}&background=e94057&color=fff{% endif %}" alt="{{ match.full_name }}" style="width: 110px; height: 110px; object-fit: cover; border-radius: 50%; border: 4px solid #ffffff; box-shadow: 0 8px 20px rgba(233, 64, 87, 0.2); background: #fff; {% if match.blur_profile_photo and int_status != 'accepted' %}filter: blur(8px); pointer-events: none;{% endif %}">
+              
+              {% if match.approval_status == 'Approved' %}
+              <div style="position: absolute; bottom: 5px; right: 5px; background: #ffffff; border-radius: 50%; padding: 2px;">
+                  <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 20px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));" title="Verified Profile"></i>
+              </div>
+              {% endif %}
+          </div>
+
+          <!-- Name & Badges -->
+          <div style="margin-bottom: 20px;">
+              <h2 style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 24px; color: #1e293b; margin-bottom: 8px;">
+                  {{ match.full_name|default:'ForeverBond User' }}
+              </h2>
+              <div style="display: flex; gap: 8px; justify-content: center; align-items: center;">
+                  <span style="font-size: 12px; font-weight: 700; color: #e94057; background: rgba(233, 64, 87, 0.1); padding: 4px 12px; border-radius: 15px; letter-spacing: 0.5px;">{{ match.profile_id|default:"#SM0000" }}</span>
+                  {% if match.payment_status == 'Paid' %}
+                  <span style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #fff; padding: 4px 12px; border-radius: 15px; font-size: 12px; font-weight: 700; box-shadow: 0 4px 10px rgba(251,191,36,0.3); display: flex; align-items: center; gap: 5px;">
+                      <i class="fa-solid fa-crown"></i> Premium
+                  </span>
+                  {% endif %}
+              </div>
+          </div>
+
+          <!-- Quick Stats Grid (Glassmorphic Cards) -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px;">
+              <div style="background: #f8fafc; padding: 12px 8px; border-radius: 12px; border: 1px solid #f1f5f9;">
+                  <i class="fa-solid fa-ruler-vertical" style="color: #e94057; font-size: 16px; margin-bottom: 6px;"></i>
+                  <div style="font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-bottom: 2px;">Age / Height</div>
+                  <div style="font-size: 13px; color: #334155; font-weight: 600;">{{ match.age|default:"--" }} / {{ match.height|default:"--" }}</div>
+              </div>
+              <div style="background: #f8fafc; padding: 12px 8px; border-radius: 12px; border: 1px solid #f1f5f9;">
+                  <i class="fa-solid fa-briefcase" style="color: #e94057; font-size: 16px; margin-bottom: 6px;"></i>
+                  <div style="font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-bottom: 2px;">Profession</div>
+                  <div style="font-size: 13px; color: #334155; font-weight: 600;">{{ match.profession|default:"--" }}</div>
+              </div>
+              <div style="background: #f8fafc; padding: 12px 8px; border-radius: 12px; border: 1px solid #f1f5f9;">
+                  <i class="fa-solid fa-om" style="color: #e94057; font-size: 16px; margin-bottom: 6px;"></i>
+                  <div style="font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-bottom: 2px;">Religion</div>
+                  <div style="font-size: 13px; color: #334155; font-weight: 600;">{{ match.religion|default:"--" }}</div>
+              </div>
+              <div style="background: #f8fafc; padding: 12px 8px; border-radius: 12px; border: 1px solid #f1f5f9;">
+                  <i class="fa-solid fa-location-dot" style="color: #e94057; font-size: 16px; margin-bottom: 6px;"></i>
+                  <div style="font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-bottom: 2px;">Location</div>
+                  <div style="font-size: 13px; color: #334155; font-weight: 600;">{{ match.city|default:"--" }}</div>
+              </div>
+          </div>
+
+          <!-- Detailed Info Section -->
+          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: left; margin-bottom: 20px;">
+              <h5 style="font-size: 13px; font-weight: 800; color: #1e293b; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-address-card" style="color: #e94057;"></i> Complete Profile Details
+              </h5>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #f1f5f9; padding-bottom: 4px;">
+                          <div style="font-size: 11px; color: #94a3b8; font-weight: 600; text-transform: uppercase;">Marital Status</div>
+                          <div style="font-size: 13px; color: #334155; font-weight: 600;">{{ match.marital_status|default:"Not Specified" }}</div>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #f1f5f9; padding-bottom: 4px;">
+                          <div style="font-size: 11px; color: #94a3b8; font-weight: 600; text-transform: uppercase;">Mother Tongue</div>
+                          <div style="font-size: 13px; color: #334155; font-weight: 600;">{{ match.mother_tongue|default:"Not Specified" }}</div>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center;">
+                          <div style="font-size: 11px; color: #94a3b8; font-weight: 600; text-transform: uppercase;">Caste</div>
+                          <div style="font-size: 13px; color: #334155; font-weight: 600;">{{ match.caste|default:"Not Specified" }}</div>
+                      </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #f1f5f9; padding-bottom: 4px;">
+                          <div style="font-size: 11px; color: #94a3b8; font-weight: 600; text-transform: uppercase;">Education</div>
+                          <div style="font-size: 13px; color: #334155; font-weight: 600;">{{ match.highest_education|default:"Not Specified" }}</div>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center;">
+                          <div style="font-size: 11px; color: #94a3b8; font-weight: 600; text-transform: uppercase;">Annual Income</div>
+                          <div style="font-size: 13px; color: #334155; font-weight: 600;">{{ match.income|default:"Not Specified" }}</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
+              {% if int_status == 'pending' %}
+                  <button style="flex: 1; display: flex; align-items: center; justify-content: center; background: #6c757d; color: #fff; border: none; padding: 12px 0; border-radius: 30px; font-weight: 700; font-size: 14px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); cursor: not-allowed;" disabled>
+                      <i class="fa-solid fa-check" style="margin-right: 8px;"></i> Pending
+                  </button>
+              {% elif int_status == 'accepted' %}
+                  <button style="flex: 1; display: flex; align-items: center; justify-content: center; background: #28a745; color: #fff; border: none; padding: 12px 0; border-radius: 30px; font-weight: 700; font-size: 14px; box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3); cursor: not-allowed;" disabled>
+                      <i class="fa-solid fa-heart" style="margin-right: 8px;"></i> Connected
+                  </button>
+              {% else %}
+                  <button onclick="sendInterest('{{ match.user.id }}', this)" style="flex: 1; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); color: #fff; border: none; padding: 12px 0; border-radius: 30px; font-weight: 700; font-size: 14px; box-shadow: 0 8px 20px rgba(233, 64, 87, 0.3); cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">
+                      <i class="fa-solid fa-heart" style="margin-right: 8px;"></i> Connect Now
+                  </button>
+              {% endif %}
+              
+              <button onclick="{% if int_status == 'accepted' %}window.location.href='/interactions/chat/'{% else %}showAiPremiumAlert(){% endif %}" style="width: 45px; height: 45px; border-radius: 50%; border: 1px solid #e2e8f0; background: #fff; color: #e94057; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#e94057';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0';">
+                  <i class="fa-solid fa-comment-dots"></i>
+              </button>
+              <button onclick="{% if int_status == 'accepted' %}window.location.href='/interactions/chat/'{% else %}showAiPremiumAlert(){% endif %}" style="width: 45px; height: 45px; border-radius: 50%; border: 1px solid #e2e8f0; background: #fff; color: #64748b; display: flex; align-items: center; justify-content: center; font-size: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#94a3b8';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0';">
+                  <i class="fa-solid fa-phone"></i>
+              </button>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Prevent multiple alerts from opening at the same time
+if (typeof isAlertOpen === 'undefined') {
+    var isAlertOpen = false;
+}
+
+function showAiPremiumAlert() {
+    if (isAlertOpen) return;
+    isAlertOpen = true;
+
+    // Overlay
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.background = 'rgba(15, 23, 42, 0.7)';
+    overlay.style.backdropFilter = 'blur(5px)';
+    overlay.style.zIndex = '99998';
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.3s ease';
+    
+    // Alert Box
+    const alertBox = document.createElement('div');
+    alertBox.style.position = 'fixed';
+    alertBox.style.top = '50%';
+    alertBox.style.left = '50%';
+    alertBox.style.transform = 'translate(-50%, -40%)';
+    alertBox.style.background = '#ffffff';
+    alertBox.style.padding = '35px 30px';
+    alertBox.style.borderRadius = '24px';
+    alertBox.style.boxShadow = '0 25px 50px rgba(0,0,0,0.25)';
+    alertBox.style.zIndex = '99999';
+    alertBox.style.textAlign = 'center';
+    alertBox.style.maxWidth = '380px';
+    alertBox.style.width = '90%';
+    alertBox.style.opacity = '0';
+    alertBox.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    
+    alertBox.innerHTML = `
+        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, rgba(233, 64, 87, 0.1) 0%, rgba(255, 92, 117, 0.1) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 1px solid rgba(233,64,87,0.2);">
+            <i class="fa-solid fa-shield-halved" style="font-size: 32px; color: #e94057;"></i>
+        </div>
+        <h3 style="font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 800; color: #1e293b; margin-bottom: 12px; letter-spacing: -0.5px;">Verification Required</h3>
+        <p style="font-size: 14.5px; color: #64748b; line-height: 1.6; margin-bottom: 25px; font-weight: 500;">
+            To connect with profiles and unlock chatting, please verify your account. Visit the <strong>Verified Profiles</strong> page to continue!
+        </p>
+        <button id="goVerifyBtn" style="background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); color: #fff; border: none; padding: 12px 35px; border-radius: 30px; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(233, 64, 87, 0.3); transition: transform 0.2s; width: 100%; margin-bottom: 10px;">Go to Verified Profiles</button>
+        <button id="closeAiAlertBtn" style="background: transparent; color: #94a3b8; border: none; padding: 10px 35px; font-size: 14px; font-weight: 600; cursor: pointer; width: 100%;">Maybe Later</button>
+    `;
+    
+    document.body.appendChild(overlay);
+    document.body.appendChild(alertBox);
+    
+    // Trigger animations
+    setTimeout(() => {
+        overlay.style.opacity = '1';
+        alertBox.style.opacity = '1';
+        alertBox.style.transform = 'translate(-50%, -50%)';
+    }, 10);
+    
+    function closeAlert() {
+        overlay.style.opacity = '0';
+        alertBox.style.opacity = '0';
+        alertBox.style.transform = 'translate(-50%, -40%)';
+        setTimeout(() => {
+            alertBox.remove();
+            overlay.remove();
+            isAlertOpen = false;
+        }, 300);
+    }
+    
+    document.getElementById('closeAiAlertBtn').onclick = closeAlert;
+    document.getElementById('goVerifyBtn').onclick = function() {
+        window.location.href = '/profiles/verified-profiles/';
+    };
+    overlay.onclick = closeAlert;
+}
+</script>
+
+

@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" type="image/png" href="/static/web/images/favicon.png">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Perfect Matches</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS -->
+
+<link rel="stylesheet" href="/static/web/css/matches2.css" />
+<link rel="stylesheet" href="/static/web/css/navbar.css" />
+
+
+
+
+</head>
+
+<body>
+<!-- navbar_start  -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+    </script>
+    <div class="top-navbar-placeholder"></div>
+
+    <div class="nav-container">
+      <nav class="secondary-navbar">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="/" class="nav-link"
+              ><i class="fa-solid fa-house"></i> HOME</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a href="javascript:void(0);" data-bs-toggle="dropdown" class="nav-link"
+              ><i class="fa-solid fa-magnifying-glass"></i> SEARCH
+              <i class="fa-solid fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-menu">
+              <a href="/interactions/search/basic/" class="dropdown-item"
+                ><i class="fa-solid fa-sliders"></i> Basic Search</a
+              >
+              <a href="/interactions/search/advanced/" class="dropdown-item"
+                ><i class="fa-solid fa-filter"></i> Advanced Search</a
+              >
+              <a href="/interactions/search/ai/" class="dropdown-item"
+                ><i class="fa-solid fa-wand-magic-sparkles"></i> AI Match Finder
+                <span class="ai-badge">New</span></a
+              >
+              <a href="/interactions/search/saved/" class="dropdown-item"
+                ><i class="fa-solid fa-bookmark"></i> Saved Searches</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="javascript:void(0);" data-bs-toggle="dropdown" class="nav-link"
+              ><i class="fa-solid fa-heart"></i> MATCHES
+              <i class="fa-solid fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-menu">
+              <a href="/interactions/matches/today/" class="dropdown-item"
+                ><i class="fa-solid fa-calendar-day"></i> Today's Matches</a
+              >
+              <a href="/interactions/matches/recommended/" class="dropdown-item"
+                ><i class="fa-solid fa-star"></i> Recommended Matches</a
+              >
+              <a href="/interactions/matches/Ai-match/" class="dropdown-item"
+                ><i class="fa-solid fa-brain"></i> AI Matches</a
+              >
+              <a href="/interactions/matches/nearby/" class="dropdown-item"
+                ><i class="fa-solid fa-location-dot"></i> Nearby Matches</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="javascript:void(0);" data-bs-toggle="dropdown" class="nav-link"
+              ><i class="fa-solid fa-user"></i> PROFILES
+              <i class="fa-solid fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-menu">
+              {% if not request.user.is_authenticated or request.user.profile.gender == 'Male' %}
+<a href="/interactions/featured/brides/" class="dropdown-item"
+                ><i class="fa-solid fa-person-dress" style="color: #e94057; margin-right: 8px;"></i>  Featured Brides</a
+              >
+{% endif %}
+              {% if not request.user.is_authenticated or request.user.profile.gender == 'Female' %}
+<a href="/interactions/featured/grooms/" class="dropdown-item"
+                ><i class="fa-solid fa-person" style="color: #e94057; margin-right: 8px;"></i>  Featured Grooms</a
+              >
+{% endif %}
+              <a href="/profiles/verified-profiles/" class="dropdown-item"
+                ><i class="fa-solid fa-user-shield" style="color: #e94057; margin-right: 8px;"></i>  Verified Profiles</a
+              >
+              <a href="/profiles/saved-profiles/" class="dropdown-item"
+                ><i class="fa-solid fa-bookmark" style="color: #e94057; margin-right: 8px;"></i>  Saved Profiles</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="/stories/" class="nav-link"
+              ><i class="fa-solid fa-bell-concierge"></i> STORIES</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a href="/latest-article/" data-bs-toggle="dropdown" class="nav-link"
+              ><i class="fa-solid fa-newspaper"></i> BLOG
+              <i class="fa-solid fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-menu">
+              <a href="/latest-article/" class="dropdown-item"
+                ><i class="fa-solid fa-book-open"></i> Latest Articles</a
+              >
+              <a href="/relationship-tips/" class="dropdown-item"
+                ><i class="fa-solid fa-handshake"></i> Relationship Tips</a
+              >
+              <a href="/marriage-advice/" class="dropdown-item"
+                ><i class="fa-solid fa-ring"></i> Marriage Advice</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="/contact/" class="nav-link"
+              ><i class="fa-solid fa-envelope"></i> CONTACT
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+    <!--navbar_end -->
+
+    <script>
+      const langBtn = document.getElementById("langBtn");
+      const langDropdown = document.querySelector(".lang-dropdown");
+
+      if (langBtn && langDropdown) {
+        langBtn.addEventListener("click", () => {
+          langDropdown.classList.toggle("active");
+        });
+      }
+
+      // close on outside click
+      window.addEventListener("click", (e) => {
+        if (langDropdown && !langDropdown.contains(e.target)) {
+          langDropdown.classList.remove("active");
+        }
+      });
+
+      document.querySelectorAll(".lang-item").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const lang = btn.dataset.lang;
+
+          // save
+          localStorage.setItem("siteLang", lang);
+
+          // update text
+          document.getElementById("currentLanguage").innerText = btn.innerText;
+
+          langDropdown.classList.remove("active");
+
+          applyLanguage(lang);
+        });
+      });
+
+      function applyLanguage(lang) {
+        document.querySelectorAll("[data-lang-key]").forEach((el) => {
+          const key = el.getAttribute("data-lang-key");
+          if (t[key]) {
+            el.innerText = t[key];
+          }
+        });
+      }
+
+      // load saved language
+      window.addEventListener("load", () => {
+        const saved = localStorage.getItem("siteLang");
+        if (saved) {
+          applyLanguage(saved);
+        }
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        const page = location.pathname.split("/").pop();
+
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          if (link.getAttribute("href") === page) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<!-- ===========================
+Hero Section Start
+=========================== -->
+
+<section class="pm-hero-section">
+
+<div class="container">
+
+<div class="row align-items-center gy-5">
+
+
+<!-- Left -->
+
+<div class="col-lg-6">
+
+<div class="pm-hero-content">
+
+<h1>
+
+Today's
+
+<span>Perfect Matches</span>
+
+</h1>
+
+<p>
+
+Handpicked profiles curated just for you.
+
+Find your life partner today!
+
+</p>
+
+
+<div class="pm-hero-badges">
+
+<div class="pm-badge">
+
+<i class="bi bi-patch-check-fill"></i>
+
+100% Verified Profiles
+
+</div>
+
+
+<div class="pm-badge">
+
+<i class="bi bi-shield-lock-fill"></i>
+
+Privacy Assured
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- Right -->
+
+<div class="col-lg-6">
+
+<div class="pm-hero-image">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzoKOrk5xvM2PJRTNApkQn5oD4K9Er5FZGerxazTv4ug&s=10"
+     class="img-fluid"
+     alt="Wedding Couple">
+
+</div>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===========================
+Filter Section Start
+=========================== -->
+
+<section class="pm-filter-section">
+
+<div class="container">
+
+
+<div class="pm-filter-card">
+
+
+<div class="pm-filter-heading">
+
+<h2>
+Find Your Perfect Match
+</h2>
+
+<p>
+Search verified profiles according to your preference
+</p>
+
+</div>
+
+
+
+<div class="row g-4">
+
+
+<!-- Age -->
+
+
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="pm-filter-group">
+
+        <label class="pm-filter-label">
+            Age
+        </label>
+
+        <input
+            type="text"
+            class="form-control pm-filter-input"
+            list="pm-age-list"
+            placeholder="Search or Type Age">
+
+                <datalist id="pm-age-list">
+
+            <option value="21 - 25">
+
+            <option value="26 - 30">
+
+            <option value="31 - 35">
+
+            <option value="36 - 40">
+
+            <option value="40+">
+
+        </datalist>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<!-- Height -->
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="pm-filter-group">
+
+        <label class="pm-filter-label">
+            Height
+        </label>
+
+        <input
+            type="text"
+            class="form-control pm-filter-input"
+            list="pm-height-list"
+            placeholder="Search or Type Height">
+
+        <datalist id="pm-height-list">
+
+            <option value="4'10&quot;">
+
+            <option value="5'0&quot;">
+
+            <option value="5'2&quot;">
+
+            <option value="5'4&quot;">
+
+            <option value="5'6&quot;">
+
+            <option value="5'8&quot;">
+
+            <option value="6'0&quot;">
+
+            <option value="6'2&quot;">
+
+        </datalist>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- Religion -->
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="pm-filter-group">
+
+        <label class="pm-filter-label">
+            Religion
+        </label>
+
+        <input
+            type="text"
+            class="form-control pm-filter-input"
+            list="pm-religion-list"
+            placeholder="Search or Type Religion">
+
+        <datalist id="pm-religion-list">
+
+            <option value="Hindu">
+
+            <option value="Muslim">
+
+            <option value="Christian">
+
+            <option value="Sikh">
+
+            <option value="Jain">
+
+            <option value="Buddhist">
+
+        </datalist>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Caste -->
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="pm-filter-group">
+
+        <label class="pm-filter-label">
+            Caste
+        </label>
+
+        <input
+            type="text"
+            class="form-control pm-filter-input"
+            list="pm-caste-list"
+            placeholder="Search or Type Caste">
+
+        <datalist id="pm-caste-list">
+
+            <option value="Maratha">
+
+            <option value="Brahmin">
+
+            <option value="Rajput">
+
+            <option value="Jat">
+
+            <option value="Yadav">
+
+            <option value="Kayastha">
+
+        </datalist>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<!-- Education -->
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="pm-filter-group">
+
+        <label class="pm-filter-label">
+            Education
+        </label>
+
+        <input
+            type="text"
+            class="form-control pm-filter-input"
+            list="pm-education-list"
+            placeholder="Search or Type Education">
+
+        <datalist id="pm-education-list">
+
+            <option value="B.Tech">
+
+            <option value="B.E">
+
+            <option value="MBA">
+
+            <option value="MCA">
+
+            <option value="MBBS">
+
+            <option value="M.Tech">
+
+        </datalist>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<!-- Profession -->
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="pm-filter-group">
+
+        <label class="pm-filter-label">
+            Profession
+        </label>
+
+        <input
+            type="text"
+            class="form-control pm-filter-input"
+            list="pm-profession-list"
+            placeholder="Search or Type Profession">
+
+        <datalist id="pm-profession-list">
+
+            <option value="Software Engineer">
+
+            <option value="Doctor">
+
+            <option value="Teacher">
+
+            <option value="Business">
+
+            <option value="Lawyer">
+
+            <option value="Government Employee">
+
+        </datalist>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- Mother Tongue -->
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="pm-filter-group">
+
+        <label class="pm-filter-label">
+            Mother Tongue
+        </label>
+
+        <input
+            type="text"
+            class="form-control pm-filter-input"
+            list="pm-language-list"
+            placeholder="Search or Type Language">
+
+        <datalist id="pm-language-list">
+
+            <option value="Hindi">
+
+            <option value="Marathi">
+
+            <option value="English">
+
+            <option value="Gujarati">
+
+            <option value="Punjabi">
+
+            <option value="Kannada">
+
+        </datalist>
+
+    </div>
+
+</div>
+
+
+
+
+
+<!-- Location -->
+
+<div class="col-lg-3 col-md-6">
+
+    <div class="pm-filter-group">
+
+        <label class="pm-filter-label">
+            Location
+        </label>
+
+        <input
+            type="text"
+            class="form-control pm-filter-input"
+            list="pm-location-list"
+            placeholder="Search or Type City">
+
+        <datalist id="pm-location-list">
+
+            <option value="Pune">
+
+            <option value="Mumbai">
+
+            <option value="Delhi">
+
+            <option value="Nagpur">
+
+            <option value="Nashik">
+
+            <option value="Kolhapur">
+
+            <option value="Bangalore">
+
+            <option value="Hyderabad">
+
+        </datalist>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- Buttons -->
+
+<div class="pm-filter-buttons">
+
+
+<button class="pm-search-btn">
+
+<i class="bi bi-search"></i>
+
+Search Matches
+
+</button>
+
+
+
+<button class="pm-reset-btn">
+
+<i class="bi bi-arrow-clockwise"></i>
+
+Reset
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+<!-- ==============================
+     PROFILE SECTION START
+================================= -->
+
+
+<section class="pm-profile-section">
+
+
+<div class="pm-profile-container">
+
+{% if matches %}
+    {% for match in matches %}
+    <div class="pm-profile-card">
+        <!-- IMAGE SECTION -->
+        <div class="pm-profile-image-box">
+            <img src="{% if match.photo %}{{ match.photo.url }}?v={{ match.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ match.full_name|default:match.user.username|urlencode }}&background=e94057&color=fff{% endif %}" style="object-fit: contain; width: 100%; height: 100%; background: #f8fafc;">
+        </div>
+
+        <!-- DETAILS SECTION -->
+        <div class="pm-profile-details">
+            <div class="pm-profile-header">
+                <span class="pm-verified-badge">✓ Verified</span>
+                <button class="pm-bookmark-btn">♡</button>
+            </div>
+            <h3>{{ match.full_name|default:match.user.username }}</h3>
+            <p class="pm-age">{{ match.age|default:"N/A" }} Yrs • {{ match.height|default:"N/A" }}</p>
+
+            <div class="pm-user-info">
+                <p class="card-edu">🎓 {{ match.highest_education|default:"N/A" }}</p>
+                <p class="card-prof">💼 {{ match.profession|default:"N/A" }}</p>
+                <p class="card-lang">💬 {{ match.mother_tongue|default:"N/A" }}</p>
+                <p class="card-loc">📍 {{ match.city|default:"N/A" }}{% if match.state %}, {{ match.state }}{% endif %}</p>
+                <p class="card-rel">🕉️ {{ match.religion|default:"N/A" }}</p>
+                <p class="card-caste">👥 {{ match.caste|default:"N/A" }}</p>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="pm-card-buttons" style="display: flex; gap: 10px;">
+                <button type="button" class="pm-biodata-btn" data-bs-toggle="modal" data-bs-target="#profileModal{{ match.user.id }}" style="flex: 1; border-radius: 25px; padding: 10px 0; border: none; background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); color: white; font-weight: 600; cursor: pointer;">
+                    <i class="fa-regular fa-eye"></i> View Profile
+                </button>
+                {% if match.interest_status == 'pending' %}
+                    <button type="button" class="pm-biodata-btn" style="flex: 1; border-radius: 25px; padding: 10px 0; border: none; background: #6c757d; color: white; font-weight: 600; cursor: not-allowed;" disabled>
+                        Pending
+                    </button>
+                {% elif match.interest_status == 'accepted' %}
+                    <button type="button" class="pm-biodata-btn" style="flex: 1; border-radius: 25px; padding: 10px 0; border: none; background: #28a745; color: white; font-weight: 600; cursor: not-allowed;" disabled>
+                        Connected
+                    </button>
+                {% else %}
+                    <button type="button" class="pm-biodata-btn" onclick="sendInterest('{{ match.user.id }}', this)" style="flex: 1; border-radius: 25px; padding: 10px 0; border: 1px solid #e94057; background: white; color: #e94057; font-weight: 600; cursor: pointer;">
+                        <i class="fa-solid fa-user-plus"></i> Connect
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- MATCH SCORE -->
+        <div class="pm-match-score">
+            <b>96%</b>
+            <span>Match</span>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div style="width: 100%; text-align: center; padding: 50px;">
+        <h4>No matches found.</h4>
+    </div>
+{% endif %}
+</div>
+
+</section>
+
+
+<!-- ==============================
+     PROFILE SECTION END
+================================= -->
+
+
+<!-- =================================
+     PAGINATION SECTION START
+================================== -->
+
+<section class="pm-pagination-section">
+    {% if matches.has_other_pages %}
+    <div class="pm-pagination">
+        {% if matches.has_previous %}
+        <a href="?page={{ matches.previous_page_number }}" class="pm-page-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+            <span style="margin-right: 5px;">&#10094;</span> Previous
+        </a>
+        {% else %}
+        <button class="pm-page-btn" disabled style="opacity: 0.5; cursor: not-allowed; display: inline-flex; align-items: center; justify-content: center;">
+            <span style="margin-right: 5px;">&#10094;</span> Previous
+        </button>
+        {% endif %}
+
+        {% for num in matches.paginator.page_range %}
+            {% if matches.number == num %}
+            <button class="pm-page-number pm-active">{{ num }}</button>
+            {% elif num > matches.number|add:'-3' and num < matches.number|add:'3' %}
+            <a href="?page={{ num }}" class="pm-page-number" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; color: inherit;">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if matches.has_next %}
+        <a href="?page={{ matches.next_page_number }}" class="pm-page-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+            Next <span style="margin-left: 5px;">&#10095;</span>
+        </a>
+        {% else %}
+        <button class="pm-page-btn" disabled style="opacity: 0.5; cursor: not-allowed; display: inline-flex; align-items: center; justify-content: center;">
+            Next <span style="margin-left: 5px;">&#10095;</span>
+        </button>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
+
+<!-- =================================
+     PAGINATION SECTION END
+================================== -->
+ <footer class="sm-footer">
+          <div class="footer-radial-aura"></div>
+          <div class="sm-container">
+            <div class="footer-main-row">
+              <div class="footer-brand-col">
+                <h2 class="footer-main-logo">
+                  <i class="fa-solid fa-heart"></i>ForeverBond
+                </h2>
+                <p class="footer-brand-tagline">
+                  India's trusted choice for premium, private and verified
+                  matchmaking networks.
+                </p>
+              </div>
+
+              <div class="footer-link-col">
+              <h4>Search</h4>
+              <ul>
+                <li><a href="{% url 'basic_search' %}">Basic Search</a></li>
+                <li><a href="{% url 'advanced_search' %}">Advanced Filter</a></li>
+                <li><a href="{% url 'ai_search' %}">AI Match Finder</a></li>
+              </ul>
+            </div>
+
+              <div class="footer-link-col">
+              <h4>Profiles</h4>
+              <ul>
+                <li><a href="{% url 'recomended_matches' %}">Top Matches</a></li>
+                <li><a href="{% url 'saved_profiles' %}">Saved Profiles</a></li>
+                <li><a href="{% url 'verified_profiles' %}">Verified Profiles</a></li>
+              </ul>
+            </div>
+
+              <div class="footer-link-col">
+              <h4>Support</h4>
+              <ul>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'contact' %}">FAQs</a></li>
+                <li><a href="{{ global_privacy_policy_url }}">Privacy Policy</a></li>
+              </ul>
+            </div>
+
+              <div class="footer-badges-col">
+                <div class="badge-strip-node">
+                  <i class="fa-solid fa-shield-halved badge-rose"></i>100%
+                  Verified
+                </div>
+                <div class="badge-strip-node">
+                  <i class="fa-solid fa-lock badge-gold"></i>Private &amp;
+                  Secure
+                </div>
+              </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+              <p class="advanced-copyright-txt">
+                &copy; 2026
+                <span class="signature-rose-txt">ForeverBond</span> Matrimony. All
+                rights reserved.
+              </p>
+              <div class="footer-social-spheres">
+                <a href="https://www.instagram.com/omya_.x07" target="_blank" aria-label="Instagram" class="social-sphere-item"
+                  ><i class="fa-brands fa-instagram"></i
+                ></a>
+                <a href="https://www.facebook.com/omkar.misal.587" target="_blank" aria-label="Facebook" class="social-sphere-item"
+                  ><i class="fa-brands fa-facebook-f"></i
+                ></a>
+                <a href="https://www.linkedin.com/in/omkar-misal-aa191336b/" target="_blank" aria-label="LinkedIn" class="social-sphere-item"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+                <a href="https://www.youtube.com/@OmkarMisal-ug8ks" target="_blank" aria-label="YouTube" class="social-sphere-item"
+                  ><i class="fa-brands fa-youtube"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </footer>
+    
+  
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+<script src="/static/web/js/global-interactions.js"></script>
+
+<!-- Dynamic Filtering Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const searchBtn = document.querySelector('.pm-search-btn');
+    const resetBtn = document.querySelector('.pm-reset-btn');
+    
+    if (searchBtn && resetBtn) {
+        const ageInput = document.querySelector('input[list="pm-age-list"]');
+        const heightInput = document.querySelector('input[list="pm-height-list"]');
+        const relInput = document.querySelector('input[list="pm-religion-list"]');
+        const casteInput = document.querySelector('input[list="pm-caste-list"]');
+        const eduInput = document.querySelector('input[list="pm-education-list"]');
+        const profInput = document.querySelector('input[list="pm-profession-list"]');
+        const langInput = document.querySelector('input[list="pm-language-list"]');
+        const locInput = document.querySelector('input[list="pm-location-list"]');
+        
+        searchBtn.addEventListener('click', function() {
+            const ageVal = ageInput.value.toLowerCase().trim();
+            const heightVal = heightInput.value.toLowerCase().trim();
+            const relVal = relInput.value.toLowerCase().trim();
+            const casteVal = casteInput.value.toLowerCase().trim();
+            const eduVal = eduInput.value.toLowerCase().trim();
+            const profVal = profInput.value.toLowerCase().trim();
+            const langVal = langInput.value.toLowerCase().trim();
+            const locVal = locInput.value.toLowerCase().trim();
+            
+            const cards = document.querySelectorAll('.pm-profile-card');
+            
+            cards.forEach(card => {
+                let show = true;
+                
+                const cardAgeHeight = card.querySelector('.pm-age').textContent.toLowerCase();
+                const cardEdu = card.querySelector('.card-edu') ? card.querySelector('.card-edu').textContent.toLowerCase() : '';
+                const cardProf = card.querySelector('.card-prof') ? card.querySelector('.card-prof').textContent.toLowerCase() : '';
+                const cardLang = card.querySelector('.card-lang') ? card.querySelector('.card-lang').textContent.toLowerCase() : '';
+                const cardLoc = card.querySelector('.card-loc') ? card.querySelector('.card-loc').textContent.toLowerCase() : '';
+                const cardRel = card.querySelector('.card-rel') ? card.querySelector('.card-rel').textContent.toLowerCase() : '';
+                const cardCaste = card.querySelector('.card-caste') ? card.querySelector('.card-caste').textContent.toLowerCase() : '';
+                
+                // Very simple matching logic
+                if (ageVal && !cardAgeHeight.includes(ageVal)) show = false;
+                if (heightVal && !cardAgeHeight.includes(heightVal)) show = false;
+                if (relVal && !cardRel.includes(relVal)) show = false;
+                if (casteVal && !cardCaste.includes(casteVal)) show = false;
+                if (eduVal && !cardEdu.includes(eduVal)) show = false;
+                if (profVal && !cardProf.includes(profVal)) show = false;
+                if (langVal && !cardLang.includes(langVal)) show = false;
+                if (locVal && !cardLoc.includes(locVal)) show = false;
+                
+                if (show) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        resetBtn.addEventListener('click', function() {
+            ageInput.value = '';
+            heightInput.value = '';
+            relInput.value = '';
+            casteInput.value = '';
+            eduInput.value = '';
+            profInput.value = '';
+            langInput.value = '';
+            locInput.value = '';
+            
+            const cards = document.querySelectorAll('.pm-profile-card');
+            cards.forEach(card => {
+                card.style.display = 'flex';
+            });
+        });
+    }
+});
+</script>
+
+
+<!-- Global Profile Modals -->
+{% for match in matches %}
+    {% include 'web/profile_modal.html' %}
+{% endfor %}
+
+<script>
+function toggleSaveProfile(profileId, btnElement) {
+    const icon = btnElement.querySelector('i');
+    
+    fetch('/interactions/api/save-profile/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            'profile_id': profileId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'saved') {
+            icon.classList.remove('bi-bookmark');
+            icon.classList.add('bi-bookmark-fill');
+            // alert(data.message);
+        } else if (data.status === 'unsaved') {
+            icon.classList.remove('bi-bookmark-fill');
+            icon.classList.add('bi-bookmark');
+            // alert(data.message);
+        } else {
+            alert(data.message || 'Error occurred');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while saving profile.');
+    });
+}
+</script>
+
+</body>
+
+</html>
+

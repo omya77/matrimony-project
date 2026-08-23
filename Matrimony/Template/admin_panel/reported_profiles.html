@@ -1,0 +1,100 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}Reported Profiles - Admin Panel{% endblock %}
+
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row mb-4">
+        <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Reported Profiles</h1>
+            <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Review complaints filed by users and take necessary actions.</p>
+        </div>
+    </div>
+
+    <!-- Pending Reports -->
+    <div class="card-panel fade-in-up delay-1">
+        <div class="card-header">
+            <h3 class="card-title">Pending Reports</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Reported By</th>
+                        <th>Reported User</th>
+                        <th>Reason for Report</th>
+                        <th>Date</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for report in pending_reports %}
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: #0f172a;">{{ report.reporter.username }}</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">{{ report.reporter.email }}</div>
+                        </td>
+                        <td>
+                            <div style="font-weight: 600; color: #e11d48;">{{ report.reported_user.username }}</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">{{ report.reported_user.email }}</div>
+                        </td>
+                        <td style="max-width: 300px; white-space: normal;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #334155;">{{ report.reason }}</p>
+                        </td>
+                        <td>{{ report.timestamp|date:"d M Y, h:i A" }}</td>
+                        <td class="text-center">
+                            <form method="POST" style="display: flex; gap: 8px; justify-content: center;">
+                                {% csrf_token %}
+                                <input type="hidden" name="report_id" value="{{ report.id }}">
+                                <button type="submit" name="action" value="resolve" class="btn btn-sm btn-outline-primary" style="padding: 6px 12px; font-weight: 600; border-radius: 8px;" title="Dismiss Report">Dismiss</button>
+                                <button type="submit" name="action" value="ban" class="btn btn-sm btn-outline-danger" style="padding: 6px 12px; font-weight: 600; border-radius: 8px;" title="Ban Reported User">Ban User</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="5" class="text-center text-muted py-4">No pending reports found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Resolved History -->
+    <div class="card-panel fade-in-up delay-2 mt-4">
+        <div class="card-header">
+            <h3 class="card-title">Resolved Reports</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Reported By</th>
+                        <th>Reported User</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for report in resolved_reports %}
+                    <tr>
+                        <td>{{ report.reporter.username }}</td>
+                        <td>
+                            <div style="font-weight: 600;">{{ report.reported_user.username }}</div>
+                            {% if not report.reported_user.is_active %}
+                            <span style="display: inline-block; margin-top: 4px; color: #ef4444; font-size: 0.75rem; font-weight: 700; background: #fee2e2; padding: 2px 8px; border-radius: 12px; border: 1px solid #fecaca;"><i class="fa-solid fa-ban" style="font-size: 0.7rem;"></i> Banned</span>
+                            {% endif %}
+                        </td>
+                        <td style="max-width: 300px; white-space: normal; font-size: 0.85rem;">{{ report.reason|truncatewords:10 }}</td>
+                        <td>
+                            <span class="status-badge verified">Resolved</span>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="4" class="text-center text-muted">No history found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

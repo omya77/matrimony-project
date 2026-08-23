@@ -1,0 +1,81 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% block title %}Website Content - Sarthak{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="page-title-row">
+        <div>
+            <h1>Website Content <span class="welcome-text">Manage static pages and text</span></h1>
+        </div>
+        <button class="btn btn-primary" onclick="saveWebsiteContent()" style="background: var(--sidebar-active); border: none; border-radius: 8px; padding: 10px 20px;">
+            <i class="fa-solid fa-save"></i> Save Changes
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card-panel glass-card mb-4">
+                <div class="card-header border-bottom pb-3 mb-4">
+                    <h3 class="card-title"><i class="fa-solid fa-file-lines text-primary me-2"></i> About Us Page Content</h3>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-muted fw-bold">Main Heading</label>
+                    <input type="text" id="website_heading" class="form-control" value="{{ website_heading }}" style="border-radius: 8px; border: 1px solid #e2e8f0;">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-muted fw-bold">Description Text</label>
+                    <textarea id="website_description" class="form-control" rows="5" style="border-radius: 8px; border: 1px solid #e2e8f0;">{{ website_description }}</textarea>
+                </div>
+            </div>
+
+            <div class="card-panel glass-card">
+                <div class="card-header border-bottom pb-3 mb-4">
+                    <h3 class="card-title"><i class="fa-solid fa-shield-halved text-success me-2"></i> Policies & Terms</h3>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-muted fw-bold">Privacy Policy URL</label>
+                    <input type="text" id="privacy_policy_url" class="form-control" value="{{ privacy_policy_url }}" style="border-radius: 8px; border: 1px solid #e2e8f0;">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-muted fw-bold">Terms of Service URL</label>
+                    <input type="text" id="terms_url" class="form-control" value="{{ terms_url }}" style="border-radius: 8px; border: 1px solid #e2e8f0;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function saveWebsiteContent() {
+    const heading = document.getElementById('website_heading').value;
+    const desc = document.getElementById('website_description').value;
+    const privacy = document.getElementById('privacy_policy_url').value;
+    const terms = document.getElementById('terms_url').value;
+    
+    fetch('/admin_panel/api/save-website-content/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            website_heading: heading,
+            website_description: desc,
+            privacy_policy_url: privacy,
+            terms_url: terms
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === 'success') {
+            alert(data.message);
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while saving.');
+    });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,770 @@
+/*======================================
+        GOOGLE VARIABLES
+=======================================*/
+
+:root {
+    --white: #ffffff;
+    --rose: #E94057;
+    --pink: #FFF0F3;
+    --gold: #FFD54F;
+    --dark: #2D3748;
+    --gray: #718096;
+    --glass: rgba(255, 255, 255, .45);
+    --border: rgba(255, 255, 255, .65);
+
+    --shadow: 0 10px 35px rgba(233, 64, 87, .12);
+
+    --gradient: linear-gradient(135deg, #E94057, #FF6B81);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #FFF8F8, #FFF4EF);
+    color: var(--dark);
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Poppins', sans-serif;
+}
+
+/*======================================
+            NAVBAR
+=======================================*/
+
+.navbar-container {
+
+    position: fixed;
+
+    top: 20px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 90%;
+
+    max-width: 1200px;
+
+    z-index: 999;
+
+}
+
+.navbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px 30px;
+
+    border-radius: 60px;
+
+    backdrop-filter: blur(15px);
+
+    background: var(--glass);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
+}
+
+.logo {
+
+    text-decoration: none;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    color: var(--rose);
+
+}
+
+/*======================================
+            RIGHT NAV
+=======================================*/
+
+.nav-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+}
+
+.nav-icons-group {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    border-right: 1px solid rgba(0, 0, 0, .08);
+
+    padding-right: 20px;
+
+}
+
+.icon-btn {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    background: white;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    transition: .3s;
+
+    position: relative;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .05);
+
+}
+
+.icon-btn:hover {
+
+    background: var(--gradient);
+
+    color: white;
+
+    transform: translateY(-4px);
+
+}
+
+.badge-dot {
+
+    position: absolute;
+
+    top: 9px;
+
+    right: 10px;
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: red;
+
+}
+
+/*======================================
+            PROFILE
+=======================================*/
+
+.profile-menu-wrapper {
+
+    position: relative;
+
+}
+
+.profile-trigger {
+
+    border: none;
+
+    background: none;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+.avatar-mini {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 3px solid var(--rose);
+
+}
+
+#arrowIcon {
+
+    transition: .3s;
+
+    color: #666;
+
+    font-size: 13px;
+
+}
+
+/*======================================
+        PROFILE DROPDOWN
+=======================================*/
+
+.profile-dropdown {
+
+    position: absolute;
+
+    top: 65px;
+
+    right: 0;
+
+    width: 330px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .15);
+
+    overflow: hidden;
+
+    display: none;
+
+    animation: popup .35s;
+
+}
+
+@keyframes popup {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+.dropdown-header {
+
+    text-align: center;
+
+    padding: 25px;
+
+    background: var(--gradient);
+
+    color: white;
+
+}
+
+.avatar-large {
+
+    width: 95px;
+
+    height: 95px;
+
+    border-radius: 50%;
+
+    border: 4px solid white;
+
+    object-fit: cover;
+
+    margin-bottom: 12px;
+
+}
+
+.dropdown-header h3 {
+
+    font-size: 22px;
+
+}
+
+.dropdown-header p {
+
+    margin-top: 6px;
+
+    opacity: .9;
+
+}
+
+.verified {
+
+    display: inline-block;
+
+    margin-top: 12px;
+
+    background: white;
+
+    color: var(--rose);
+
+    padding: 6px 18px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+.dropdown-info {
+
+    padding: 25px;
+
+}
+
+.info-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+.info-row span {
+
+    color: #777;
+
+}
+
+.info-row strong {
+
+    color: #333;
+
+}
+
+/*======================================
+            MAIN LAYOUT
+=======================================*/
+
+.main-layout {
+    max-width: 1200px;
+    margin: 130px auto 60px;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+}
+
+/*======================================
+            GLASS CARD
+=======================================*/
+
+.glass-card {
+    background: rgba(255, 255, 255, .55);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, .7);
+    border-radius: 30px;
+    padding: 35px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
+    transition: .35s;
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .05);
+}
+
+/*======================================
+        LEFT PROFILE CARD
+=======================================*/
+
+.profile-side-card {
+    text-align: center;
+}
+
+.avatar-main-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.avatar-main {
+
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 5px solid white;
+
+    box-shadow: 0 10px 25px rgba(233, 64, 87, .18);
+
+}
+
+.verified-badge {
+
+    position: absolute;
+
+    bottom: 5px;
+
+    right: 70px;
+
+    background: #FFD54F;
+
+    color: #222;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    padding: 6px 15px;
+
+    border-radius: 25px;
+
+}
+
+.user-name {
+
+    font-size: 26px;
+
+    margin-top: 10px;
+
+    color: #333;
+
+}
+
+.user-id {
+
+    color: #888;
+
+    margin: 10px 0 25px;
+
+    font-size: 14px;
+
+}
+
+/*======================================
+            BUTTON
+=======================================*/
+
+.btn-gradient {
+
+    border: none;
+
+    background: var(--gradient);
+
+    color: white;
+
+    padding: 13px 35px;
+
+    border-radius: 40px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: .35s;
+
+    box-shadow: 0 10px 20px rgba(233, 64, 87, .25);
+
+}
+
+.btn-gradient:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .05);
+
+}
+
+/*======================================
+        RIGHT INFO CARD
+=======================================*/
+
+.info-main-card h2 {
+
+    color: var(--rose);
+
+    margin-bottom: 30px;
+
+    border-bottom: 2px solid #ffe5ea;
+
+    padding-bottom: 12px;
+
+}
+
+.details-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+
+}
+
+.detail-item {
+
+    background: #fff;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    transition: .3s;
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, .05);
+
+}
+
+.detail-item:hover {
+
+    transform: translateY(-5px);
+
+}
+
+.detail-item label {
+
+    display: block;
+
+    color: #888;
+
+    font-size: 12px;
+
+    margin-bottom: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+}
+
+.detail-item span {
+
+    color: #333;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+}
+
+/*======================================
+        SCROLLBAR
+=======================================*/
+
+::-webkit-scrollbar {
+
+    width: 8px;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+    background: var(--rose);
+
+    border-radius: 10px;
+
+}
+
+::-webkit-scrollbar-track {
+
+    background: #f5f5f5;
+
+}
+
+/*======================================
+            RESPONSIVE
+=======================================*/
+
+@media(max-width:992px) {
+
+    .main-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+@media(max-width:768px) {
+
+    .navbar {
+
+        padding: 12px 18px;
+
+    }
+
+    .nav-icons-group {
+
+        gap: 10px;
+
+        padding-right: 12px;
+
+    }
+
+    .details-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .profile-dropdown {
+
+        width: 290px;
+
+        right: -15px;
+
+    }
+
+    .avatar-main {
+
+        width: 130px;
+
+        height: 130px;
+
+    }
+
+}
+
+@media(max-width:576px) {
+
+    .navbar {
+
+        border-radius: 20px;
+
+    }
+
+    .logo {
+
+        font-size: 20px;
+
+    }
+
+    .avatar-mini {
+
+        width: 40px;
+
+        height: 40px;
+
+    }
+
+    .icon-btn {
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 15px;
+
+    }
+
+    .glass-card {
+
+        padding: 20px;
+
+    }
+
+    .user-name {
+
+        font-size: 22px;
+
+    }
+
+}
+
+/*======================================
+            ANIMATION
+=======================================*/
+
+.fade-up {
+
+    animation: fadeUp .7s ease;
+
+}
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(40px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* =====================
+   Premium Glow Effects
+   ===================== */
+.premium-glow {
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.4), 0 0 30px rgba(255, 105, 180, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+.premium-glow:hover {
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.6), 0 0 40px rgba(255, 105, 180, 0.3);
+}
+
+
+/* Global Image Centering Fix */
+img {
+    object-position: center !important;
+}
+.profile-img, .card-img, .avatar-container img, .row-image-container img, .img-fluid.rounded-circle { object-fit: cover !important; object-position: center top !important; }
+
+/* =========================================
+   Global Hover Text Color & Shadow Fixes 
+   ========================================= */
+
+/* Fix for button text becoming invisible on hover */
+.btn-primary:hover, .btn-danger:hover, .btn-success:hover, .btn-dark:hover,
+.btn-outline-primary:hover, .btn-outline-danger:hover, .btn-outline-success:hover, .btn-outline-dark:hover,
+.btn-connect:hover, .btn-custom-gradient:hover, .btn-gradient:hover, .btn-journey:hover, .btn-search:hover {
+    color: #ffffff !important;
+}
+
+/* Ensure light buttons stay readable on hover */
+.btn-light:hover, .btn-outline-secondary:hover {
+    color: #1e293b !important;
+}
+
+/* Global uniform premium shadows for cards on hover */
+.card:hover, .glass-card:hover, .profile-card:hover, .search-profile-card:hover, .today-card:hover, .aim-summary-card:hover, .mat-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 15px 35px rgba(233, 64, 87, 0.15), 0 5px 15px rgba(0, 0, 0, 0.05) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}

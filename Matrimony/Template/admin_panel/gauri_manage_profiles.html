@@ -1,0 +1,81 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}Manage Profiles - Admin Panel{% endblock %}
+
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row">
+        <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Manage Profiles</h1>
+        </div>
+    </div>
+    
+    <script>
+    function deleteUser(profileId) {
+        if(confirm('Are you sure you want to PERMANENTLY DELETE this user from the database?')) {
+            fetch('/admin_panel/api/delete_user/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}' },
+                body: JSON.stringify({ profile_id: profileId })
+            }).then(res => res.json()).then(data => {
+                if(data.status === 'success') { location.reload(); }
+                else { alert('Error: ' + data.message); }
+            });
+        }
+    }
+    </script>
+    
+    <div class="card-panel glass-card p-4">
+        <div class="table-responsive">
+            <table class="custom-table" style="box-shadow: 0 0 0 1px #e2e8f0; border-radius: 8px; overflow: hidden;">
+                <thead>
+                    <tr style="background: #f8fafc;">
+                        <th>User</th><th>Matrimony ID</th><th>Mobile</th><th>City</th><th>Status</th><th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in profiles %}
+                    <tr class="table-row-hover">
+                        
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-avatar" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    {% if profile.photo %}
+                                        <img src="{{ profile.photo.url }}" alt="">
+                                    {% else %}
+                                        <div class="avatar-placeholder"><i class="fa-solid fa-user"></i></div>
+                                    {% endif %}
+                                </div>
+                                <div class="user-details">
+                                    <span class="name" style="font-size: 0.95rem;">{{ profile.full_name|default:profile.user.username }}</span>
+                                    <span class="id" style="color: #64748b; font-size: 0.75rem;">{{ profile.user.email }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="font-weight: 600;">{{ profile.matrimony_id|default:"N/A" }}</td>
+                        <td>{{ profile.mobile|default:"N/A" }}</td>
+                        <td>{{ profile.city|default:"N/A" }}</td>
+                        <td>
+                            <span class="status-badge {% if profile.approval_status == 'Approved' %}verified{% elif profile.approval_status == 'Rejected' %}inactive{% else %}pending{% endif %}">
+                                {{ profile.approval_status }}
+                            </span>
+                        </td>
+                        <td class="text-center" style="white-space: nowrap;">
+                            <button onclick="deleteUser('{{ profile.id }}')" class="btn btn-sm btn-outline-danger" style="padding: 6px 12px; font-size: 1rem;" title="Delete Profile"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+    
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted" style="padding: 40px;">
+                            <div style="font-size: 3rem; color: #e2e8f0; margin-bottom: 15px;"><i class="fa-solid fa-folder-open"></i></div>
+                            <div style="font-weight: 500;">No profiles found.</div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

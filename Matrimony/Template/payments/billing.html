@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Billing & Invoices - ForeverBond</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/static/web/images/favicon.png" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS (for Navbar) -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        color: #1e293b;
+      }
+
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        padding: 30px;
+        margin-bottom: 30px;
+      }
+
+      .plan-hero {
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        border-radius: 16px;
+        color: white;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(233, 64, 87, 0.2);
+      }
+
+      .plan-hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 70%
+        );
+        transform: translate(30%, -30%);
+        border-radius: 50%;
+      }
+
+      .status-badge {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-upgrade {
+        background: white;
+        color: #e94057;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .btn-upgrade:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .invoice-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+      }
+      .invoice-table th {
+        color: #64748b;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 0 20px 10px 20px;
+        border-bottom: 2px solid #f1f5f9;
+      }
+      .invoice-table td {
+        background: white;
+        padding: 20px;
+        font-size: 15px;
+        vertical-align: middle;
+      }
+      .invoice-table tr td:first-child {
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+        border: 1px solid #e2e8f0;
+        border-right: none;
+      }
+      .invoice-table tr td:last-child {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border: 1px solid #e2e8f0;
+        border-left: none;
+      }
+      .invoice-table tr td:not(:first-child):not(:last-child) {
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .status-success {
+        color: #10b981;
+        background: rgba(16, 185, 129, 0.1);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .status-failed {
+        color: #ef4444;
+        background: rgba(239, 68, 68, 0.1);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .status-pending {
+        color: #f59e0b;
+        background: rgba(245, 158, 11, 0.1);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .btn-download {
+        color: #64748b;
+        background: #f1f5f9;
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .btn-download:hover {
+        background: #e94057;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    {% include 'web/navbar.html' %}
+
+    <div class="container py-5">
+      <div class="row mb-4">
+        <div class="col-12">
+          <h2
+            style="
+              font-family: &quot;Poppins&quot;, sans-serif;
+              font-weight: 700;
+              color: #1e293b;
+            "
+          >
+            Billing & Invoices
+          </h2>
+          <p style="color: #64748b">
+            Manage your active plan and payment history.
+          </p>
+        </div>
+      </div>
+
+      <!-- Active Plan Section -->
+      <div class="row mb-5">
+        <div class="col-12">
+          {% if active_plan %}
+          <div
+            class="plan-hero d-flex justify-content-between align-items-center flex-wrap gap-4"
+          >
+            <div>
+              <span class="status-badge mb-3 d-inline-block"
+                ><i class="fa-solid fa-circle-check"></i> Active Plan</span
+              >
+              <h1
+                class="mb-1"
+                style="
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                  font-weight: 700;
+                  font-size: 36px;
+                "
+              >
+                {{ active_plan.name }}
+              </h1>
+              <p class="mb-0" style="opacity: 0.9; font-size: 15px">
+                Valid until <strong>{{ plan_expiry_date|date:"d M Y" }}</strong>
+              </p>
+            </div>
+            <div>
+              <a
+                href="/payments/checkout/"
+                class="btn btn-upgrade text-decoration-none"
+              >
+                <i class="fa-solid fa-arrow-up-right-dots me-2"></i> Upgrade
+                Plan
+              </a>
+            </div>
+          </div>
+          {% else %}
+          <div class="glass-panel text-center py-5">
+            <div
+              style="
+                width: 80px;
+                height: 80px;
+                background: rgba(233, 64, 87, 0.1);
+                color: #e94057;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 30px;
+                margin: 0 auto 20px;
+              "
+            >
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <h4 style="font-weight: 600">No Active Plan</h4>
+            <p style="color: #64748b; max-width: 400px; margin: 0 auto 25px">
+              You are currently on the free basic tier. Upgrade to unlock
+              premium features like direct messaging and AI matchmaking.
+            </p>
+            <a
+              href="/payments/checkout/"
+              class="btn"
+              style="
+                background: #e94057;
+                color: white;
+                padding: 12px 30px;
+                border-radius: 8px;
+                font-weight: 600;
+              "
+              >View Plans</a
+            >
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Invoices Section -->
+      <div class="row">
+        <div class="col-12">
+          <div class="glass-panel">
+            <h4 style="font-weight: 600; margin-bottom: 25px">
+              <i
+                class="fa-solid fa-file-invoice-dollar me-2"
+                style="color: #e94057"
+              ></i>
+              Payment History
+            </h4>
+
+            {% if transactions %}
+            <div class="table-responsive">
+              <table class="invoice-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Plan</th>
+                    <th>Amount</th>
+                    <th>Transaction ID</th>
+                    <th>Status</th>
+                    <th class="text-center">Invoice</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {% for txn in transactions %}
+                  <tr>
+                    <td style="color: #475569; font-weight: 500">
+                      {{ txn.timestamp|date:"d M Y, h:i A" }}
+                    </td>
+                    <td style="font-weight: 600">
+                      {% if txn.plan %}{{ txn.plan.name }}{% else %}Custom
+                      Payment{% endif %}
+                    </td>
+                    <td style="font-weight: 600; color: #1e293b">
+                      ₹{{ txn.amount }}
+                    </td>
+                    <td style="color: #64748b; font-size: 13px">
+                      {{ txn.razorpay_payment_id|default:"-" }}
+                    </td>
+                    <td>
+                      {% if txn.status == 'Success' %}
+                      <span class="status-success"
+                        ><i class="fa-solid fa-check me-1"></i> Success</span
+                      >
+                      {% elif txn.status == 'Failed' %}
+                      <span class="status-failed"
+                        ><i class="fa-solid fa-xmark me-1"></i> Failed</span
+                      >
+                      {% else %}
+                      <span class="status-pending"
+                        ><i class="fa-solid fa-clock me-1"></i> Pending</span
+                      >
+                      {% endif %}
+                    </td>
+                    <td class="text-center">
+                      {% if txn.status == 'Success' %}
+                      <button
+                        class="btn-download"
+                        title="Download PDF"
+                        onclick="alert('Downloading invoice for txn {{ txn.id }}...')"
+                      >
+                        <i class="fa-solid fa-download"></i>
+                      </button>
+                      {% else %}
+                      <span style="color: #cbd5e1">-</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% else %}
+            <div class="text-center py-4">
+              <i
+                class="fa-solid fa-receipt mb-3"
+                style="font-size: 40px; color: #cbd5e1"
+              ></i>
+              <p style="color: #64748b; margin: 0">
+                You have no payment history yet.
+              </p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    {% include 'web/footer.html' %}
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

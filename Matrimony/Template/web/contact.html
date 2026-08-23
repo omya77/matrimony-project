@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForeverBond — Contact Us</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="/static/web/images/favicon.png"
+      type="image/svg+xml"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+    <link rel="stylesheet" href="/static/web/css/contact.css" />
+  </head>
+  <body>
+    {% include "web/navbar_story_and_remaining.html" %}
+
+    <!--=============================
+        CONTACT HERO
+    ==============================-->
+    <section class="ft-contact-hero">
+      <div class="ft-hero-overlay"></div>
+      <div class="ft-contact-container">
+        <div class="ft-hero-content">
+          <div class="ft-heart-icon">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <h1>Contact Us</h1>
+          <p>
+            We're here to assist you on your journey. Reach out to our customer care or matchmaking executives for queries, premium membership support, or advisor assistance.
+          </p>
+          <div class="ft-title-divider">
+            <span></span>
+            <i class="fa-solid fa-heart"></i>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--=============================
+        CONTACT SECTION
+    ==============================-->
+    <section class="ft-contact-section">
+      <div class="ft-contact-container">
+        <div class="ft-contact-grid">
+          <!-- LEFT CARD: Contact info -->
+          <div class="ft-contact-info-card" data-aos="fade-right" data-aos-delay="200">
+            <div class="ft-card-heading">
+              <h2>Get In Touch</h2>
+            </div>
+
+            <!-- Item -->
+            <div class="ft-contact-item">
+              <div class="ft-contact-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="ft-contact-text">
+                <h4>Our Office</h4>
+                <p>
+                  123 Harmony Plaza,<br />
+                  MG Road, Pune,<br />
+                  Maharashtra - 411001
+                </p>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div class="ft-contact-item">
+              <div class="ft-contact-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div class="ft-contact-text">
+                <h4>Call Us</h4>
+                <p>+91 82628 02961</p>
+                <p>+91 98765 43210</p>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div class="ft-contact-item">
+              <div class="ft-contact-icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div class="ft-contact-text">
+                <h4>Email Us</h4>
+                <p>support@foreverbond.com</p>
+                <p>info@foreverbond.com</p>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div class="ft-contact-item">
+              <div class="ft-contact-icon">
+                <i class="fa-regular fa-clock"></i>
+              </div>
+              <div class="ft-contact-text">
+                <h4>Office Hours</h4>
+                <p>Mon - Sat : 9:00 AM - 7:00 PM</p>
+                <p>Sunday : 10:00 AM - 4:00 PM</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT CARD: Contact Form -->
+          <div class="ft-contact-form-card" data-aos="fade-left" data-aos-delay="200">
+            <div class="ft-card-heading">
+              <h2>Send Us a Message</h2>
+            </div>
+
+            {% if messages %}
+              <div class="messages mb-4">
+                {% for message in messages %}
+                  <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show shadow-sm" role="alert" style="border-radius: 12px; font-family: 'Inter', sans-serif;">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            
+            <form id="contactUsForm" method="POST" action="{% url 'contact' %}">
+              {% csrf_token %}
+              <div class="ft-form-grid">
+                <div class="ft-input-box">
+                  <i class="fa-regular fa-user"></i>
+                  <input type="text" id="contactName" name="name" placeholder="Full Name" required maxlength="100" pattern="[A-Za-z ]+" title="Only alphabets and spaces allowed" />
+                </div>
+
+                <div class="ft-input-box">
+                  <i class="fa-regular fa-envelope"></i>
+                  <input type="email" id="contactEmail" name="email" placeholder="Email Address" required maxlength="100" />
+                </div>
+
+                <div class="ft-input-box">
+                  <i class="fa-solid fa-phone"></i>
+                  <input type="tel" id="contactPhone" name="phone" placeholder="Phone Number (10 digits)" required minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                </div>
+
+                <div class="ft-input-box">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                  <input type="text" id="contactSubject" name="subject" placeholder="Subject" required maxlength="150" />
+                </div>
+              </div>
+
+              <div class="ft-input-box ft-textarea">
+                <i class="fa-regular fa-message"></i>
+                <textarea rows="7" id="contactMessage" name="message" placeholder="Message Details..." required maxlength="1000"></textarea>
+              </div>
+
+              <button type="submit" class="ft-submit-btn">
+                <i class="fa-regular fa-paper-plane"></i>
+                Submit Inquiry
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--=========================================
+        TRUST FEATURES SECTION
+    ==========================================-->
+    <section class="ft-trust-section">
+      <div class="ft-contact-container">
+        <div class="ft-trust-grid">
+          <!-- Item 1 -->
+          <div class="ft-trust-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="ft-trust-icon">
+              <i class="fa-solid fa-shield-heart"></i>
+            </div>
+            <div class="ft-trust-content">
+              <h3>100% Privacy</h3>
+              <p>
+                Your privacy is our highest priority. Profile details are locked and fully protected.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="ft-trust-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="ft-trust-icon">
+              <i class="fa-solid fa-user-group"></i>
+            </div>
+            <div class="ft-trust-content">
+              <h3>Expert Support</h3>
+              <p>
+                Our relationship advisors are always available to assist with matching advice.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="ft-trust-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="ft-trust-icon">
+              <i class="fa-regular fa-heart"></i>
+            </div>
+            <div class="ft-trust-content">
+              <h3>Trusted Service</h3>
+              <p>
+                Verified matrimonial network providing safe, sacred match selections.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="ft-trust-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="ft-trust-icon">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div class="ft-trust-content">
+              <h3>Reliable Network</h3>
+              <p>
+                Trusted by thousands of premium active brides and grooms across India.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--=========================================
+        NEED ASSISTANCE SECTION
+    ==========================================-->
+    <section class="ft-help-section" data-aos="zoom-in" data-aos-duration="900">
+      <div class="ft-contact-container">
+        <div class="ft-help-wrapper">
+          <!-- LEFT SIDE -->
+          <div class="ft-help-left">
+            <span class="ft-help-tag"> WE ARE HERE FOR YOU </span>
+            <h2>Need Assistance?</h2>
+            <h3>We're Just A Message Away!</h3>
+            <div class="ft-help-divider">
+              <span></span>
+              <i class="fa-solid fa-heart"></i>
+              <span></span>
+            </div>
+            <p>
+              Our relationship experts help you guide profile creations, upload documents, search filter parameters, or activate premium memberships.
+            </p>
+            <a href="tel:+918262802961" class="ft-help-btn">
+              <i class="fa-solid fa-headset"></i>
+              Call Support Concierge
+            </a>
+          </div>
+
+          <!-- CENTER -->
+          <div class="ft-help-middle">
+            <div class="ft-help-box">
+              <div class="ft-help-icon">
+                <i class="fa-regular fa-user"></i>
+              </div>
+              <div>
+                <h4>Profile Assistance</h4>
+                <p>Troubles compiling profile settings or photos upload.</p>
+              </div>
+            </div>
+
+            <div class="ft-help-box">
+              <div class="ft-help-icon">
+                <i class="fa-solid fa-crown"></i>
+              </div>
+              <div>
+                <h4>Membership Plans</h4>
+                <p>Queries related to payments options or invoice updates.</p>
+              </div>
+            </div>
+
+            <div class="ft-help-box">
+              <div class="ft-help-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <h4>Match advisor</h4>
+                <p>Enquire custom matching algorithms of ForeverBond.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="ft-help-right">
+            <div class="ft-help-image-circle">
+              <img
+                src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=700"
+                alt="Support Agent"
+              />
+              <div class="ft-circle-badge">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--=========================================
+        LOCATION & MAP SECTION
+    ==========================================-->
+    <section class="ft-map-section">
+      <div class="ft-contact-container">
+        <div class="ft-map-heading" data-aos="fade-up">
+          <span>VISIT OUR OFFICE</span>
+          <h2>Find Us On Map</h2>
+          <div class="ft-map-divider">
+            <span></span>
+            <i class="fa-solid fa-heart"></i>
+            <span></span>
+          </div>
+          <p>
+            Drop by our headquarters for personal matching advice or premium memberships setup.
+          </p>
+        </div>
+
+        <div class="ft-map-wrapper" data-aos="zoom-in" data-aos-delay="200">
+          <iframe
+            class="ft-google-map"
+            src="https://www.google.com/maps?q=Pune,Maharashtra&output=embed"
+            loading="lazy"
+            allowfullscreen
+            style="height: 400px;"
+          >
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!--=========================================
+        FOOTER SECTION
+    ==========================================-->
+    <footer
+      class="w-100 position-relative transition-all"
+      style="
+        background: linear-gradient(180deg, #ffffff 0%, #fff5f6 100%);
+        box-shadow: 0 -10px 40px rgba(233, 64, 87, 0.04);
+        margin-top: 60px;
+        padding: 40px 0 30px 0;
+        font-family: 'Inter', sans-serif;
+      "
+    >
+      <!-- Accent Line -->
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #e94057 0%, #facc15 50%, #e94057 100%);
+          opacity: 0.8;
+        "
+      ></div>
+
+      <div class="container-fluid px-5">
+        <div class="row align-items-center justify-content-between gy-4">
+          <!-- Left -->
+          <div class="col-12 col-md-auto text-center text-md-start">
+            <div class="d-flex flex-column gap-1">
+              <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                <span
+                  style="
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 800;
+                    font-size: 16px;
+                    color: #1e293b;
+                    letter-spacing: -0.5px;
+                  "
+                >
+                  Forever<span style="color: #e94057">Bond</span>
+                </span>
+                <span
+                  class="badge"
+                  style="
+                    background: rgba(233, 64, 87, 0.1);
+                    color: #e94057;
+                    font-size: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                  "
+                  >PREMIUM</span
+                >
+              </div>
+              <span style="font-size: 12px; color: #94a3b8; font-weight: 500;">
+                &copy; 2026 ForeverBond Matrimony. All Rights Sacred.
+              </span>
+            </div>
+          </div>
+
+          <!-- Center -->
+          <div class="col-12 col-md-auto text-center">
+            <div
+              class="d-inline-flex align-items-center px-4 py-2 rounded-pill shadow-sm"
+              style="
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(233, 64, 87, 0.15);
+                backdrop-filter: blur(5px);
+                gap: 10px;
+              "
+            >
+              <div
+                class="d-flex align-items-center justify-content-center rounded-circle"
+                style="background: #e94057; width: 22px; height: 22px"
+              >
+                <i class="fa-solid fa-shield-halved text-white" style="font-size: 10px"></i>
+              </div>
+              <span style="font-size: 11.5px; color: #475569; font-weight: 700; text-transform: uppercase;">
+                End-to-End Encrypted Verification
+              </span>
+            </div>
+          </div>
+
+          <!-- Right -->
+          <div class="col-12 col-md-auto">
+            <div class="d-flex justify-content-center justify-content-md-end align-items-center gap-4">
+              <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center justify-content-center rounded-3" style="background:#fff; border:1px solid #e2e8f0; width:28px; height:28px;">
+                  <i class="fa-solid fa-lock" style="color: #64748b; font-size: 12px"></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span style="font-size: 11px; color: #94a3b8; font-weight: 600; line-height: 1;">Security</span>
+                  <span style="font-size: 12px; color: #334155; font-weight: 700">SSL Secure</span>
+                </div>
+              </div>
+              <span style="color: #e2e8f0; font-weight: 300; font-size: 20px">|</span>
+              <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center justify-content-center rounded-3" style="background:#fff; border:1px solid #e2e8f0; width:28px; height:28px;">
+                  <i class="fa-solid fa-user-shield" style="color: #64748b; font-size: 12px"></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span style="font-size: 11px; color: #94a3b8; font-weight: 600; line-height: 1;">Privacy</span>
+                  <span style="font-size: 12px; color: #334155; font-weight: 700">100% Private</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap, AOS and custom script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({ once: true, duration: 800 });
+    </script>
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+  <script src="/static/web/js/global-interactions.js?v=2"></script>
+</body>
+</html>

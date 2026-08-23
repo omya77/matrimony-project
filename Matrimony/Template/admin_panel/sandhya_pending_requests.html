@@ -1,0 +1,44 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% block title %}Platform Interests - Admin{% endblock %}
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row mb-4">
+        <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Platform Interest Requests</h1>
+        <p class="text-muted">Live overview of all connections being made on ForeverBond.</p>
+    </div>
+    <div class="card-panel glass-card p-4">
+        <div class="table-responsive">
+            <table class="table custom-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Sender</th>
+                        <th>Receiver</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in interests %}
+                    <tr class="table-row-hover">
+                        <td>{{ i.created_at|date:"M d, Y h:i A" }}</td>
+                        <td class="fw-bold text-primary">{{ i.sender.profile.full_name|default:i.sender.username }}</td>
+                        <td class="fw-bold text-success">{{ i.receiver.profile.full_name|default:i.receiver.username }}</td>
+                        <td>
+                            {% if i.status == 'pending' %}
+                            <span class="badge bg-warning text-dark rounded-pill">Pending</span>
+                            {% elif i.status == 'accepted' %}
+                            <span class="badge bg-success rounded-pill">Accepted</span>
+                            {% else %}
+                            <span class="badge bg-danger rounded-pill">Rejected</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="4" class="text-center py-4 text-muted">No interest requests found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

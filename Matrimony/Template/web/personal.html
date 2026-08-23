@@ -1,0 +1,2086 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <link rel="icon" type="image/png" href="/static/web/images/favicon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForeverBond | Complete Profile Wizard</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+    <link rel="stylesheet" href="/static/web/css/personal.css" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* WIDER WIZARD CARD */
+      .wizard-card {
+        max-width: 1400px !important;
+        width: 95% !important;
+      }
+
+      /* PREMIUM INPUT STYLES */
+      .form-control, .form-select {
+        border-radius: 12px !important;
+        border: 1.5px solid #e2e8f0 !important;
+        padding: 10px 14px !important;
+        min-height: 48px !important;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        background: #f8fafc !important;
+        color: #1e293b !important;
+        font-weight: 500 !important;
+        box-shadow: none !important;
+      }
+
+      .form-control:hover, .form-select:hover {
+        background: #ffffff !important;
+        border-color: #cbd5e1 !important;
+      }
+
+      .form-control:focus, .form-select:focus {
+        background: #ffffff !important;
+        border-color: var(--rose) !important;
+        box-shadow: 0 0 0 4px rgba(233, 64, 87, 0.1) !important;
+        transform: translateY(-2px);
+      }
+
+      .form-label {
+        font-weight: 700 !important;
+        font-size: 0.85rem !important;
+        color: #475569 !important;
+        margin-bottom: 8px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.8px !important;
+      }
+
+      /* HIGH LEVEL VALIDATION STYLES */
+      .form-control.is-invalid, .form-select.is-invalid {
+        border-color: #dc3545 !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e") !important;
+        background-repeat: no-repeat !important;
+        background-position: right calc(0.375em + 0.1875rem) center !important;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
+        box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.15) !important;
+        animation: shake 0.4s ease-in-out;
+      }
+
+      .form-control.is-valid, .form-select.is-valid {
+        border-color: #10b981 !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2310b981' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e") !important;
+        background-repeat: no-repeat !important;
+        background-position: right calc(0.375em + 0.1875rem) center !important;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1) !important;
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-4px); }
+        50% { transform: translateX(4px); }
+        75% { transform: translateX(-4px); }
+      }
+
+      .invalid-feedback {
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+<!doctype html>
+<html lang="en">
+  <head>
+  <link rel="icon" type="image/png" href="/static/web/images/favicon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForeverBond | Complete Profile Wizard</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+    <link rel="stylesheet" href="/static/web/css/personal.css" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* WIDER WIZARD CARD */
+      .wizard-card {
+        max-width: 1400px !important;
+        width: 95% !important;
+      }
+
+      /* PREMIUM INPUT STYLES */
+      .form-control, .form-select {
+        border-radius: 12px !important;
+        border: 1.5px solid #e2e8f0 !important;
+        padding: 10px 14px !important;
+        min-height: 48px !important;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        background: #f8fafc !important;
+        color: #1e293b !important;
+        font-weight: 500 !important;
+        box-shadow: none !important;
+      }
+
+      .form-control:hover, .form-select:hover {
+        background: #ffffff !important;
+        border-color: #cbd5e1 !important;
+      }
+
+      .form-control:focus, .form-select:focus {
+        background: #ffffff !important;
+        border-color: var(--rose) !important;
+        box-shadow: 0 0 0 4px rgba(233, 64, 87, 0.1) !important;
+        transform: translateY(-2px);
+      }
+
+      .form-label {
+        font-weight: 700 !important;
+        font-size: 0.85rem !important;
+        color: #475569 !important;
+        margin-bottom: 8px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.8px !important;
+      }
+
+      /* HIGH LEVEL VALIDATION STYLES */
+      .form-control.is-invalid, .form-select.is-invalid {
+        border-color: #dc3545 !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e") !important;
+        background-repeat: no-repeat !important;
+        background-position: right calc(0.375em + 0.1875rem) center !important;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
+        box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.15) !important;
+        animation: shake 0.4s ease-in-out;
+      }
+
+      .form-control.is-valid, .form-select.is-valid {
+        border-color: #10b981 !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2310b981' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e") !important;
+        background-repeat: no-repeat !important;
+        background-position: right calc(0.375em + 0.1875rem) center !important;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1) !important;
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-4px); }
+        50% { transform: translateX(4px); }
+        75% { transform: translateX(-4px); }
+      }
+
+      .invalid-feedback {
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+        color: #dc3545 !important;
+        margin-top: 6px !important;
+        animation: fadeInDown 0.3s ease;
+        display: none;
+      }
+
+      @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-5px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <nav
+      class="fixed-top w-100"
+      style="
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        z-index: 1030;
+      "
+    >
+      <!-- Top Utility Bar (Contact & Trust Badges) -->
+      <div
+        class="container-fluid py-2 px-4 d-flex flex-wrap justify-content-between align-items-center"
+        style="
+          font-size: 12.5px;
+          color: #555555;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+          background-color: #fffdf9;
+        "
+      >
+
+
+      <!-- Main Brand Header Bar -->
+      <div
+        class="container-fluid py-3 px-4 d-flex justify-content-between align-items-center"
+        style="background-color: #ffffff"
+      >
+        <!-- Brand Logo Area -->
+        <div class="d-flex align-items-center" style="gap: 12px">
+          <div
+            class="d-flex align-items-center justify-content-center rounded-3 shadow-sm"
+            style="
+              background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+              width: 38px;
+              height: 38px;
+            "
+          >
+            <!-- Golden Diamond Icon -->
+            <svg
+              width="18"
+              height="18"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              style="color: #fff"
+            >
+              <path
+                d="M12 2L2 12l10 10 10-10L12 2zm0 3.8L18.2 12 12 18.2 5.8 12 12 5.8z"
+              />
+            </svg>
+          </div>
+          <div>
+            <span
+              class="fs-4 d-block lh-1 text-dark"
+              style="
+                letter-spacing: -0.5px;
+                font-weight: 850;
+                font-family: system-ui, sans-serif;
+              "
+            >
+              Forever<span style="color: #d9383a">Bond</span>
+            </span>
+            <span
+              class="text-muted text-uppercase d-block mt-1"
+              style="font-size: 9px; letter-spacing: 2px; font-weight: 700"
+            >
+              Verified • Secure • Sacred
+            </span>
+          </div>
+        </div>
+        <!-- Center: Pulse Heart Trust Badge (Aligned with Logo Accent) -->
+        <div
+          class="d-none d-md-flex align-items-center fw-semibold text-uppercase"
+          style="
+            color: #d9383a;
+            gap: 6px;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+            font-weight: bold;
+          "
+        >
+          <svg
+            width="12"
+            height="12"
+            fill="currentColor"
+            class="animate-pulse"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+            />
+          </svg>
+          India's Trusted Premium Matrimony
+        </div>
+
+        <!-- Right Action: Secure Exit Badge & Clean Logout -->
+        <div class="d-flex align-items-center gap-3">
+          <span
+            class="badge rounded-pill px-3 py-2 d-flex align-items-center"
+            style="
+              background-color: #fffbeb;
+              color: #b45309;
+              border: 1px solid #fde68a;
+              font-size: 12px;
+              gap: 6px;
+              font-weight: 600;
+            "
+          >
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"
+              />
+            </svg>
+            Secure Setup Mode
+          </span>
+
+          <a
+            href="/accounts/logout/"
+            class="btn btn-sm btn-light border d-flex align-items-center gap-1 text-secondary font-medium transition-all"
+            style="
+              font-size: 12px;
+              padding: 6px 14px;
+              border-radius: 8px;
+              background: #fff;
+            "
+            onmouseover="
+              this.style.background = '#fff5f5';
+              this.style.color = '#d9383a';
+            "
+            onmouseout="
+              this.style.background = '#fff';
+              this.style.color = '#6c757d';
+            "
+          >
+            <span>Sign Out</span>
+            <svg
+              width="12"
+              height="12"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+
+    <style>
+
+      :root {
+        --rose: #e94057;
+        --pink: #ff7aa2;
+        --soft-pink: #fff0f2;
+        --text-dark: #2d2d2d;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.4);
+      }
+      
+      body {
+        background: linear-gradient(135deg, #fff0f2 0%, #fdf5f6 50%, #fef8f8 100%);
+        font-family: 'Inter', sans-serif;
+      }
+
+      .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(233, 64, 87, 0.08);
+        transition: all 0.3s ease;
+      }
+      
+      .btn-premium-gradient {
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        color: #fff !important;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(233, 64, 87, 0.25);
+      }
+      
+      .btn-premium-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(233, 64, 87, 0.35);
+      }
+      
+      .form-control, .form-select {
+        border-radius: 10px;
+        border: 1px solid #cbd5e1;
+        padding: 10px 15px;
+        transition: all 0.3s ease;
+        background: #ffffff;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+        font-size: 0.95rem;
+        color: #334155;
+      }
+      
+      .form-label {
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: #475569;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .form-control:focus, .form-select:focus {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px rgba(255, 122, 162, 0.15);
+        background: #fff;
+      }
+      
+      h2, .form-title h2 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.9;
+          filter: drop-shadow(0 0 0px rgba(217, 56, 58, 0));
+        }
+        50% {
+          transform: scale(1.08);
+          opacity: 1;
+          filter: drop-shadow(0 0 4px rgba(217, 56, 58, 0.5));
+        }
+      }
+      /* Custom Plan Card styles in Wizard */
+      .plan-card {
+        border-radius: 16px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        border: 2px solid #e2e8f0 !important;
+        background: #ffffff;
+      }
+      .plan-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(233, 64, 87, 0.06);
+        border-color: rgba(233, 64, 87, 0.2) !important;
+      }
+      .plan-card.active-plan {
+        border-color: #e94057 !important;
+        box-shadow: 0 12px 30px rgba(233, 64, 87, 0.15) !important;
+        background: #fff5f6 !important;
+        transform: translateY(-5px) scale(1.02);
+      }
+      .plan-card.active-plan.premium {
+        border-color: #e94057 !important;
+        box-shadow: 0 12px 30px rgba(233, 64, 87, 0.15) !important;
+      }
+    
+      /* --------------------------------------
+         CUSTOM WIDER & TALLER PREMIUM DESIGN
+         -------------------------------------- */
+      .wizard-card {
+        max-width: 1000px !important; /* Increased width significantly */
+        margin: 0 auto;
+        min-height: 75vh; /* Taller card */
+        display: flex;
+        flex-direction: column;
+        padding: 40px 50px !important;
+      }
+      
+      .wizard-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .form-control, .form-select {
+        padding: 14px 18px !important; /* Taller inputs */
+        font-size: 1rem !important;
+      }
+      
+      .form-label {
+        font-size: 0.9rem !important;
+        margin-bottom: 8px !important;
+      }
+      
+      .wizard-page h3 {
+        font-size: 28px !important;
+        margin-bottom: 30px !important;
+      }
+
+      </style>
+    <!--  IMPORTANT NOTE FOR BODY/CONTENT: -->
+
+    <!-- Is container tag ko apne multi-step structure ke bahar wrap karein -->
+    <div
+      style="
+        padding-top: 20px;
+        padding-bottom: 50px;
+        background-color: #f8fafc;
+        min-height: 100vh;
+      "
+    >
+      <!-- Aapka step wizard box card iske andar aayega -->
+
+      <section class="wizard-section">
+        <div class="container-fluid">
+                    <div class="wizard-card glass-card p-3 p-md-4 mt-3">
+            <!--==========================================
+                        TOP STEPPER
+            ==========================================-->
+            <div class="wizard-header">
+              <div class="stepper-wrapper">
+                <!-- Step 1 -->
+                <div class="step active completed ms-4" data-step="1">
+                  <div class="step-circle">
+                    <i class="fa-solid fa-user-plus"></i>
+                  </div>
+                  <p>Basics</p>
+                </div>
+                <div class="step-line active"></div>
+
+                <!-- Step 2 -->
+                <div class="step" data-step="2">
+                  <div class="step-circle">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                  </div>
+                  <p>Career</p>
+                </div>
+                <div class="step-line"></div>
+
+                <!-- Step 3 -->
+                <div class="step" data-step="3">
+                  <div class="step-circle">
+                    <i class="fa-solid fa-people-roof"></i>
+                  </div>
+                  <p>Family</p>
+                </div>
+                <div class="step-line"></div>
+
+                <!-- Step 4 -->
+                <div class="step" data-step="4">
+                  <div class="step-circle">
+                    <i class="fa-solid fa-heart"></i>
+                  </div>
+                  <p>Partner</p>
+                </div>
+                <div class="step-line"></div>
+
+                <!-- Step 5 -->
+                <div class="step" data-step="5">
+                  <div class="step-circle">
+                    <i class="fa-solid fa-images"></i>
+                  </div>
+                  <p>Photos</p>
+                </div>
+                <div class="step-line"></div>
+
+                <!-- Step 6 -->
+                <div class="step" data-step="6">
+                  <div class="step-circle success">
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <p>Complete</p>
+                </div>
+              </div>
+            </div>
+
+            <!--==========================================
+                        PROGRESS BAR
+            ==========================================-->
+            <div class="wizard-progress">
+              <div class="progress">
+                <div class="progress-bar" id="progressBar" style="width: 16%"></div>
+              </div>
+              <div class="progress-text">
+                <span id="currentStepText">Step 1 of 6: Basic Details</span>
+                <span id="progressPercent">16%</span>
+              </div>
+            </div>
+
+            <!--==========================================
+                    FORM CONTAINER (WIZARD BODY)
+            ==========================================-->
+            <div class="wizard-body">
+              <!-- Step 1: Account & Personal Basics -->
+              <section class="wizard-page active" id="step1">
+                <div class="form-card">
+                  <div class="form-title">
+                    <h2><i class="fa-solid fa-user text-danger"></i> Account & Personal Basics</h2>
+                    <p>Provide your fundamental details to create a trusted profile.</p>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                      <input type="email" id="userEmail" class="form-control" placeholder="e.g. omkar.patil@example.com" required maxlength="100"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Mobile Number <span class="text-danger">*</span></label>
+                      <input type="tel" id="userMobile" class="form-control" placeholder="e.g. 9876543210" required maxlength="15" pattern="^\\+?[0-9\\s\\-]{10,15}$"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Account Created For <span class="text-danger">*</span></label>
+                      <select required class="form-select">
+                        <option value="" selected disabled>Select an option</option>
+                        <option>Self</option>
+                        <option>Son</option>
+                        <option>Daughter</option>
+                        <option>Sibling</option>
+                        <option>Friend</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                      <input type="text" id="userFullName" class="form-control" placeholder="e.g. Omkar Patil" required maxlength="100" minlength="3" pattern="^[a-zA-Z \.,]+$"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Gender <span class="text-danger">*</span></label>
+                      <select class="form-select" id="userGender" required>
+                        <option value="" selected disabled>Select an option</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
+                      <input type="date" id="userDob" class="form-control" required/>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Marital Status <span class="text-danger">*</span></label>
+                      <select class="form-select" id="maritalStatus" required>
+                        <option value="" selected disabled>Select an option</option>
+                        <option>Never Married</option>
+                        <option>Divorced</option>
+                        <option>Widowed</option>
+                        <option>Awaiting Divorce</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Height <span class="text-danger">*</span></label>
+                      <input type="text" id="userHeight" type="number" step="0.1" min="4.0" max="8.0" class="form-control" placeholder="e.g. 5'9&quot;" required maxlength="20"/>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end mt-4">
+                    <button type="button" class="btn btn-premium-gradient nextBtn px-4 rounded-pill">Next <i class="fa-solid fa-arrow-right ms-2"></i></button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Step 2: Background & Career -->
+              <section class="wizard-page" id="step2">
+                <div class="form-card">
+                  <div class="form-title">
+                    <h2><i class="fa-solid fa-graduation-cap text-danger"></i> Background & Career</h2>
+                    <p>Tell us about your community, education, and professional life.</p>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Religion <span class="text-danger">*</span></label>
+                      <select class="form-select" id="userReligion" required>
+                        <option value="" selected disabled>Select Religion</option>
+                        {% for r in master_religions %}
+                        <option value="{{ r.name }}">{{ r.name }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Mother Tongue <span class="text-danger">*</span></label>
+                      <select id="userMotherTongue" class="form-select" required>
+                        <option value="" selected disabled>Select Mother Tongue</option>
+                        {% for t in master_tongues %}
+                        <option value="{{ t.name }}">{{ t.name }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Caste / Sub-Caste <span class="text-danger">*</span></label>
+                      <select class="form-select" id="userCaste" required>
+                        <option value="" selected disabled>Select Caste / Sub-Caste</option>
+                        {% for c in master_castes %}
+                        <option value="{{ c.name }}" data-religion="{{ c.religion.name }}">{{ c.name }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Highest Education <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="highestEducation" placeholder="e.g. Master's in CS" required maxlength="100" minlength="3" pattern="^[a-zA-Z \.,]+$"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">University / College <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="university" placeholder="e.g. Pune University" required maxlength="100" minlength="3" pattern="^[a-zA-Z \.,]+$"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Occupation <span class="text-danger">*</span></label>
+                      <select class="form-select" id="occupation" required>
+                        <option value="" selected disabled>Select Occupation</option>
+                        <option>Private Company</option>
+                        <option>Government/Public Sector</option>
+                        <option>Defense/Civil Services</option>
+                        <option>Business/Self-Employed</option>
+                        <option>Not Working</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Annual Income <span class="text-danger">*</span></label>
+                      <select class="form-select" id="annualIncome" type="number" min="0" max="100000000" required>
+                        <option value="" selected disabled>Select Income Range</option>
+                        <option>Under 2 Lakhs</option>
+                        <option>2 - 5 Lakhs</option>
+                        <option>5 - 10 Lakhs</option>
+                        <option>10 - 20 Lakhs</option>
+                        <option>20+ Lakhs</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">State <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="state" minlength="2" maxlength="50" placeholder="e.g. Maharashtra" required maxlength="50" minlength="3" pattern="^[a-zA-Z \.,]+$"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">City <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="city" minlength="2" maxlength="50" placeholder="e.g. Pune" required maxlength="50" minlength="3" pattern="^[a-zA-Z \.,]+$"/>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary prevBtn px-4 rounded-pill"><i class="fa-solid fa-arrow-left me-2"></i> Back</button>
+                    <button type="button" class="btn btn-premium-gradient nextBtn px-4 rounded-pill">Next <i class="fa-solid fa-arrow-right ms-2"></i></button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Step 3: Family & Lifestyle -->
+              <section class="wizard-page" id="step3">
+                <div class="form-card">
+                  <div class="form-title">
+                    <h2><i class="fa-solid fa-people-roof text-danger"></i> Family & Lifestyle</h2>
+                    <p>Share details about your family background and daily habits.</p>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Family Type <span class="text-danger">*</span></label>
+                      <select required class="form-select" id="familyType">
+                        <option value="" selected disabled>Select Type</option>
+                        <option>Nuclear Family</option>
+                        <option>Joint Family</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Family Status <span class="text-danger">*</span></label>
+                      <select required class="form-select" id="familyStatus">
+                        <option value="" selected disabled>Select Status</option>
+                        <option>Middle Class</option>
+                        <option>Upper Middle Class</option>
+                        <option>Rich / Affluent</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Father's Occupation <span class="text-danger">*</span></label>
+                      <select required class="form-select" id="fatherOccupation">
+                        <option value="" selected disabled>Select Occupation</option>
+                        <option>Employed</option>
+                        <option>Business</option>
+                        <option>Retired</option>
+                        <option>Not Employed</option>
+                        <option>Passed Away</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Mother's Occupation <span class="text-danger">*</span></label>
+                      <select required class="form-select" id="motherOccupation">
+                        <option value="" selected disabled>Select Occupation</option>
+                        <option>Homemaker</option>
+                        <option>Employed</option>
+                        <option>Business</option>
+                        <option>Retired</option>
+                        <option>Passed Away</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Diet <span class="text-danger">*</span></label>
+                      <select required class="form-select" id="diet">
+                        <option value="" selected disabled>Select</option>
+                        <option>Vegetarian</option>
+                        <option>Non-Vegetarian</option>
+                        <option>Eggetarian</option>
+                        <option>Jain</option>
+                        <option>Vegan</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Smoking <span class="text-danger">*</span></label>
+                      <select required class="form-select" id="smoking">
+                        <option value="" selected disabled>Select</option>
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option>Occasionally</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Drinking <span class="text-danger">*</span></label>
+                      <select required class="form-select" id="drinking">
+                        <option value="" selected disabled>Select</option>
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option>Occasionally</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary prevBtn px-4 rounded-pill"><i class="fa-solid fa-arrow-left me-2"></i> Back</button>
+                    <button type="button" class="btn btn-premium-gradient nextBtn px-4 rounded-pill">Next <i class="fa-solid fa-arrow-right ms-2"></i></button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Step 4: Partner Preferences -->
+              <section class="wizard-page" id="step4">
+                <div class="form-card">
+                  <div class="form-title">
+                    <h2><i class="fa-solid fa-heart text-danger"></i> Partner Preferences</h2>
+                    <p>What are you looking for in your ideal match?</p>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">
+                          Age Range: <span id="prefAgeRangeLabel" class="text-danger">21 - 35 Years</span> <span class="text-danger">*</span>
+                      </label>
+                      <div class="d-flex align-items-center gap-2">
+                        <input type="range" class="form-range" name="prefAgeMin" id="prefAgeMin" min="21" max="70" value="21" required oninput="updatePrefAgeLabel()" style="flex:1;" />
+                        <input type="range" class="form-range" name="prefAgeMax" id="prefAgeMax" min="21" max="70" value="35" required oninput="updatePrefAgeLabel()" style="flex:1;" />
+                      </div>
+                      <script>
+                      function updatePrefAgeLabel() {
+                          var minVal = document.getElementById("prefAgeMin").value;
+                          var maxVal = document.getElementById("prefAgeMax").value;
+                          if(parseInt(minVal) > parseInt(maxVal)){
+                              document.getElementById("prefAgeMax").value = minVal;
+                              maxVal = minVal;
+                          }
+                          document.getElementById("prefAgeRangeLabel").innerText = minVal + " - " + maxVal + " Years";
+                      }
+                      </script>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Preferred Marital Status <span class="text-danger">*</span></label>
+                      <select class="form-select" id="prefMaritalStatus" required>
+                        <option value="" selected disabled>Select Status</option>
+                        <option>Doesn't Matter</option>
+                        <option>Never Married</option>
+                        <option>Divorced</option>
+                        <option>Widowed</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Preferred Religion <span class="text-danger">*</span></label>
+                      <select class="form-select" id="prefReligion" required>
+                        <option value="" selected disabled>Select Religion</option>
+                        <option>Doesn't Matter</option>
+                        {% for r in master_religions %}
+                        <option value="{{ r.name }}">{{ r.name }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Preferred Mother Tongue <span class="text-danger">*</span></label>
+                      <input type="text" id="prefMotherTongue" class="form-control" placeholder="e.g. Marathi" required maxlength="50" minlength="3" pattern="^[a-zA-Z \.,]+$" list="tongueList"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Preferred Education <span class="text-danger">*</span></label>
+                      <input type="text" id="prefEducation" class="form-control" placeholder="e.g. Graduate or above" required maxlength="100" minlength="3" pattern="^[a-zA-Z \.,]+$"/>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Preferred Location <span class="text-danger">*</span></label>
+                      <input type="text" id="prefLocation" class="form-control" placeholder="e.g. Maharashtra" required maxlength="100" minlength="3" pattern="^[a-zA-Z \.,]+$"/>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary prevBtn px-4 rounded-pill"><i class="fa-solid fa-arrow-left me-2"></i> Back</button>
+                    <button type="button" class="btn btn-premium-gradient nextBtn px-4 rounded-pill">Next <i class="fa-solid fa-arrow-right ms-2"></i></button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Step 5: Bio, Photos & Verification -->
+              <section class="wizard-page" id="step5">
+                <div class="form-card">
+                  <div class="form-title">
+                    <h2><i class="fa-solid fa-images text-danger"></i> Bio & Photos</h2>
+                    <p>Introduce yourself and verify your profile with a Government ID.</p>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label">About Me <span class="text-danger">*</span></label>
+                      <textarea class="form-control" id="aboutMeDescription" minlength="20" maxlength="1000" rows="3" placeholder="Write a brief bio about yourself..." required maxlength="500"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label">Upload Profile Photos <span class="text-danger">*</span></label>
+                      <div class="upload-zone p-4 text-center rounded-3 mb-3" id="dropZone" style="border: 2px dashed #e2e8f0; cursor: pointer; transition: 0.3s; background: #fafafa">
+                        <div class="mb-3">
+                          <div class="icon-circle bg-danger bg-opacity-10 text-danger mx-auto d-flex align-items-center justify-content-center rounded-circle" style="width: 60px; height: 60px">
+                            <i class="fa-solid fa-cloud-arrow-up fs-3"></i>
+                          </div>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Drag & drop your photos here</h6>
+                        <p class="text-muted small mb-3">or click to browse from your device</p>
+                        <input type="file" id="photoInput" multiple accept="image/*" style="display: none" />
+                        <button type="button" class="btn btn-sm btn-outline-danger px-4 rounded-pill" onclick="document.getElementById('photoInput').click()">Browse Files</button>
+                      </div>
+                      <div class="row g-3" id="previewGrid"></div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">Government ID Type <span class="text-danger">*</span></label>
+                      <select class="form-select" required>
+                        <option value="" selected disabled>Select ID</option>
+                        <option>Aadhaar Card</option>
+                        <option>PAN Card</option>
+                        <option>Passport</option>
+                        <option>Driving License</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <label class="form-label">ID Number <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="idNumber" placeholder="e.g. 123456789012" required maxlength="50"/>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary prevBtn px-4 rounded-pill"><i class="fa-solid fa-arrow-left me-2"></i> Back</button>
+                    <button type="button" class="btn btn-premium-gradient px-4 rounded-pill btn-success" onclick="window.submitPremiumWizard()">Submit Profile <i class="fa-solid fa-check ms-2"></i></button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Step 6: Plan & Complete -->
+              <section class="wizard-page" id="step6">
+                  <div class="form-card text-center p-3 p-md-5" style="border-radius: 20px; border: 2px dashed rgba(233, 64, 87, 0.3); background: linear-gradient(145deg, #ffffff, #fff0f2);">
+                    
+                    <!-- Beautiful Status Icon -->
+                    <div class="mb-4 d-flex justify-content-center">
+                      <div style="width: 80px; height: 80px; background: #e94057; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(233, 64, 87, 0.3); animation: pulse 2s infinite;">
+                        <i class="fa-solid fa-check-circle" style="font-size: 40px; color: white;"></i>
+                      </div>
+                    </div>
+                    
+                    <!-- Main Heading -->
+                    <h2 class="fw-bold mb-3" style="color: #1e293b; font-size: 28px;">Registration Completed Successfully!</h2>
+                    
+                    <!-- Description -->
+                    <p class="text-muted mb-4" style="font-size: 1.15rem; max-width: 600px; margin: 0 auto; line-height: 1.6; font-weight: 500;">
+                      Thank you for completing your registration! Your profile details have been securely saved and submitted for admin review and approval.
+                    </p>
+                    
+                    <hr class="my-4" style="opacity: 0.1;" />
+                    
+                    <!-- Action Box -->
+                    {% if request.user.profile.payment_status != 'Paid' %}
+                    <div class="p-3 p-md-4 text-start" style="background: white; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); max-width: 620px; margin: 0 auto; border: 1px solid rgba(233, 64, 87, 0.15);">
+                      <div class="d-flex align-items-start gap-3 mb-0">
+                        <div style="width: 50px; height: 50px; background: #25d366; border-radius: 12px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; margin-top: 2px;">
+                          <i class="fa-brands fa-whatsapp" style="font-size: 28px; color: white;"></i>
+                        </div>
+                        <div>
+                          <h5 class="fw-bold mb-2" style="color: #1e293b; font-size: 17px;">Next Steps: Admin Approval &amp; Payment Link</h5>
+                          <p class="mb-0" style="color: #475569; font-size: 14.5px; line-height: 1.6;">
+                            Once your profile is approved by the admin, you will receive a direct <strong>WhatsApp message</strong> on your registered mobile number containing your secure <strong>payment link</strong>.<br><br>
+                            After completing your payment through that link, you can directly go to the login page, enter your username and password, and get <strong>full access</strong> to all profiles and features!
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    {% else %}
+                    <div class="p-3 p-md-4 text-start" style="background: white; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); max-width: 620px; margin: 0 auto; border: 1px solid rgba(233, 64, 87, 0.15);">
+                      <div class="d-flex align-items-start gap-3 mb-0">
+                        <div style="width: 50px; height: 50px; background: #10b981; border-radius: 12px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; margin-top: 2px;">
+                          <i class="fa-solid fa-circle-check" style="font-size: 28px; color: white;"></i>
+                        </div>
+                        <div>
+                          <h5 class="fw-bold mb-2" style="color: #1e293b; font-size: 17px;">Profile Updated Successfully</h5>
+                          <p class="mb-0" style="color: #475569; font-size: 14.5px; line-height: 1.6;">
+                            Your profile changes have been successfully saved. You can now return to the homepage or your dashboard to continue browsing matches.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Home Button -->
+                    <div class="mt-5">
+                      <button type="button" class="btn w-100 p-3" style="background: #f8fafc; color: #475569; border: 1px solid #e2e8f0; border-radius: 12px; font-weight: 600; font-size: 16px; transition: all 0.3s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='#f8fafc'" onclick="window.location.href='{% if request.user.profile.payment_status != 'Paid' %}/{% else %}/profiles/my-profile/{% endif %}'">
+                        {% if request.user.profile.payment_status != 'Paid' %}Return to Homepage{% else %}Go to My Profile{% endif %}
+                      </button>
+                    </div>
+
+                  </div>
+                  <style>
+                    @keyframes pulse {
+                      0% { box-shadow: 0 0 0 0 rgba(233, 64, 87, 0.4); }
+                      70% { box-shadow: 0 0 0 15px rgba(233, 64, 87, 0); }
+                      100% { box-shadow: 0 0 0 0 rgba(233, 64, 87, 0); }
+                    }
+                  
+      /* --------------------------------------
+         CUSTOM WIDER & TALLER PREMIUM DESIGN
+         -------------------------------------- */
+      .wizard-card {
+        max-width: 1000px !important; /* Increased width significantly */
+        margin: 0 auto;
+        min-height: 75vh; /* Taller card */
+        display: flex;
+        flex-direction: column;
+        padding: 40px 50px !important;
+      }
+      
+      .wizard-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .form-control, .form-select {
+        padding: 14px 18px !important; /* Taller inputs */
+        font-size: 1rem !important;
+      }
+      
+      .form-label {
+        font-size: 0.9rem !important;
+        margin-bottom: 8px !important;
+      }
+      
+      .wizard-page h3 {
+        font-size: 28px !important;
+        margin-bottom: 30px !important;
+      }
+
+      </style>
+                </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <footer
+      class="w-100 position-relative transition-all"
+      style="
+            background: linear-gradient(180deg, #ffffff 0%, #fff5f6 100%);
+            box-shadow: 0 -10px 40px rgba(233, 64, 87, 0.04);
+            margin-top: 120px;
+            padding: 40px 0 30px 0;
+            font-family: 'Inter', sans-serif;
+        }"
+    >
+      <!-- Top Premium Accent Line (Rose Red to Gold Gradient Split) -->
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(
+            90deg,
+            #e94057 0%,
+            #facc15 50%,
+            #e94057 100%
+          );
+          opacity: 0.8;
+        "
+      ></div>
+
+      <div class="container-fluid px-5">
+        <!-- Main Footer Functional Body -->
+        <div class="row align-items-center justify-content-between gy-4">
+          <!-- Left Side: Brand & Fine Print -->
+          <div class="col-12 col-md-auto text-center text-md-start">
+            <div class="d-flex flex-column gap-1">
+              <div
+                class="d-flex align-items-center justify-content-center justify-content-md-start gap-2"
+              >
+                <span
+                  style="
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                    font-weight: 800;
+                    font-size: 16px;
+                    color: #1e293b;
+                    letter-spacing: -0.5px;
+                  "
+                >
+                  Forever<span style="color: #e94057">Bond</span>
+                </span>
+                <span
+                  class="badge"
+                  style="
+                    background: rgba(233, 64, 87, 0.1);
+                    color: #e94057;
+                    font-size: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                  "
+                  >PREMIUM</span
+                >
+              </div>
+              <span
+                style="
+                  font-size: 12px;
+                  color: #94a3b8;
+                  font-weight: 500;
+                  letter-spacing: 0.2px;
+                "
+              >
+                &copy; 2026 ForeverBond Matrimony. All Rights Sacred.
+              </span>
+            </div>
+          </div>
+
+          <!-- Center Side: Premium Glass-morphic Security Pill -->
+          <div class="col-12 col-md-auto text-center">
+            <div
+              class="d-inline-flex align-items-center px-4 py-2 rounded-pill shadow-sm"
+              style="
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(233, 64, 87, 0.15);
+                backdrop-filter: blur(5px);
+                gap: 10px;
+                box-shadow: 0 4px 15px rgba(233, 64, 87, 0.03) !important;
+              "
+            >
+              <div
+                class="d-flex align-items-center justify-content-center rounded-circle"
+                style="background: #e94057; width: 22px; height: 22px"
+              >
+                <i
+                  class="fa-solid fa-shield-halved text-white"
+                  style="font-size: 10px"
+                ></i>
+              </div>
+              <span
+                style="
+                  font-size: 11.5px;
+                  color: #475569;
+                  font-weight: 700;
+                  letter-spacing: 0.5px;
+                  text-transform: uppercase;
+                "
+              >
+                End-to-End Encrypted Data Verification
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Side: Luxury Trust Indicators -->
+          <div class="col-12 col-md-auto">
+            <div
+              class="d-flex justify-content-center justify-content-md-end align-items-center gap-4"
+            >
+              <!-- Trust Vector 1 -->
+              <div
+                class="d-flex align-items-center gap-2 premium-footer-icon"
+                style="cursor: default"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                  style="
+                    background: #ffffff;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #e2e8f0;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-lock"
+                    style="color: #64748b; font-size: 12px"
+                  ></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: #94a3b8;
+                      font-weight: 600;
+                      line-height: 1;
+                    "
+                    >Security</span
+                  >
+                  <span
+                    style="font-size: 12px; color: #334155; font-weight: 700"
+                    >SSL Secure</span
+                  >
+                </div>
+              </div>
+
+              <!-- Divider Vertical Line -->
+              <span style="color: #e2e8f0; font-weight: 300; font-size: 20px"
+                >|</span
+              >
+
+              <!-- Trust Vector 2 -->
+              <div
+                class="d-flex align-items-center gap-2 premium-footer-icon"
+                style="cursor: default"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                  style="
+                    background: #ffffff;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #e2e8f0;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-user-shield"
+                    style="color: #64748b; font-size: 12px"
+                  ></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: #94a3b8;
+                      font-weight: 600;
+                      line-height: 1;
+                    "
+                    >Privacy</span
+                  >
+                  <span
+                    style="font-size: 12px; color: #334155; font-weight: 700"
+                    >100% Verified</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+
+      :root {
+        --rose: #e94057;
+        --pink: #ff7aa2;
+        --soft-pink: #fff0f2;
+        --text-dark: #2d2d2d;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.4);
+      }
+      
+      body {
+        background: linear-gradient(135deg, #fff0f2 0%, #fdf5f6 50%, #fef8f8 100%);
+        font-family: 'Inter', sans-serif;
+      }
+
+      .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(233, 64, 87, 0.08);
+        transition: all 0.3s ease;
+      }
+      
+      .btn-premium-gradient {
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        color: #fff !important;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(233, 64, 87, 0.25);
+      }
+      
+      .btn-premium-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(233, 64, 87, 0.35);
+      }
+      
+      .form-control, .form-select {
+        border-radius: 10px;
+        border: 1px solid #cbd5e1;
+        padding: 10px 15px;
+        transition: all 0.3s ease;
+        background: #ffffff;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+        font-size: 0.95rem;
+        color: #334155;
+      }
+      
+      .form-label {
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: #475569;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .form-control:focus, .form-select:focus {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px rgba(255, 122, 162, 0.15);
+        background: #fff;
+      }
+      
+      h2, .form-title h2 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      /* Premium Hover Dynamics */
+      .premium-footer-icon {
+        transition: transform 0.3s ease;
+      }
+      .premium-footer-icon:hover {
+        transform: translateY(-2px);
+      }
+      .premium-footer-icon:hover i {
+        color: #e94057 !important;
+      }
+    
+      /* --------------------------------------
+         CUSTOM WIDER & TALLER PREMIUM DESIGN
+         -------------------------------------- */
+      .wizard-card {
+        max-width: 1000px !important; /* Increased width significantly */
+        margin: 0 auto;
+        min-height: 75vh; /* Taller card */
+        display: flex;
+        flex-direction: column;
+        padding: 40px 50px !important;
+      }
+      
+      .wizard-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .form-control, .form-select {
+        padding: 14px 18px !important; /* Taller inputs */
+        font-size: 1rem !important;
+      }
+      
+      .form-label {
+        font-size: 0.9rem !important;
+        margin-bottom: 8px !important;
+      }
+      
+      .wizard-page h3 {
+        font-size: 28px !important;
+        margin-bottom: 30px !important;
+      }
+      </style>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+      </script>
+    <script src="/static/web/js/payment_simulator.js"></script>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+    </script>
+
+    <!-- Stepper Navigation Controller Script -->
+    <script>
+      /* ==========================================================================
+         SHADIMILAN PREMIUM WIZARD JAVASCRIPT CONTROLLER
+         ========================================================================== */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Starts at Step 1 to allow complete profile setup wizard journey
+        let currentStep = 1;
+        const totalSteps = 6;
+        let isPaid = false;
+
+        const pages = document.querySelectorAll(".wizard-page");
+        const steps = document.querySelectorAll(".step");
+        const stepLines = document.querySelectorAll(".step-line");
+        const progressBar = document.getElementById("progressBar");
+        const currentStepText = document.getElementById("currentStepText");
+        const progressPercent = document.getElementById("progressPercent");
+        const profilePercentage = document.getElementById(
+          "profilePercentageIndicator",
+        );
+
+        // Set initial state
+        showStep(currentStep);
+
+        // Next buttons click handler
+        document.querySelectorAll(".nextBtn").forEach((button) => {
+          button.addEventListener("click", () => {
+            if (validateCurrentStep()) {
+              if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }
+          });
+        });
+
+        // Prev buttons click handler
+        document.querySelectorAll(".prevBtn").forEach((button) => {
+          button.addEventListener("click", () => {
+            if (currentStep > 1) {
+              // Cannot go back beyond Step 1
+              currentStep--;
+              showStep(currentStep);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          });
+        });
+
+        // Main function to show step and update stepper elements
+        function showStep(stepNum) {
+          // 1. Toggle page visibility
+          pages.forEach((page) => {
+            page.classList.remove("active");
+            if (page.getAttribute("id") === `step${stepNum}`) {
+              page.classList.add("active");
+            }
+          });
+
+          // 2. Update Stepper UI items
+          steps.forEach((step) => {
+            const stepAttr = parseInt(step.getAttribute("data-step"));
+            step.classList.remove("active", "completed");
+
+            if (stepAttr === stepNum) {
+              step.classList.add("active");
+            } else if (stepAttr < stepNum) {
+              step.classList.add("completed");
+            }
+          });
+
+          // 3. Update Connecting lines
+          stepLines.forEach((line, index) => {
+            if (index < stepNum - 1) {
+              line.classList.add("active");
+            } else {
+              line.classList.remove("active");
+            }
+          });
+
+          // 4. Progress bar calculations
+          // Step 4 represents the starting point (25% completion), incrementing up to 100% at Step 12
+          const calculatedPercent = Math.round(
+            ((stepNum - 1) / (totalSteps - 1)) * 100,
+          );
+
+          if (progressBar) progressBar.style.width = `${calculatedPercent}%`;
+
+          const stepTitles = [
+            "Account Setup",
+            "Personal Details",
+            "Religion Settings",
+            "Education & Career",
+            "Family Details",
+            "Lifestyle Details",
+            "Partner Preferences",
+            "Location & Bio",
+            "Upload Photos",
+            "ID Verification",
+            "Milan Plan Selection",
+            "Registration Completed",
+          ];
+
+          if (currentStepText)
+            currentStepText.innerText = `Step ${stepNum} of ${totalSteps}: ${stepTitles[stepNum - 1]}`;
+          if (progressPercent)
+            progressPercent.innerText = `${calculatedPercent}%`;
+          if (profilePercentage)
+            profilePercentage.innerText = `${calculatedPercent}%`;
+
+          // If showing final summary step, compile inputs
+          if (stepNum === 6) {
+            compileSuccessSummary();
+          }
+        }
+
+        // Basic fields validation engine
+        function validateCurrentStep() {
+          const activePage = document.querySelector(".wizard-page.active");
+          if (!activePage) return true;
+
+          // Check if photo is uploaded on Step 9
+          if (currentStep === 5) {
+            if (selectedPhotos.length === 0) {
+              alert("⚠️ Please upload at least one profile photo to continue.");
+              return false;
+            }
+          }
+
+          
+          // Check Date of Birth for min 21 years (Step 1)
+          if (currentStep === 1) {
+            const dobInput = document.getElementById("userDob");
+            if (dobInput && dobInput.value) {
+              const dob = new Date(dobInput.value);
+              const today = new Date();
+              let age = today.getFullYear() - dob.getFullYear();
+              const monthDiff = today.getMonth() - dob.getMonth();
+              
+              if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+              }
+              
+              if (age < 21) {
+                alert("⚠️ Minimum age requirement is 21 years.");
+                dobInput.classList.add("is-invalid");
+                let feedback = dobInput.parentNode.querySelector(".invalid-feedback");
+                if (feedback) {
+                   feedback.innerHTML = `<i class="fa-solid fa-circle-exclamation me-1"></i> Minimum age must be 21.`;
+                   feedback.style.display = "block";
+                }
+                isValid = false;
+              }
+            }
+          }
+
+          const requiredInputs = activePage.querySelectorAll("[required], input[pattern]");
+          let isValid = true;
+
+          requiredInputs.forEach((input) => {
+            // Find or create invalid-feedback div
+            let feedback = input.parentNode.querySelector(".invalid-feedback");
+            if (!feedback) {
+              feedback = document.createElement("div");
+              feedback.className = "invalid-feedback";
+              feedback.style.display = "none";
+              input.parentNode.appendChild(feedback);
+            }
+
+            let fieldIsValid = true;
+            let errorMessage = "This field is required.";
+
+            if (input.tagName === "SELECT" && (!input.value || input.value.startsWith("Select"))) {
+              fieldIsValid = false;
+              errorMessage = "Please select a valid option.";
+            } else if (input.type === "checkbox" && !input.checked) {
+              fieldIsValid = false;
+              errorMessage = "You must check this box.";
+            } else if (input.value && !input.checkValidity()) {
+              fieldIsValid = false;
+              if (input.validity.patternMismatch) {
+                if (input.type === "tel") errorMessage = "Enter a valid 10-digit mobile number.";
+                else errorMessage = "Only letters/spaces are allowed (no numbers/special chars).";
+              } else if (input.validity.tooShort) {
+                errorMessage = `Minimum length is ${input.minLength} characters.`;
+              } else if (input.validity.rangeUnderflow || input.validity.rangeOverflow) {
+                errorMessage = `Value must be between ${input.min} and ${input.max}.`;
+              } else if (input.validity.typeMismatch) {
+                if (input.type === "email") errorMessage = "Enter a valid email address.";
+                else errorMessage = "Invalid format.";
+              }
+            } else if (!input.value.trim() && input.required) {
+               fieldIsValid = false;
+            }
+
+            if (!fieldIsValid) {
+              isValid = false;
+              input.classList.remove("is-valid");
+              input.classList.add("is-invalid");
+              feedback.innerHTML = `<i class="fa-solid fa-circle-exclamation me-1"></i> ${errorMessage}`;
+              feedback.style.display = "block";
+
+              const clearError = () => {
+                input.classList.remove("is-invalid");
+                feedback.style.display = "none";
+                if(input.value.trim() && !(input.tagName === "SELECT" && input.value.startsWith("Select")) && input.checkValidity()) {
+                  input.classList.add("is-valid");
+                }
+              };
+              input.addEventListener("input", clearError, { once: true });
+              input.addEventListener("change", clearError, { once: true });
+            } else {
+              input.classList.remove("is-invalid");
+              if (input.value.trim() && !(input.tagName === "SELECT" && input.value.startsWith("Select"))) {
+                  input.classList.add("is-valid");
+              }
+              feedback.style.display = "none";
+            }
+          });
+
+          if (!isValid) {
+            const firstInvalid = activePage.querySelector(".is-invalid");
+            if (firstInvalid) firstInvalid.focus();
+          }
+
+          return isValid;
+        }
+
+        // Save Draft click handler
+        const saveDraftBtn = document.getElementById("saveDraft");
+        if (saveDraftBtn) {
+          saveDraftBtn.addEventListener("click", () => {
+            alert("✨ Progress saved successfully as draft!");
+          });
+        }
+
+        // Cancel wizard flow click handler
+        const cancelProfileBtn = document.getElementById("cancelProfile");
+        if (cancelProfileBtn) {
+          cancelProfileBtn.addEventListener("click", () => {
+            if (
+              confirm(
+                "Are you sure you want to cancel? Unsaved profile inputs will be lost.",
+              )
+            ) {
+              window.location.href = "/accounts/register/";
+            }
+          });
+        }
+
+        // --- Drag & Drop Image Upload Module ---
+        let selectedPhotos = [];
+        const dropZone = document.getElementById("dropZone");
+        const photoInput = document.getElementById("photoInput");
+        const previewGrid = document.getElementById("previewGrid");
+
+        if (dropZone) {
+          ["dragenter", "dragover"].forEach((name) => {
+            dropZone.addEventListener(
+              name,
+              (e) => {
+                e.preventDefault();
+                dropZone.classList.add("dragover");
+              },
+              false,
+            );
+          });
+          ["dragleave", "drop"].forEach((name) => {
+            dropZone.addEventListener(
+              name,
+              (e) => {
+                e.preventDefault();
+                dropZone.classList.remove("dragover");
+              },
+              false,
+            );
+          });
+          dropZone.addEventListener("drop", (e) => {
+            handleFiles(e.dataTransfer.files);
+          });
+        }
+
+        if (photoInput) {
+          photoInput.addEventListener("change", (e) => {
+            handleFiles(e.target.files);
+          });
+        }
+
+        function handleFiles(files) {
+          const validFiles = Array.from(files).filter((file) =>
+            file.type.startsWith("image/"),
+          );
+
+          if (selectedPhotos.length + validFiles.length > 3) {
+            alert("⚠️ Maximum 3 photos allowed only.");
+            return;
+          }
+
+          validFiles.forEach((file) => {
+            selectedPhotos.push(file);
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              const fileIndex = selectedPhotos.length - 1;
+              // Save first photo to localStorage so it shows in navbar/profile
+              if (fileIndex === 0) {
+                localStorage.setItem("profilePhoto", e.target.result);
+              }
+              const previewHTML = `
+                <div class="col-6 col-md-4" id="photo-card-${fileIndex}">
+                  <div class="preview-card" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; height: 200px; background: #f8fafc;">
+                    <img src="${e.target.result}" alt="Preview" style="width: 100%; height: 100%; object-fit: contain; object-position: center; background: #f8fafc;" />
+                    <button type="button" class="btn btn-sm btn-danger btn-delete-photo" onclick="removePhoto(${fileIndex})" style="position: absolute; top: 5px; right: 5px; border-radius: 50%; width: 25px; height: 25px; padding: 0; line-height: 25px;">
+                      <i class="fa-solid fa-trash" style="font-size: 10px;"></i>
+                    </button>
+                  </div>
+                </div>`;
+              previewGrid.insertAdjacentHTML("beforeend", previewHTML);
+            };
+            reader.readAsDataURL(file);
+          });
+        }
+
+        window.removePhoto = function (index) {
+          selectedPhotos.splice(index, 1);
+          const card = document.getElementById(`photo-card-${index}`);
+          if (card) card.remove();
+
+          // Re-index photo grid elements
+          previewGrid.innerHTML = "";
+          const currentFiles = [...selectedPhotos];
+          selectedPhotos = [];
+          handleFiles(currentFiles);
+        };
+
+        // --- Membership Selector ---
+        window.selectPlan = function (planName, price, element) {
+          document.querySelectorAll(".plan-card").forEach((card) => {
+            card.classList.remove("active-plan");
+            const standardBtn = card.querySelector(".PlanSelectBtn");
+            if (standardBtn) {
+              standardBtn.className =
+                "btn btn-sm btn-outline-secondary w-100 PlanSelectBtn";
+              if (card.classList.contains("premium")) {
+                standardBtn.className =
+                  "btn btn-sm btn-outline-danger w-100 PlanSelectBtn";
+              }
+            }
+          });
+
+          element.classList.add("active-plan");
+          const targetBtn = element.querySelector(".PlanSelectBtn");
+          if (targetBtn) {
+            targetBtn.className = "btn btn-sm btn-danger w-100 PlanSelectBtn";
+          }
+
+          document.getElementById("selectedPlanName").value = planName;
+          document.getElementById("selectedPlanPrice").value = price;
+        };
+
+        // --- Final Submission ---
+        window.submitPremiumWizard = function () {
+          if (!validateCurrentStep()) {
+              return; // Stop submission if current step is invalid
+          }
+          
+          const processBtn = document.querySelector(".btn-success");
+          if (processBtn) {
+            processBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin me-1"></i> Registering Profile...`;
+            processBtn.disabled = true;
+          }
+
+          const formData = new FormData();
+          const safeGet = (id) => document.getElementById(id) ? document.getElementById(id).value : "";
+          
+          formData.append('userName', safeGet('userFullName'));
+          formData.append('userDob', safeGet('userDob'));
+          formData.append('userGender', safeGet('userGender'));
+          formData.append('maritalStatus', safeGet('maritalStatus'));
+          formData.append('userHeight', safeGet('userHeight'));
+          
+          formData.append('userReligion', safeGet('userReligion'));
+          formData.append('userCaste', safeGet('userCaste'));
+          formData.append('motherTongue', safeGet('userMotherTongue'));
+          formData.append('highestEducation', safeGet('highestEducation'));
+          formData.append('profession', safeGet('occupation'));
+          formData.append('annualIncome', safeGet('annualIncome'));
+          
+          formData.append('familyType', safeGet('familyType'));
+          formData.append('fatherOccupation', safeGet('fatherOccupation'));
+          formData.append('motherOccupation', safeGet('motherOccupation'));
+          formData.append('city', safeGet('city'));
+          formData.append('state', safeGet('state'));
+          
+          formData.append('prefAgeMin', safeGet('prefAgeMin'));
+          formData.append('prefAgeMax', safeGet('prefAgeMax'));
+          formData.append('prefReligion', safeGet('prefReligion'));
+          
+          formData.append('aboutMeDescription', safeGet('aboutMeDescription'));
+          
+          if (typeof selectedPhotos !== 'undefined' && selectedPhotos.length > 0) {
+            formData.append('photo', selectedPhotos[0]);
+          }
+          
+          const csrfToken = document.cookie.split('; ').find(row => row.startsWith('csrftoken='))?.split('=')[1] || '{{ csrf_token }}';
+          
+          fetch('/profiles/personal/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            body: formData
+          }).then(res => res.json()).then(data => {
+            if (data.status === 'success') {
+                if (data.redirect_url && data.redirect_url !== '/payments/checkout/') {
+                    window.location.href = data.redirect_url;
+                } else if (typeof showStep === 'function') {
+                    showStep(6);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
+                    window.location.href = data.redirect_url || '/payments/checkout/';
+                }
+            } else {
+                alert("Error saving profile: " + data.message);
+                if (processBtn) {
+                  processBtn.innerHTML = "Submit Profile <i class='fa-solid fa-check ms-2'></i>";
+                  processBtn.disabled = false;
+                }
+            }
+          }).catch(err => {
+              console.error(err);
+              alert("Error connecting to backend.");
+              if (processBtn) {
+                  processBtn.innerHTML = "Submit Profile <i class='fa-solid fa-check ms-2'></i>";
+                  processBtn.disabled = false;
+              }
+          });
+        };
+
+        // Populate summary box values dynamically
+        function compileSuccessSummary() {
+          const occSelect =
+            document.getElementById("highestEducation")?.value ||
+            "Software Engineer";
+          const cityVal = document.getElementById("city")?.value || "Pune";
+          const stateVal =
+            document.getElementById("state")?.value || "Maharashtra";
+          const planVal =
+            document.getElementById("selectedPlanName")?.value ||
+            "Gold Premium";
+
+          const summaryProfession =
+            document.getElementById("summaryProfession");
+          if (summaryProfession) summaryProfession.innerText = occSelect;
+
+          const summaryLocation = document.getElementById("summaryLocation");
+          if (summaryLocation)
+            summaryLocation.innerText = `${cityVal}, ${stateVal}, India`;
+
+          const summaryPlan = document.getElementById("summaryPlan");
+          if (summaryPlan) summaryPlan.innerText = planVal + " Plan";
+        }
+      });
+    </script>
+
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+<script src="/static/web/js/global-interactions.js"></script>
+
+<script>
+  // Auto-fill form data from registration
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentUserJson = localStorage.getItem('currentUser');
+    if (currentUserJson) {
+      try {
+        const user = JSON.parse(currentUserJson);
+        
+        // Populate Email
+        const emailInput = document.getElementById('userEmail');
+        if (emailInput && user.email) {
+          emailInput.value = user.email;
+        }
+        
+        // Populate Mobile
+        const mobileInput = document.getElementById('userMobile');
+        if (mobileInput && user.mobile) {
+          mobileInput.value = user.mobile;
+        }
+        
+        // Populate Full Name
+        const nameInput = document.getElementById('userFullName');
+        if (nameInput && user.firstName) {
+          nameInput.value = user.firstName + (user.lastName ? ' ' + user.lastName : '');
+        }
+        
+        // Populate Gender
+        const genderSelect = document.getElementById('userGender');
+        if (genderSelect && user.gender) {
+          genderSelect.value = user.gender;
+        }
+        
+        // Populate DOB
+        const dobInput = document.getElementById('userDob');
+        if (dobInput && user.dob) {
+          dobInput.value = user.dob;
+        }
+      } catch(e) {
+        console.error("Error parsing currentUser data", e);
+      }
+    }
+  });
+</script>
+<style>
+  /* ENFORCE WIDER FORM AND REDUCE MARGINS/PADDING - OVERRIDING ALL INLINE STYLES */
+  .wizard-card {
+    max-width: 1400px !important;
+    width: 96% !important;
+    padding: 30px 40px !important;
+  }
+  .stepper-wrapper {
+    max-width: 1200px !important;
+  }
+  .wizard-section {
+    padding-top: 100px !important;
+  }
+  .form-card {
+    padding: 0 15px !important;
+  }
+</style>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const religionSelect = $('#userReligion');
+          const casteSelect = $('#userCaste');
+          const motherTongueSelect = $('#userMotherTongue');
+          
+          // Initialize Select2 with custom styling, max-height logic and force open downwards
+          religionSelect.select2({ width: '100%', dropdownPosition: 'below' });
+          motherTongueSelect.select2({ width: '100%', dropdownPosition: 'below', tags: true });
+          casteSelect.select2({ width: '100%', dropdownPosition: 'below' });
+          
+          if(religionSelect.length && casteSelect.length) {
+              // Get original options from the raw DOM element
+              const rawCasteSelect = document.getElementById("userCaste");
+              const originalCasteOptions = Array.from(rawCasteSelect.options).slice(1);
+              
+              religionSelect.on("change", function() {
+                  const selectedReligion = $(this).val();
+                  
+                  // Clear and rebuild options
+                  rawCasteSelect.innerHTML = '<option value="" selected disabled>Select Caste / Sub-Caste</option>';
+                  
+                  originalCasteOptions.forEach(opt => {
+                      if(opt.getAttribute("data-religion") === selectedReligion) {
+                          rawCasteSelect.appendChild(opt.cloneNode(true));
+                      }
+                  });
+                  
+                  // Trigger Select2 update
+                  casteSelect.val(null).trigger('change');
+              });
+              
+              if(religionSelect.val()) {
+                  religionSelect.trigger('change');
+              }
+          }
+          
+          // Add placeholder to the search box dynamically and force dropdown below
+          $(document).on('select2:open', function(e) {
+              const searchInput = document.querySelector('.select2-search__field');
+              if (searchInput) {
+                  searchInput.placeholder = 'Search here...';
+              }
+              
+              // Force dropdown to open below
+              setTimeout(() => {
+                  const $dropdown = $('.select2-container--open .select2-dropdown');
+                  if ($dropdown.hasClass('select2-dropdown--above')) {
+                      $dropdown.removeClass('select2-dropdown--above').addClass('select2-dropdown--below');
+                      
+                      // Calculate proper top position to put it below the input
+                      const $selection = $(e.target).next('.select2-container').find('.select2-selection');
+                      if ($selection.length) {
+                          const offset = $selection.offset();
+                          const height = $selection.outerHeight();
+                          $dropdown.parent().css({
+                              top: (offset.top + height) + 'px',
+                              bottom: 'auto'
+                          });
+                      }
+                  }
+              }, 0);
+          });
+      });
+    </script>
+    <style>
+      /* Custom Select2 Styling to match Matrimony Theme */
+      .select2-container--default .select2-selection--single {
+        height: 52px;
+        border: 1px solid rgba(233, 64, 87, 0.1) !important;
+        border-radius: 12px;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        font-size: 14px;
+        color: #475569;
+        transition: all 0.3s ease;
+      }
+      .select2-container--default .select2-selection--single .select2-selection__rendered {
+        width: 100%;
+        padding-right: 20px;
+        padding-left: 5px;
+      }
+      .select2-container--default .select2-selection--single:focus,
+      .select2-container--default.select2-container--open .select2-selection--single {
+        border-color: #e94057 !important;
+        box-shadow: 0 0 0 4px rgba(233, 64, 87, 0.1) !important;
+      }
+      .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 50px;
+        right: 15px;
+      }
+      .select2-dropdown {
+        border: 1px solid rgba(233, 64, 87, 0.1) !important;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        overflow: hidden;
+      }
+      .select2-results__options {
+        max-height: 250px !important; /* Force scrolling after ~7-8 items */
+      }
+      .select2-results__option {
+        padding: 8px 15px;
+      }
+      .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: #e94057;
+      }
+      .select2-container--default .select2-search--dropdown .select2-search__field {
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        padding: 8px 12px;
+      }
+      .select2-container--default .select2-search--dropdown .select2-search__field::placeholder {
+        color: #94a3b8;
+        font-style: italic;
+      }
+      .select2-container--default .select2-search--dropdown .select2-search__field:focus {
+        border-color: #e94057;
+        outline: none;
+      }
+    </style>
+  </body>
+</html>

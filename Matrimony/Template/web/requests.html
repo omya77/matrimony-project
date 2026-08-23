@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Connection Manager - ForeverBond</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="/static/web/images/favicon.png" rel="icon" type="image/png"/>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="/static/web/css/navbar.css" rel="stylesheet"/>
+<link href="/static/web/css/featured_brides.css" rel="stylesheet"/>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+<link href="/static/web/css/footer.css" rel="stylesheet"/>
+
+    <style>
+      :root {
+        --rose: #e94057;
+        --pink: #ff7aa2;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.5);
+      }
+      .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(233, 64, 87, 0.1);
+        transition: all 0.3s ease;
+      }
+      .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(233, 64, 87, 0.2);
+      }
+      .btn-premium-gradient {
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-premium-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(233, 64, 87, 0.3);
+        color: #fff;
+      }
+      body {
+        background: linear-gradient(135deg, #fff0f2 0%, #f1f5f9 100%);
+      }
+    </style>
+
+</head>
+<body>
+
+
+   {% include "web/secondary_navbar.html" %}
+
+    <div class="container-fluid px-4 py-5" style="margin-top: 20px;">
+<h2 class="mb-4 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #1e293b;">Connection <span style="color: #e94057;">Manager</span></h2>
+
+          <!-- DYNAMIC DJANGO LOOP START -->
+          {% if pending_received %}
+            <div class="row g-4 mt-4 w-100 px-3">
+            {% for req in pending_received %}
+            <div class="col-12 col-md-6 col-lg-4" id="request-card-{{ req.sender.id }}">
+              <div class="profile-card shadow-sm h-100 d-flex flex-column" style="border-radius: 18px; overflow: hidden; background: white; border: 1px solid #f1f5f9;">
+                
+                <div class="d-flex align-items-center p-3 border-bottom">
+                    <div class="rounded-circle overflow-hidden me-3" style="width: 60px; height: 60px; border: 2px solid #e94057;">
+                        {% if req.sender.profile.photo and req.sender.profile.is_photo_approved %}
+                        <img src="{{ req.sender.profile.photo.url }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        {% else %}
+                        <img src="{% if request.user.profile.photo %}{{ request.user.profile.photo.url }}?v={{ request.user.profile.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ request.user.profile.full_name|default:request.user.username|urlencode }}&background=e94057&color=fff{% endif %}" style="width: 100%; height: 100%; object-fit: cover;">
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h5 class="mb-0 fw-bold">{{ req.sender.profile.full_name|default:req.sender.username }}</h5>
+                        <small class="text-muted"><i class="fa-solid fa-location-dot"></i> {{ req.sender.profile.city|default:"Location NA" }}</small>
+                    </div>
+                    <div class="ms-auto text-end">
+                        <small class="text-muted d-block">{{ req.created_at|timesince }} ago</small>
+                    </div>
+                </div>
+                
+                <div class="card-body p-3">
+                    <div class="d-flex gap-2 mb-2">
+                        <span class="badge bg-light text-dark border"><i class="fa-solid fa-calendar me-1"></i> {{ req.sender.profile.age|default:"NA" }} yrs</span>
+                        <span class="badge bg-light text-dark border"><i class="fa-solid fa-briefcase me-1"></i> {{ req.sender.profile.profession|default:"NA" }}</span>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="mt-auto p-3 d-flex justify-content-between align-items-center gap-2" style="background: #f8fafc;">
+                  <button onclick="handleRequest({{ req.sender.id }}, 'accept', this)" class="btn flex-grow-1 text-white rounded-pill fw-semibold py-2 shadow-sm" style="background: #10b981; font-size: 14px;">
+                    <i class="fa-solid fa-check me-1"></i> Accept
+                  </button>
+                  <button onclick="handleRequest({{ req.sender.id }}, 'reject', this)" class="btn btn-outline-danger rounded-pill fw-semibold py-2" style="width: 100px; font-size: 14px;">
+                    <i class="fa-solid fa-xmark"></i> Decline
+                  </button>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            </div>
+          {% else %}
+            <div class="row w-100 mt-4">
+              <div class="col-12 text-center py-5" style="background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+                <i class="fa-solid fa-envelope-open-text mb-3" style="font-size: 60px; color: #cbd5e1;"></i>
+                <h3 class="fw-bold mb-2" style="color: #334155;">No Pending Requests</h3>
+                <p class="text-muted">You don't have any pending interest requests at the moment.</p>
+              </div>
+            </div>
+          {% endif %}
+          <!-- DYNAMIC DJANGO LOOP END -->
+          
+          <script>
+          function handleRequest(senderId, action, btnElement) {
+              const url = action === 'accept' ? '/interactions/api/accept-interest/' : '/interactions/api/reject-interest/';
+              const card = document.getElementById('request-card-' + senderId);
+              
+              btnElement.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+              
+              fetch(url, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ sender_id: senderId })
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.status === 'accepted' || data.status === 'rejected') {
+                      card.style.transition = "all 0.4s";
+                      card.style.transform = "scale(0.9)";
+                      card.style.opacity = "0";
+                      setTimeout(() => { card.remove(); }, 400);
+                  } else {
+                      alert(data.message);
+                      btnElement.innerHTML = action === 'accept' ? 'Accept' : 'Decline';
+                  }
+              })
+              .catch(err => {
+                  console.error(err);
+                  alert("An error occurred.");
+              });
+          }
+          </script>
+
+</div>
+<style>
+        .nav-pills .nav-link.active {
+            background-color: #e94057;
+            color: white;
+            box-shadow: 0 4px 10px rgba(233, 64, 87, 0.3);
+        }
+        .nav-pills .nav-link {
+            color: #475569;
+        }
+    </style>
+<!-- Global Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/web/js/navbar.js?v=5"></script>
+<script src="/static/web/js/global-interactions.js?v=2"></script>
+
+    {% include "web/footer.html" %}
+</body>
+</html>

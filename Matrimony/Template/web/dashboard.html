@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="/static/web/images/favicon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - ForeverBond Matrimony</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Premium CSS -->
+    <link rel="stylesheet" href="/Static/web/css/dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      
+      <!-- ==========================================
+           LEFT SIDEBAR NAVIGATION
+           ========================================== -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            Forever<span>Bond</span>
+          </div>
+        </div>
+
+        <ul class="nav-links">
+          <li>
+            <a href="/dashboard/" class="active">
+              <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="/accounts/personal/">
+              <i class="fa-solid fa-user-pen"></i> My Profile
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <i class="fa-solid fa-heart"></i> My Matches
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <i class="fa-solid fa-envelope"></i> Inbox (2)
+            </a>
+          </li>
+
+          <li>
+            <a href="javascript:void(0);">
+              <i class="fa-solid fa-gear"></i> Settings
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <div class="upgrade-card">
+            <h6 class="fw-bold mb-2">Upgrade to Premium</h6>
+            <p style="font-size: 12px; opacity: 0.8; margin-bottom: 12px;">Get 3x more matches and priority visibility.</p>
+            <button class="btn-premium-gradient" style="padding: 8px 15px; font-size: 13px; width: 100%;">Upgrade Now</button>
+          </div>
+          <a href="/accounts/login/" class="btn btn-outline-secondary w-100 mt-3 border-0 text-start" style="color: #64748b;">
+            <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+          </a>
+        </div>
+      </aside>
+
+      <!-- ==========================================
+           MAIN CONTENT AREA
+           ========================================== -->
+      <main class="main-content">
+        
+        <!-- Topbar -->
+        <header class="dashboard-topbar">
+          <div class="d-flex align-items-center gap-3">
+            <i class="fa-solid fa-bars mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('active')"></i>
+            <div class="greeting">
+              <h2 id="welcomeName">Welcome back, Omkar! 👋</h2>
+              <p>Your profile is <strong class="text-success">85% complete</strong>. Add more details to get better matches.</p>
+            </div>
+          </div>
+          
+          <div class="topbar-actions">
+            <div class="notification-btn">
+              <i class="fa-solid fa-bell"></i>
+              <div class="notification-badge">2</div>
+            </div>
+            <div class="user-profile-menu">
+              <!-- Photo will be loaded via JS if available -->
+              <img src="https://ui-avatars.com/api/?name=Omkar+Patil&background=ff7aa2&color=fff" id="navProfilePhoto" alt="User Profile" />
+            </div>
+          </div>
+        </header>
+
+        <!-- Quick Stats Widgets -->
+        <div class="row g-4 mb-4">
+          <div class="col-xl-3 col-md-6">
+            <div class="glass-card stat-card">
+              <div class="stat-icon pink">
+                <i class="fa-solid fa-eye"></i>
+              </div>
+              <div class="stat-info">
+                <h3>128</h3>
+                <p>Profile Views</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="glass-card stat-card">
+              <div class="stat-icon blue">
+                <i class="fa-solid fa-heart-circle-check"></i>
+              </div>
+              <div class="stat-info">
+                <h3>14</h3>
+                <p>Interests Received</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="glass-card stat-card">
+              <div class="stat-icon purple">
+                <i class="fa-solid fa-paper-plane"></i>
+              </div>
+              <div class="stat-info">
+                <h3>8</h3>
+                <p>Interests Sent</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="glass-card stat-card">
+              <div class="stat-icon gold">
+                <i class="fa-solid fa-medal"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Free</h3>
+                <p>Current Plan</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Recommended Matches Grid -->
+          <div class="col-xl-8">
+            <div class="section-header">
+              <h3 class="fw-bold mb-0 text-dark">Recommended Matches</h3>
+              <a href="javascript:void(0);" class="text-danger fw-bold text-decoration-none">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+            
+            <div class="row g-4">
+              <!-- Match Card 1 -->
+              <div class="col-md-6">
+                <div class="glass-card match-card">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" class="match-photo" alt="Match Profile" />
+                  <div class="match-info">
+                    <h4 class="match-name fw-bold">Anjali Sharma <i class="fa-solid fa-circle-check ms-1" style="color: #10b981; font-size: 14px;" title="Verified Profile"></i></h4>
+                    <div class="match-details">
+                      <div class="row g-2 mb-3">
+                        <div class="col-6 text-start"><i class="fa-solid fa-calendar"></i> 26 yrs, 5'5"</div>
+                        <div class="col-6 text-start"><i class="fa-solid fa-briefcase"></i> Software Eng.</div>
+                        <div class="col-6 text-start"><i class="fa-solid fa-location-dot"></i> Pune, India</div>
+                        <div class="col-6 text-start"><i class="fa-solid fa-om"></i> Hindu, Maratha</div>
+                      </div>
+                    </div>
+                    <button class="btn-premium-gradient w-100">Send Interest</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Match Card 2 -->
+              <div class="col-md-6">
+                <div class="glass-card match-card">
+                  <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=400" class="match-photo" style="filter: blur(8px);" alt="Match Profile" />
+                  <div class="match-info">
+                    <h4 class="match-name fw-bold">Priya Patil <i class="fa-solid fa-circle-check ms-1" style="color: #10b981; font-size: 14px;" title="Verified Profile"></i></h4>
+                    <div class="match-details">
+                      <div class="row g-2 mb-3">
+                        <div class="col-6 text-start"><i class="fa-solid fa-calendar"></i> 25 yrs, 5'4"</div>
+                        <div class="col-6 text-start"><i class="fa-solid fa-briefcase"></i> Doctor</div>
+                        <div class="col-6 text-start"><i class="fa-solid fa-location-dot"></i> Mumbai, India</div>
+                        <div class="col-6 text-start"><i class="fa-solid fa-om"></i> Hindu, Maratha</div>
+                      </div>
+                    </div>
+                    <button class="btn-premium-gradient w-100">Send Interest</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inbox / Recent Activity -->
+          <div class="col-xl-4">
+            <div class="section-header">
+              <h3 class="fw-bold mb-0 text-dark">Recent Interests</h3>
+            </div>
+            <div class="glass-card p-3">
+              <!-- Item 1 -->
+              <div class="activity-item">
+                <div class="activity-user">
+                  <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=100" alt="User">
+                  <div>
+                    <h6 class="mb-0 fw-bold">Sneha K.</h6>
+                    <small class="text-muted">Sent you an interest</small>
+                  </div>
+                </div>
+                <div class="activity-actions">
+                  <button class="btn btn-sm btn-outline-danger rounded-circle" style="width:32px; height:32px; padding:0"><i class="fa-solid fa-xmark"></i></button>
+                  <button class="btn btn-sm btn-success rounded-circle" style="width:32px; height:32px; padding:0"><i class="fa-solid fa-check"></i></button>
+                </div>
+              </div>
+              
+              <!-- Item 2 -->
+              <div class="activity-item">
+                <div class="activity-user">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" alt="User">
+                  <div>
+                    <h6 class="mb-0 fw-bold">Riya S.</h6>
+                    <small class="text-muted">Sent you an interest</small>
+                  </div>
+                </div>
+                <div class="activity-actions">
+                  <button class="btn btn-sm btn-outline-danger rounded-circle" style="width:32px; height:32px; padding:0"><i class="fa-solid fa-xmark"></i></button>
+                  <button class="btn btn-sm btn-success rounded-circle" style="width:32px; height:32px; padding:0"><i class="fa-solid fa-check"></i></button>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="activity-item">
+                <div class="activity-user">
+                  <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=100" alt="User">
+                  <div>
+                    <h6 class="mb-0 fw-bold">Neha M.</h6>
+                    <small class="text-muted">Viewed your profile</small>
+                  </div>
+                </div>
+                <span class="badge bg-light text-dark border">2h ago</span>
+              </div>
+              
+              <a href="javascript:void(0);" class="btn btn-outline-danger w-100 mt-3 rounded-pill">View All Inbox</a>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Auto-Populate Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentUserData = localStorage.getItem("currentUser");
+        if (currentUserData) {
+          const user = JSON.parse(currentUserData);
+          if (user.fullName) {
+             const firstName = user.fullName.split(' ')[0];
+             document.getElementById("welcomeName").innerText = `Welcome back, ${firstName}! 👋`;
+          }
+        }
+        
+        const profilePhotoData = localStorage.getItem("profilePhoto");
+        if (profilePhotoData) {
+            document.getElementById("navProfilePhoto").src = profilePhotoData;
+        }
+      });
+    </script>
+  </body>
+</html>

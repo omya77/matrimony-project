@@ -1,0 +1,878 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block extra_css %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+    .dashboard-container, .dashboard-container *:not(i):not([class^='fa-']):not([class*=' fa-']) {
+        font-family: 'Outfit', sans-serif;
+    }
+
+    /* Enterprise Welcome Banner */
+    .welcome-banner {
+        background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+        border: none;
+        border-radius: 24px;
+        padding: 40px 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-bottom: 40px;
+        box-shadow: 0 20px 40px -15px rgba(225, 29, 72, 0.5);
+        position: relative;
+        overflow: hidden;
+        color: white;
+    }
+    
+    .welcome-banner::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+    .welcome-banner::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        right: 10%;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(236,72,153,0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .welcome-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        color: #ffffff;
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 8px 16px;
+        border-radius: 30px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .welcome-banner h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #ffffff;
+        margin: 0 0 12px 0;
+        letter-spacing: -0.5px;
+        line-height: 1.2;
+    }
+
+    .welcome-subtext {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 1.05rem;
+        margin: 0;
+        max-width: 600px;
+        line-height: 1.6;
+        font-weight: 400;
+    }
+
+    .date-picker-btn {
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #e11d48;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 20px -10px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    
+    .date-picker-btn:hover {
+        transform: translateY(-3px);
+        background: #ffffff;
+        box-shadow: 0 15px 25px -10px rgba(0,0,0,0.3);
+    }
+    
+    .date-picker-btn i.text-muted {
+        color: #e11d48 !important;
+    }
+
+    /* Metrics Cards Grid */
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .metric-card {
+        background: #ffffff;
+        border: 1px solid #f1f5f9;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+    }
+
+    .metric-card::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 100%);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.4s;
+    }
+
+    .metric-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -8px rgba(0,0,0,0.08);
+        border-color: #e2e8f0;
+    }
+    
+    .metric-card:hover::after {
+        opacity: 1;
+    }
+
+    .metric-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+        transition: transform 0.4s ease;
+    }
+
+    .metric-card:hover .metric-icon {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    .metric-icon.users { background: #fff1f2; color: #e11d48; }
+    .metric-icon.active { background: #ecfdf5; color: #059669; }
+    .metric-icon.male-blue { background: #f0f9ff; color: #0284c7; }
+    .metric-icon.female-pink { background: #fff1f2; color: #e11d48; }
+    .metric-icon.matches { background: #fdf2f8; color: #db2777; }
+    .metric-icon.revenue { background: #fffbeb; color: #d97706; }
+
+    .metric-details { display: flex; flex-direction: column; flex: 1; z-index: 1; }
+    
+    .metric-title { 
+        font-size: 0.85rem; 
+        font-weight: 700; 
+        color: #64748b; 
+        text-transform: uppercase; 
+        letter-spacing: 1px; 
+        margin-bottom: 8px; 
+    }
+    
+    .metric-value { 
+        font-size: 2.2rem; 
+        font-weight: 800; 
+        color: #0f172a; 
+        line-height: 1.1; 
+        margin-bottom: 12px; 
+        letter-spacing: -0.5px;
+    }
+    
+    .metric-growth { 
+        font-size: 0.8rem; 
+        font-weight: 700; 
+        color: #059669; 
+        display: inline-flex; 
+        align-items: center; 
+        gap: 6px; 
+        background: #d1fae5; 
+        padding: 4px 10px; 
+        border-radius: 20px; 
+        width: fit-content; 
+    }
+
+    /* Layout Grids */
+    .middle-grid {
+        display: grid;
+        grid-template-columns: 2fr 1.2fr 1fr;
+        gap: 28px;
+        margin-bottom: 40px;
+    }
+    
+    .bottom-grid {
+        display: grid;
+        grid-template-columns: 2.5fr 1fr;
+        gap: 28px;
+    }
+
+    .card-panel {
+        background: #ffffff;
+        border: 1px solid #f1f5f9;
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+        display: flex;
+        flex-direction: column;
+        transition: box-shadow 0.3s ease;
+    }
+    
+    .card-panel:hover {
+        box-shadow: 0 10px 30px -5px rgba(0,0,0,0.06);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #f8fafc;
+    }
+    
+    .card-title { 
+        font-size: 1.3rem; 
+        font-weight: 800; 
+        color: #0f172a; 
+        margin: 0; 
+        letter-spacing: -0.5px;
+    }
+    
+    .card-dropdown {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 8px 16px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #475569;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .card-dropdown:hover { 
+        border-color: #e11d48; 
+        color: #e11d48;
+        background: #fff1f2; 
+    }
+
+    /* Quick Actions */
+    .quick-actions { display: flex; flex-direction: column; gap: 16px; }
+    
+    .action-btn { 
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between; 
+        padding: 16px 20px; 
+        background: #f8fafc; 
+        border: 1px solid transparent; 
+        border-radius: 16px; 
+        text-decoration: none; 
+        color: #1e293b; 
+        font-weight: 700; 
+        font-size: 1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    }
+    
+    .action-btn:hover { 
+        background: #ffffff; 
+        border-color: #e2e8f0; 
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08); 
+        transform: scale(1.02); 
+    }
+    
+    .action-icon-wrapper { display: flex; align-items: center; gap: 16px; }
+    
+    .action-icon { 
+        width: 44px; 
+        height: 44px; 
+        border-radius: 12px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        font-size: 1.2rem; 
+        transition: transform 0.3s ease;
+    }
+    
+    .action-btn:hover .action-icon {
+        transform: rotate(10deg);
+    }
+    
+    .action-icon.approve { background: #d1fae5; color: #059669; }
+    .action-icon.flagged { background: #fee2e2; color: #dc2626; }
+    .action-icon.master { background: #fef3c7; color: #d97706; }
+
+    /* Activities List */
+    .activity-list { display: flex; flex-direction: column; gap: 20px; }
+    
+    .activity-item { 
+        display: flex; 
+        gap: 16px; 
+        align-items: flex-start; 
+        padding: 16px; 
+        border-radius: 16px;
+        background: #f8fafc;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+    }
+    
+    .activity-item:hover {
+        background: #ffffff;
+        border-color: #e2e8f0;
+        box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
+        transform: translateY(-2px);
+    }
+    
+    .activity-icon { 
+        width: 42px; 
+        height: 42px; 
+        border-radius: 12px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        flex-shrink: 0; 
+        font-size: 1.1rem; 
+    }
+    
+    .activity-icon.register { background: #e0f2fe; color: #0284c7; }
+    .activity-icon.approve { background: #d1fae5; color: #059669; }
+    
+    .activity-details {
+        flex: 1;
+    }
+    
+    .activity-details p { 
+        margin: 0 0 6px 0; 
+        font-size: 0.95rem; 
+        font-weight: 700; 
+        color: #0f172a; 
+        line-height: 1.4; 
+    }
+    
+    .activity-details span { 
+        font-size: 0.8rem; 
+        color: #64748b; 
+        display: flex; 
+        align-items: center; 
+        gap: 6px; 
+        font-weight: 600; 
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in-up {
+        animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+    }
+    
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+
+    /* Tables enhancement */
+    .custom-table { width: 100%; border-collapse: separate; border-spacing: 0 12px; margin-top: -12px; }
+    .custom-table th { 
+        padding: 16px; 
+        text-align: left; 
+        color: #64748b; 
+        font-weight: 700; 
+        font-size: 0.85rem; 
+        text-transform: uppercase; 
+        letter-spacing: 1px; 
+        border-bottom: 2px solid #f1f5f9;
+    }
+    .custom-table td { 
+        padding: 16px; 
+        background: #ffffff; 
+        border-top: 1px solid #f1f5f9;
+        border-bottom: 1px solid #f1f5f9;
+        vertical-align: middle;
+        transition: all 0.3s ease;
+    }
+    .custom-table tr td:first-child { border-left: 1px solid #f1f5f9; border-radius: 12px 0 0 12px; }
+    .custom-table tr td:last-child { border-right: 1px solid #f1f5f9; border-radius: 0 12px 12px 0; }
+    
+    .custom-table tbody tr:hover td {
+        background: #f8fafc;
+        border-color: #e2e8f0;
+    }
+
+    .user-cell { display: flex; align-items: center; gap: 16px; }
+    .user-avatar { 
+        width: 48px; 
+        height: 48px; 
+        border-radius: 12px; 
+        background: #e2e8f0; 
+        overflow: hidden; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        flex-shrink: 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .user-avatar i { color: #94a3b8; font-size: 1.4rem; }
+    
+    .user-details { display: flex; flex-direction: column; gap: 4px; }
+    .user-details .name { font-weight: 800; color: #0f172a; font-size: 1.05rem; }
+    .user-details .id { font-size: 0.8rem; color: #64748b; font-weight: 600; background: #f1f5f9; padding: 2px 8px; border-radius: 6px; width: fit-content;}
+
+    .status-badge { 
+        display: inline-flex; 
+        align-items: center; 
+        gap: 6px; 
+        padding: 6px 12px; 
+        border-radius: 20px; 
+        font-size: 0.85rem; 
+        font-weight: 700; 
+    }
+    .status-badge.verified { background: #d1fae5; color: #059669; border: 1px solid #a7f3d0; }
+    .status-badge.pending { background: #fef3c7; color: #d97706; border: 1px solid #fde68a; }
+
+    .btn-link { 
+        color: #4f46e5; 
+        text-decoration: none; 
+        font-weight: 700; 
+        font-size: 0.9rem; 
+        display: inline-flex; 
+        align-items: center; 
+        gap: 6px;
+        transition: all 0.3s ease;
+    }
+    .btn-link:hover { color: #3730a3; transform: translateX(4px); }
+
+    @media (max-width: 1400px) {
+        .middle-grid { grid-template-columns: 1fr 1fr; }
+        .middle-grid .card-panel:first-child { grid-column: span 2; }
+        .bottom-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+        .middle-grid { grid-template-columns: 1fr; }
+        .middle-grid .card-panel:first-child { grid-column: span 1; }
+    }
+
+    /* DASHBOARD SPECIFIC MOBILE FIXES */
+    @media (max-width: 768px) {
+        .welcome-banner {
+            padding: 24px 20px !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            border-radius: 16px !important;
+        }
+        .welcome-banner h1 { font-size: 1.8rem !important; }
+        .welcome-subtext { font-size: 0.95rem !important; }
+        .metrics-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+        }
+        .middle-grid, .bottom-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 16px !important;
+        }
+        .card-panel { padding: 16px !important; margin-bottom: 16px !important; width: 100% !important; overflow: hidden; }
+        .chart-container, canvas { width: 100% !important; height: auto !important; }
+        .dashboard-container { overflow-x: hidden !important; width: 100% !important; }
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    
+    <!-- Welcome Banner -->
+    <div class="welcome-banner fade-in-up">
+        <div class="welcome-content">
+            <span class="welcome-pill"><i class="fa-solid fa-chart-line"></i> SYSTEM OVERVIEW</span>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Executive Dashboard</h1>
+            <p class="welcome-subtext">Real-time statistics of member registrations, profile verifications, active matches, and revenue performance.</p>
+        </div>
+        <button class="date-picker-btn">
+            <i class="fa-regular fa-calendar me-1 text-muted"></i> Last 7 Days <i class="fa-solid fa-chevron-down ms-1 text-muted" style="font-size: 0.75rem;"></i>
+        </button>
+    </div>
+
+    <!-- Metrics Cards Grid -->
+    <div class="metrics-grid">
+        <div class="metric-card fade-in-up delay-1">
+            <div class="metric-icon users">
+                <i class="fa-solid fa-user-group"></i>
+            </div>
+            <div class="metric-details">
+                <div class="metric-title">Total Members</div>
+                <div class="metric-value">{{ total_users|default:"2,540" }}</div>
+                <div class="metric-growth"><i class="fa-solid fa-arrow-up-right-dots"></i> +12.5% vs last week</div>
+            </div>
+        </div>
+
+        <div class="metric-card fade-in-up delay-2">
+            <div class="metric-icon active">
+                <i class="fa-solid fa-user-check"></i>
+            </div>
+            <div class="metric-details">
+                <div class="metric-title">Active Profiles</div>
+                <div class="metric-value">{{ active_users|default:"1,820" }}</div>
+                <div class="metric-growth"><i class="fa-solid fa-arrow-up-right-dots"></i> +8.4% vs last week</div>
+            </div>
+        </div>
+
+        <div class="metric-card fade-in-up delay-3">
+            <div class="metric-icon male-blue">
+                <i class="fa-solid fa-mars"></i>
+            </div>
+            <div class="metric-details">
+                <div class="metric-title">Grooms (Male)</div>
+                <div class="metric-value">{{ male_users|default:"1,473" }}</div>
+                <div class="metric-growth"><i class="fa-solid fa-arrow-up-right-dots"></i> +5.4% vs last week</div>
+            </div>
+        </div>
+
+        <div class="metric-card fade-in-up delay-4">
+            <div class="metric-icon female-pink">
+                <i class="fa-solid fa-venus"></i>
+            </div>
+            <div class="metric-details">
+                <div class="metric-title">Brides (Female)</div>
+                <div class="metric-value">{{ female_users|default:"1,067" }}</div>
+                <div class="metric-growth"><i class="fa-solid fa-arrow-up-right-dots"></i> +5.0% vs last week</div>
+            </div>
+        </div>
+
+        <div class="metric-card fade-in-up delay-5">
+            <div class="metric-icon matches">
+                <i class="fa-solid fa-heart-circle-check"></i>
+            </div>
+            <div class="metric-details">
+                <div class="metric-title">Matches Made</div>
+                <div class="metric-value">{{ matches_made|default:"864" }}</div>
+                <div class="metric-growth"><i class="fa-solid fa-arrow-up-right-dots"></i> +5.0% vs last week</div>
+            </div>
+        </div>
+
+        <div class="metric-card fade-in-up delay-6">
+            <div class="metric-icon revenue">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+            </div>
+            <div class="metric-details">
+                <div class="metric-title">Today's Revenue</div>
+                <div class="metric-value">₹ {{ total_revenue|default:"14,500" }}</div>
+                <div class="metric-growth"><i class="fa-solid fa-arrow-up-right-dots"></i> +3.1% vs yesterday</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Middle Grid: Charts & Quick Actions -->
+    <div class="middle-grid">
+        <!-- Registrations Line Chart -->
+        <div class="card-panel fade-in-up delay-2">
+            <div class="card-header">
+                <h3 class="card-title">Registrations Analytics</h3>
+                <button class="card-dropdown">Last 7 Days <i class="fa-solid fa-chevron-down ms-1"></i></button>
+            </div>
+            <div style="height: 250px; width: 100%; position: relative;">
+                <canvas id="registrationsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Donut Chart -->
+        <div class="card-panel fade-in-up delay-3">
+            <div class="card-header">
+                <h3 class="card-title">Gender Distribution</h3>
+            </div>
+            <div style="height: 190px; width: 100%; display: flex; align-items: center; justify-content: center; position: relative;">
+                <canvas id="ratioChart"></canvas>
+                <div style="position: absolute; text-align: center; pointer-events: none;">
+                    <div style="font-weight: 800; font-size: 1.35rem; color: #0f172a; font-family: 'Plus Jakarta Sans', sans-serif;">{{ total_users }}</div>
+                    <div style="font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Total Users</div>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-around; margin-top: 16px; padding-top: 14px; border-top: 1px solid #f1f5f9;">
+                <div style="text-align: center;">
+                    <div style="color: #0284c7; font-size: 0.75rem; font-weight: 700;"><i class="fa-solid fa-circle me-1" style="font-size:0.5rem"></i>Grooms</div>
+                    <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; font-family: 'Plus Jakarta Sans', sans-serif;">{{ male_users }}</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="color: #e11d48; font-size: 0.75rem; font-weight: 700;"><i class="fa-solid fa-circle me-1" style="font-size:0.5rem"></i>Brides</div>
+                    <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; font-family: 'Plus Jakarta Sans', sans-serif;">{{ female_users }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card-panel fade-in-up delay-4">
+            <div class="card-header">
+                <h3 class="card-title">Quick Actions</h3>
+            </div>
+            <div class="quick-actions">
+                <a href="{% url 'profile_approvals' %}" class="action-btn">
+                    <div class="action-icon-wrapper">
+                        <div class="action-icon approve"><i class="fa-solid fa-user-check"></i></div>
+                        <span>Approve Profiles</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-muted" style="font-size:0.75rem"></i>
+                </a>
+                <a href="#" class="action-btn">
+                    <div class="action-icon-wrapper">
+                        <div class="action-icon flagged"><i class="fa-solid fa-flag"></i></div>
+                        <span>Flagged Profiles</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-muted" style="font-size:0.75rem"></i>
+                </a>
+                <a href="#" class="action-btn">
+                    <div class="action-icon-wrapper">
+                        <div class="action-icon master"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                        <span>Payment Verifications</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-muted" style="font-size:0.75rem"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Grid: Recent Registrations Table & Recent Activities -->
+    <div class="bottom-grid">
+        <!-- Recent Registrations Table -->
+        <div class="card-panel fade-in-up delay-5">
+            <div class="card-header">
+                <h3 class="card-title">Recent Registrations</h3>
+                <a href="{% url 'profile_approvals' %}" class="btn-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Member</th>
+                            <th>Age</th>
+                            <th>Location</th>
+                            <th>Joined Date</th>
+                            <th>Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for profile in recent_profiles %}
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar">
+                                        {% if profile.photo %}
+                                            <img src="{{ profile.photo.url }}" alt="">
+                                        {% else %}
+                                            <i class="fa-solid fa-user"></i>
+                                        {% endif %}
+                                    </div>
+                                    <div class="user-details">
+                                        <span class="name">{{ profile.full_name|default:profile.user.username }}</span>
+                                        <span class="id">ID: {{ profile.matrimony_id|default:"Pending" }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="font-weight: 600;">{{ profile.age|default:"-" }}</td>
+                            <td style="color: #64748b; font-weight: 500;">{{ profile.city|default:"-" }}, {{ profile.state|default:"-" }}</td>
+                            <td style="font-weight: 500; color: #475569;">{{ profile.created_at|date:"d M Y" }}</td>
+                            <td>
+                                {% if profile.approval_status == 'Approved' %}
+                                    <span class="status-badge verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                                {% else %}
+                                    <span class="status-badge pending"><i class="fa-solid fa-clock"></i> Pending</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center" style="white-space: nowrap;">
+                                <a href="{% url 'profile_approvals' %}" class="btn btn-sm" style="background: #f1f5f9; color: #334155; font-weight: 600; border: 1px solid #cbd5e1; border-radius: 8px; padding: 5px 12px; font-size: 0.78rem; transition: all 0.2s;">
+                                    <i class="fa-solid fa-eye me-1"></i> View
+                                </a>
+                                <button onclick="deleteUser({{ profile.id }})" class="btn btn-sm ms-1" style="background: #fee2e2; color: #b91c1c; font-weight: 600; border: 1px solid #fca5a5; border-radius: 8px; padding: 5px 12px; font-size: 0.78rem; transition: all 0.2s;">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center text-muted" style="padding: 40px;">
+                                <i class="fa-regular fa-folder-open mb-2" style="font-size: 1.8rem; color: #94a3b8; display: block;"></i>
+                                No recent registrations found.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Recent Activities -->
+        <div class="card-panel fade-in-up delay-6">
+            <div class="card-header">
+                <h3 class="card-title">System Activities</h3>
+                <a href="#" class="btn-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="activity-list">
+                {% for activity in recent_activities %}
+                <div class="activity-item">
+                    <div class="activity-icon {% if activity.type == 'register' %}register{% else %}approve{% endif %}">
+                        <i class="fa-solid {% if activity.type == 'register' %}fa-user-plus{% else %}fa-check{% endif %}"></i>
+                    </div>
+                    <div class="activity-details">
+                        <p>{{ activity.text }}</p>
+                        <span><i class="fa-regular fa-clock me-1"></i> {{ activity.time|timesince }} ago</span>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="text-muted text-center" style="padding: 30px;">
+                    <i class="fa-solid fa-bell-slash mb-2" style="font-size: 1.6rem; color: #94a3b8; display: block;"></i>
+                    No activity found.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Safe JSON parse from Django context
+    const chartLabels = JSON.parse('{{ chart_labels|safe|escapejs }}');
+    const chartData = JSON.parse('{{ chart_data|safe|escapejs }}');
+    
+    // Registrations Line Chart
+    const ctxLine = document.getElementById('registrationsChart').getContext('2d');
+    
+    // Create gradient for line chart
+    const gradient = ctxLine.createLinearGradient(0, 0, 0, 250);
+    gradient.addColorStop(0, 'rgba(225, 29, 72, 0.25)');
+    gradient.addColorStop(1, 'rgba(225, 29, 72, 0.01)');
+
+    new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                label: 'Registrations',
+                data: chartData,
+                borderColor: '#e11d48',
+                backgroundColor: gradient,
+                borderWidth: 2.5,
+                pointBackgroundColor: '#ffffff',
+                pointBorderColor: '#e11d48',
+                pointBorderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                fill: true,
+                tension: 0.35
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#0f172a',
+                    titleFont: { family: 'Plus Jakarta Sans', size: 13, weight: 'bold' },
+                    bodyFont: { family: 'Plus Jakarta Sans', size: 12 },
+                    padding: 12,
+                    cornerRadius: 8,
+                    displayColors: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: '#f1f5f9', drawBorder: false },
+                    ticks: { color: '#64748b', font: {size: 11, family: 'Plus Jakarta Sans', weight: '600'}, stepSize: 1 }
+                },
+                x: {
+                    grid: { display: false, drawBorder: false },
+                    ticks: { color: '#64748b', font: {size: 11, family: 'Plus Jakarta Sans', weight: '600'} }
+                }
+            }
+        }
+    });
+
+    // User Ratio Donut Chart
+    const ctxRatio = document.getElementById('ratioChart').getContext('2d');
+    
+    // Inject dynamic data
+    const maleCount = parseInt("{{ male_users|default:0 }}");
+    const femaleCount = parseInt("{{ female_users|default:0 }}");
+    
+    const mData = maleCount;
+    const fData = femaleCount;
+    
+    new Chart(ctxRatio, {
+        type: 'doughnut',
+        data: {
+            labels: ['Grooms (Male)', 'Brides (Female)'],
+            datasets: [{
+                data: [mData, fData],
+                backgroundColor: ['#0284c7', '#e11d48'],
+                borderWidth: 2,
+                borderColor: '#ffffff',
+                cutout: '75%',
+                hoverOffset: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#0f172a',
+                    titleFont: { family: 'Plus Jakarta Sans', size: 13, weight: 'bold' },
+                    bodyFont: { family: 'Plus Jakarta Sans', size: 12 },
+                    padding: 12,
+                    cornerRadius: 8
+                }
+            }
+        }
+    });
+
+    function deleteUser(profileId) {
+        if(confirm('Are you sure you want to PERMANENTLY DELETE this user from the database? This action cannot be undone.')) {
+            fetch('/admin_panel/api/delete_user/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ profile_id: profileId })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === 'success') {
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            });
+        }
+    }
+</script>
+{% endblock %}

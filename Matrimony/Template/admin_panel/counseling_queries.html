@@ -1,0 +1,100 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% block title %}Counseling Queries{% endblock %}
+
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row">
+        <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Counseling Queries</h1>
+            <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Manage and reply to user counseling requests.</p>
+        </div>
+    </div>
+
+{% if messages %}
+<div class="fade-in-up delay-1">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}" style="padding: 15px; border-radius: 8px; margin-bottom: 20px; background: {% if message.tags == 'success' %}#d1fae5; color: #065f46{% else %}#fee2e2; color: #991b1b{% endif %};">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="card-panel fade-in-up delay-2">
+    <div class="card-header">
+        <h3 class="card-title">All Queries</h3>
+    </div>
+    <div class="table-responsive">
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>User Details</th>
+                    <th>Topic & Message</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for q in queries %}
+                <tr>
+                    <td>{{ q.submitted_at|date:"d M, Y H:i" }}</td>
+                    <td>
+                        <strong>{{ q.full_name }}</strong><br>
+                        <small class="text-muted">{{ q.email }}</small>
+                    </td>
+                    <td style="max-width: 300px;">
+                        <strong style="color: var(--primary);">{{ q.topic }}</strong><br>
+                        <span class="text-muted" style="font-size: 13px;">{{ q.message|truncatewords:15 }}</span>
+                    </td>
+                    <td>
+                        {% if q.is_resolved %}
+                        <span class="status-badge verified">Resolved</span>
+                        {% else %}
+                        <span class="status-badge pending">Pending</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <button class="btn btn-sm action-btn-hover" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.2); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.3s ease;" onclick="document.getElementById('replyModal{{ q.id }}').style.display='block'">
+                            <i class="fa-solid fa-reply" style="margin-right: 4px;"></i> View & Reply
+                        </button>
+                    </td>
+                </tr>
+
+                <!-- Reply Modal -->
+                <div id="replyModal{{ q.id }}" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999;">
+                    <div style="background:white; width: 600px; max-width: 90%; margin: 50px auto; border-radius: 12px; padding: 24px; position:relative; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+                        <button onclick="document.getElementById('replyModal{{ q.id }}').style.display='none'" style="position:absolute; top:15px; right:15px; border:none; background:none; font-size:18px; cursor:pointer;">&times;</button>
+                        
+                        <h4 style="margin-bottom: 20px; color: var(--text-dark);">Reply to {{ q.full_name }}</h4>
+                        
+                        <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                            <strong>Topic:</strong> {{ q.topic }}<br>
+                            <strong>Message:</strong><br>
+                            <p style="margin-top: 8px; color: #475569;">{{ q.message }}</p>
+                        </div>
+                        
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="query_id" value="{{ q.id }}">
+                            <div style="margin-bottom: 15px;">
+                                <label style="display:block; margin-bottom:8px; font-weight:600;">Your Reply (will be emailed to user):</label>
+                                <textarea name="reply_text" required rows="5" style="width:100%; padding:12px; border-radius:8px; border:1px solid #cbd5e1; outline:none;">{{ q.admin_reply|default:'' }}</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width:100%; padding:12px; border-radius:8px; background: linear-gradient(135deg, #e94057, #ff5c75); border:none; color:white; font-weight:bold;">
+                                Send Reply & Resolve
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center text-muted py-4">No counseling queries found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}

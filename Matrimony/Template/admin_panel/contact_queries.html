@@ -1,0 +1,248 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% block title %}Contact Us Inquiries{% endblock %}
+
+{% block content %}
+<style>
+    .contact-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+    .contact-table th {
+        background: #f8fafc;
+        padding: 16px 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid #e2e8f0;
+        text-align: left;
+    }
+    .contact-table td {
+        padding: 20px;
+        font-size: 0.95rem;
+        color: #1e293b;
+        border-bottom: 1px solid #f1f5f9;
+        vertical-align: middle;
+        transition: background-color 0.2s ease;
+    }
+    .contact-table tbody tr:hover td {
+        background-color: #f8fafc;
+    }
+    .contact-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+    
+    .user-info-cell {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .user-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e94057, #ff5c75);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 10px rgba(233, 64, 87, 0.2);
+    }
+    .user-details {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .user-name {
+        font-weight: 700;
+        color: #0f172a;
+        font-size: 1rem;
+    }
+    .user-meta {
+        font-size: 0.85rem;
+        color: #64748b;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .user-meta i {
+        color: #94a3b8;
+    }
+    
+    .msg-subject {
+        font-weight: 600;
+        color: #e94057;
+        margin-bottom: 6px;
+        display: inline-block;
+        font-size: 0.95rem;
+    }
+    .msg-preview {
+        color: #475569;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        max-width: 350px;
+    }
+    
+    .status-badge {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .status-pending {
+        background: rgba(245, 158, 11, 0.1);
+        color: #d97706;
+        border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    .status-resolved {
+        background: rgba(16, 185, 129, 0.1);
+        color: #059669;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    
+    .action-btn {
+        background: white;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .action-btn:hover {
+        background: #f8fafc;
+        color: #1e293b;
+        border-color: #cbd5e1;
+    }
+    .action-btn.resolve:hover {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border-color: rgba(16, 185, 129, 0.2);
+    }
+</style>
+
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row" style="margin-bottom: 24px;">
+        <div>
+            <h1 style="font-size: 2rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px;">Contact Us Inquiries</h1>
+            <p style="color: #64748b; font-size: 0.95rem; margin: 0;">Manage support requests and feedback from users.</p>
+        </div>
+    </div>
+
+{% if messages %}
+<div class="fade-in-up delay-1">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}" style="padding: 16px 20px; border-radius: 10px; margin-bottom: 24px; font-weight: 500; font-size: 0.95rem; background: {% if message.tags == 'success' %}#d1fae5; color: #065f46; border: 1px solid #a7f3d0;{% else %}#fee2e2; color: #991b1b; border: 1px solid #fecaca;{% endif %};">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="fade-in-up delay-2">
+    <div class="table-responsive"><table class="contact-table">
+        <thead>
+            <tr>
+                <th style="width: 15%;">Date Received</th>
+                <th style="width: 30%;">User Details</th>
+                <th style="width: 35%;">Inquiry Details</th>
+                <th style="width: 10%;">Status</th>
+                <th style="width: 10%;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for q in queries %}
+            <tr>
+                <td>
+                    <div style="color: #64748b; font-size: 0.85rem;"><i class="fa-regular fa-calendar" style="margin-right: 4px;"></i> {{ q.created_at|date:"M d, Y" }}</div>
+                    <div style="color: #1e293b; font-weight: 600; font-size: 0.9rem; margin-top: 4px;">{{ q.created_at|date:"h:i A" }}</div>
+                </td>
+                <td>
+                    <div class="user-info-cell">
+                        <div class="user-avatar">
+                            {{ q.name|make_list|first|upper }}
+                        </div>
+                        <div class="user-details">
+                            <span class="user-name">{{ q.name }}</span>
+                            <div class="user-meta">
+                                <i class="fa-solid fa-envelope"></i> {{ q.email }}
+                            </div>
+                            <div class="user-meta">
+                                <i class="fa-solid fa-phone"></i> {{ q.phone }}
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <span class="msg-subject">{{ q.subject }}</span>
+                    <div class="msg-preview">
+                        "{{ q.message }}"
+                    </div>
+                </td>
+                <td>
+                    {% if q.is_resolved %}
+                    <span class="status-badge status-resolved"><i class="fa-solid fa-check-circle"></i> Resolved</span>
+                    {% else %}
+                    <span class="status-badge status-pending"><i class="fa-solid fa-clock"></i> Pending</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <button class="action-btn {% if not q.is_resolved %}resolve{% endif %}" onclick="toggleStatus({{ q.id }})">
+                        {% if q.is_resolved %}
+                        <i class="fa-solid fa-rotate-left"></i> Reopen
+                        {% else %}
+                        <i class="fa-solid fa-check"></i> Mark Done
+                        {% endif %}
+                    </button>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align: center; padding: 40px 20px; color: #64748b;">
+                    <i class="fa-regular fa-folder-open" style="font-size: 2.5rem; color: #cbd5e1; margin-bottom: 12px; display: block;"></i>
+                    <p style="font-size: 1.1rem; font-weight: 500; margin: 0;">No inquiries found yet.</p>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table></div>
+</div>
+</div>
+
+<script>
+function toggleStatus(id) {
+    fetch("{% url 'toggle_contact_status' %}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({id: id})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
+            window.location.reload();
+        } else {
+            alert('Failed to update status');
+        }
+    });
+}
+</script>
+{% endblock %}

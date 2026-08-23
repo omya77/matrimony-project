@@ -1,0 +1,420 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}Role Access Control - Admin Panel{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Stat Cards */
+    .role-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .stat-card {
+        background: #ffffff;
+        border: 1px solid #f1f5f9;
+        border-radius: 20px;
+        padding: 28px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px -8px rgba(0,0,0,0.08);
+        border-color: #e2e8f0;
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        flex-shrink: 0;
+        transition: transform 0.4s ease;
+    }
+    
+    .stat-card:hover .stat-icon { transform: scale(1.1) rotate(5deg); }
+
+    .stat-icon.admin { background: #fffbeb; color: #d97706; }
+    .stat-icon.staff { background: #ffe4e6; color: #e11d48; } /* Rose Accent */
+    .stat-icon.user { background: #f8fafc; color: #64748b; }
+
+    .stat-details {
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+    }
+
+    .stat-value {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #0f172a;
+        line-height: 1.1;
+        margin-bottom: 6px;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* User Profile Cells */
+    .user-name-cell {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    .user-initials {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #f1f5f9;
+        color: #475569;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+    .user-name-text {
+        font-weight: 800;
+        color: #0f172a;
+        font-size: 1.05rem;
+    }
+
+    .status-badge.admin-badge { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+    .status-badge.staff-badge { background: #ffe4e6; color: #e11d48; border: 1px solid #fecdd3; } /* Rose Accent */
+
+    /* Glassmorphic Modal */
+    .role-modal-overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    .role-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    .role-modal {
+        background: #ffffff;
+        border-radius: 24px;
+        width: 100%;
+        max-max-width: 450px; width: 100%;
+        padding: 32px;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        transform: scale(0.95) translateY(20px);
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .role-modal-overlay.active .role-modal {
+        transform: scale(1) translateY(0);
+    }
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+    .modal-title { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin: 0; }
+    .close-modal {
+        background: #f1f5f9;
+        border: none;
+        width: 36px; height: 36px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .close-modal:hover { background: #e2e8f0; color: #0f172a; }
+    
+    .role-select-group {
+        display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;
+    }
+    .role-option {
+        display: flex; align-items: center; gap: 14px;
+        padding: 16px;
+        border: 2px solid #e2e8f0;
+        border-radius: 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .role-option:hover { border-color: #fecdd3; background: #fff1f2; }
+    .role-option input[type="radio"] {
+        accent-color: #e11d48;
+        width: 18px; height: 18px;
+    }
+    .role-option-text {
+        font-weight: 700; color: #1e293b; font-size: 1rem;
+    }
+    .role-option-desc {
+        font-weight: 500; color: #64748b; font-size: 0.8rem; margin-top: 2px;
+    }
+    .save-role-btn {
+        width: 100%;
+        background: #e11d48;
+        color: white;
+        border: none;
+        padding: 16px;
+        border-radius: 14px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .save-role-btn:hover { background: #be123c; box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4); }
+
+    /* Toast Notification */
+    #toast-notification {
+        position: fixed;
+        bottom: 30px; right: 30px;
+        background: #0f172a;
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        display: flex; align-items: center; gap: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 1001;
+    }
+    #toast-notification.show { transform: translateY(0); opacity: 1; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    
+    <div class="page-title-row mb-4 fade-in-up">
+        <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Role Access Control</h1>
+            <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Manage platform permissions, staff assignments, and privileged accounts.</p>
+        </div>
+    </div>
+
+    <!-- Metrics row for roles -->
+    <div class="role-stats-grid">
+        <div class="stat-card fade-in-up delay-1">
+            <div class="stat-icon admin"><i class="fa-solid fa-crown"></i></div>
+            <div class="stat-details">
+                <div class="stat-value">{{ admins|length }}</div>
+                <div class="stat-label">Super Admins</div>
+            </div>
+        </div>
+        
+        <div class="stat-card fade-in-up delay-2">
+            <div class="stat-icon staff"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="stat-details">
+                <div class="stat-value">{{ staff|length }}</div>
+                <div class="stat-label">Staff Members</div>
+            </div>
+        </div>
+        
+        <div class="stat-card fade-in-up delay-3">
+            <div class="stat-icon user"><i class="fa-solid fa-users"></i></div>
+            <div class="stat-details">
+                <div class="stat-value">{{ users|length }}</div>
+                <div class="stat-label">Normal Users</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-panel fade-in-up delay-4">
+        <div class="card-header">
+            <h3 class="card-title">Privileged Users</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>User Account</th>
+                        <th>Role Assigned</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in admins %}
+                    <tr>
+                        <td>
+                            <div class="user-name-cell">
+                                <div class="user-initials">{{ a.username|make_list|first|upper }}</div>
+                                <div class="user-name-text">{{ a.username }}</div>
+                            </div>
+                        </td>
+                        <td><span class="status-badge admin-badge"><i class="fa-solid fa-crown me-1"></i> Super Admin</span></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-primary" style="padding: 6px 12px; font-weight: 600; border-radius: 8px;" onclick="openRoleModal('{{ a.id }}', '{{ a.username }}', 'admin')">
+                                <i class="fa-solid fa-pen text-xs"></i> Manage
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% for s in staff %}
+                    <tr>
+                        <td>
+                            <div class="user-name-cell">
+                                <div class="user-initials">{{ s.username|make_list|first|upper }}</div>
+                                <div class="user-name-text">{{ s.username }}</div>
+                            </div>
+                        </td>
+                        <td><span class="status-badge staff-badge"><i class="fa-solid fa-shield-halved me-1"></i> Staff Member</span></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-primary" style="padding: 6px 12px; font-weight: 600; border-radius: 8px;" onclick="openRoleModal('{{ s.id }}', '{{ s.username }}', 'staff')">
+                                <i class="fa-solid fa-pen text-xs"></i> Manage
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% if not admins and not staff %}
+                    <tr>
+                        <td colspan="3" class="text-center" style="padding: 40px; color: #94a3b8;">
+                            <i class="fa-solid fa-users-slash mb-2" style="font-size: 2rem;"></i><br>
+                            No privileged users found.
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="role-modal-overlay" id="roleModalOverlay">
+    <div class="role-modal">
+        <div class="modal-header">
+            <h3 class="modal-title">Manage Role</h3>
+            <button class="close-modal" onclick="closeRoleModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 20px;">Change privileges for <strong id="modalUserName" style="color: #0f172a;">User</strong></p>
+        
+        <form id="roleForm" onsubmit="saveRole(event)">
+            <input type="hidden" id="modalUserId">
+            <div class="role-select-group">
+                <label class="role-option">
+                    <input type="radio" name="new_role" value="admin" id="radioAdmin">
+                    <div>
+                        <div class="role-option-text">Super Admin</div>
+                        <div class="role-option-desc">Full access to all system features.</div>
+                    </div>
+                </label>
+                
+                <label class="role-option">
+                    <input type="radio" name="new_role" value="staff" id="radioStaff">
+                    <div>
+                        <div class="role-option-text">Staff Member</div>
+                        <div class="role-option-desc">Can manage profiles and basic data.</div>
+                    </div>
+                </label>
+                
+                <label class="role-option">
+                    <input type="radio" name="new_role" value="user" id="radioUser">
+                    <div>
+                        <div class="role-option-text">Normal User</div>
+                        <div class="role-option-desc">Remove all administrative privileges.</div>
+                    </div>
+                </label>
+            </div>
+            
+            <button type="submit" class="save-role-btn" id="saveRoleBtn">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<div id="toast-notification">
+    <i class="fa-solid fa-circle-check" style="color: #4ade80;"></i> <span id="toastMsg">Role Updated Successfully!</span>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const overlay = document.getElementById('roleModalOverlay');
+
+    function openRoleModal(userId, username, currentRole) {
+        document.getElementById('modalUserId').value = userId;
+        document.getElementById('modalUserName').innerText = username;
+        
+        document.getElementById('radioAdmin').checked = (currentRole === 'admin');
+        document.getElementById('radioStaff').checked = (currentRole === 'staff');
+        document.getElementById('radioUser').checked = (currentRole === 'user');
+        
+        overlay.classList.add('active');
+    }
+
+    function closeRoleModal() {
+        overlay.classList.remove('active');
+    }
+
+    overlay.addEventListener('click', function(e) {
+        if(e.target === overlay) closeRoleModal();
+    });
+
+    function showToast(message) {
+        const toast = document.getElementById('toast-notification');
+        document.getElementById('toastMsg').innerText = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    async function saveRole(e) {
+        e.preventDefault();
+        const btn = document.getElementById('saveRoleBtn');
+        btn.innerText = 'Saving...';
+        btn.disabled = true;
+
+        const userId = document.getElementById('modalUserId').value;
+        const newRole = document.querySelector('input[name="new_role"]:checked').value;
+
+        try {
+            const res = await fetch('/admin_panel/api/update_user_role/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ user_id: userId, role: newRole })
+            });
+
+            const data = await res.json();
+            if(data.status === 'success') {
+                closeRoleModal();
+                showToast(data.message);
+                setTimeout(() => window.location.reload(), 1500);
+            } else {
+                alert('Error: ' + data.message);
+            }
+        } catch(err) {
+            alert('Something went wrong!');
+        }
+
+        btn.innerText = 'Save Changes';
+        btn.disabled = false;
+    }
+</script>
+{% endblock %}

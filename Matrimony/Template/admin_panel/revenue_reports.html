@@ -1,0 +1,55 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% block title %}Revenue Reports - Admin{% endblock %}
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row mb-4">
+        <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Revenue Reports</h1>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card-panel glass-card p-4 text-center h-100">
+                <i class="fa-solid fa-indian-rupee-sign fa-3x text-success mb-3"></i>
+                <h3>₹{{ total_revenue }}</h3>
+                <p class="text-muted mb-0">Total Revenue</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-panel glass-card p-4 text-center h-100">
+                <i class="fa-solid fa-money-bill-trend-up fa-3x text-primary mb-3"></i>
+                <h3>₹{{ this_month }}</h3>
+                <p class="text-muted mb-0">This Month</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-panel glass-card p-4 text-center h-100">
+                <i class="fa-solid fa-users fa-3x text-warning mb-3"></i>
+                <h3>{{ active_subscriptions }}</h3>
+                <p class="text-muted mb-0">Active Subscriptions</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-panel glass-card p-4">
+        <h5 class="mb-4">Revenue Chart (Dummy Data)</h5>
+        <canvas id="revChart" height="100"></canvas>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('revChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Revenue (₹)',
+                data: [12000, 19000, 15000, 22000, 18000, 30000],
+                borderColor: '#e94057',
+                backgroundColor: 'rgba(233, 64, 87, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% block title %}Real-time Chat Logs - Sarthak{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="page-title-row">
+        <div>
+            <h1>Chat Logs <span class="welcome-text">Monitor platform conversations (Accepted Interests Only)</span></h1>
+        </div>
+    </div>
+
+    <div class="metrics-grid">
+        <div class="metric-card glass-card">
+            <div class="metric-icon users" style="background: #ede9fe; color: #8b5cf6;"><i class="fa-solid fa-messages"></i></div>
+            <div class="metric-details">
+                <div class="metric-title">Total Messages Sent</div>
+                <div class="metric-value">{{ messages|length }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-panel glass-card">
+        <div class="card-header border-bottom pb-3 mb-4">
+            <h3 class="card-title"><i class="fa-solid fa-table-list text-primary me-2"></i> All Chat Activity</h3>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Sender</th>
+                        <th>Receiver</th>
+                        <th>Message Excerpt</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for msg in messages %}
+                    <tr class="table-row-hover">
+                        <td class="text-muted small">{{ msg.timestamp|date:"d M Y, h:i A" }}</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm rounded-circle text-white d-flex align-items-center justify-content-center me-2" style="background: #3b82f6; width: 30px; height: 30px; font-weight: bold;">
+                                    {{ msg.sender.username|make_list|first|upper }}
+                                </div>
+                                <span class="fw-bold">{{ msg.sender.username }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm rounded-circle text-white d-flex align-items-center justify-content-center me-2" style="background: #ec4899; width: 30px; height: 30px; font-weight: bold;">
+                                    {{ msg.receiver.username|make_list|first|upper }}
+                                </div>
+                                <span>{{ msg.receiver.username }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="text-truncate d-inline-block" style="max-width: 250px;" title="{{ msg.message }}">
+                                "{{ msg.message }}"
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-success rounded-pill px-3 py-2"><i class="fa-solid fa-check-circle me-1"></i> Authorized</span>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center py-5 text-muted">
+                            <i class="fa-solid fa-comment-slash fs-1 mb-3 text-light"></i>
+                            <p>No chat logs found. Users need to accept interests first.</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

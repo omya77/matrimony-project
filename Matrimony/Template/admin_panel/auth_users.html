@@ -1,0 +1,97 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}User Management - Admin Panel
+        <script>
+        function toggleUserStatus(userId, btn) {
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            fetch('/admin_panel/api/toggle-user-status/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: userId })
+            }).then(r => r.json()).then(data => {
+                if(data.status === 'success') {
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
+        </script>
+        
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row">
+        <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">User Registration</h1>
+            <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Manage all registered authentication accounts.</p>
+        </div>
+    </div>
+
+    <div class="card-panel fade-in-up delay-2">
+        <div class="card-header">
+            <h3 class="card-title">All Registered Users</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Username / Email</th>
+                        <th>Full Name</th>
+                        <th>Date Joined</th>
+                        <th>Last Login</th>
+                        <th>Account Status</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for u in users %}
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: #0f172a;">{{ u.username }}</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">{{ u.email }}</div>
+                        </td>
+                        <td>{{ u.first_name }} {{ u.last_name }}</td>
+                        <td>{{ u.date_joined|date:"d M Y, h:i A" }}</td>
+                        <td>{{ u.last_login|date:"d M Y, h:i A"|default:"Never" }}</td>
+                        <td>
+                            {% if u.is_active %}
+                                <span class="status-badge verified">Active</span>
+                            {% else %}
+                                <span class="status-badge pending">Inactive</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center" style="white-space: nowrap; gap: 5px;">
+                            <button onclick="toggleUserStatus({{ u.id }}, this)" class="btn btn-sm {% if u.is_active %}btn-outline-danger{% else %}btn-outline-success{% endif %}" style="font-size: 0.75rem; padding: 4px 8px;" title="Toggle Status">
+                                <i class="fa-solid {% if u.is_active %}fa-ban{% else %}fa-check{% endif %}"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="6" class="text-center text-muted">No users found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+        <script>
+        function toggleUserStatus(userId, btn) {
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            fetch('/admin_panel/api/toggle-user-status/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: userId })
+            }).then(r => r.json()).then(data => {
+                if(data.status === 'success') {
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
+        </script>
+        
+{% endblock %}

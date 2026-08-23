@@ -1,0 +1,92 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% block title %}Payment Gateway - Matrimony{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="page-title-row">
+        <div>
+            <h1>Payment Gateway <span class="welcome-text">Configure Razorpay credentials</span></h1>
+        </div>
+    </div>
+
+    <div class="metrics-grid">
+        <div class="metric-card glass-card">
+            <div class="metric-icon users" style="background: #e0f2fe; color: #0ea5e9;"><i class="fa-brands fa-stripe-s"></i></div>
+            <div class="metric-details">
+                <div class="metric-title">Active Gateway</div>
+                <div class="metric-value">Razorpay</div>
+                <div class="metric-growth" style="color: #0ea5e9;">Live Mode <i class="fa-solid fa-circle" style="font-size: 0.5rem; margin-left: 5px; color: #10b981;"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card-panel glass-card">
+                <div class="card-header border-bottom pb-3 mb-4">
+                    <h3 class="card-title"><i class="fa-solid fa-key me-2 text-primary"></i> API Credentials</h3>
+                </div>
+                
+                <form id="gateway-form">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted small">Razorpay Key ID</label>
+                        <input type="text" id="razorpay_key_id" class="form-control" value="{{ razorpay_key_id }}" style="border-radius: 8px; border: 1px solid #e2e8f0; padding: 10px 15px; background: #f8fafc;">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted small">Razorpay Key Secret</label>
+                        <div class="input-group">
+                            <input type="password" id="razorpay_key_secret" class="form-control" value="{{ razorpay_key_secret }}" style="border-radius: 8px 0 0 8px; border: 1px solid #e2e8f0; padding: 10px 15px; background: #f8fafc;">
+                            <button class="btn btn-outline-secondary" type="button" style="border-radius: 0 8px 8px 0; border: 1px solid #e2e8f0;" onclick="togglePassword()"><i class="fa-solid fa-eye"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning d-flex align-items-center mb-4" style="border-radius: 10px; border: none; background: #fffbeb; color: #b45309;">
+                        <i class="fa-solid fa-triangle-exclamation fs-4 me-3"></i>
+                        <small>Changing API keys will affect all incoming transactions immediately. Please ensure keys are correct.</small>
+                    </div>
+
+                    <button type="button" onclick="saveGateway()" class="btn btn-primary w-100 fw-bold" style="background: var(--sidebar-active); border: none; border-radius: 8px; padding: 12px;">
+                        Update Credentials
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePassword() {
+    const input = document.getElementById('razorpay_key_secret');
+    input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+function saveGateway() {
+    const key_id = document.getElementById('razorpay_key_id').value;
+    const key_secret = document.getElementById('razorpay_key_secret').value;
+    
+    fetch('/admin_panel/api/save-payment-gateway/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            razorpay_key_id: key_id,
+            razorpay_key_secret: key_secret
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === 'success') {
+            alert(data.message);
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while saving.');
+    });
+}
+</script>
+{% endblock %}

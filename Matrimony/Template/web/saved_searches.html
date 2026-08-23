@@ -1,0 +1,286 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search History | ForeverBond</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/static/web/images/favicon.png" />
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+    <link rel="stylesheet" href="/static/web/css/basic_search.css?v=4" />
+    <link rel="stylesheet" href="/static/web/css/footer.css" />
+    
+    <style>
+        body {
+            background: #f8fafc;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Premium Hero */
+        .history-hero {
+            background: linear-gradient(rgba(233, 64, 87, 0.85), rgba(255, 92, 117, 0.85)), url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+            padding: 70px 0;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 50px;
+        }
+        .hero-title {
+            font-size: 42px;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .hero-subtitle {
+            font-size: 16px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Glassmorphic History Card */
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .history-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+        .history-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(to right, #e94057, #ff5c75);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .history-card:hover {
+            box-shadow: 0 15px 40px rgba(233,64,87,0.1);
+            transform: translateY(-5px);
+        }
+        .history-card:hover::before {
+            opacity: 1;
+        }
+        
+        .history-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .history-icon-box {
+            width: 55px;
+            height: 55px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+            margin-right: 15px;
+            background: linear-gradient(135deg, rgba(233,64,87,0.1), rgba(255,92,117,0.1));
+            color: #e94057;
+            box-shadow: inset 0 0 0 1px rgba(233,64,87,0.2);
+        }
+        
+        .history-content { flex: 1; }
+        .history-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+        .history-date {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .history-params {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+            flex: 1;
+            align-content: flex-start;
+        }
+        .param-badge {
+            background: #fff;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 30px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .param-key { color: #e94057; text-transform: uppercase; font-size: 10px; margin-right: 4px; font-weight: 700; }
+        
+        .history-actions { margin-top: auto; }
+        .btn-run-search {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 64, 87, 0.3);
+            border: 2px solid transparent;
+        }
+        .btn-run-search:hover {
+            transform: translateY(-2px);
+            color: #e94057;
+            background: #fff;
+            border-color: #e94057;
+            box-shadow: 0 8px 25px rgba(233, 64, 87, 0.4);
+        }
+        .btn-run-search:hover i {
+            color: #e94057;
+        }
+
+        .empty-saved {
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 20px;
+            border: 2px dashed #cbd5e1;
+            backdrop-filter: blur(10px);
+            grid-column: 1 / -1;
+        }
+        .empty-saved i { font-size: 65px; color: #cbd5e1; margin-bottom: 25px; }
+        
+        @media(max-width: 768px) {
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include 'web/secondary_navbar.html' %}
+
+    <div class="history-hero">
+        <div class="container">
+            <span style="display: inline-block; background: rgba(255, 255, 255, 0.2); color: #fff; padding: 6px 18px; border-radius: 30px; font-size: 14px; font-weight: 600; margin-bottom: 20px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.4);">
+                <i class="fa-solid fa-clock-rotate-left"></i> Your Activity
+            </span>
+            <h1 class="hero-title">Search History</h1>
+            <p class="hero-subtitle">Easily access and rerun your past searches with a single click. Discover your perfect match faster.</p>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 1100px; margin-bottom: 80px;">
+        
+        <div class="history-grid">
+        {% for history in histories %}
+        <div class="history-card">
+            
+            <div class="history-card-header">
+                <div class="history-icon-box">
+                    {% if history.search_type == 'Basic' %}
+                        <i class="fa-solid fa-search"></i>
+                    {% elif history.search_type == 'Advanced' %}
+                        <i class="fa-solid fa-sliders"></i>
+                    {% else %}
+                        <i class="fa-solid fa-robot"></i>
+                    {% endif %}
+                </div>
+                <div class="history-content">
+                    <div class="history-title">
+                        {{ history.search_type }}
+                    </div>
+                    <div class="history-date"><i class="fa-regular fa-calendar"></i> {{ history.created_at|date:"M d, Y h:i A" }}</div>
+                </div>
+            </div>
+            
+            <div class="history-params">
+                {% for param in history.clean_params %}
+                    <div class="param-badge">
+                        <span class="param-key">{{ param.key }}</span> {{ param.value }}
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <div class="history-actions">
+                <a href="/interactions/search/{{ history.url_slug }}/?{{ history.query_string }}" class="btn-run-search">
+                    <i class="fa-solid fa-play"></i> Run Again
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-saved">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <h3 style="font-size: 26px; font-weight: 700; color: #1e293b; margin-bottom: 15px;">No Search History</h3>
+            <p style="color: #64748b; font-size: 16px; margin-bottom: 30px; max-width: 400px; margin-left: auto; margin-right: auto;">You haven't made any searches yet. Try our AI Match Finder to get started!</p>
+            <a href="/interactions/search/ai/" class="btn-run-search" style="display: inline-flex; width: auto;">
+                <i class="fa-solid fa-robot"></i> Try AI Search
+            </a>
+        </div>
+        {% endfor %}
+        </div>
+        
+        <!-- Standard Pagination (Matching Basic/Advanced pages) -->
+        <nav class="pagination-container mt-5" style="padding-bottom: 40px;">
+          <ul class="advanced-pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="fa-solid fa-arrow-left"></i></a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link"><i class="fa-solid fa-arrow-left"></i></span></li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+              {% if page_obj.number == num %}
+                <li class="page-item active"><a class="page-link" href="javascript:void(0);">{{ num }}</a></li>
+              {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+              {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="fa-solid fa-arrow-right"></i></a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link"><i class="fa-solid fa-arrow-right"></i></span></li>
+            {% endif %}
+          </ul>
+        </nav>
+    </div>
+
+    {% include 'web/footer.html' %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/web/js/navbar.js?v=5"></script>
+</body>
+</html>

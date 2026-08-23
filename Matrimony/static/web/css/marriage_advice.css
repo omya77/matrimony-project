@@ -1,0 +1,504 @@
+/* ==========================================================================
+   ForeverBond — MARRIAGE ADVICE SPECIFIC STYLES (marriage_advice.css)
+   ========================================================================== */
+
+:root {
+  --primary-rose: #e94057;
+  --primary-gold: #facc15;
+  --bg-gradient: linear-gradient(180deg, #fff8f9 0%, #ffffff 50%, #fffbf2 100%);
+  --text-dark: #2d2033;
+  --text-muted: #64748b;
+  --shadow-soft: 0 15px 35px rgba(233, 64, 87, 0.04);
+  --shadow-card-hover: 0 25px 50px rgba(233, 64, 87, 0.12);
+  --border-pink: rgba(233, 64, 87, 0.08);
+}
+
+body {
+  background: var(--bg-gradient);
+  color: var(--text-dark);
+  font-family: 'Inter', sans-serif;
+}
+
+/* ==========================================
+   ADVICE HERO SECTION
+   ========================================== */
+.advice-hero-section {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, transparent, var(--primary-rose), transparent) 1;
+}
+
+.advice-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.advice-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  filter: brightness(0.65) contrast(1.05);
+}
+
+.advice-left-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(30, 15, 35, 0.85) 0%, rgba(30, 15, 35, 0.5) 50%, transparent 100%);
+}
+
+.advice-hero-content {
+  position: absolute;
+  left: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50%;
+  max-width: 600px;
+  z-index: 2;
+  color: white;
+}
+
+.advice-breadcrumb {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.advice-hero-content h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 855;
+  font-size: 44px;
+  line-height: 1.15;
+  color: white;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.advice-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.advice-line span {
+  width: 60px;
+  height: 2.5px;
+  background: var(--primary-rose);
+  border-radius: 99px;
+}
+
+.advice-line i {
+  color: var(--primary-rose);
+  font-size: 14px;
+  animation: pulse-heart 2s infinite;
+}
+
+.advice-hero-content p {
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0;
+}
+
+@keyframes pulse-heart {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* ==========================================
+   FILTER TAB BAR
+   ========================================== */
+.advice-filter-container {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.advice-filter-wrapper {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-pink);
+  padding: 8px 12px;
+  border-radius: 99px;
+  display: inline-flex;
+  gap: 8px;
+  box-shadow: var(--shadow-soft);
+}
+
+.advice-filter-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.advice-filter-tab:hover {
+  color: var(--primary-rose);
+  background: rgba(233, 64, 87, 0.05);
+}
+
+.advice-filter-tab.active {
+  color: white;
+  background: var(--primary-rose);
+  box-shadow: 0 8px 20px rgba(233, 64, 87, 0.25);
+}
+
+/* ==========================================
+   ADVICE CARDS GRID
+   ========================================== */
+.advice-card-wrapper {
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.advice-card-wrapper.hidden {
+  display: none;
+}
+
+.advice-card {
+  background: white;
+  border-radius: 20px;
+  border: 1px solid var(--border-pink);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.advice-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(233, 64, 87, 0.15);
+}
+
+.advice-card-image-box {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.advice-card-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.advice-card:hover .advice-card-image-box img {
+  transform: scale(1.06);
+}
+
+.advice-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(30, 15, 35, 0.7) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.advice-card:hover .advice-card-overlay {
+  opacity: 1;
+}
+
+.advice-badge-top {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  color: var(--primary-rose);
+  font-size: 11.5px;
+  font-weight: 750;
+  padding: 6px 14px;
+  border-radius: 99px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.advice-read-time {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 2;
+  color: white;
+  font-size: 11.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 10px;
+  border-radius: 99px;
+  backdrop-filter: blur(4px);
+}
+
+.advice-card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.advice-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  font-weight: 550;
+}
+
+.advice-card-meta i {
+  color: var(--primary-rose);
+}
+
+.advice-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18.5px;
+  font-weight: 750;
+  line-height: 1.4;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.advice-card:hover h3 {
+  color: var(--primary-rose);
+}
+
+.advice-card p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.advice-card-footer {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid rgba(233, 64, 87, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.advice-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.advice-author img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--primary-rose);
+}
+
+.advice-author-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.advice-author-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.advice-author-title {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.advice-btn-link {
+  color: var(--primary-rose);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.advice-btn-link:hover {
+  gap: 10px;
+  color: #cd2d47;
+}
+
+/* ==========================================
+   EXPERT CONSULT SECTION
+   ========================================== */
+.expert-consult-section {
+  background: linear-gradient(135deg, rgba(255, 245, 246, 0.9) 0%, rgba(255, 251, 242, 0.9) 100%);
+  border: 1px solid rgba(233, 64, 87, 0.1);
+  border-radius: 30px;
+  padding: 50px 40px;
+  margin-top: 70px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.expert-consult-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(233, 64, 87, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.expert-form-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.03);
+}
+
+.expert-form-title {
+  color: var(--text-dark);
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.expert-form-title i {
+  color: var(--primary-rose);
+}
+
+.expert-input-group {
+  margin-bottom: 18px;
+}
+
+.expert-input-group label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.expert-form-control {
+  border-radius: 12px;
+  padding: 11px 16px;
+  font-size: 13.5px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: white;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.expert-form-control:focus {
+  border-color: var(--primary-rose);
+  box-shadow: 0 0 0 3px rgba(233, 64, 87, 0.1);
+  outline: none;
+}
+
+.expert-btn-submit {
+  background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+  color: white;
+  border: none;
+  font-size: 14.5px;
+  font-weight: 700;
+  padding: 12px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 15px rgba(233, 64, 87, 0.2);
+  width: 100%;
+}
+
+.expert-btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(233, 64, 87, 0.35);
+  background: linear-gradient(135deg, #ff5c75 0%, #e94057 100%);
+}
+
+/* ==========================================
+   MEDIA RESPONSIVENESS
+   ========================================== */
+@media (max-width: 992px) {
+  .advice-hero-content {
+    left: 40px;
+    width: 75%;
+  }
+  
+  .advice-hero-content h1 {
+    font-size: 36px;
+  }
+  
+  .expert-consult-section {
+    padding: 35px 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .advice-hero-section {
+    height: 320px;
+  }
+
+  .advice-hero-content {
+    left: 20px;
+    right: 20px;
+    width: auto;
+    text-align: center;
+  }
+
+  .advice-hero-content h1 {
+    font-size: 30px;
+  }
+
+  .advice-line {
+    justify-content: center;
+  }
+
+  .advice-filter-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-radius: 20px;
+    padding: 6px;
+  }
+
+  .advice-filter-tab {
+    padding: 8px 16px;
+    font-size: 12.5px;
+  }
+}

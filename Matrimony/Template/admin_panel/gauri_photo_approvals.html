@@ -1,0 +1,109 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}Photo Approvals Queue - Admin Panel
+    <script>
+    function approvePhoto(profileId) {
+        if(confirm('Approve this photo?')) {
+            fetch('/admin_panel/api/approve_photo/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}' },
+                body: JSON.stringify({ profile_id: profileId })
+            }).then(res => res.json()).then(data => {
+                if(data.status === 'success') { location.reload(); }
+                else { alert('Error: ' + data.message); }
+            });
+        }
+    }
+    function rejectPhoto(profileId) {
+        if(confirm('Reject this photo? The user will have to upload a new one.')) {
+            fetch('/admin_panel/api/reject_photo/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}' },
+                body: JSON.stringify({ profile_id: profileId })
+            }).then(res => res.json()).then(data => {
+                if(data.status === 'success') { location.reload(); }
+                else { alert('Error: ' + data.message); }
+            });
+        }
+    }
+    </script>
+    
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row">
+        <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Photo Approvals Queue</h1>
+        </div>
+    </div>
+    
+    <div class="card-panel glass-card p-4">
+        <div class="table-responsive">
+            <table class="custom-table" style="box-shadow: 0 0 0 1px #e2e8f0; border-radius: 8px; overflow: hidden;">
+                <thead>
+                    <tr style="background: #f8fafc;">
+                        <th>Photo</th><th>User Details</th><th>Upload Date</th><th>Status</th><th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in profiles %}
+                    <tr class="table-row-hover">
+                        
+                        <td>
+                            <img src="{{ profile.photo.url }}" alt="" style="width: 80px; height: 80px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        </td>
+                        <td>
+                            <div style="font-weight: 600;">{{ profile.full_name|default:profile.user.username }}</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">{{ profile.matrimony_id|default:"Pending ID" }}</div>
+                        </td>
+                        <td>{{ profile.updated_at|date:"d M Y, h:i A" }}</td>
+                        <td><span class="status-badge verified">Uploaded</span></td>
+                        <td>
+                            <button onclick="approvePhoto({{ profile.id }})" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-check me-1"></i>Approve</button>
+                            <button onclick="rejectPhoto({{ profile.id }})" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-xmark me-1"></i>Reject</button>
+                        </td>
+    
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted" style="padding: 40px;">
+                            <div style="font-size: 3rem; color: #e2e8f0; margin-bottom: 15px;"><i class="fa-solid fa-folder-open"></i></div>
+                            <div style="font-weight: 500;">No profiles found.</div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <script>
+    function approvePhoto(profileId) {
+        if(confirm('Approve this photo?')) {
+            fetch('/admin_panel/api/approve_photo/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}' },
+                body: JSON.stringify({ profile_id: profileId })
+            }).then(res => res.json()).then(data => {
+                if(data.status === 'success') { location.reload(); }
+                else { alert('Error: ' + data.message); }
+            });
+        }
+    }
+    function rejectPhoto(profileId) {
+        if(confirm('Reject this photo? The user will have to upload a new one.')) {
+            fetch('/admin_panel/api/reject_photo/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}' },
+                body: JSON.stringify({ profile_id: profileId })
+            }).then(res => res.json()).then(data => {
+                if(data.status === 'success') { location.reload(); }
+                else { alert('Error: ' + data.message); }
+            });
+        }
+    }
+    </script>
+    
+{% endblock %}

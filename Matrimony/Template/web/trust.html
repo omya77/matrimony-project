@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForeverBond</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- url_icon  -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/web/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/web/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      href="/static/web/images/favicon.png"
+      type="image/svg+xml"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- AOS Animation -->
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/static/web/css/relationship_tips.css" />
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+  
+    <style>
+      .article-hero {
+        position: relative;
+        padding: 120px 0 80px;
+        background: linear-gradient(135deg, #fff5f6 0%, #ffffff 100%);
+        overflow: hidden;
+      }
+      .article-hero::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: radial-gradient(circle, rgba(233,64,87,0.05) 0%, transparent 60%);
+        animation: rotateBg 30s linear infinite;
+        z-index: 0;
+      }
+      @keyframes rotateBg {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .glass-card-article {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 15px 35px rgba(233, 64, 87, 0.05);
+        border-radius: 24px;
+        padding: 40px;
+        position: relative;
+        z-index: 1;
+        margin-top: -60px;
+      }
+      .article-img-wrapper {
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        position: relative;
+        z-index: 2;
+      }
+      .article-img-wrapper img {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .article-img-wrapper:hover img {
+        transform: scale(1.05);
+      }
+      .article-tag {
+        background: linear-gradient(135deg, #e94057 0%, #ff7aa2 100%);
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        display: inline-block;
+        box-shadow: 0 4px 10px rgba(233, 64, 87, 0.3);
+      }
+      .content-block {
+        margin-bottom: 2rem;
+      }
+      .content-block h4 {
+        color: #1e293b;
+        font-weight: 700;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .content-block h4::before {
+        content: '';
+        display: block;
+        width: 24px;
+        height: 3px;
+        background: #e94057;
+        border-radius: 2px;
+      }
+      .content-block p {
+        color: #475569;
+        line-height: 1.8;
+        font-size: 1.05rem;
+      }
+      .back-btn-premium {
+        background: white;
+        color: #e94057 !important;
+        border: 2px solid #e94057;
+        padding: 10px 28px;
+        border-radius: 30px;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+      }
+      .back-btn-premium:hover {
+        background: linear-gradient(135deg, #e94057 0%, #ff7aa2 100%);
+        color: white !important;
+        border-color: transparent;
+        box-shadow: 0 8px 20px rgba(233, 64, 87, 0.25);
+        transform: translateY(-2px);
+      }
+    </style>
+    
+    <link rel="stylesheet" href="/static/web/css/footer.css" />
+  </head>
+  <body>
+    {% include "web/navbar.html" %}
+
+    <!-- ================= START: 100% WIDE FLOATING GLASSMORPHIC NAVBAR WITH DYNAMIC ACTIVE STATE ================= -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+
+    <!-- ================= MOBILE OFFCANVAS PANEL WITH ACCORDION COLLAPSE FIXED ================= -->
+    
+
+    <style>
+      /* Absolute Symmetry Configurations */
+      @media (min-width: 992px) {
+        .absolute-center-links {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Core Desktop Navigation Link Structure */
+      .ultra-nav-link {
+        font-family: "Inter", sans-serif;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        color: #64748b !important;
+        letter-spacing: 0.8px;
+        padding: 8px 24px !important;
+        border-radius: 999px;
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .ultra-nav-link i {
+        font-size: 11.5px;
+        color: #e94057;
+        opacity: 0.7;
+        transition: transform 0.2s ease;
+      }
+
+      /* Standard Hover State (For non-active items) */
+      .ultra-nav-link:hover,
+      .custom-premium-dropdown:hover .ultra-nav-link {
+        color: #e94057 !important;
+        background: rgba(233, 64, 87, 0.08);
+      }
+      .ultra-nav-link:hover i {
+        transform: translateY(-1px);
+      }
+
+      /* CRITICAL FIX: Active Link Styling & Persistent Hover Text visibility */
+      .active-premium-link,
+      .active-premium-link:hover,
+      .custom-premium-dropdown .ultra-nav-link.active-premium-link:hover {
+        color: #ffffff !important;
+        background: #e94057 !important;
+        box-shadow: 0 4px 12px rgba(233, 64, 87, 0.25) !important;
+      }
+      .active-premium-link i,
+      .active-premium-link:hover i {
+        color: #ffffff !important;
+        opacity: 1 !important;
+      }
+
+      /* Bootstrap Dropdown Arrow Removal */
+      .dropdown-toggle::after {
+        display: none !important;
+      }
+
+      /* Elegant Glassmorphic Dropdown Item Design */
+      .custom-drop-item {
+        font-family: "Inter", sans-serif;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #4b5563;
+        padding: 10px 16px;
+        margin: 2px 0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+      }
+      .custom-drop-item:hover {
+        background: #fff5f6 !important;
+        color: #e94057 !important;
+        transform: translateX(3px);
+      }
+      .custom-drop-item i {
+        font-size: 12px;
+        transition: transform 0.2s ease;
+      }
+      .custom-drop-item:hover i {
+        transform: scale(1.1);
+      }
+
+      /* Luxury Membership Button Framework */
+      .ultimate-action-btn {
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        color: #ffffff !important;
+        font-family: "Inter", sans-serif;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.6px;
+        padding: 11px 26px !important;
+        border-radius: 999px !important;
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(233, 64, 87, 0.2);
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .ultimate-action-btn:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(135deg, #ff5c75 0%, #e94057 100%);
+        box-shadow: 0 8px 22px rgba(233, 64, 87, 0.35);
+      }
+
+      /* Mobile Sheet Styling Integration */
+      .mobile-nav-link {
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        color: #475569 !important;
+        padding: 12px 16px !important;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+      }
+      .mobile-nav-link i {
+        color: #e94057;
+        width: 18px;
+      }
+      .mobile-nav-link:hover {
+        background: rgba(233, 64, 87, 0.05);
+        color: #e94057 !important;
+      }
+
+      /* Mobile Active Fixes */
+      .active-mobile,
+      .active-mobile:hover {
+        background: rgba(233, 64, 87, 0.1) !important;
+        color: #e94057 !important;
+      }
+      .active-mobile i {
+        color: #e94057 !important;
+      }
+
+      /* Scroll State Engine Modifier */
+      .nav-scrolled-wide {
+        padding: 8px 0px !important;
+        background: rgba(255, 255, 255, 0.94) !important;
+        box-shadow: 0 10px 35px rgba(233, 64, 87, 0.06) !important;
+      }
+
+      /* Desktop Hover Trigger Mechanism for Dropdowns */
+      @media (min-width: 992px) {
+        .custom-premium-dropdown:hover .dropdown-menu {
+          display: block !important;
+          opacity: 1;
+          transform: translateY(0);
+          visibility: visible;
+        }
+        .dropdown-menu {
+          display: none;
+          transition: all 0.3s ease;
+          transform: translateY(10px);
+        }
+      }
+    </style>
+
+    <!-- 6. Scripts: AOS Trigger + Sticky Scroll Engine + Automatic Intelligent Active Class Linker -->
+    <script>
+      // AOS Initialization
+      if (typeof AOS !== "undefined") {
+        AOS.init({
+          duration: 800,
+          once: true,
+        });
+      }
+
+      // Dynamic Full Width Scroll Transition Engine
+      window.addEventListener("scroll", function () {
+        const stickyWrapper = document.getElementById("stickyNavWrapper");
+        if (window.scrollY > 180) {
+          stickyWrapper.classList.add("nav-scrolled-wide");
+        } else {
+          stickyWrapper.classList.remove("nav-scrolled-wide");
+        }
+      });
+
+      // INTELLIGENT AUTOMATIC ACTIVE LINK DETECTOR (Pure JS Engine)
+      document.addEventListener("DOMContentLoaded", function () {
+        const activePage = window.location.pathname;
+
+        // 1. Process Desktop Navigation links
+        const desktopLinks = document.querySelectorAll(".ultra-nav-link");
+        desktopLinks.forEach((link) => {
+          const linkHref = link.getAttribute("href");
+          if (linkHref === activePage) {
+            link.classList.add("active-premium-link");
+          }
+        });
+
+        // 2. Process Desktop Nested Dropdown Items inside Blog
+        const dropdownItems = document.querySelectorAll(".custom-drop-item");
+        dropdownItems.forEach((item) => {
+          if (item.getAttribute("href") === activePage) {
+            // Dropdown item ko highlight karne ke sath Parent Blog button ko active look dena
+            const parentDropdown = item.closest(".custom-premium-dropdown");
+            if (parentDropdown) {
+              const mainToggle =
+                parentDropdown.querySelector(".ultra-nav-link");
+              if (mainToggle) mainToggle.classList.add("active-premium-link");
+            }
+          }
+        });
+
+        // 3. Process Mobile Sheet Layout navigation links
+        const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+        mobileLinks.forEach((mobLink) => {
+          const mobHref = mobLink.getAttribute("href");
+          if (mobHref === activePage) {
+            mobLink.classList.add("active-mobile");
+
+            // Agar page mobile accordion collapse ke andar hai to wrapper open status active karega
+            const parentCollapse = mobLink.closest(".collapse");
+            if (parentCollapse) {
+              parentCollapse.classList.add("show");
+              // Parent headers highlight tracker
+              const toggler = document.querySelector(
+                `[href="#${parentCollapse.id}"]`,
+              );
+              if (toggler) toggler.classList.add("active-mobile");
+            }
+          }
+        });
+      });
+    </script>
+    <!-- ================= END NAVBAR STRUCT ================= -->
+    <main>
+      <section class="article-hero">
+        <div class="container position-relative z-1 text-center">
+          <div data-aos="fade-down">
+            <span class="article-tag mb-3">Trust & Understanding</span>
+            <h1 class="fw-bold mb-4 mx-auto" style="color: #0f172a; font-size: 2.8rem; max-width: 800px; line-height: 1.2;">
+              How to Build Trust and Keep Your Relationship Strong
+            </h1>
+            <div class="d-flex justify-content-center align-items-center gap-4 text-muted fw-medium">
+              <span><i class="fa-regular fa-calendar-alt text-danger me-2"></i> July 6, 2025</span>
+              <span><i class="fa-regular fa-clock text-danger me-2"></i> 6 min read</span>
+              <span><i class="fa-solid fa-pen-nib text-danger me-2"></i> ForeverBond Editorial</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container pb-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="article-img-wrapper mb-5" data-aos="zoom-in">
+              <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=1200" alt="How to Build Trust and Keep Your Relationship Strong">
+            </div>
+            
+            <div class="glass-card-article" data-aos="fade-up">
+<span class="d-none profile-meta" style="display:none;" data-searchable="true">Hindu Other Gujarati Chennai B.A Business 30+ LPA Divorced</span>
+              
+        <div class="content-block" data-aos="fade-up" data-aos-delay="0">
+            <h4>The Core Pillar</h4>
+            <p>Trust takes time to build and seconds to break. Nurture it every day by keeping your promises, being honest about your feelings, and showing up when your partner needs you.</p>
+        </div>
+        
+        <div class="content-block" data-aos="fade-up" data-aos-delay="100">
+            <h4>1. Be Consistent</h4>
+            <p>Consistency in your actions proves that you are reliable and dependable. Over time, this consistency forms an unbreakable bond of security.</p>
+        </div>
+        
+        <div class="content-block" data-aos="fade-up" data-aos-delay="200">
+            <h4>2. Admit When You're Wrong</h4>
+            <p>Apologizing sincerely when you make a mistake goes a long way in building deep trust. It shows vulnerability and a commitment to growth.</p>
+        </div>
+        
+        <div class="content-block" data-aos="fade-up" data-aos-delay="300">
+            <h4>3. Keep Their Secrets</h4>
+            <p>When your partner confides in you, guard that information fiercely. Being a safe space for their deepest thoughts is the ultimate sign of a trustworthy partner.</p>
+        </div>
+        
+              
+              <div class="text-center mt-5 pt-4 border-top">
+                <a href="/relationship-tips/" class="back-btn-premium">
+                  <i class="fa-solid fa-arrow-left"></i> Back to Tips
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+{% include "web/footer.html" %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+<script src="/static/web/js/global-interactions.js?v=2"></script>
+</body>
+</html>

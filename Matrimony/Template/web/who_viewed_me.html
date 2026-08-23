@@ -1,0 +1,67 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+<div class="main-content-wrapper" style="background-color: #f8fafc; min-height: calc(100vh - 80px); padding-top: 80px;">
+    
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h1 style="font-weight: 900; color: #0f172a; font-family: 'Poppins', sans-serif;">Who Viewed My Profile</h1>
+                <p class="text-muted">See who has been checking out your profile recently.</p>
+            </div>
+        </div>
+
+        {% if not is_premium %}
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card" style="border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); overflow: hidden; text-align: center;">
+                    <div style="background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); padding: 40px 20px; color: white;">
+                        <i class="fa-solid fa-eye" style="font-size: 50px; margin-bottom: 15px; opacity: 0.9;"></i>
+                        <h2 style="font-weight: 800; margin-bottom: 10px;">{{ view_count }} People Viewed You!</h2>
+                        <p style="font-size: 16px; opacity: 0.9;">Upgrade to Premium to reveal who is interested in your profile.</p>
+                    </div>
+                    <div class="card-body py-5" style="background: white;">
+                        <i class="fa-solid fa-lock" style="font-size: 40px; color: #cbd5e1; margin-bottom: 20px;"></i>
+                        <h4 style="font-weight: 700; color: #334155; margin-bottom: 25px;">Unlock Your Visitors</h4>
+                        <a href="/admin_panel/payment-gateway/" class="btn-premium-gradient" style="padding: 12px 30px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); color: white; box-shadow: 0 4px 15px rgba(233, 64, 87, 0.3);">
+                            <i class="fa-solid fa-crown me-2"></i> Upgrade Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        
+        <div class="row">
+            {% for visit in visits %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card" style="border: none; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; background: #fff; transition: transform 0.2s;">
+                    <div class="card-body text-center p-4">
+                        <img src="{% if visit.viewer.profile.photo and visit.viewer.profile.is_photo_approved %}{{ visit.viewer.profile.photo.url }}{% else %}https://ui-avatars.com/api/?name={{ visit.viewer.profile.full_name|default:'User'|urlencode }}&background=e94057&color=fff{% endif %}" 
+                             alt="{{ visit.viewer.profile.full_name }}" 
+                             style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%; border: 3px solid #e94057; margin-bottom: 15px;">
+                        
+                        <h5 style="font-weight: 700; color: #0f172a; margin-bottom: 5px;">{{ visit.viewer.profile.full_name|default:'User' }}</h5>
+                        <p class="text-muted" style="font-size: 13px; margin-bottom: 15px;">
+                            <i class="fa-regular fa-clock me-1"></i> Viewed on {{ visit.timestamp|date:"M d, Y h:i A" }}
+                        </p>
+                        
+                        <div style="font-size: 14px; color: #475569; margin-bottom: 20px;">
+                            <div><i class="fa-solid fa-user me-2 text-muted"></i> {{ visit.viewer.profile.age|default:'N/A' }} Yrs, {{ visit.viewer.profile.city|default:'N/A' }}</div>
+                            <div class="mt-1"><i class="fa-solid fa-briefcase me-2 text-muted"></i> {{ visit.viewer.profile.profession|default:'N/A' }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <i class="fa-solid fa-users-slash text-muted" style="font-size: 40px; margin-bottom: 20px;"></i>
+                <h4 style="color: #64748b;">No recent visitors</h4>
+                <p class="text-muted">When someone views your profile, they will appear here.</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

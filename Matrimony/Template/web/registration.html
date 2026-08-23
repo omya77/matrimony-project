@@ -1,0 +1,3254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ShadiMilan — Register</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+      <!-- url_icon  -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/web/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/web/images/favicon.png"
+    />
+    <link
+      rel="icon"
+      href="/static/web/images/favicon.png"
+      type="image/svg+xml"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- AOS Animation -->
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+
+    <style>
+      .topbar {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+      :root {
+        --white: #ffffff;
+        --rose-red: #e94057;
+        --rose-deep: #c22a41;
+        --soft-pink: #fff0f2;
+        --gold: #ffd700;
+        --gold-deep: #d9a017;
+        --text-dark: #2d2033;
+        --text-muted: #8a7f8c;
+
+        --glass-bg: rgba(255, 255, 255, 0.65);
+        --glass-border: rgba(255, 255, 255, 0.75);
+
+        --gradient-rose: linear-gradient(135deg, #e94057 0%, #fd5e53 100%);
+
+        --shadow-soft: 0 12px 35px rgba(233, 64, 87, 0.12);
+        --shadow-hover: 0 18px 45px rgba(233, 64, 87, 0.22);
+
+        --border-light: rgba(233, 64, 87, 0.15);
+        --success: #18b368;
+        --danger: #e53935;
+        --warning: #f4b400;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--text-dark);
+
+        background:
+          radial-gradient(circle at top left, #fffaf6 0%, transparent 35%),
+          radial-gradient(circle at bottom right, #ffd9e0 0%, transparent 40%),
+          linear-gradient(135deg, #fff8f5 0%, #fff1f3 45%, #ffe7ec 100%);
+
+        min-height: 100vh;
+
+        padding: 70px 12px 0;
+
+        position: relative;
+        overflow-x: hidden;
+        display: block;
+      }
+
+      body::after {
+        width: 380px;
+        height: 380px;
+        bottom: -120px;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        max-width: 420px; width: 100%;
+        height: 420px;
+        border-radius: 50%;
+        background: rgba(255, 215, 0, 0.18);
+        filter: blur(90px);
+        top: -120px;
+        left: -120px;
+        z-index: 0;
+      }
+
+      body::after {
+        bottom: 0;
+        right: -120px;
+      }
+
+      /* body::after {
+        content: "";
+        position: absolute;
+        width: 380px;
+        height: 380px;
+        border-radius: 50%;
+        background: rgba(233, 64, 87, 0.12);
+        filter: blur(80px);
+        bottom: -120px;
+        right: -120px;
+        z-index: 0;
+      } */
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", sans-serif;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font-family: inherit;
+      }
+
+      /* Ambient Glow Blobs */
+      .blob {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.35;
+        pointer-events: none;
+        z-index: 0;
+        animation: floatBlob 10s ease-in-out infinite;
+      }
+
+      .blob.b1 {
+        width: 320px;
+        height: 320px;
+        background: var(--gold);
+        top: -120px;
+        left: -90px;
+      }
+
+      .blob.b2 {
+        width: 280px;
+        height: 280px;
+        background: var(--rose-red);
+        bottom: -110px;
+        right: -80px;
+        opacity: 0.22;
+        animation-delay: 3s;
+      }
+
+      @keyframes floatBlob {
+        0% {
+          transform: translateY(0px) scale(1);
+        }
+
+        50% {
+          transform: translateY(18px) scale(1.05);
+        }
+
+        100% {
+          transform: translateY(0px) scale(1);
+        }
+      }
+
+      /* Main Card */
+
+      .card {
+        position: relative;
+        z-index: 2;
+        margin: 90px auto 50px;
+        top: 80px;
+        left: 0px;
+        width: min(1220px, 97vw);
+        height: auto;
+        min-height: 500px;
+        margin: 0 auto 32px;
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+
+        background: var(--glass-bg);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+
+        border: 1px solid var(--glass-border);
+
+        border-radius: 28px;
+
+        overflow: hidden;
+
+        box-shadow:
+          0 20px 60px rgba(233, 64, 87, 0.16),
+          inset 0 1px 1px rgba(255, 255, 255, 0.55);
+
+        transition: 0.4s ease;
+      }
+
+      html,
+      body {
+        margin: 0 !important ;
+        padding: 0 !important ;
+      }
+
+      .sm-footer {
+        margin: 0;
+        padding: 0;
+      }
+      .sm-footer {
+        position: relative !important;
+        z-index: 5;
+        width: 100%;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 64px 8px 0;
+        }
+      }
+      .card:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+          0 28px 70px rgba(233, 64, 87, 0.2),
+          inset 0 1px 1px rgba(255, 255, 255, 0.55);
+      }
+
+      /* ===============================
+        LEFT BRAND PANEL
+==================================*/
+
+      .brand-side {
+        position: relative;
+
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        padding: 26px 24px;
+
+        color: #fff;
+
+        background: url("https://images.unsplash.com/photo-1754782540893-2122877f2975?fm=jpg&q=80&w=900&auto=format&fit=crop")
+          center/cover no-repeat;
+      }
+
+      .brand-side::before {
+        content: "";
+
+        position: absolute;
+        inset: 0;
+
+        background-image:
+          radial-gradient(
+            circle at 20% 15%,
+            rgba(255, 215, 0, 0.28) 0,
+            transparent 42%
+          ),
+          radial-gradient(
+            circle at 85% 82%,
+            rgba(255, 255, 255, 0.1) 0,
+            transparent 45%
+          );
+      }
+
+      .brand-side > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .brand-mark .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        font-size: 24px;
+        font-weight: 700;
+
+        margin-bottom: 5px;
+
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+      }
+
+      .brand-mark .logo i {
+        color: var(--gold);
+        font-size: 21px;
+      }
+
+      .tagline {
+        font-size: 11px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 2px;
+
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .brand-copy {
+        margin: 18px 0;
+      }
+
+      .brand-copy h1 {
+        font-size: 30px;
+
+        line-height: 1.32;
+
+        font-weight: 700;
+
+        margin-bottom: 12px;
+
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
+      }
+
+      .brand-copy h1 span {
+        color: var(--gold);
+      }
+      .brand-copy p {
+        font-size: 13px;
+
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.92);
+        max-width: 280px;
+      }
+
+      .verify-level {
+        background: rgba(255, 255, 255, 0.14);
+
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        backdrop-filter: blur(15px);
+
+        border-radius: 16px;
+
+        padding: 14px;
+
+        font-size: 12px;
+
+        line-height: 1.65;
+      }
+
+      .verify-level .title {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        font-weight: 600;
+
+        margin-bottom: 6px;
+
+        color: var(--gold);
+      }
+
+      .verify-level .title i {
+        font-size: 16px;
+      }
+
+      .trust-row {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 15px;
+
+        margin-top: 18px;
+
+        flex-wrap: wrap;
+      }
+
+      .trust-row div {
+        display: flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        font-size: 12px;
+
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .trust-row i {
+        color: var(--gold);
+      }
+
+      /* ==========================================
+   PART 1D - FORM PANEL CSS
+========================================== */
+
+      .form-side {
+        padding: 26px 36px;
+        background: rgba(255, 255, 255, 0.55);
+        position: relative;
+      }
+
+      .form-side::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--rose-red), var(--gold));
+      }
+
+      .form {
+        display: block;
+      }
+
+      .form-scroll {
+        overflow: visible;
+        padding-right: 0;
+        height: auto;
+      }
+
+      .form-header {
+        margin-bottom: 10px;
+      }
+
+      .form-header .step {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--rose-red);
+        font-weight: 600;
+        margin-bottom: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .form-header .step::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+        box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.18);
+      }
+
+      .form-header h2 {
+        font-size: 23px;
+        color: var(--text-dark);
+        font-weight: 700;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+      }
+
+      /* .form-scroll {
+        flex: 1;
+        overflow-y: auto;
+        padding-right: 8px;
+      } */
+
+      .form-scroll::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .form-scroll::-webkit-scrollbar-thumb {
+        background: rgba(233, 64, 87, 0.25);
+        border-radius: 20px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 0.85fr 1.15fr;
+        gap: 12px 18px;
+      }
+
+      .full-width {
+        grid-column: span 3;
+      }
+
+      .password-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 18px;
+      }
+
+      /* ==========================================
+   FORM GROUP
+========================================== */
+
+      .form-group {
+        position: relative;
+        transition: transform 0.25s ease;
+      }
+
+      .form-group:hover {
+        transform: translateY(-2px);
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      .form-group .req {
+        color: var(--rose-red);
+      }
+
+      .form-group .hint {
+        color: var(--text-muted);
+        font-weight: 400;
+      }
+
+      /* ==========================================
+   INPUT WRAPPER
+========================================== */
+
+      .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Left Icon */
+
+      .field-icon {
+        position: absolute;
+        left: 14px;
+        font-size: 15px;
+        color: #9b909d;
+        pointer-events: none;
+        transition: 0.3s;
+        z-index: 2;
+      }
+
+      /* ==========================================
+   INPUT
+========================================== */
+
+      .form-control {
+        width: 100%;
+        height: 52px;
+        border-radius: 12px;
+        border: 1.5px solid rgba(233, 64, 87, 0.15);
+        background: #ffffff;
+        padding: 0 15px 0 48px;
+        font-size: 15px;
+        font-weight: 500;
+        color: #1e293b !important;
+        transition: all 0.3s ease;
+        outline: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+      }
+
+      /* Fix date input text cutting off */
+      input[type="date"].form-control {
+        padding-top: 13px;
+      }
+
+      /* Fix password toggle overlapping text */
+      .password-row .form-control {
+        padding-right: 45px;
+      }
+
+      .form-control::placeholder {
+        color: #94a3b8;
+        font-weight: 400;
+      }
+
+      .form-control:hover {
+        border-color: rgba(233, 64, 87, 0.4);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .form-control:focus {
+        background: #ffffff;
+        border-color: var(--rose-red);
+        box-shadow: 0 0 0 4px rgba(233, 64, 87, 0.15);
+      }
+
+      .form-control:focus ~ .field-icon {
+        color: var(--rose-red);
+      }
+
+      /* ==========================================
+   SUCCESS
+========================================== */
+
+      .form-control.valid {
+        border-color: #1fa55b;
+
+        background: #f4fff8;
+      }
+
+      .form-control.valid ~ .field-icon {
+        color: #1fa55b;
+      }
+
+      /* ==========================================
+   ERROR
+========================================== */
+
+      .form-control.invalid {
+        border-color: #e53935;
+
+        background: #fff6f6;
+      }
+
+      .form-control.invalid ~ .field-icon {
+        color: #e53935;
+      }
+
+      /* ==========================================
+   READ ONLY
+========================================== */
+
+      .form-control[readonly] {
+        background: #fffdf4;
+
+        border-color: rgba(255, 215, 0, 0.45);
+
+        font-weight: 600;
+      }
+
+      /* ==========================================
+   SELECT
+========================================== */
+
+      select.form-control {
+        appearance: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+        background-image:
+          linear-gradient(45deg, transparent 50%, var(--rose-red) 50%),
+          linear-gradient(135deg, var(--rose-red) 50%, transparent 50%);
+        background-position:
+          calc(100% - 20px) center,
+          calc(100% - 15px) center;
+        background-size:
+          5px 5px,
+          5px 5px;
+        background-repeat: no-repeat;
+      }
+
+      /* ==========================================
+   VERIFY BUTTON
+========================================== */
+      .verify-btn {
+        flex-shrink: 0;
+        height: 48px;
+        padding: 0 16px;
+        border: 1px solid rgba(233, 64, 87, 0.15);
+        border-radius: 12px;
+        background: var(--soft-pink);
+        color: var(--rose-red);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        transition: 0.3s;
+        box-shadow: 0 4px 12px rgba(233, 64, 87, 0.08);
+      }
+
+      /* Fix overlapping for inputs with verify buttons */
+      #mobileInput,
+      #emailInput,
+      #idInput {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .verify-btn:hover {
+        background: var(--rose-red);
+
+        color: #fff;
+
+        transform: translateY(-2px);
+      }
+
+      .verify-btn.is-verified {
+        background: #e9f9ee;
+
+        color: #159b4d;
+
+        cursor: default;
+
+        pointer-events: none;
+      }
+
+      .verify-btn.is-verified:hover {
+        transform: none;
+      }
+
+      /* ==========================================
+   PART 1E - PASSWORD, CONSENT & BUTTON CSS
+========================================== */
+
+      /* PASSWORD STRENGTH */
+
+      .strength-meter {
+        display: flex;
+        gap: 5px;
+        margin-top: 7px;
+      }
+
+      .strength-meter span {
+        flex: 1;
+        height: 5px;
+        border-radius: 20px;
+        background: #ececec;
+        transition: 0.35s;
+      }
+
+      .strength-label {
+        display: block;
+        margin-top: 5px;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      /* PASSWORD TOGGLE */
+
+      .password-toggle {
+        position: absolute;
+        right: 14px;
+        cursor: pointer;
+        color: #9b909d;
+        transition: 0.3s;
+        font-size: 15px;
+      }
+
+      .password-toggle:hover {
+        color: var(--rose-red);
+      }
+
+      /* PASSWORD MATCH */
+
+      .password-match {
+        margin-top: 5px;
+
+        font-size: 11px;
+
+        font-weight: 600;
+      }
+
+      .password-match.success {
+        color: #18b368;
+      }
+
+      .password-match.error {
+        color: #e53935;
+      }
+
+      /* CONSENT */
+
+      .consent-row {
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+        margin-top: 10px;
+
+        font-size: 13px;
+
+        color: var(--text-muted);
+
+        line-height: 1.6;
+      }
+
+      .consent-row input {
+        margin-top: 4px;
+
+        accent-color: var(--rose-red);
+
+        cursor: pointer;
+      }
+
+      .consent-row a {
+        color: var(--rose-red);
+
+        text-decoration: none;
+
+        font-weight: 600;
+      }
+
+      .consent-row a:hover {
+        text-decoration: underline;
+      }
+
+      /* REGISTER BUTTON */
+
+      .btn-gradient {
+        width: 100%;
+        margin-top: 15px;
+        height: 52px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        background: var(--gradient-rose);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(233, 64, 87, 0.25);
+      }
+
+      .btn-gradient::before {
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.35),
+          transparent
+        );
+
+        transform: translateX(-120%);
+
+        transition: 0.8s;
+      }
+
+      .btn-gradient:hover::before {
+        transform: translateX(120%);
+      }
+
+      .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(233, 64, 87, 0.3);
+      }
+
+      .btn-gradient:active {
+        transform: scale(0.98);
+      }
+
+      .btn-gradient:disabled {
+        opacity: 0.6;
+
+        cursor: not-allowed;
+
+        transform: none;
+
+        box-shadow: none;
+      }
+
+      /* INPUT ANIMATION */
+
+      .form-group {
+        animation: fadeUp 0.5s ease both;
+      }
+
+      .form-group:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .form-group:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .form-group:nth-child(3) {
+        animation-delay: 0.15s;
+      }
+      .form-group:nth-child(4) {
+        animation-delay: 0.2s;
+      }
+      .form-group:nth-child(5) {
+        animation-delay: 0.25s;
+      }
+      .form-group:nth-child(6) {
+        animation-delay: 0.3s;
+      }
+      .form-group:nth-child(7) {
+        animation-delay: 0.35s;
+      }
+      .form-group:nth-child(8) {
+        animation-delay: 0.4s;
+      }
+      .form-group:nth-child(9) {
+        animation-delay: 0.45s;
+      }
+      .form-group:nth-child(10) {
+        animation-delay: 0.5s;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+
+          transform: translateY(18px);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: translateY(0);
+        }
+      }
+
+      /* ===========================================================
+   PART 1F - OTP MODAL + RESPONSIVE + FINAL CSS
+===========================================================*/
+
+      /* ================= OTP MODAL ================= */
+
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(32, 25, 35, 0.45);
+        backdrop-filter: blur(8px);
+
+        z-index: 9999;
+
+        animation: fadeIn 0.35s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      .otp-modal {
+        width: 92%;
+        max-width: 420px; width: 100%;
+
+        background: rgba(255, 255, 255, 0.96);
+
+        border-radius: 24px;
+
+        padding: 35px 30px;
+
+        text-align: center;
+
+        border: 1px solid rgba(255, 255, 255, 0.7);
+
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
+
+        animation: popup 0.4s ease;
+      }
+
+      @keyframes popup {
+        from {
+          opacity: 0;
+          transform: translateY(35px) scale(0.95);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .otp-modal .shield {
+        font-size: 50px;
+
+        color: var(--rose-red);
+
+        margin-bottom: 15px;
+      }
+
+      .otp-modal h3 {
+        font-size: 24px;
+
+        color: var(--text-dark);
+
+        margin-bottom: 8px;
+      }
+
+      .otp-modal p {
+        color: var(--text-muted);
+
+        font-size: 14px;
+
+        line-height: 1.7;
+      }
+
+      .otp-inputs {
+        display: flex;
+
+        justify-content: center;
+
+        gap: 12px;
+
+        margin: 28px 0;
+      }
+
+      .otp-field {
+        width: 55px;
+        height: 55px;
+
+        border-radius: 14px;
+
+        border: 1px solid rgba(233, 64, 87, 0.2);
+
+        outline: none;
+
+        font-size: 22px;
+
+        font-weight: 700;
+
+        text-align: center;
+
+        transition: 0.3s;
+      }
+
+      .otp-field:focus {
+        border-color: var(--rose-red);
+
+        box-shadow: 0 0 0 4px rgba(233, 64, 87, 0.14);
+      }
+
+      /* ================= SUCCESS MESSAGE ================= */
+
+      .success-message {
+        display: none;
+
+        margin-top: 15px;
+
+        background: #ebfff3;
+
+        color: #179b57;
+
+        padding: 12px;
+
+        border-radius: 12px;
+
+        font-size: 13px;
+
+        font-weight: 600;
+      }
+
+      .error-message {
+        display: none;
+
+        margin-top: 15px;
+
+        background: #fff3f3;
+
+        color: #d53030;
+
+        padding: 12px;
+
+        border-radius: 12px;
+
+        font-size: 13px;
+
+        font-weight: 600;
+      }
+
+      /* ================= LOADER ================= */
+
+      .loader {
+        width: 18px;
+        height: 18px;
+
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-top: 2px solid #fff;
+
+        border-radius: 50%;
+
+        animation: spin 0.8s linear infinite;
+
+        display: inline-block;
+      }
+
+      /* ================= FOOTER ================= */
+
+      .sm-footer {
+        margin-top: 40px;
+
+        background: linear-gradient(135deg, #e94057, #c22a41);
+
+        color: #fff;
+
+        position: relative;
+
+        overflow: hidden;
+      }
+
+      .sm-footer::before {
+        content: "";
+
+        position: absolute;
+
+        width: 350px;
+
+        height: 350px;
+
+        background: rgba(255, 255, 255, 0.08);
+
+        border-radius: 50%;
+
+        top: -120px;
+
+        right: -120px;
+      }
+
+      .footer-top {
+        padding: 60px 0 36px;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .footer-logo {
+        font-size: 28px;
+
+        font-weight: 700;
+
+        margin-bottom: 18px;
+      }
+
+      .footer-logo i {
+        color: #ffd700;
+
+        margin-right: 8px;
+      }
+
+      .footer-top p {
+        color: rgba(255, 255, 255, 0.85);
+
+        line-height: 1.9;
+      }
+
+      .footer-top h5 {
+        margin-bottom: 20px;
+
+        font-weight: 600;
+
+        color: #ffd700;
+      }
+
+      .footer-top ul {
+        list-style: none;
+
+        padding: 0;
+
+        margin: 0;
+      }
+
+      .footer-top li {
+        margin-bottom: 12px;
+      }
+
+      .footer-top a {
+        text-decoration: none;
+
+        color: rgba(255, 255, 255, 0.85);
+
+        transition: 0.3s;
+      }
+
+      .footer-top a:hover {
+        color: #ffd700;
+
+        padding-left: 8px;
+      }
+
+      .social-links {
+        display: flex;
+
+        gap: 12px;
+
+        margin-top: 20px;
+      }
+
+      .social-links a {
+        width: 45px;
+
+        height: 45px;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        border-radius: 50%;
+
+        background: rgba(255, 255, 255, 0.12);
+
+        font-size: 18px;
+
+        transition: 0.35s;
+      }
+
+      .social-links a:hover {
+        background: #ffd700;
+
+        color: #c22a41;
+
+        transform: translateY(-5px);
+      }
+
+      .footer-bottom {
+        padding: 18px;
+
+        text-align: center;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+        background: rgba(0, 0, 0, 0.08);
+
+        font-size: 14px;
+
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ================= MOBILE ================= */
+
+      @media (max-width: 900px) {
+        .card {
+          grid-template-columns: 1fr;
+          height: auto;
+          min-height: unset;
+        }
+
+        .brand-side {
+          display: none;
+        }
+
+        .form-side {
+          padding: 22px;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .full-width {
+          grid-column: span 1;
+        }
+
+        .password-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ================= SMALL MOBILE ================= */
+
+      @media (max-width: 600px) {
+        .card {
+          width: 100%;
+
+          border-radius: 20px;
+        }
+
+        .form-header h2 {
+          font-size: 22px;
+        }
+
+        .form-control {
+          height: 44px;
+
+          font-size: 13px;
+        }
+
+        .verify-btn {
+          height: 40px;
+
+          font-size: 11px;
+
+          padding: 0 12px;
+        }
+
+        .btn-gradient {
+          height: 46px;
+
+          font-size: 14px;
+        }
+
+        .otp-field {
+          width: 48px;
+          height: 48px;
+        }
+      }
+
+      /* ================= LOW HEIGHT ================= */
+
+      @media (max-height: 680px) {
+        .form-control {
+          height: 42px;
+        }
+
+        .form-group label {
+          margin-bottom: 4px;
+
+          font-size: 12px;
+        }
+
+        .form-grid {
+          gap: 12px;
+        }
+
+        .btn-gradient {
+          margin-top: 10px;
+        }
+      }
+
+      /* ================= INPUT VALIDATION ================= */
+
+      .form-control:valid {
+        border-color: rgba(24, 179, 104, 0.25);
+      }
+
+      .form-control:invalid:focus {
+        border-color: #e53935;
+      }
+
+      .form-control::selection {
+        background: #ffd6dc;
+      }
+
+      /* OTP CLOSE BUTTON */
+
+      .otp-close {
+        position: absolute;
+
+        top: 18px;
+        right: 22px;
+
+        width: 35px;
+        height: 35px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: #fff0f2;
+
+        color: var(--rose-red);
+
+        font-size: 18px;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+      }
+
+      .otp-close:hover {
+        background: var(--rose-red);
+
+        color: #fff;
+
+        transform: rotate(90deg);
+      }
+
+      .otp-modal {
+        position: relative;
+      }
+      /* ================= END ================= */
+
+      /* new_footer  */
+      /* --- Google Fonts --- */
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap");
+
+      :root {
+        --rose-red: #e94057;
+        --soft-pink: #feecef;
+        --gold: #ffd700;
+        --gold-hover: #ffa500;
+        --dark-text: #2c3e50;
+        --light-text: #64748b;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(233, 64, 87, 0.15);
+      }
+
+      /* --- Footer Container Styling --- */
+      .main-footer {
+        position: absolute;
+        top: 100px;
+        background: linear-gradient(135deg, #ffffff 0%, var(--soft-pink) 100%);
+        font-family: "Inter", sans-serif;
+        padding: 70px 0 20px 0;
+        color: var(--dark-text);
+        border-top: 1px solid var(--glass-border);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Top decorative subtle border gradient */
+      .main-footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--rose-red),
+          var(--gold),
+          var(--rose-red)
+        );
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 25px;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: 40px;
+      }
+
+      /* --- Typography & Headings --- */
+      .footer-col h4 {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: var(--dark-text);
+        position: relative;
+        display: inline-block;
+      }
+
+      /* Subtle line under headings */
+      .footer-col h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 30px;
+        height: 2px;
+        background-color: var(--rose-red);
+        border-radius: 2px;
+      }
+
+      /* --- Brand Column --- */
+      .footer-logo {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--rose-red);
+        margin-bottom: 15px;
+      }
+      .footer-logo span {
+        color: var(--dark-text);
+      }
+      .footer-logo i {
+        margin-right: 5px;
+        color: var(--rose-red);
+      }
+      .brand-desc {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--light-text);
+        margin-bottom: 20px;
+      }
+
+      /* Social Icons (Glassmorphism + Hover Effect) */
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        background: #ffffff;
+        border: 1px solid rgba(233, 64, 87, 0.2);
+        border-radius: 50%;
+        color: var(--rose-red);
+        margin-right: 10px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+      }
+      .social-links a:hover {
+        background: linear-gradient(135deg, var(--rose-red) 0%, #ff6b6b 100%);
+        color: #ffffff;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(233, 64, 87, 0.3);
+      }
+
+      /* --- Links Styling --- */
+      .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footer-col ul li {
+        margin-bottom: 12px;
+      }
+      .footer-col ul li a {
+        color: var(--light-text);
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: all 0.25s ease;
+        display: inline-block;
+      }
+      .footer-col ul li a:hover {
+        color: var(--rose-red);
+        transform: translateX(5px);
+      }
+
+      /* --- Contact & Badges --- */
+      .contact-col p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+        color: var(--light-text);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .icon-gold {
+        color: #d4af37;
+      } /* Premium Soft Gold */
+      .icon-rose {
+        color: var(--rose-red);
+      }
+
+      /* Glassmorphism Trust Badge */
+      .trust-badge {
+        margin-top: 20px;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(5px);
+        border: 1px solid var(--glass-border);
+        padding: 10px 15px;
+        border-radius: 30px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--rose-red);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      }
+
+      /* --- Footer Bottom Bar --- */
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 50px auto 0 auto;
+        padding: 20px 25px 0 25px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--light-text);
+      }
+      .live-heart {
+        color: var(--rose-red);
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.15);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* --- Responsive Layout (Mobile-first Media Queries) --- */
+      @media (max-width: 992px) {
+        .footer-container {
+          grid-template-columns: 1fr 1fr;
+          gap: 30px;
+        }
+      }
+      @media (max-width: 576px) {
+        .footer-container {
+          grid-template-columns: 1fr;
+          gap: 35px;
+        }
+        .footer-col h4::after {
+          width: 45px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navbar_start -->
+    <!-- top_navbar_start -->
+ <nav
+      class="fixed-top w-100"
+      style="
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        z-index: 1030;
+      "
+    >
+      <!-- Top Utility Bar (Contact & Trust Badges) -->
+      <div
+        class="container-fluid py-2 px-4 d-flex flex-wrap justify-content-between align-items-center"
+        style="
+          font-size: 12.5px;
+          color: #555555;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+          background-color: #fffdf9;
+        "
+      >
+
+
+      <!-- Main Brand Header Bar -->
+      <div
+        class="container-fluid py-3 px-4 d-flex justify-content-between align-items-center"
+        style="background-color: #ffffff"
+      >
+        <!-- Brand Logo Area -->
+        <div class="d-flex align-items-center" style="gap: 12px">
+          <div
+            class="d-flex align-items-center justify-content-center rounded-3 shadow-sm"
+            style="
+              background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+              width: 38px;
+              height: 38px;
+            "
+          >
+            <!-- Golden Diamond Icon -->
+            <svg
+              width="18"
+              height="18"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              style="color: #fff"
+            >
+              <path
+                d="M12 2L2 12l10 10 10-10L12 2zm0 3.8L18.2 12 12 18.2 5.8 12 12 5.8z"
+              />
+            </svg>
+          </div>
+          <div>
+            <span
+              class="fs-4 d-block lh-1 text-dark"
+              style="
+                letter-spacing: -0.5px;
+                font-weight: 850;
+                font-family: system-ui, sans-serif;
+              "
+            >
+              Forever<span style="color: #d9383a">Bond</span>
+            </span>
+            <span
+              class="text-muted text-uppercase d-block mt-1"
+              style="font-size: 9px; letter-spacing: 2px; font-weight: 700"
+            >
+              Verified • Secure • Sacred
+            </span>
+          </div>
+        </div>
+        <!-- Center: Pulse Heart Trust Badge (Aligned with Logo Accent) -->
+        <div
+          class="d-none d-md-flex align-items-center fw-semibold text-uppercase"
+          style="
+            color: #d9383a;
+            gap: 6px;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+            font-weight: bold;
+          "
+        >
+          <svg
+            width="12"
+            height="12"
+            fill="currentColor"
+            class="animate-pulse"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+            />
+          </svg>
+          India's Trusted Premium Matrimony
+        </div>
+
+        <!-- Right Action: Secure Exit Badge & Clean Logout -->
+        <div class="d-flex align-items-center gap-3">
+          <span
+            class="badge rounded-pill px-3 py-2 d-flex align-items-center"
+            style="
+              background-color: #fffbeb;
+              color: #b45309;
+              border: 1px solid #fde68a;
+              font-size: 12px;
+              gap: 6px;
+              font-weight: 600;
+            "
+          >
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"
+              />
+            </svg>
+            Secure Setup Mode
+          </span>
+
+          <a
+            href="javascript:void(0);"
+            onclick="event.preventDefault(); localStorage.removeItem('isLoggedIn'); localStorage.removeItem('currentUser'); localStorage.removeItem('isPaid'); window.location.href='/home/';"
+            class="btn btn-sm btn-light border d-flex align-items-center gap-1 text-secondary font-medium transition-all"
+            style="
+              font-size: 12px;
+              padding: 6px 14px;
+              border-radius: 8px;
+              background: #fff;
+            "
+            onmouseover="
+              this.style.background = '#fff5f5';
+              this.style.color = '#d9383a';
+            "
+            onmouseout="
+              this.style.background = '#fff';
+              this.style.color = '#6c757d';
+            "
+          >
+            <span>Sign Out</span>
+            <svg
+              width="12"
+              height="12"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Inline CSS Keyframe Utility for Heart Pulse Glow (Put this anywhere in your stylesheet or head) -->
+    <style>
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.9;
+          filter: drop-shadow(0 0 0px rgba(217, 56, 58, 0));
+        }
+        50% {
+          transform: scale(1.08);
+          opacity: 1;
+          filter: drop-shadow(0 0 4px rgba(217, 56, 58, 0.5));
+        }
+      }
+    </style>
+    <!-- navbar_end  -->
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+
+    <div class="card mt-4">
+      <!-- ===========================
+             LEFT BRAND PANEL
+        ============================ -->
+
+      <div class="brand-side" data-aos="fade-right" data-aos-duration="900">
+        <div class="brand-mark">
+          <div class="logo">
+            <i class="fa-solid fa-gem"></i>
+            ShadiMilan
+          </div>
+
+          <div class="tagline">Verified • Secure • Sacred</div>
+        </div>
+
+        <div class="brand-copy">
+          <h1>
+            Begin a story written in
+            <span>trust.</span>
+          </h1>
+
+          <p>
+            Join thousands of genuine members looking for a meaningful
+            relationship. Every profile goes through a secure multi-level
+            verification process before it becomes visible.
+          </p>
+        </div>
+
+        <div class="verify-level">
+          <div class="title">
+            <i class="fa-solid fa-shield-heart"></i>
+            Level 2 Verification
+          </div>
+
+          <p>✔ Mobile OTP Verification</p>
+
+          <p>✔ Email Verification</p>
+
+          <p>✔ Government ID Verification</p>
+
+          <p>
+            Your profile becomes visible only after successful verification.
+          </p>
+        </div>
+
+        <div class="trust-row">
+          <div>
+            <i class="fa-solid fa-shield-halved"></i>
+            ID Verified
+          </div>
+
+          <div>
+            <i class="fa-solid fa-lock"></i>
+            Private
+          </div>
+
+          <div>
+            <i class="fa-solid fa-heart"></i>
+            50K+ Matches
+          </div>
+        </div>
+      </div>
+
+      <!-- ===========================
+             RIGHT FORM PANEL START
+        ============================ -->
+
+      <div class="form-side" data-aos="fade-left" data-aos-duration="900">
+        <div class="form-header">
+          <div class="step">Step 1 of 2 • Identity Verification Included</div>
+
+          <h2>Create Your Account</h2>
+        </div>
+
+
+
+        <form id="regForm" onsubmit="handleRegister(event)">
+          <div class="form-scroll">
+            <div class="form-grid">
+              <!-- ===========================
+     PART 2A-2
+     FIRST NAME + LAST NAME +
+     GENDER + DATE OF BIRTH
+=========================== -->
+
+              <div class="form-group">
+                <label>
+                  First Name
+                  <span class="req">*</span>
+                </label>
+
+                <div class="input-wrapper">
+                  <input
+                    type="text"
+                    id="firstName" minlength="2" maxlength="50" pattern="[A-Za-z\\s]+" title="Only alphabets allowed"
+                    class="form-control"
+                    placeholder="Enter First Name"
+                    required
+                  />
+
+                  <i class="fa-regular fa-user field-icon"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  Last Name
+                  <span class="req">*</span>
+                </label>
+
+                <div class="input-wrapper">
+                  <input
+                    type="text"
+                    id="lastName" minlength="2" maxlength="50" pattern="[A-Za-z\\s]+" title="Only alphabets allowed"
+                    class="form-control"
+                    placeholder="Enter Last Name"
+                    required
+                  />
+
+                  <i class="fa-regular fa-user field-icon"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  Gender
+                  <span class="req">*</span>
+                </label>
+
+                <div class="input-wrapper">
+                  <select id="gender" class="form-control" required>
+                    <option value="">Select Gender</option>
+
+                    <option value="Male">Male</option>
+
+                    <option value="Female">Female</option>
+
+                    <option value="Other">Other</option>
+                  </select>
+
+                  <i class="fa-solid fa-venus-mars field-icon"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  Date of Birth
+                  <span class="req">*</span>
+                </label>
+
+                <div class="input-wrapper">
+                  <input
+                    type="date"
+                    id="dobInput"
+                    class="form-control"
+                    onchange="calculateAge()"
+                    required
+                  />
+
+                  <i class="fa-regular fa-calendar-days field-icon"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  Age
+                  <span class="hint">(Auto Calculated)</span>
+                </label>
+
+                <div class="input-wrapper">
+                  <input
+                    type="text"
+                    id="ageInput"
+                    class="form-control"
+                    placeholder="Age"
+                    readonly
+                  />
+
+                  <i class="fa-solid fa-hourglass-half field-icon"></i>
+                </div>
+              </div>
+
+              <!-- ===========================
+     PART 2A-3
+     MOBILE + EMAIL VERIFICATION
+=========================== -->
+
+              <div class="form-group">
+                <label>
+                  Mobile Number
+                  <span class="req">*</span>
+                </label>
+
+                <div class="input-wrapper">
+                  <input
+                    type="tel"
+                    id="mobileInput"
+                    class="form-control"
+                    placeholder="Enter 10 digit mobile number"
+                    maxlength="10"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
+                    required
+                  />
+
+                  <i class="fa-solid fa-phone field-icon"></i>
+
+                  <button
+                    type="button"
+                    class="verify-btn"
+                    id="mobileVerifyBtn"
+                    onclick="verifyMobile()"
+                  >
+                    Verify
+                  </button>
+                </div>
+              </div>
+
+              <div class="full-width password-row">
+                <div class="form-group">
+                  <label>
+                    Email Address
+                    <span class="req">*</span>
+                  </label>
+
+                  <div class="input-wrapper">
+                    <input
+                      type="email"
+                      id="emailInput"
+                      class="form-control"
+                      placeholder="Enter your email address"
+                      required
+                    />
+
+                    <i class="fa-regular fa-envelope field-icon"></i>
+
+                    <button
+                      type="button"
+                      class="verify-btn"
+                      id="emailVerifyBtn"
+                      onclick="verifyEmail()"
+                    >
+                      Verify
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group mb-4">
+                  <label>
+                    Government ID Type & Number
+                    <span class="req">*</span>
+                  </label>
+
+                  <select id="idType" class="form-control mb-2" style="padding-left: 10px; background-color: rgba(255, 255, 255, 0.1);" onchange="updateIdPlaceholder()">
+                      <option value="Aadhaar" style="color: black;">Aadhaar Card</option>
+                      <option value="PAN" style="color: black;">PAN Card</option>
+                  </select>
+
+                  <div class="input-wrapper">
+                    <input
+                      type="text"
+                      id="idInput"
+                      class="form-control"
+                      placeholder="Enter Aadhaar Number (12 digits)"
+                      maxlength="12"
+                      required
+                    />
+
+                    <i class="fa-solid fa-id-card field-icon"></i>
+
+                    <button
+                      type="button"
+                      class="verify-btn"
+                      id="idVerifyBtn"
+                      onclick="verifyGovernmentID()"
+                    >
+                      Verify
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===========================
+     PART 2A-4
+     PASSWORD + CONFIRM PASSWORD
+     CONSENT + REGISTER BUTTON
+=========================== -->
+
+              <div class="full-width password-row">
+                <div class="form-group">
+                  <label>
+                    Password
+                    <span class="req">*</span>
+                  </label>
+
+                  <div class="input-wrapper">
+                    <input
+                      type="password"
+                      id="passwordInput"
+                      class="form-control"
+                      placeholder="Create password"
+                      oninput="checkStrength()"
+                      required
+                    />
+
+                    <i class="fa-solid fa-lock field-icon"></i>
+
+                    <i
+                      class="fa-solid fa-eye password-toggle"
+                      onclick="togglePassword('passwordInput', this)"
+                    ></i>
+                  </div>
+
+                  <div class="strength-meter">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+
+                  <span class="strength-label" id="strengthLabel">
+                    Password strength
+                  </span>
+                </div>
+
+                <div class="form-group">
+                  <label>
+                    Confirm Password
+                    <span class="req">*</span>
+                  </label>
+
+                  <div class="input-wrapper">
+                    <input
+                      type="password"
+                      id="confirmPassword" minlength="8" maxlength="50"
+                      class="form-control"
+                      placeholder="Confirm password"
+                      oninput="checkPasswordMatch()"
+                      required
+                    />
+
+                    <i class="fa-solid fa-lock field-icon"></i>
+
+                    <i
+                      class="fa-solid fa-eye password-toggle"
+                      onclick="togglePassword('confirmPassword', this)"
+                    ></i>
+                  </div>
+
+                  <div id="passwordMessage" class="password-match"></div>
+                </div>
+              </div>
+            </div>
+            <!-- form-grid close -->
+
+            <div class="consent-row">
+              <input type="checkbox" id="consentCheck" required />
+
+              <label for="consentCheck">
+                I agree to the
+
+                <a href="{{ global_terms_url }}"> Terms of Service </a>
+
+                and
+
+                <a href="{{ global_privacy_policy_url }}"> Privacy Policy </a>
+
+                and allow identity verification for account safety.
+              </label>
+            </div>
+
+            <button type="submit" class="btn-gradient" id="registerBtn">
+              Verify & Register
+
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            </button>
+          </div>
+          <!-- form-scroll close -->
+        </form>
+      </div>
+      <!-- form-side close -->
+    </div>
+    <!-- card close -->
+
+    <!-- ===========================
+     PART 2B
+     OTP MODAL + SCRIPT LINKS
+=========================== -->
+
+    <!-- OTP VERIFICATION MODAL -->
+
+    <div class="modal-overlay" id="otpModal">
+      <div class="otp-modal">
+        <!-- CLOSE BUTTON -->
+        <i class="fa-solid fa-xmark otp-close" onclick="closeOTPModal()"></i>
+
+        <i class="fa-solid fa-shield-halved shield"></i>
+
+        <h3>OTP Verification</h3>
+
+        <p id="otpText" style="margin-bottom: 8px;">Enter the OTP sent to your registered mobile number.</p>
+        <div id="dummy-otp-note" style="background-color: rgba(233, 64, 87, 0.1); padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 13px; color: var(--rose-red);">
+          <i class="fa-solid fa-circle-info"></i> Note: OTP integration is currently under development. Please enter <b>1 2 3 4</b> as the OTP for now.
+        </div>
+
+        <div class="otp-inputs">
+          <input
+            type="text"
+            class="otp-field"
+            id="otp1"
+            maxlength="1"
+            oninput="moveNext(this, 'otp2')"
+          />
+
+          <input
+            type="text"
+            class="otp-field"
+            id="otp2"
+            maxlength="1"
+            oninput="moveNext(this, 'otp3')"
+          />
+
+          <input
+            type="text"
+            class="otp-field"
+            id="otp3"
+            maxlength="1"
+            oninput="moveNext(this, 'otp4')"
+          />
+
+          <input type="text" class="otp-field" id="otp4" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '');" onkeydown="if(event.key === 'Enter') verifyOTP();" />
+        </div>
+
+        <button type="button" id="verifyOtpSubmitBtn" class="btn-gradient" onclick="verifyOTP()">
+          Submit & Verify
+
+          <i class="fa-solid fa-check"></i>
+        </button>
+
+        <div style="margin-top: 15px; font-size: 13px; text-align: center;">
+          <span id="resendTimerText">Resend OTP in <span id="timerValue">30</span>s</span>
+          <a href="javascript:void(0)" id="resendBtn" style="display: none; color: var(--rose-red); font-weight: 600; text-decoration: none;" onclick="resendOTP()">Resend OTP</a>
+        </div>
+      </div>
+
+      <!-- SUCCESS MESSAGE -->
+
+      <div class="success-message" id="successMessage">
+        ✔ Verification Completed Successfully
+      </div>
+
+      <!-- ERROR MESSAGE -->
+
+      <div class="error-message" id="errorMessage">
+        ✖ Invalid OTP. Please try again.
+      </div>
+    </div>
+
+    <!-- AOS SCRIPT -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+      // ==========================================
+      // SCRIPT.JS PART 1
+      // AGE CALCULATION
+      // PASSWORD TOGGLE
+      // PASSWORD STRENGTH
+      // CONFIRM PASSWORD CHECK
+      // ==========================================
+
+      // ===============================
+      // AOS INITIALIZE
+      // ===============================
+
+      AOS.init({
+        once: true,
+        duration: 800,
+      });
+
+      // ===============================
+      // AGE CALCULATION
+      // ===============================
+
+      function calculateAge() {
+        const dob = document.getElementById("dobInput").value;
+
+        if (!dob) {
+          return;
+        }
+
+        const birthDate = new Date(dob);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+
+        if (
+          monthDiff < 0 ||
+          (monthDiff === 0 && today.getDate() < birthDate.getDate())
+        ) {
+          age--;
+        }
+
+        const ageInput = document.getElementById("ageInput");
+
+        if (age >= 21) {
+          ageInput.value = age + " Years";
+          ageInput.classList.add("valid");
+          ageInput.classList.remove("invalid");
+        } else {
+          ageInput.value = "Min. Age 21";
+          ageInput.classList.add("invalid");
+          ageInput.classList.remove("valid");
+          document.getElementById("dobInput").value = "";
+        }
+      }
+
+      // ===============================
+      // PASSWORD SHOW / HIDE
+      // ===============================
+
+      function togglePassword(inputId, icon) {
+        const input = document.getElementById(inputId);
+
+        if (input.type === "password") {
+          input.type = "text";
+
+          icon.classList.remove("fa-eye");
+
+          icon.classList.add("fa-eye-slash");
+        } else {
+          input.type = "password";
+
+          icon.classList.remove("fa-eye-slash");
+
+          icon.classList.add("fa-eye");
+        }
+      }
+
+      // ===============================
+      // PASSWORD STRENGTH
+      // ===============================
+
+      function checkStrength() {
+        const password = document.getElementById("passwordInput").value;
+
+        const bars = document.querySelectorAll(".strength-meter span");
+
+        const label = document.getElementById("strengthLabel");
+
+        let score = 0;
+
+        if (password.length >= 6) {
+          score++;
+        }
+
+        if (password.length >= 10) {
+          score++;
+        }
+
+        if (/[A-Z]/.test(password) && /[0-9]/.test(password)) {
+          score++;
+        }
+
+        if (/[^A-Za-z0-9]/.test(password)) {
+          score++;
+        }
+
+        const text = ["Weak", "Fair", "Good", "Strong"];
+
+        bars.forEach((bar, index) => {
+          if (index < score) {
+            bar.style.background =
+              score === 1
+                ? "#e94057"
+                : score === 2
+                  ? "#ff9800"
+                  : score === 3
+                    ? "#ffd700"
+                    : "#18b368";
+          } else {
+            bar.style.background = "#ececec";
+          }
+        });
+
+        label.innerText =
+          password.length > 0
+            ? "Password Strength : " + text[Math.max(score - 1, 0)]
+            : "Password strength";
+      }
+
+      // ===============================
+      // CONFIRM PASSWORD CHECK
+      // ===============================
+
+      function checkPasswordMatch() {
+        const password = document.getElementById("passwordInput").value;
+
+        const confirm = document.getElementById("confirmPassword").value;
+
+        const message = document.getElementById("passwordMessage");
+
+        if (confirm.length === 0) {
+          message.innerHTML = "";
+          return;
+        }
+
+        if (password === confirm) {
+          message.innerHTML = "✔ Password matched";
+
+          message.className = "password-match success";
+        } else {
+          message.innerHTML = "✖ Password not matched";
+
+          message.className = "password-match error";
+        }
+      }
+
+      // ==========================================
+      // SCRIPT.JS PART 2
+      // MOBILE VERIFY
+      // EMAIL VERIFY
+      // GOVERNMENT ID VERIFY
+      // OTP MODAL CONTROL
+      // ==========================================
+
+      let currentVerifyType = "";
+
+      let verifiedStatus = {
+        mobile: false,
+
+        email: false,
+
+        government: false,
+      };
+
+      // ===============================
+      // OPEN OTP MODAL
+      // ===============================
+
+        let timerInterval;
+        function startResendTimer() {
+            clearInterval(timerInterval);
+            let timeLeft = 30;
+            document.getElementById("resendTimerText").style.display = "inline";
+            document.getElementById("resendBtn").style.display = "none";
+            document.getElementById("timerValue").innerText = timeLeft;
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timerValue").innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById("resendTimerText").style.display = "none";
+                    document.getElementById("resendBtn").style.display = "inline";
+                }
+            }, 1000);
+        }
+
+        function resendOTP() {
+            startResendTimer();
+            if (currentVerifyType === "mobile") {
+                const mobile = document.getElementById("mobileInput").value.trim();
+                fetch('/accounts/api/send_mobile_otp/', {
+                  credentials: 'same-origin',
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ mobile: mobile })
+                }).then(res => res.json()).then(data => { if(data.status !== 'success') if(data.message && data.message.includes('Login to continue')){ alert(data.message); window.location.href='/accounts/login/'; } else { alert(data.message); } });
+            } else if (currentVerifyType === "email") {
+                const email = document.getElementById("emailInput").value.trim();
+                fetch('/accounts/api/send_otp/', {
+                  credentials: 'same-origin',
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ email: email })
+                }).then(res => res.json()).then(data => { if(data.status !== 'success') if(data.message && data.message.includes('Login to continue')){ alert(data.message); window.location.href='/accounts/login/'; } else { alert(data.message); } });
+            } else if (currentVerifyType === "government") {
+                const id = document.getElementById("idInput").value.trim();
+                const mobile = document.getElementById("mobileInput").value.trim();
+                fetch('/accounts/api/send_id_otp/', {
+                  credentials: 'same-origin',
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ id: id, mobile: mobile })
+                }).then(res => res.json()).then(data => { if(data.status !== 'success') if(data.message && data.message.includes('Login to continue')){ alert(data.message); window.location.href='/accounts/login/'; } else { alert(data.message); } });
+            }
+        }
+
+      function openOTPModal(type) {
+        currentVerifyType = type;
+        startResendTimer();
+
+        document.getElementById("otpModal").style.display = "flex";
+
+        document.querySelectorAll(".otp-field").forEach((input) => {
+          input.value = "";
+        });
+
+        document.getElementById("otp1").focus();
+
+        const otpText = document.getElementById("otpText");
+        const dummyOtpNote = document.getElementById("dummy-otp-note");
+
+        if (type === "mobile") {
+          otpText.innerHTML = "Enter OTP sent to your mobile number.";
+          if(dummyOtpNote) dummyOtpNote.style.display = "block";
+        } else if (type === "email") {
+          otpText.innerHTML = "Enter OTP sent to your email address.";
+          if(dummyOtpNote) dummyOtpNote.style.display = "none";
+        } else {
+          otpText.innerHTML = "Enter OTP sent for Government ID verification.";
+          if(dummyOtpNote) dummyOtpNote.style.display = "block";
+        }
+      }
+
+      // ===============================
+      // MOBILE VERIFY
+      // ===============================
+
+      function verifyMobile() {
+        const mobileField = document.getElementById("mobileInput");
+        const mobile = mobileField.value.trim();
+        
+        const mobilePattern = /^[6-9]\d{9}$/;
+        if (!mobilePattern.test(mobile)) {
+          alert("Please enter valid 10 digit mobile number.");
+          return;
+        }
+
+        // Keep 10 digits strict
+        mobileField.value = mobile;
+
+
+        document.getElementById("mobileVerifyBtn").innerHTML = "Sending...";
+        fetch('/accounts/api/send_mobile_otp/', {
+          credentials: 'same-origin',
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mobile: mobile })
+        })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("mobileVerifyBtn").innerHTML = "Verify";
+          if (data.status === 'success') {
+            openOTPModal("mobile");
+          } else {
+            if(data.message && data.message.includes('Login to continue')){ alert(data.message); window.location.href='/accounts/login/'; } else { alert(data.message); }
+          }
+        }).catch(err => {
+          document.getElementById("mobileVerifyBtn").innerHTML = "Verify";
+          console.error(err);
+        });
+      }
+
+      // ===============================
+      // EMAIL VERIFY
+      // ===============================
+
+      function verifyEmail() {
+        const email = document.getElementById("emailInput").value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          alert("Please enter valid email address.");
+          return;
+        }
+        
+        // Backend Integration: Send OTP
+        document.getElementById("emailVerifyBtn").innerHTML = "Sending...";
+        fetch('/accounts/api/send_otp/', {
+          credentials: 'same-origin',
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("emailVerifyBtn").innerHTML = "Verify";
+          if (data.status === 'success') {
+            openOTPModal("email");
+          } else {
+            if(data.message && data.message.includes('Login to continue')){ alert(data.message); window.location.href='/accounts/login/'; } else { alert(data.message); }
+          }
+        }).catch(err => {
+          document.getElementById("emailVerifyBtn").innerHTML = "Verify";
+          console.error(err);
+        });
+      }
+
+      // ===============================
+      // GOVERNMENT ID VERIFY
+      // ===============================
+
+      function updateIdPlaceholder() {
+          const type = document.getElementById("idType").value;
+          const input = document.getElementById("idInput");
+          input.value = "";
+          if (type === "Aadhaar") {
+              input.placeholder = "Enter Aadhaar Number (12 digits)";
+              input.maxLength = 12;
+          } else {
+              input.placeholder = "Enter PAN Number (10 alphanumeric)";
+              input.maxLength = 10;
+          }
+      }
+
+      function verifyGovernmentID() {
+        const type = document.getElementById("idType").value;
+        const id = document.getElementById("idInput").value.trim();
+        
+        if (type === "Aadhaar") {
+            const idPattern = /^\d{12}$/;
+            if (!idPattern.test(id)) {
+                alert("Please enter valid 12 digit Aadhaar number.");
+                return;
+            }
+        } else if (type === "PAN") {
+            const panPattern = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/i;
+            if (!panPattern.test(id)) {
+                alert("Please enter valid 10 character PAN number.");
+                return;
+            }
+        }
+
+        const mobileForId = document.getElementById("mobileInput").value.trim();
+        if (!mobileForId || mobileForId.length !== 10) {
+            alert("Please verify your mobile number first.");
+            return;
+        }
+        document.getElementById("idVerifyBtn").innerHTML = "Sending...";
+        fetch('/accounts/api/send_id_otp/', {
+          credentials: 'same-origin',
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: id, mobile: mobileForId })
+        })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("idVerifyBtn").innerHTML = "Verify";
+          if (data.status === 'success') {
+            openOTPModal("government");
+          } else {
+            if(data.message && data.message.includes('Login to continue')){ alert(data.message); window.location.href='/accounts/login/'; } else { alert(data.message); }
+          }
+        }).catch(err => {
+          document.getElementById("idVerifyBtn").innerHTML = "Verify";
+          console.error(err);
+        });
+      }
+
+      // ===============================
+      // OTP NEXT INPUT
+      // ===============================
+
+      function moveNext(current, nextId) {
+        if (current.value.length >= 1) {
+          document.getElementById(nextId).focus();
+        }
+      }
+
+      // ===============================
+      // OTP VERIFY
+      // ===============================
+
+      function verifyOTP() {
+        let otp = "";
+        document.querySelectorAll(".otp-field").forEach((input) => {
+          otp += input.value;
+        });
+
+        const btn = document.getElementById("verifyOtpSubmitBtn");
+        if(btn.disabled) return;
+        btn.disabled = true;
+        btn.innerHTML = "Verifying... <i class='fa-solid fa-spinner fa-spin'></i>";
+
+        if (currentVerifyType === "email") {
+          fetch('/accounts/api/verify_otp/', {
+          credentials: 'same-origin',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ otp: otp })
+          })
+          .then(res => res.json())
+          .then(data => {
+            btn.disabled = false;
+            btn.innerHTML = "Submit & Verify <i class='fa-solid fa-check'></i>";
+            if (data.status === 'success') {
+              document.getElementById("otpModal").style.display = "none";
+              verifiedStatus[currentVerifyType] = true;
+              updateVerifyButton(currentVerifyType);
+              alert("Verification completed successfully.");
+            } else {
+              alert("Invalid OTP. Please enter correct OTP.");
+            }
+          }).catch(err => {
+              btn.disabled = false;
+              btn.innerHTML = "Submit & Verify <i class='fa-solid fa-check'></i>";
+          });
+        } else if (currentVerifyType === "mobile") {
+          fetch('/accounts/api/verify_mobile_otp/', {
+          credentials: 'same-origin',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ otp: otp })
+          })
+          .then(res => res.json())
+          .then(data => {
+            btn.disabled = false;
+            btn.innerHTML = "Submit & Verify <i class='fa-solid fa-check'></i>";
+            if (data.status === 'success') {
+              document.getElementById("otpModal").style.display = "none";
+              verifiedStatus[currentVerifyType] = true;
+              updateVerifyButton(currentVerifyType);
+              alert("Verification completed successfully.");
+            } else {
+              alert("Invalid OTP. Please enter correct OTP.");
+            }
+          }).catch(err => {
+              btn.disabled = false;
+              btn.innerHTML = "Submit & Verify <i class='fa-solid fa-check'></i>";
+          });
+        } else if (currentVerifyType === "government") {
+          fetch('/accounts/api/verify_id_otp/', {
+          credentials: 'same-origin',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ otp: otp })
+          })
+          .then(res => res.json())
+          .then(data => {
+            btn.disabled = false;
+            btn.innerHTML = "Submit & Verify <i class='fa-solid fa-check'></i>";
+            if (data.status === 'success') {
+              document.getElementById("otpModal").style.display = "none";
+              verifiedStatus[currentVerifyType] = true;
+              updateVerifyButton(currentVerifyType);
+              alert("Verification completed successfully.");
+            } else {
+              alert("Invalid OTP. Please enter correct OTP.");
+            }
+          }).catch(err => {
+              btn.disabled = false;
+              btn.innerHTML = "Submit & Verify <i class='fa-solid fa-check'></i>";
+          });
+        }
+      }
+
+      // ===============================
+      // UPDATE VERIFY BUTTON
+      // ===============================
+
+      function updateVerifyButton(type) {
+        let button;
+
+        if (type === "mobile") {
+          button = document.getElementById("mobileVerifyBtn");
+        } else if (type === "email") {
+          button = document.getElementById("emailVerifyBtn");
+        } else {
+          button = document.getElementById("idVerifyBtn");
+        }
+
+        button.classList.add("is-verified");
+
+        button.innerHTML = '<i class="fa-solid fa-check"></i> Verified';
+      }
+
+      // ==========================================
+      // SCRIPT.JS PART 3
+      // REGISTER VALIDATION
+      // FINAL SUBMIT CHECK
+      // CLOSE MODAL
+      // ==========================================
+
+      // ===============================
+      // REGISTER SUBMIT
+      // ===============================
+
+      function handleRegister(event) {
+        event.preventDefault();
+
+        const firstName = document.getElementById("firstName").value.trim();
+
+        const lastName = document.getElementById("lastName").value.trim();
+
+        const gender = document.getElementById("gender").value;
+
+        const dob = document.getElementById("dobInput").value;
+
+        const password = document.getElementById("passwordInput").value;
+
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+
+        const consent = document.getElementById("consentCheck").checked;
+
+        // ===============================
+        // BASIC VALIDATION
+        // ===============================
+
+        if (
+          firstName === "" ||
+          lastName === "" ||
+          gender === "" ||
+          dob === ""
+        ) {
+          alert("Please complete all required fields.");
+
+          return;
+        }
+
+        // ===============================
+        // AGE CHECK
+        // ===============================
+
+        const ageText = document.getElementById("ageInput").value;
+
+        if (ageText.includes("Minimum")) {
+          alert("Age must be 18 or above.");
+
+          return;
+        }
+
+        // ===============================
+        // PASSWORD CHECK
+        // ===============================
+
+        if (password.length < 6) {
+          alert("Password must contain minimum 6 characters.");
+
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          alert("Password and confirm password do not match.");
+
+          return;
+        }
+
+        // ===============================
+        // VERIFICATION CHECK
+        // ===============================
+
+        if (!verifiedStatus.mobile) {
+          alert("Please verify your mobile number first.");
+
+          return;
+        }
+
+        if (!verifiedStatus.email) {
+          alert("Please verify your email first.");
+
+          return;
+        }
+
+        if (!verifiedStatus.government) {
+          alert("Please verify your Government ID first.");
+
+          return;
+        }
+
+        // ===============================
+        // TERMS CHECK
+        // ===============================
+
+        if (!consent) {
+          alert("Please accept Terms and Privacy Policy.");
+
+          return;
+        }
+
+        // ===============================
+        // SUCCESS
+        // ===============================
+
+        const email = document.getElementById("emailInput").value.trim();
+        const mobile = document.getElementById("mobileInput").value.trim();
+
+        const newUser = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          mobile: mobile,
+          gender: gender,
+          dob: dob,
+          password: password,
+          isPaid: "false",
+          planName: ""
+        };
+
+        let registeredUsers = [];
+        try {
+          registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+        } catch(err) {
+          registeredUsers = [];
+        }
+
+        // Backend Integration: Create User
+        fetch('/accounts/api/create_user/', {
+          credentials: 'same-origin',
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newUser)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success') {
+            // Keep localStorage logic so frontend state remains intact
+            const exists = registeredUsers.some(u => u.email === email || u.mobile === mobile);
+            if (!exists) {
+              registeredUsers.push(newUser);
+              localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+            }
+            localStorage.setItem("currentUser", JSON.stringify(newUser));
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("isPaid", "false");
+
+            alert("🎉 Registration Completed Successfully! Redirecting you to complete your profile...");
+            window.location.href = "/profiles/personal/";
+          } else {
+            if(data.message && data.message.includes('Login to continue')){ alert(data.message); window.location.href='/accounts/login/'; } else { alert(data.message); }
+          }
+        }).catch(err => {
+          console.error(err);
+        });
+      }
+
+      // ===============================
+      // CLOSE OTP WHEN CLICK OUTSIDE
+      // ===============================
+
+      document
+        .getElementById("otpModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            this.style.display = "none";
+          }
+        });
+
+      // ===============================
+      // ONLY NUMBERS FOR OTP
+      // ===============================
+
+      const otpInputs = document.querySelectorAll(".otp-field");
+      otpInputs.forEach((input, index) => {
+        input.addEventListener("input", function () {
+          this.value = this.value.replace(/[^0-9]/g, "");
+        });
+        
+        input.addEventListener("keydown", function (e) {
+          if (e.key === "Backspace" && this.value === "") {
+            if (index > 0) {
+              otpInputs[index - 1].focus();
+            }
+          }
+        });
+      });
+      // ===============================
+      // CLOSE OTP MODAL BUTTON
+      // ===============================
+
+      function closeOTPModal() {
+        document.getElementById("otpModal").style.display = "none";
+      }
+    </script>
+    <footer
+      class="w-100 position-relative transition-all"
+      style="
+            background: linear-gradient(180deg, #ffffff 0%, #fff5f6 100%);
+            box-shadow: 0 -10px 40px rgba(233, 64, 87, 0.04);
+            margin-top: 120px;
+            padding: 40px 0 30px 0;
+            font-family: 'Inter', sans-serif;
+        }"
+    >
+      <!-- Top Premium Accent Line (Rose Red to Gold Gradient Split) -->
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(
+            90deg,
+            #e94057 0%,
+            #facc15 50%,
+            #e94057 100%
+          );
+          opacity: 0.8;
+        "
+      ></div>
+
+      <div class="container-fluid px-5">
+        <!-- Main Footer Functional Body -->
+        <div class="row align-items-center justify-content-between gy-4">
+          <!-- Left Side: Brand & Fine Print -->
+          <div class="col-12 col-md-auto text-center text-md-start">
+            <div class="d-flex flex-column gap-1">
+              <div
+                class="d-flex align-items-center justify-content-center justify-content-md-start gap-2"
+              >
+                <span
+                  style="
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                    font-weight: 800;
+                    font-size: 16px;
+                    color: #1e293b;
+                    letter-spacing: -0.5px;
+                  "
+                >
+                  Forever<span style="color: #e94057">Bond</span>
+                </span>
+                <span
+                  class="badge"
+                  style="
+                    background: rgba(233, 64, 87, 0.1);
+                    color: #e94057;
+                    font-size: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                  "
+                  >PREMIUM</span
+                >
+              </div>
+              <span
+                style="
+                  font-size: 12px;
+                  color: #94a3b8;
+                  font-weight: 500;
+                  letter-spacing: 0.2px;
+                "
+              >
+                &copy; 2026 ForeverBond Matrimony. All Rights Sacred.
+              </span>
+            </div>
+          </div>
+
+          <!-- Center Side: Premium Glass-morphic Security Pill -->
+          <div class="col-12 col-md-auto text-center">
+            <div
+              class="d-inline-flex align-items-center px-4 py-2 rounded-pill shadow-sm"
+              style="
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(233, 64, 87, 0.15);
+                backdrop-filter: blur(5px);
+                gap: 10px;
+                box-shadow: 0 4px 15px rgba(233, 64, 87, 0.03) !important;
+              "
+            >
+              <div
+                class="d-flex align-items-center justify-content-center rounded-circle"
+                style="background: #e94057; width: 22px; height: 22px"
+              >
+                <i
+                  class="fa-solid fa-shield-halved text-white"
+                  style="font-size: 10px"
+                ></i>
+              </div>
+              <span
+                style="
+                  font-size: 11.5px;
+                  color: #475569;
+                  font-weight: 700;
+                  letter-spacing: 0.5px;
+                  text-transform: uppercase;
+                "
+              >
+                End-to-End Encrypted Data Verification
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Side: Luxury Trust Indicators -->
+          <div class="col-12 col-md-auto">
+            <div
+              class="d-flex justify-content-center justify-content-md-end align-items-center gap-4"
+            >
+              <!-- Trust Vector 1 -->
+              <div
+                class="d-flex align-items-center gap-2 premium-footer-icon"
+                style="cursor: default"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                  style="
+                    background: #ffffff;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #e2e8f0;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-lock"
+                    style="color: #64748b; font-size: 12px"
+                  ></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: #94a3b8;
+                      font-weight: 600;
+                      line-height: 1;
+                    "
+                    >Security</span
+                  >
+                  <span
+                    style="font-size: 12px; color: #334155; font-weight: 700"
+                    >SSL Secure</span
+                  >
+                </div>
+              </div>
+
+              <!-- Divider Vertical Line -->
+              <span style="color: #e2e8f0; font-weight: 300; font-size: 20px"
+                >|</span
+              >
+
+              <!-- Trust Vector 2 -->
+              <div
+                class="d-flex align-items-center gap-2 premium-footer-icon"
+                style="cursor: default"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                  style="
+                    background: #ffffff;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #e2e8f0;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-user-shield"
+                    style="color: #64748b; font-size: 12px"
+                  ></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: #94a3b8;
+                      font-weight: 600;
+                      line-height: 1;
+                    "
+                    >Privacy</span
+                  >
+                  <span
+                    style="font-size: 12px; color: #334155; font-weight: 700"
+                    >100% Verified</span
+                  >
+                </div>
+              </div>
+
+              <!-- Divider Vertical Line -->
+              <span style="color: #e2e8f0; font-weight: 300; font-size: 20px"
+                >|</span
+              >
+
+              <!-- Trust Vector 3 (Admin) -->
+              <a href="/admin/" style="text-decoration: none;">
+                <div
+                  class="d-flex align-items-center gap-2 premium-footer-icon"
+                >
+                  <div
+                    class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                    style="
+                      background: #ffffff;
+                      width: 28px;
+                      height: 28px;
+                      border: 1px solid #e2e8f0;
+                      transition: all 0.3s ease;
+                    "
+                    onmouseover="this.style.borderColor='#e94057'; this.children[0].style.color='#e94057'"
+                    onmouseout="this.style.borderColor='#e2e8f0'; this.children[0].style.color='#64748b'"
+                  >
+                    <i
+                      class="fa-solid fa-lock"
+                      style="color: #64748b; font-size: 12px; transition: color 0.3s ease;"
+                    ></i>
+                  </div>
+                  <div class="d-flex flex-column align-items-start">
+                    <span
+                      style="
+                        font-size: 11px;
+                        color: #94a3b8;
+                        font-weight: 600;
+                        line-height: 1;
+                      "
+                      >Portal</span
+                    >
+                    <span
+                      style="font-size: 12px; color: #334155; font-weight: 700"
+                      >Admin Login</span
+                    >
+                  </div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--       ADVANCED LUXURY EDITORIAL FOOTER     -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+<script src="/static/web/js/global-interactions.js"></script>
+</body>
+</html>
+
+
+

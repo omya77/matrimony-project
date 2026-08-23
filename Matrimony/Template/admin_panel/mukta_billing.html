@@ -1,0 +1,82 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% block title %}Billing History - Matrimony{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Premium Header -->
+    <div class="page-title-row mb-4 d-flex justify-content-between align-items-center">
+        <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">
+                Billing History
+            </h1>
+            <p class="text-muted mb-0"><i class="fa-solid fa-money-check-dollar me-2 text-primary"></i>View all user transactions and download reports</p>
+        </div>
+        <a href="{% url 'export_billing_csv' %}" class="btn shadow-sm" style="border-radius: 50px; padding: 12px 25px; background: linear-gradient(135deg, #ff4d6d, #ff758c); color: white; border: none; font-weight: 600; transition: transform 0.3s ease;">
+            <i class="fa-solid fa-cloud-arrow-down me-2"></i> Export CSV
+        </a>
+    </div>
+
+    <div class="metrics-grid">
+        <div class="metric-card glass-card">
+            <div class="metric-icon users" style="background: #dcfce7; color: #22c55e;"><i class="fa-solid fa-check-circle"></i></div>
+            <div class="metric-details">
+                <div class="metric-title">Successful Transactions</div>
+                <div class="metric-value">{{ transactions|length }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-panel glass-card">
+        <div class="card-header">
+            <h3 class="card-title">Recent Transactions</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Amount (₹)</th>
+                        <th>Plan</th>
+                        <th>Date & Time</th>
+                        <th>Status</th>
+                        <th>Order ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for txn in transactions %}
+                    <tr class="table-row-hover">
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-details">
+                                    <span class="name">{{ txn.user.username }}</span>
+                                    <span class="id">{{ txn.user.email }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><strong>₹{{ txn.amount }}</strong></td>
+                        <td>{{ txn.plan.name|default:"N/A" }}</td>
+                        <td>{{ txn.timestamp|date:"d M Y, h:i A" }}</td>
+                        <td>
+                            {% if txn.status == 'Success' %}
+                            <span class="status-badge verified">Success</span>
+                            {% elif txn.status == 'Failed' %}
+                            <span class="status-badge pending" style="background: #fee2e2; color: #ef4444;">Failed</span>
+                            {% else %}
+                            <span class="status-badge pending">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td style="font-family: monospace; font-size: 0.85rem; color: #64748b;">
+                            {{ txn.razorpay_order_id|default:"N/A" }}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-4 text-muted">No transactions found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

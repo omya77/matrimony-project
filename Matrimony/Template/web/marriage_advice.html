@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForeverBond — Marriage Advice & Expert Guide</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="/static/web/images/favicon.png"
+      type="image/svg+xml"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+    <link rel="stylesheet" href="/static/web/css/marriage_advice.css" />
+  </head>
+  <body>
+    {% include "web/navbar_story_and_remaining.html" %}
+
+    <!-- HERO SECTION -->
+    <section class="advice-hero-section">
+      <div class="advice-hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80"
+          alt="Couple holding hands"
+        />
+      </div>
+      <div class="advice-left-overlay"></div>
+      <div
+        class="container-fluid px-5 h-100 position-relative"
+        style="z-index: 10"
+      >
+        <div class="advice-hero-content">
+          <div class="advice-breadcrumb">BLOG • GUIDE &amp; INSIGHTS</div>
+          <h1>Marriage Advice</h1>
+          <div class="advice-line">
+            <span></span>
+            <i class="fa-solid fa-heart"></i>
+            <span></span>
+          </div>
+          <p>
+            Expert relationship tips, pre-marriage guidance, and practical
+            advice to help you build a lifelong, happy, and fulfilling
+            partnership.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN BODY -->
+    <main class="container px-4 px-md-5 my-5">
+      <!-- Category Filter Tabs -->
+      <div class="advice-filter-container text-center">
+        <div class="advice-filter-wrapper">
+          <button
+            class="advice-filter-tab active"
+            onclick="filterAdvice('all')"
+          >
+            <i class="fa-solid fa-cubes"></i> All Advice
+          </button>
+          <button
+            class="advice-filter-tab"
+            onclick="filterAdvice('preparation')"
+          >
+            <i class="fa-solid fa-heart-circle-check"></i> Pre-Wedding Alignment
+          </button>
+          <button
+            class="advice-filter-tab"
+            onclick="filterAdvice('communication')"
+          >
+            <i class="fa-solid fa-comments"></i> Communication
+          </button>
+          <button class="advice-filter-tab" onclick="filterAdvice('finance')">
+            <i class="fa-solid fa-wallet"></i> Finance &amp; Growth
+          </button>
+          <button class="advice-filter-tab" onclick="filterAdvice('family')">
+            <i class="fa-solid fa-people-roof"></i> Family &amp; Coexistence
+          </button>
+        </div>
+      </div>
+
+      <!-- Advice Cards Grid -->
+      <div class="row g-4 mt-2">
+        <!-- Card 1 -->
+        <div
+          class="col-12 col-md-6 col-lg-4 advice-card-wrapper"
+          data-category="preparation"
+        >
+          <div class="advice-card">
+            <div class="advice-card-image-box">
+              <span class="advice-badge-top">Preparation</span>
+              <img
+                src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=800"
+                alt="Couple alignment discussion"
+                loading="lazy"
+              />
+              <div class="advice-card-overlay"></div>
+              <span class="advice-read-time"
+                ><i class="fa-regular fa-clock"></i> 5 min read</span
+              >
+            </div>
+            <div class="advice-card-content">
+              <div class="advice-card-meta">
+                <span
+                  ><i class="fa-regular fa-calendar"></i> July 10, 2026</span
+                >
+                <span>•</span>
+                <span>By Experts</span>
+              </div>
+              <h3>Crucial Alignment Topics to Discuss Before Marriage</h3>
+              <p>
+                From future career goals to core values, discover the vital
+                talking points that ensure couples stay aligned on their
+                lifelong journey.
+              </p>
+              <div class="advice-card-footer">
+                <div class="advice-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120"
+                    alt="Counselor Avatar"
+                  />
+                  <div class="advice-author-info">
+                    <span class="advice-author-name">Dr. Shalini Sen</span>
+                    <span class="advice-author-title">Family Therapist</span>
+                  </div>
+                </div>
+                <a href="javascript:void(0);" class="advice-btn-link"
+                  >Read Guide <i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="col-12 col-md-6 col-lg-4 advice-card-wrapper"
+          data-category="communication"
+        >
+          <div class="advice-card">
+            <div class="advice-card-image-box">
+              <span class="advice-badge-top">Communication</span>
+              <img
+                src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=800"
+                alt="Couple talking laughing"
+                loading="lazy"
+              />
+              <div class="advice-card-overlay"></div>
+              <span class="advice-read-time"
+                ><i class="fa-regular fa-clock"></i> 4 min read</span
+              >
+            </div>
+            <div class="advice-card-content">
+              <div class="advice-card-meta">
+                <span
+                  ><i class="fa-regular fa-calendar"></i> June 28, 2026</span
+                >
+                <span>•</span>
+                <span>By Counsellors</span>
+              </div>
+              <h3>Active Listening: The Pillar of a Happy Marriage</h3>
+              <p>
+                Learn simple daily exercises to master empathy, build mutual
+                respect, and resolve conflicts before they affect your bond.
+              </p>
+              <div class="advice-card-footer">
+                <div class="advice-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=120"
+                    alt="Counselor Avatar"
+                  />
+                  <div class="advice-author-info">
+                    <span class="advice-author-name">Rajesh Sharma</span>
+                    <span class="advice-author-title">Life Coach</span>
+                  </div>
+                </div>
+                <a href="javascript:void(0);" class="advice-btn-link"
+                  >Read Guide <i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="col-12 col-md-6 col-lg-4 advice-card-wrapper"
+          data-category="finance"
+        >
+          <div class="advice-card">
+            <div class="advice-card-image-box">
+              <span class="advice-badge-top">Finance</span>
+              <img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800"
+                alt="Couple planning finances"
+                loading="lazy"
+              />
+              <div class="advice-card-overlay"></div>
+              <span class="advice-read-time"
+                ><i class="fa-regular fa-clock"></i> 6 min read</span
+              >
+            </div>
+            <div class="advice-card-content">
+              <div class="advice-card-meta">
+                <span
+                  ><i class="fa-regular fa-calendar"></i> June 15, 2026</span
+                >
+                <span>•</span>
+                <span>By Analysts</span>
+              </div>
+              <h3>Navigating Finances and Joint Budgets Smoothly</h3>
+              <p>
+                Money management doesn't have to be stressful. Explore smart
+                strategies to combine budgets, track savings, and invest
+                together.
+              </p>
+              <div class="advice-card-footer">
+                <div class="advice-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=120"
+                    alt="Counselor Avatar"
+                  />
+                  <div class="advice-author-info">
+                    <span class="advice-author-name">Anjali Deshmukh</span>
+                    <span class="advice-author-title">Financial advisor</span>
+                  </div>
+                </div>
+                <a href="javascript:void(0);" class="advice-btn-link"
+                  >Read Guide <i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div
+          class="col-12 col-md-6 col-lg-4 advice-card-wrapper"
+          data-category="family"
+        >
+          <div class="advice-card">
+            <div class="advice-card-image-box">
+              <span class="advice-badge-top">Family</span>
+              <img
+                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800"
+                alt="Couple cooking kitchen"
+                loading="lazy"
+              />
+              <div class="advice-card-overlay"></div>
+              <span class="advice-read-time"
+                ><i class="fa-regular fa-clock"></i> 5 min read</span
+              >
+            </div>
+            <div class="advice-card-content">
+              <div class="advice-card-meta">
+                <span><i class="fa-regular fa-calendar"></i> May 24, 2026</span>
+                <span>•</span>
+                <span>By Family Gurus</span>
+              </div>
+              <h3>Sharing Household Roles: Building Coexistence</h3>
+              <p>
+                Discover the joy of cooperative living. Balance domestic chores,
+                create respectful personal spaces, and grow together as equals.
+              </p>
+              <div class="advice-card-footer">
+                <div class="advice-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120"
+                    alt="Counselor Avatar"
+                  />
+                  <div class="advice-author-info">
+                    <span class="advice-author-name">Dr. Omkar Nair</span>
+                    <span class="advice-author-title">Sociologist</span>
+                  </div>
+                </div>
+                <a href="javascript:void(0);" class="advice-btn-link"
+                  >Read Guide <i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div
+          class="col-12 col-md-6 col-lg-4 advice-card-wrapper"
+          data-category="family"
+        >
+          <div class="advice-card">
+            <div class="advice-card-image-box">
+              <span class="advice-badge-top">Family</span>
+              <img
+                src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=800"
+                alt="Family meeting relatives"
+                loading="lazy"
+              />
+              <div class="advice-card-overlay"></div>
+              <span class="advice-read-time"
+                ><i class="fa-regular fa-clock"></i> 7 min read</span
+              >
+            </div>
+            <div class="advice-card-content">
+              <div class="advice-card-meta">
+                <span><i class="fa-regular fa-calendar"></i> May 12, 2026</span>
+                <span>•</span>
+                <span>By Consultants</span>
+              </div>
+              <h3>Fostering Warm and Healthy Bonds with In-Laws</h3>
+              <p>
+                Navigating extended family dynamics gracefully. Set healthy
+                boundaries, show genuine warmth, and integrate traditions
+                harmoniously.
+              </p>
+              <div class="advice-card-footer">
+                <div class="advice-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120"
+                    alt="Counselor Avatar"
+                  />
+                  <div class="advice-author-info">
+                    <span class="advice-author-name">Sanjay Joshi</span>
+                    <span class="advice-author-title">Family Counselor</span>
+                  </div>
+                </div>
+                <a href="javascript:void(0);" class="advice-btn-link"
+                  >Read Guide <i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div
+          class="col-12 col-md-6 col-lg-4 advice-card-wrapper"
+          data-category="preparation"
+        >
+          <div class="advice-card">
+            <div class="advice-card-image-box">
+              <span class="advice-badge-top">Preparation</span>
+              <img
+                src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=800"
+                alt="Holding hands ring"
+                loading="lazy"
+              />
+              <div class="advice-card-overlay"></div>
+              <span class="advice-read-time"
+                ><i class="fa-regular fa-clock"></i> 5 min read</span
+              >
+            </div>
+            <div class="advice-card-content">
+              <div class="advice-card-meta">
+                <span
+                  ><i class="fa-regular fa-calendar"></i> April 29, 2026</span
+                >
+                <span>•</span>
+                <span>By Experts</span>
+              </div>
+              <h3>Preparing Emotionally for the Big Transition</h3>
+              <p>
+                Moving from single life to married companionship is a mental
+                shift. Here are warm emotional guidelines to ensure a beautiful
+                transition.
+              </p>
+              <div class="advice-card-footer">
+                <div class="advice-author">
+                  <img
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120"
+                    alt="Counselor Avatar"
+                  />
+                  <div class="advice-author-info">
+                    <span class="advice-author-name">Dr. Maya Rao</span>
+                    <span class="advice-author-title"
+                      >Clinical Psychologist</span
+                    >
+                  </div>
+                </div>
+                <a href="javascript:void(0);" class="advice-btn-link"
+                  >Read Guide <i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expert Consultant Query Section -->
+      <section class="expert-consult-section">
+        <div class="row align-items-center gy-4">
+          <!-- Text -->
+          <div class="col-lg-6">
+            <h2
+              class="fw-bold mb-3"
+              style="
+                font-family: &quot;Poppins&quot;, sans-serif;
+                color: #1e293b;
+                font-size: 2.2rem;
+              "
+            >
+              Need Personalized Guidance?
+            </h2>
+            <p class="text-secondary fs-6 mb-4" style="line-height: 1.7">
+              Every relationship is unique. Our verified relationship coaches
+              and family therapists are here to help you clear doubts and align
+              goals before you take the sacred vow.
+            </p>
+            <div class="d-flex flex-column gap-3">
+              <div class="d-flex align-items-start gap-3">
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-circle bg-white shadow-sm"
+                  style="width: 44px; height: 44px; min-width: 44px"
+                >
+                  <i class="fa-solid fa-user-shield text-danger"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold mb-1">100% Confidential</h6>
+                  <p class="small text-muted mb-0">
+                    Your questions and identities remain completely safe with
+                    us.
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex align-items-start gap-3">
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-circle bg-white shadow-sm"
+                  style="width: 44px; height: 44px; min-width: 44px"
+                >
+                  <i class="fa-solid fa-user-doctor text-danger"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold mb-1">Verified Experts Only</h6>
+                  <p class="small text-muted mb-0">
+                    Get matched only with accredited counselors &amp;
+                    psychologists.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Box -->
+          <div class="col-lg-6">
+            <div class="expert-form-container">
+              <h3 class="expert-form-title">
+                <i class="fa-solid fa-paper-plane"></i> Ask a Counselor
+              </h3>
+              <form id="adviceQueryForm">
+                <div class="expert-input-group">
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    id="counsel_name"
+                    class="expert-form-control"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+                <div class="expert-input-group">
+                  <label>E-mail Address</label>
+                  <input
+                    type="email"
+                    id="counsel_email"
+                    class="expert-form-control"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+                <div class="expert-input-group">
+                  <label>Advice Topic</label>
+                  <select
+                    id="counsel_topic"
+                    class="expert-form-control"
+                    required
+                    style="height: auto; cursor: pointer"
+                  >
+                    <option value="" disabled selected>
+                      Select advice category
+                    </option>
+                    <option value="pre-wedding">Pre-Wedding Alignment</option>
+                    <option value="communication">
+                      Communication &amp; Conflict
+                    </option>
+                    <option value="finance">Finance &amp; Budget</option>
+                    <option value="family">Family &amp; In-laws</option>
+                  </select>
+                </div>
+                <div class="expert-input-group">
+                  <label>Your Question</label>
+                  <textarea
+                    id="counsel_message"
+                    class="expert-form-control"
+                    rows="3"
+                    placeholder="Write your query in detail..."
+                    required
+                    style="height: auto; resize: vertical"
+                  ></textarea>
+                </div>
+                <button type="submit" class="expert-btn-submit">
+                  Submit Question
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      class="w-100 position-relative transition-all"
+      style="
+        background: linear-gradient(180deg, #ffffff 0%, #fff5f6 100%);
+        box-shadow: 0 -10px 40px rgba(233, 64, 87, 0.04);
+        margin-top: 100px;
+        padding: 40px 0 30px 0;
+        font-family: &quot;Inter&quot;, sans-serif;
+      "
+    >
+      <!-- Top Premium Accent Line -->
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(
+            90deg,
+            #e94057 0%,
+            #facc15 50%,
+            #e94057 100%
+          );
+          opacity: 0.8;
+        "
+      ></div>
+
+      <div class="container-fluid px-5">
+        <div class="row align-items-center justify-content-between gy-4">
+          <!-- Left Side -->
+          <div class="col-12 col-md-auto text-center text-md-start">
+            <div class="d-flex flex-column gap-1">
+              <div
+                class="d-flex align-items-center justify-content-center justify-content-md-start gap-2"
+              >
+                <span
+                  style="
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                    font-weight: 800;
+                    font-size: 16px;
+                    color: #1e293b;
+                    letter-spacing: -0.5px;
+                  "
+                >
+                  Forever<span style="color: #e94057">Bond</span>
+                </span>
+                <span
+                  class="badge"
+                  style="
+                    background: rgba(233, 64, 87, 0.1);
+                    color: #e94057;
+                    font-size: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                    border: none;
+                    padding: 4px 8px;
+                    margin: 0;
+                  "
+                  >PREMIUM</span
+                >
+              </div>
+              <span
+                style="
+                  font-size: 12px;
+                  color: #94a3b8;
+                  font-weight: 500;
+                  letter-spacing: 0.2px;
+                "
+              >
+                &copy; 2026 ForeverBond Matrimony. All Rights Sacred.
+              </span>
+            </div>
+          </div>
+
+          <!-- Center Side -->
+          <div class="col-12 col-md-auto text-center">
+            <div
+              class="d-inline-flex align-items-center px-4 py-2 rounded-pill shadow-sm"
+              style="
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(233, 64, 87, 0.15);
+                backdrop-filter: blur(5px);
+                gap: 10px;
+                box-shadow: 0 4px 15px rgba(233, 64, 87, 0.03) !important;
+              "
+            >
+              <div
+                class="d-flex align-items-center justify-content-center rounded-circle"
+                style="background: #e94057; width: 22px; height: 22px"
+              >
+                <i
+                  class="fa-solid fa-shield-halved text-white"
+                  style="font-size: 10px"
+                ></i>
+              </div>
+              <span
+                style="
+                  font-size: 11.5px;
+                  color: #475569;
+                  font-weight: 700;
+                  letter-spacing: 0.5px;
+                  text-transform: uppercase;
+                "
+              >
+                End-to-End Encrypted Data Verification
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Side -->
+          <div class="col-12 col-md-auto">
+            <div
+              class="d-flex justify-content-center justify-content-md-end align-items-center gap-4"
+            >
+              <!-- Trust Indicator 1 -->
+              <div
+                class="d-flex align-items-center gap-2 premium-footer-icon"
+                style="cursor: default"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                  style="
+                    background: #ffffff;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #e2e8f0;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-lock"
+                    style="color: #64748b; font-size: 12px"
+                  ></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: #94a3b8;
+                      font-weight: 600;
+                      line-height: 1;
+                    "
+                    >Security</span
+                  >
+                  <span
+                    style="font-size: 12px; color: #334155; font-weight: 700"
+                    >SSL Secure</span
+                  >
+                </div>
+              </div>
+
+              <!-- Divider -->
+              <span style="color: #e2e8f0; font-weight: 300; font-size: 20px"
+                >|</span
+              >
+
+              <!-- Trust Indicator 2 -->
+              <div
+                class="d-flex align-items-center gap-2 premium-footer-icon"
+                style="cursor: default"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 shadow-2xs"
+                  style="
+                    background: #ffffff;
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #e2e8f0;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-user-shield"
+                    style="color: #64748b; font-size: 12px"
+                  ></i>
+                </div>
+                <div class="d-flex flex-column align-items-start">
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: #94a3b8;
+                      font-weight: 600;
+                      line-height: 1;
+                    "
+                    >Privacy</span
+                  >
+                  <span
+                    style="font-size: 12px; color: #334155; font-weight: 700"
+                    >100% Private</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap, AOS and custom scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function filterAdvice(category) {
+        // Toggle active class on tabs
+        const tabs = document.querySelectorAll(".advice-filter-tab");
+        tabs.forEach((tab) => {
+          const onclickAttr = tab.getAttribute("onclick");
+          if (onclickAttr && onclickAttr.includes(category)) {
+            tab.classList.add("active");
+          } else {
+            tab.classList.remove("active");
+          }
+        });
+
+        // Filter cards
+        const cards = document.querySelectorAll(".advice-card-wrapper");
+        cards.forEach((card) => {
+          const cardCat = card.getAttribute("data-category");
+          if (category === "all" || cardCat === category) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      }
+
+      const qForm = document.getElementById("adviceQueryForm");
+      if (qForm) {
+        qForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          
+          const name = document.getElementById("counsel_name").value;
+          const email = document.getElementById("counsel_email").value;
+          const topic = document.getElementById("counsel_topic").value;
+          const message = document.getElementById("counsel_message").value;
+
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const originalText = submitBtn.innerText;
+          submitBtn.innerText = "Submitting...";
+          submitBtn.disabled = true;
+
+          fetch('/api/submit-counseling-query/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name, email, topic, message })
+          })
+          .then(res => res.json())
+          .then(data => {
+              if (data.status === 'success') {
+                  alert("✨ " + data.message);
+                  qForm.reset();
+              } else {
+                  alert("Error: " + data.message);
+              }
+          })
+          .catch(err => {
+              alert("Something went wrong. Please try again later.");
+              console.error(err);
+          })
+          .finally(() => {
+              submitBtn.innerText = originalText;
+              submitBtn.disabled = false;
+          });
+        });
+      }
+    </script>
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+    <script src="/static/web/js/global-interactions.js"></script>
+  </body>
+</html>

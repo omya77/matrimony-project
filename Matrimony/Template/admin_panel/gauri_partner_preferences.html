@@ -1,0 +1,53 @@
+{% extends 'admin_panel/base_admin.html' %}
+
+{% block title %}Partner Preferences - Admin Panel{% endblock %}
+
+{% block content %}
+<div class="dashboard-container fade-in-up">
+    <div class="page-title-row">
+        <div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(90deg, #1e293b, #e94057); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;">Partner Preferences</h1>
+        </div>
+    </div>
+    
+    <div class="card-panel glass-card p-4">
+        <div class="table-responsive">
+            <table class="custom-table" style="box-shadow: 0 0 0 1px #e2e8f0; border-radius: 8px; overflow: hidden;">
+                <thead>
+                    <tr style="background: #f8fafc;">
+                        <th>User</th><th>Age Preference</th><th>Religion Preference</th><th>Marital Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in profiles %}
+                    <tr class="table-row-hover">
+                        
+                        <td>
+                            <div style="font-weight: 600;">{{ profile.full_name|default:profile.user.username }}</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">{{ profile.matrimony_id|default:"N/A" }}</div>
+                        </td>
+                        <td>
+                            {% if profile.pref_age_min and profile.pref_age_max %}
+                                <span class="badge bg-light text-dark border">{{ profile.pref_age_min }} - {{ profile.pref_age_max }} yrs</span>
+                            {% else %}
+                                <span class="text-muted">Not specified</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ profile.pref_religion|default:"<span class='text-muted'>Any</span>"|safe }}</td>
+                        <td><span class="badge bg-light text-dark border">Not specified</span></td>
+    
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center text-muted" style="padding: 40px;">
+                            <div style="font-size: 3rem; color: #e2e8f0; margin-bottom: 15px;"><i class="fa-solid fa-folder-open"></i></div>
+                            <div style="font-weight: 500;">No profiles found.</div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

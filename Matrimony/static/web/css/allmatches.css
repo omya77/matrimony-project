@@ -1,0 +1,1631 @@
+/*=====================================================
+GOOGLE FONT
+=====================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*=====================================================
+RESET
+=====================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#fff6fa;
+
+    color:#2c2c2c;
+
+    overflow-x:hidden;
+
+}
+
+/*=====================================================
+COMMON
+=====================================================*/
+
+a{
+    text-decoration:none;
+}
+
+button{
+    font-family:'Poppins',sans-serif;
+    cursor:pointer;
+    border:none;
+    outline:none;
+}
+
+img{
+
+    width:100%;
+    display:block;
+
+}
+
+ul{
+
+    list-style:none;
+
+}
+
+/*=====================================================
+MAIN SECTION
+=====================================================*/
+
+.smm_matchpage_main_wrapper{
+
+    width:100%;
+
+    padding:35px 0 60px;
+
+    background:#fff6fa;
+
+}
+
+/*=====================================================
+CONTAINER
+=====================================================*/
+
+.smm_matchpage_container{
+
+    width:95%;
+
+    max-width:1850px;
+
+    margin:auto;
+
+}
+
+/*=====================================================
+MATCH TABS
+=====================================================*/
+
+.smm_matchpage_tabs{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    margin-bottom:35px;
+
+}
+
+/*=====================================================
+TAB BUTTON
+=====================================================*/
+
+.smm_matchpage_tab_btn{
+
+    padding:13px 26px;
+
+    border-radius:50px;
+
+    background:#ffffff;
+
+    color:#444;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    border:2px solid #ffd4e3;
+
+    transition:.35s;
+
+    box-shadow:0 8px 20px rgba(255,105,180,.08);
+
+}
+
+/*=====================================================
+TAB HOVER
+=====================================================*/
+
+.smm_matchpage_tab_btn:hover{
+
+    background:#ff5e9c;
+
+    color:#fff;
+
+    transform:translateY(-3px);
+
+    border-color:#ff5e9c;
+
+    box-shadow:0 12px 30px rgba(255,94,156,.25);
+
+}
+
+/*=====================================================
+ACTIVE TAB
+=====================================================*/
+
+.smm_matchpage_active_tab{
+
+    background:#ff4f93;
+
+    color:#fff;
+
+    border-color:#ff4f93;
+
+    box-shadow:0 15px 35px rgba(255,79,147,.30);
+
+}
+
+/*=====================================================
+SCROLLBAR
+=====================================================*/
+
+::-webkit-scrollbar{
+
+    width:9px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#ffe8f0;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#ff6ea8;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#ff3f88;
+
+}
+
+
+
+/*====================================================
+CONTENT LAYOUT
+====================================================*/
+
+.smm_matchpage_content{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:30px;
+
+}
+
+/*====================================================
+LEFT FILTER SIDEBAR
+====================================================*/
+
+.smm_matchpage_filter_sidebar{
+
+    width:260px;
+
+    min-width:260px;
+
+    position:sticky;
+
+    top:20px;
+
+    align-self:flex-start;
+
+}
+
+/*====================================================
+RIGHT PROFILE SECTION
+====================================================*/
+
+.smm_matchpage_profiles_grid{
+
+    flex:1;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,minmax(260px,1fr));
+
+    gap:25px;
+
+    align-items:start;
+
+}
+
+/*====================================================
+PROFILE GRID ALIGNMENT
+====================================================*/
+
+.smm_matchpage_profiles_grid{
+
+    justify-content:center;
+
+    align-items:start;
+
+}
+
+/*====================================================
+SMOOTH ANIMATION
+====================================================*/
+
+.smm_matchpage_profile_card{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    background:#fff;
+
+}
+
+/*====================================================
+TABLET
+====================================================*/
+
+@media(max-width:1400px){
+
+.smm_matchpage_profiles_grid{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+}
+
+/*====================================================
+LARGE TABLET
+====================================================*/
+
+@media(max-width:1100px){
+
+.smm_matchpage_content{
+
+flex-direction:column;
+
+}
+
+.smm_matchpage_filter_sidebar{
+
+width:100%;
+
+min-width:100%;
+
+position:relative;
+
+top:0;
+
+}
+
+.smm_matchpage_profiles_grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+/*====================================================
+MOBILE
+====================================================*/
+
+@media(max-width:768px){
+
+.smm_matchpage_profiles_grid{
+
+grid-template-columns:1fr;
+
+gap:20px;
+
+}
+
+.smm_matchpage_tabs{
+
+justify-content:flex-start;
+
+overflow-x:auto;
+
+padding-bottom:10px;
+
+flex-wrap:nowrap;
+
+}
+
+.smm_matchpage_tab_btn{
+
+white-space:nowrap;
+
+font-size:14px;
+
+padding:12px 20px;
+
+}
+
+}
+
+/*====================================================
+SMALL MOBILE
+====================================================*/
+
+@media(max-width:480px){
+
+.smm_matchpage_container{
+
+width:94%;
+
+}
+
+.smm_matchpage_main_wrapper{
+
+padding:20px 0 40px;
+
+}
+
+.smm_matchpage_tabs{
+
+gap:10px;
+
+}
+
+}
+
+
+/*=========================================================
+FILTER SIDEBAR
+=========================================================*/
+
+.smm_matchpage_filter_sidebar{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(255,105,180,.12);
+
+    border:1px solid #ffd6e5;
+
+}
+
+/*=========================================================
+FILTER TITLE
+=========================================================*/
+
+.smm_matchpage_filter_title{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#ff2d75;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:25px;
+
+    padding-bottom:15px;
+
+    border-bottom:2px solid #ffe3ed;
+
+}
+
+.smm_matchpage_filter_title i{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    background:#ffe7f0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#ff2d75;
+
+    font-size:18px;
+
+}
+
+/*=========================================================
+FILTER BOX
+=========================================================*/
+
+.smm_matchpage_filter_box{
+
+    margin-bottom:22px;
+
+}
+
+.smm_matchpage_filter_box label{
+
+    display:block;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#444;
+
+    margin-bottom:10px;
+
+}
+
+/*=========================================================
+AGE RANGE TEXT
+=========================================================*/
+
+.smm_matchpage_age_text{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:14px;
+
+    color:#ff2d75;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+}
+
+/*=========================================================
+RANGE SLIDER
+=========================================================*/
+
+.smm_matchpage_range{
+
+    width:100%;
+
+    accent-color:#ff4d94;
+
+    cursor:pointer;
+
+    margin-bottom:8px;
+
+}
+
+/*=========================================================
+SEARCH BOX
+=========================================================*/
+
+.smm_matchpage_search{
+
+    position:relative;
+
+}
+
+.smm_matchpage_search input{
+
+    width:100%;
+
+    height:48px;
+
+    border:1px solid #ffd2e4;
+
+    border-radius:12px;
+
+    padding:0 45px 0 15px;
+
+    font-size:14px;
+
+    outline:none;
+
+    transition:.3s;
+
+    background:#fffafc;
+
+}
+
+.smm_matchpage_search input:focus{
+
+    border-color:#ff4d94;
+
+    box-shadow:0 0 0 4px rgba(255,77,148,.15);
+
+}
+
+.smm_matchpage_search i{
+
+    position:absolute;
+
+    right:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#ff4d94;
+
+    font-size:15px;
+
+}
+
+/*=========================================================
+FILTER BUTTONS
+=========================================================*/
+
+.smm_matchpage_filter_buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+/*=========================================================
+APPLY BUTTON
+=========================================================*/
+
+.smm_matchpage_apply_btn{
+
+    width:100%;
+
+    height:52px;
+
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#ff4d94,#ff77ad);
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    box-shadow:0 8px 18px rgba(255,77,148,.25);
+
+}
+
+.smm_matchpage_apply_btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 24px rgba(255,77,148,.35);
+
+}
+
+/*=========================================================
+RESET BUTTON
+=========================================================*/
+
+.smm_matchpage_reset_btn{
+
+    width:100%;
+
+    height:52px;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    border:2px solid #ff4d94;
+
+    color:#ff4d94;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.smm_matchpage_reset_btn:hover{
+
+    background:#ff4d94;
+
+    color:#fff;
+
+}
+
+/*=========================================================
+TABLET
+=========================================================*/
+
+@media(max-width:1100px){
+
+.smm_matchpage_filter_sidebar{
+
+position:relative;
+
+width:100%;
+
+}
+
+}
+
+/*=========================================================
+MOBILE
+=========================================================*/
+
+@media(max-width:768px){
+
+.smm_matchpage_filter_sidebar{
+
+padding:20px;
+
+border-radius:18px;
+
+}
+
+.smm_matchpage_filter_title{
+
+font-size:20px;
+
+}
+
+}
+
+
+
+
+/*=========================================================
+PROFILE CARD
+=========================================================*/
+
+.smm_matchpage_profile_card{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    border:1px solid #ffd9e8;
+
+    box-shadow:0 10px 25px rgba(255,105,180,.10);
+
+    transition:all .35s ease;
+
+    position:relative;
+
+}
+
+/*=========================================================
+CARD HOVER
+=========================================================*/
+
+.smm_matchpage_profile_card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 45px rgba(255,105,180,.22);
+
+    border-color:#ff78af;
+
+}
+
+/*=========================================================
+IMAGE BOX
+=========================================================*/
+
+.smm_matchpage_profile_image_box{
+
+    position:relative;
+
+    width:100%;
+
+    height:260px;
+
+    overflow:hidden;
+
+    background:#ffeef5;
+
+}
+
+/*=========================================================
+PROFILE IMAGE
+=========================================================*/
+
+.smm_matchpage_profile_image_box img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.45s;
+
+}
+
+.smm_matchpage_profile_card:hover
+.smm_matchpage_profile_image_box img{
+
+    transform:scale(1.08);
+
+}
+
+/*=========================================================
+LIKE BUTTON
+=========================================================*/
+
+.smm_matchpage_like_btn{
+
+    position:absolute;
+
+    top:16px;
+
+    right:16px;
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    color:#ff4d94;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    border:none;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+    transition:.30s;
+
+    z-index:5;
+
+}
+
+.smm_matchpage_like_btn:hover{
+
+    background:#ff4d94;
+
+    color:#ffffff;
+
+    transform:scale(1.08);
+
+}
+
+/*=========================================================
+ONLINE STATUS
+=========================================================*/
+
+.smm_matchpage_online_status{
+
+    position:absolute;
+
+    bottom:18px;
+
+    left:18px;
+
+    width:14px;
+
+    height:14px;
+
+    background:#20c45a;
+
+    border:3px solid #ffffff;
+
+    border-radius:50%;
+
+    box-shadow:0 0 10px rgba(32,196,90,.45);
+
+}
+
+/*=========================================================
+VERIFIED BADGE
+=========================================================*/
+
+.smm_matchpage_verified{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:6px 12px;
+
+    background:#e9f8ff;
+
+    color:#1296db;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    border-radius:30px;
+
+}
+
+.smm_matchpage_verified i{
+
+    font-size:13px;
+
+}
+
+/*=========================================================
+PROFILE CONTENT
+=========================================================*/
+
+.smm_matchpage_profile_content{
+
+    padding:22px;
+
+}
+
+/*=========================================================
+HEADING
+=========================================================*/
+
+.smm_matchpage_profile_heading{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:12px;
+
+}
+
+.smm_matchpage_profile_heading h3{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#333333;
+
+}
+
+/*=========================================================
+AGE / HEIGHT
+=========================================================*/
+
+.smm_matchpage_basic_info{
+
+    color:#666666;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    margin-bottom:18px;
+
+}
+
+/*=========================================================
+RESPONSIVE IMAGE
+=========================================================*/
+
+@media(max-width:768px){
+
+.smm_matchpage_profile_image_box{
+
+    height:240px;
+
+}
+
+}
+
+
+
+
+/*=========================================================
+PROFILE DETAILS LIST
+=========================================================*/
+
+.smm_matchpage_profile_details{
+
+    margin:0;
+
+    padding:0;
+
+    list-style:none;
+
+}
+
+.smm_matchpage_profile_details li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:14px;
+
+    color:#555;
+
+    margin-bottom:14px;
+
+    font-weight:500;
+
+}
+
+.smm_matchpage_profile_details li:last-child{
+
+    margin-bottom:0;
+
+}
+
+/*=========================================================
+DETAIL ICONS
+=========================================================*/
+
+.smm_matchpage_profile_details li i{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:50%;
+
+    background:#ffe8f2;
+
+    color:#ff4d94;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:14px;
+
+    flex-shrink:0;
+
+}
+
+/*=========================================================
+CARD BUTTON WRAPPER
+=========================================================*/
+
+.smm_matchpage_card_buttons{
+
+    margin-top:24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+/*=========================================================
+COMMON BUTTON
+=========================================================*/
+
+.smm_matchpage_view_btn,
+.smm_matchpage_interest_btn{
+
+    width:100%;
+
+    height:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+/*=========================================================
+VIEW BIODATA BUTTON
+=========================================================*/
+
+.smm_matchpage_view_btn{
+
+    background:#fff;
+
+    color:#ff4d94;
+
+    border:2px solid #ff4d94;
+
+}
+
+.smm_matchpage_view_btn:hover{
+
+    background:#ff4d94;
+
+    color:#fff;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(255,77,148,.25);
+
+}
+
+/*=========================================================
+SEND INTEREST BUTTON
+=========================================================*/
+
+.smm_matchpage_interest_btn{
+
+    background:linear-gradient(135deg,#ff4d94,#ff7eb3);
+
+    color:#fff;
+
+    border:none;
+
+    box-shadow:0 10px 20px rgba(255,77,148,.25);
+
+}
+
+.smm_matchpage_interest_btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 28px rgba(255,77,148,.35);
+
+}
+
+/*=========================================================
+BUTTON ICON
+=========================================================*/
+
+.smm_matchpage_view_btn i,
+.smm_matchpage_interest_btn i{
+
+    font-size:15px;
+
+}
+
+/*=========================================================
+MOBILE RESPONSIVE
+=========================================================*/
+
+@media(max-width:768px){
+
+    .smm_matchpage_profile_content{
+
+        padding:18px;
+
+    }
+
+    .smm_matchpage_profile_heading h3{
+
+        font-size:18px;
+
+    }
+
+    .smm_matchpage_profile_details li{
+
+        font-size:13px;
+
+    }
+
+    .smm_matchpage_view_btn,
+    .smm_matchpage_interest_btn{
+
+        height:46px;
+
+        font-size:14px;
+
+    }
+
+}
+
+
+
+
+/*=========================================================
+PAGINATION WRAPPER
+=========================================================*/
+
+.smm_matchpage_pagination_wrapper{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-top:50px;
+
+    padding:20px 0;
+
+}
+
+/*=========================================================
+PAGINATION
+=========================================================*/
+
+.smm_matchpage_pagination{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+}
+
+/*=========================================================
+COMMON PAGINATION BUTTON
+=========================================================*/
+
+.smm_matchpage_page_btn,
+.smm_matchpage_page_number{
+
+    min-width:48px;
+
+    height:48px;
+
+    padding:0 18px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    background:#ffffff;
+
+    color:#ff4d94;
+
+    border:2px solid #ffd4e3;
+
+    transition:.35s ease;
+
+    box-shadow:0 6px 16px rgba(255,105,180,.08);
+
+}
+
+/*=========================================================
+HOVER
+=========================================================*/
+
+.smm_matchpage_page_btn:hover,
+.smm_matchpage_page_number:hover{
+
+    background:#ff4d94;
+
+    color:#ffffff;
+
+    border-color:#ff4d94;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 24px rgba(255,77,148,.28);
+
+}
+
+/*=========================================================
+ACTIVE PAGE
+=========================================================*/
+
+.smm_matchpage_page_active{
+
+    background:#ff4d94;
+
+    color:#ffffff;
+
+    border-color:#ff4d94;
+
+}
+
+/*=========================================================
+DOTS
+=========================================================*/
+
+.smm_matchpage_page_dots{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#ff4d94;
+
+    padding:0 5px;
+
+}
+
+/*=========================================================
+PREVIOUS/NEXT ICON
+=========================================================*/
+
+.smm_matchpage_page_btn i{
+
+    font-size:13px;
+
+}
+
+.smm_matchpage_page_btn{
+
+    gap:8px;
+
+}
+
+/*=========================================================
+CARD FADE ANIMATION
+=========================================================*/
+
+.smm_matchpage_profile_card{
+
+    animation:smmFadeUp .6s ease;
+
+}
+
+@keyframes smmFadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=========================================================
+BUTTON CLICK EFFECT
+=========================================================*/
+
+.smm_matchpage_view_btn:active,
+.smm_matchpage_interest_btn:active,
+.smm_matchpage_apply_btn:active,
+.smm_matchpage_reset_btn:active{
+
+    transform:scale(.97);
+
+}
+
+/*=========================================================
+TABLET
+=========================================================*/
+
+@media(max-width:992px){
+
+    .smm_matchpage_pagination{
+
+        gap:10px;
+
+    }
+
+    .smm_matchpage_page_btn,
+    .smm_matchpage_page_number{
+
+        min-width:44px;
+
+        height:44px;
+
+        font-size:14px;
+
+        padding:0 14px;
+
+    }
+
+}
+
+/*=========================================================
+MOBILE
+=========================================================*/
+
+@media(max-width:576px){
+
+    .smm_matchpage_pagination{
+
+        gap:8px;
+
+    }
+
+    .smm_matchpage_page_btn{
+
+        font-size:13px;
+
+        padding:0 12px;
+
+        height:42px;
+
+    }
+
+    .smm_matchpage_page_number{
+
+        width:42px;
+
+        height:42px;
+
+        min-width:42px;
+
+        font-size:13px;
+
+    }
+
+    .smm_matchpage_page_dots{
+
+        font-size:18px;
+
+    }
+
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE FIXES - Spacing & Attractive Buttons
+   ========================================================= */
+
+/* === PROFILE CARD MOBILE FIXES === */
+@media (max-width: 768px) {
+
+    /* Remove excess outer padding */
+    .smm_matchpage_main_wrapper {
+        padding: 16px 0 32px !important;
+    }
+
+    .smm_matchpage_container {
+        width: 96% !important;
+        padding: 0 4px;
+    }
+
+    /* Profile cards - tighter, cleaner on mobile */
+    .pm-profile-card {
+        flex-direction: column !important;
+        border-radius: 18px !important;
+        overflow: hidden;
+        margin-bottom: 16px !important;
+        box-shadow: 0 6px 24px rgba(233,64,87,0.13) !important;
+    }
+
+    .pm-profile-image-box {
+        width: 100% !important;
+        height: 240px !important;
+        min-width: unset !important;
+    }
+
+    .pm-profile-image-box img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    .pm-profile-details {
+        padding: 16px !important;
+    }
+
+    .pm-profile-details h3 {
+        font-size: 20px !important;
+        margin-bottom: 4px !important;
+    }
+
+    /* mat-card profile grids */
+    .mat-profile-grid,
+    .mat-cards-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+    }
+
+    .mat-card {
+        border-radius: 14px !important;
+    }
+
+    .mat-card-img {
+        height: 170px !important;
+    }
+
+    .mat-card-content {
+        padding: 10px 12px !important;
+    }
+
+    .mat-card-content h2 {
+        font-size: 15px !important;
+    }
+
+    /* Filter sidebar on mobile */
+    .smm_matchpage_filter_sidebar {
+        padding: 16px !important;
+        border-radius: 16px !important;
+    }
+
+    /* Tab bar scroll */
+    .smm_matchpage_tabs {
+        gap: 8px !important;
+        padding-bottom: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .mat-profile-grid,
+    .mat-cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+    }
+
+    .pm-profile-image-box {
+        height: 200px !important;
+    }
+
+    .smm_matchpage_main_wrapper {
+        padding: 12px 0 24px !important;
+    }
+}
+
+/* === ATTRACTIVE BUTTON STYLES - Mobile First === */
+
+/* Primary action buttons - gradient + glow */
+.btn-connect,
+.btn-send-interest,
+.mat-connect-btn,
+.pm-connect-btn,
+button[class*="connect"],
+button[class*="interest"],
+.smm_matchpage_tab_btn.active,
+.smm_filter_apply_btn {
+    background: linear-gradient(135deg, #e94057 0%, #ff6b81 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 10px 22px !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    letter-spacing: 0.4px;
+    box-shadow: 0 4px 16px rgba(233,64,87,0.32) !important;
+    transition: all 0.28s cubic-bezier(0.34,1.56,0.64,1) !important;
+    cursor: pointer;
+}
+
+.btn-connect:hover,
+.btn-send-interest:hover,
+.mat-connect-btn:hover,
+.pm-connect-btn:hover,
+button[class*="connect"]:hover,
+button[class*="interest"]:hover,
+.smm_filter_apply_btn:hover {
+    transform: translateY(-3px) scale(1.03) !important;
+    box-shadow: 0 8px 24px rgba(233,64,87,0.42) !important;
+}
+
+/* Tab buttons */
+.smm_matchpage_tab_btn {
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 10px 20px !important;
+    transition: all 0.25s ease !important;
+    border: 1.5px solid rgba(233,64,87,0.2) !important;
+}
+
+.smm_matchpage_tab_btn:hover {
+    background: rgba(233,64,87,0.08) !important;
+    border-color: #e94057 !important;
+    color: #e94057 !important;
+    transform: translateY(-1px);
+}
+
+/* Save / bookmark buttons */
+.pm-bookmark-btn,
+.mat-save-btn,
+button[class*="bookmark"],
+button[class*="save"] {
+    background: rgba(233,64,87,0.08) !important;
+    color: #e94057 !important;
+    border: 1.5px solid rgba(233,64,87,0.25) !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.25s ease !important;
+    font-size: 14px !important;
+}
+
+.pm-bookmark-btn:hover,
+.mat-save-btn:hover,
+button[class*="bookmark"]:hover,
+button[class*="save"]:hover {
+    background: #e94057 !important;
+    color: #fff !important;
+    transform: scale(1.12) !important;
+    box-shadow: 0 4px 14px rgba(233,64,87,0.3) !important;
+}
+
+/* Pagination buttons */
+.smm_matchpage_page_btn,
+.smm_matchpage_page_number {
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+
+.smm_matchpage_page_btn:hover {
+    background: #e94057 !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(233,64,87,0.3) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Filter apply/reset buttons mobile */
+@media (max-width: 768px) {
+    .smm_matchpage_apply_btn,
+    .smm_matchpage_reset_btn {
+        width: 100% !important;
+        padding: 13px !important;
+        font-size: 14px !important;
+        border-radius: 14px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .smm_matchpage_apply_btn {
+        background: linear-gradient(135deg, #e94057 0%, #ff6b81 100%) !important;
+        color: #fff !important;
+        box-shadow: 0 4px 16px rgba(233,64,87,0.28) !important;
+    }
+
+    /* Tab button mobile size */
+    .smm_matchpage_tab_btn {
+        padding: 9px 16px !important;
+        font-size: 12px !important;
+    }
+}

@@ -1,0 +1,628 @@
+{% load interaction_tags %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saved Profiles — ForeverBond</title>
+  <meta name="description" content="Your saved profiles collection on ForeverBond. Review and connect with the profiles you have bookmarked.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/static/web/images/favicon.png" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="/static/web/css/navbar.css" />
+  <link rel="stylesheet" href="/static/web/css/saved-profiles.css?v=20260727_v1" />
+  <link rel="stylesheet" href="/static/web/css/footer.css">
+
+  <style>
+    /* ── Extra card entrance animation ─── */
+    .sp-card {
+      animation: spCardIn 0.5s ease both;
+    }
+    @keyframes spCardIn {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .sp-card:nth-child(1) { animation-delay: 0.05s; }
+    .sp-card:nth-child(2) { animation-delay: 0.10s; }
+    .sp-card:nth-child(3) { animation-delay: 0.15s; }
+    .sp-card:nth-child(4) { animation-delay: 0.20s; }
+    .sp-card:nth-child(5) { animation-delay: 0.25s; }
+    .sp-card:nth-child(6) { animation-delay: 0.30s; }
+    .sp-card:nth-child(7) { animation-delay: 0.35s; }
+    .sp-card:nth-child(8) { animation-delay: 0.40s; }
+    .sp-card:nth-child(9) { animation-delay: 0.45s; }
+
+    /* ── Shine on card hover ─── */
+    .sp-card { position: relative; overflow: hidden; }
+    .sp-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%; height: 100%;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .sp-card:hover::before { left: 125%; }
+
+    /* ── Action buttons row ─── */
+    .sp-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .sp-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.83rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .sp-btn-interest {
+      background: linear-gradient(135deg, #e94057, #ff7aa2);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(233,64,87,0.25);
+    }
+    .sp-btn-interest:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(233,64,87,0.35); }
+    .sp-btn-pending  { background: #64748b; color: #fff; box-shadow: none; }
+    .sp-btn-pending:hover { background: #475569; transform: translateY(-2px); }
+    .sp-btn-respond  { background: linear-gradient(135deg, #d4af37, #facc15); color: #7a4f00; }
+    .sp-btn-respond:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(212,175,55,0.4); }
+    .sp-btn-connected { background: linear-gradient(135deg, #10b981, #34d399); color: #fff; cursor: default; }
+
+    /* ── Icon button row ─── */
+    .sp-action-row2 {
+      display: flex;
+      gap: 8px;
+    }
+    .sp-icon-btn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      flex: 1;
+      padding: 8px 6px;
+      border-radius: 14px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid rgba(233,64,87,0.18);
+      background: rgba(255,255,255,0.85);
+      color: #e94057;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .sp-icon-btn span.sp-btn-lbl {
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .sp-icon-btn:hover {
+      background: linear-gradient(135deg, rgba(233,64,87,0.1), rgba(255,122,162,0.06));
+      border-color: rgba(233,64,87,0.4);
+      transform: translateY(-2px);
+    }
+    .sp-btn-chat-locked {
+      color: #94a3b8;
+      border-color: rgba(148,163,184,0.3);
+    }
+    .sp-btn-chat-locked:hover { background: rgba(148,163,184,0.08); transform: none; }
+    .sp-btn-save-active {
+      background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(212,175,55,0.06)) !important;
+      border-color: #d4af37 !important;
+      color: #d4af37 !important;
+    }
+
+    /* Remove card animation */
+    .sp-card.removing {
+      animation: spCardOut 0.4s ease forwards;
+    }
+    @keyframes spCardOut {
+      to { opacity: 0; transform: scale(0.88); }
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'web/secondary_navbar.html' %}
+
+  <!-- ══════════════════════════════════════════════════
+       COMPACT HERO BANNER — Light Luxury Curated Redesign
+  ══════════════════════════════════════════════════ -->
+  <section class="sp-banner">
+    <div class="container">
+      <div class="sp-banner-inner">
+
+        <!-- Left Column: Title & Compact Info -->
+        <div class="sp-banner-left">
+          <div class="sp-banner-eyebrow">
+            <span class="dot"></span>
+            • YOUR SHORTLISTED MATCHES
+          </div>
+
+          <h1 class="sp-title">
+            <span class="accent">Saved</span> Profiles
+          </h1>
+          <p>Easily access, review, and connect with the profiles you have bookmarked for future conversation in one secure place.</p>
+
+          <!-- Compact feature chips -->
+          <div class="sp-chips">
+            <div class="sp-chip">
+              <span class="sp-chip-icon" style="background:linear-gradient(135deg,#e94057,#ff5c75);">
+                <i class="fa-solid fa-bookmark"></i>
+              </span>
+              Quick Wishlist
+            </div>
+            <div class="sp-chip">
+              <span class="sp-chip-icon" style="background:linear-gradient(135deg,#d4af37,#facc15);">
+                <i class="fa-solid fa-crown"></i>
+              </span>
+              Verified Profiles
+            </div>
+            <div class="sp-chip">
+              <span class="sp-chip-icon" style="background:linear-gradient(135deg,#ff7aa2,#e94057);">
+                <i class="fa-solid fa-shield-halved"></i>
+              </span>
+              100% Secure
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Compact Glass Stat & Action Widget -->
+        <div class="sp-banner-right">
+          <div class="sp-hero-widget">
+            <!-- Top Stat Row -->
+            <div class="sp-widget-top">
+              <div class="sp-widget-icon">
+                <i class="fa-solid fa-bookmark"></i>
+              </div>
+              <div class="sp-widget-text">
+                <div class="sp-wt-title">{{ matches.paginator.count|default:"0" }} Profiles Saved</div>
+                <div class="sp-wt-sub">Ready For Conversation</div>
+              </div>
+            </div>
+
+            <!-- Bottom Action Row -->
+            <div class="sp-widget-actions">
+              <a href="{% url 'basic_search' %}" class="sp-discover-btn">
+                <i class="fa-solid fa-magnifying-glass"></i> Explore More Matches
+              </a>
+              <a href="/interactions/featured/brides/" class="sp-ghost-btn">
+                <i class="fa-solid fa-star" style="color:#d4af37;"></i> Featured
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       STICKY SUMMARY BAR
+  ══════════════════════════════════════════════════ -->
+  <div class="sp-summary-bar">
+    <div class="container">
+      <div class="sp-summary-inner">
+        <div class="sp-count-badge">
+          <span class="count-pill">{{ matches.paginator.count|default:"0" }}</span>
+          Saved Profiles
+        </div>
+        <div class="sp-bar-tags">
+          <span style="font-size:0.78rem;font-weight:700;color:#e94057;font-family:'Poppins',sans-serif;">
+            <i class="fa-solid fa-bookmark"></i> Your Bookmarked Profiles
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       PROFILE GRID
+  ══════════════════════════════════════════════════ -->
+  <section class="sp-profile-section">
+    <div class="container">
+      <div class="sp-grid">
+
+        {% for match in matches %}
+          {% get_interaction_status request.user match.user as int_status %}
+        <div class="sp-card" id="sp-card-{{ match.id }}">
+
+          <!-- Photo -->
+          <div class="sp-card-photo">
+            <img src="{% if match.photo %}{{ match.photo.url }}?v={{ match.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ match.full_name|default:'User'|urlencode }}&background=e94057&color=fff&size=400{% endif %}"
+                 alt="{{ match.full_name|default:'Profile' }}"
+                 loading="lazy">
+
+            <!-- Top row badges -->
+            <div class="sp-card-top">
+              {% if match.approval_status == 'Approved' %}
+              <span class="sp-verified">
+                <i class="fa-solid fa-circle-check" style="font-size:0.65rem;"></i> Verified
+              </span>
+              {% else %}<span></span>{% endif %}
+
+              <!-- Bookmark (saved) button — always active on this page -->
+              <button class="sp-saved-btn sp-btn-save-active"
+                      id="sp-save-btn-{{ match.id }}"
+                      data-profile-id="{{ match.id }}"
+                      title="Remove from saved"
+                      style="position:relative;">
+                <i class="fa-solid fa-bookmark"></i>
+              </button>
+            </div>
+
+            <!-- Match % pill -->
+            <div class="sp-match-pill">
+              <b>95%</b>&nbsp;<span>Match</span>
+            </div>
+
+            <!-- Name + age overlay -->
+            <div class="sp-photo-overlay">
+              <h3>{{ match.full_name|default:'ForeverBond User' }}</h3>
+              <div class="sp-age-line">
+                <span>{{ match.age|default:'N/A' }} Yrs</span>
+                <span class="sp-age-sep"></span>
+                <span>{{ match.height|default:'N/A' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="sp-card-body">
+
+            <!-- Coloured tag pills -->
+            <div class="sp-tags">
+              <span class="sp-tag sp-tag-edu">
+                <i class="fa-solid fa-graduation-cap"></i>
+                {{ match.highest_education|default:'N/A'|truncatechars:13 }}
+              </span>
+              <span class="sp-tag sp-tag-prof">
+                <i class="fa-solid fa-briefcase"></i>
+                {{ match.profession|default:'N/A'|truncatechars:13 }}
+              </span>
+              <span class="sp-tag sp-tag-lang">
+                <i class="fa-solid fa-language"></i>
+                {{ match.mother_tongue|default:'N/A' }}
+              </span>
+              <span class="sp-tag sp-tag-rel">
+                <i class="fa-solid fa-om"></i>
+                {{ match.religion|default:'N/A' }}
+              </span>
+            </div>
+
+            <!-- Location -->
+            <div class="sp-location">
+              <div class="loc-dot"><i class="fa-solid fa-location-dot"></i></div>
+              <span class="loc-text">
+                {{ match.city|default:'N/A' }}{% if match.state %}, {{ match.state }}{% endif %}
+              </span>
+            </div>
+
+            <!-- ─── ACTION BUTTONS ─── -->
+            <div class="sp-actions">
+
+              <!-- Send Interest / Status -->
+              {% if int_status == 'accepted' %}
+              <button class="sp-btn sp-btn-connected" disabled>
+                <i class="fa-solid fa-check"></i> Connected
+              </button>
+              {% elif int_status == 'pending_sent' %}
+              <button class="sp-btn sp-btn-pending send-interest-action"
+                      onclick="sendInterest({{ match.user.id }}, this)">
+                <i class="fa-solid fa-clock"></i> Request Sent
+              </button>
+              {% elif int_status == 'pending_received' %}
+              <a href="/interactions/requests/" class="sp-btn sp-btn-respond">
+                <i class="fa-solid fa-reply"></i> Respond
+              </a>
+              {% else %}
+              <button class="sp-btn sp-btn-interest send-interest-action"
+                      onclick="sendInterest({{ match.user.id }}, this)">
+                <i class="fa-solid fa-heart"></i> Send Interest
+              </button>
+              {% endif %}
+
+              <!-- View · Save · Chat -->
+              <div class="sp-action-row2">
+
+                <!-- View Profile -->
+                <button class="sp-icon-btn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#profileModal{{ match.user.id }}"
+                        title="View Profile"
+                        style="position:relative;">
+                  <i class="fa-regular fa-eye"></i>
+                  <span class="sp-btn-lbl">View</span>
+                </button>
+
+                <!-- Remove from saved -->
+                <button class="sp-icon-btn sp-btn-save-active"
+                        id="sp-save-btn-body-{{ match.id }}"
+                        data-profile-id="{{ match.id }}"
+                        title="Remove from saved"
+                        style="position:relative;color:#d4af37;border-color:#d4af37;">
+                  <i class="fa-solid fa-bookmark"></i>
+                  <span class="sp-btn-lbl">Saved</span>
+                </button>
+
+                <!-- Chat -->
+                {% if int_status == 'accepted' %}
+                <a href="/interactions/chat/?id={{ match.user.id }}" class="sp-icon-btn" title="Open Chat" style="position:relative;">
+                  <i class="fa-solid fa-comment-dots"></i>
+                  <span class="sp-btn-lbl">Chat</span>
+                </a>
+                {% else %}
+                <button class="sp-icon-btn sp-btn-chat-locked" title="Connect first to chat"
+                        onclick="window.showSmToast && window.showSmToast('Send interest and get connected first to chat!', 'info')"
+                        style="position:relative;">
+                  <i class="fa-solid fa-lock"></i>
+                  <span class="sp-btn-lbl">Chat</span>
+                </button>
+                {% endif %}
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+        {% empty %}
+        <div class="sp-empty">
+          <div class="sp-empty-icon">
+            <i class="fa-regular fa-bookmark"></i>
+          </div>
+          <h3>No Saved Profiles Yet</h3>
+          <p>You haven't bookmarked any profiles. Start exploring and save the ones you like!</p>
+          <a href="{% url 'basic_search' %}" class="sp-explore-btn">
+            <i class="fa-solid fa-magnifying-glass"></i> Explore Profiles
+          </a>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGINATION
+  ══════════════════════════════════════════════════ -->
+  {% if matches.has_other_pages %}
+  <div class="sp-pagination-wrap">
+    <div class="sp-pagination">
+      {% if matches.has_previous %}
+      <a href="?page={{ matches.previous_page_number }}" class="sp-page-btn">
+        <i class="fa-solid fa-chevron-left"></i> Prev
+      </a>
+      {% else %}
+      <button class="sp-page-btn" disabled>
+        <i class="fa-solid fa-chevron-left"></i> Prev
+      </button>
+      {% endif %}
+
+      {% for num in matches.paginator.page_range %}
+        {% if matches.number == num %}
+        <button class="sp-page-num active">{{ num }}</button>
+        {% elif num > matches.number|add:'-3' and num < matches.number|add:'3' %}
+        <a href="?page={{ num }}" class="sp-page-num" style="text-decoration:none;">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if matches.has_next %}
+      <a href="?page={{ matches.next_page_number }}" class="sp-page-btn">
+        Next <i class="fa-solid fa-chevron-right"></i>
+      </a>
+      {% else %}
+      <button class="sp-page-btn" disabled>
+        Next <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- ══════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════ -->
+  <footer class="sm-footer">
+    <div class="footer-radial-aura"></div>
+    <div class="sm-container">
+      <div class="footer-main-row">
+        <div class="footer-brand-col">
+          <h2 class="footer-main-logo d-flex align-items-center gap-2"
+              style="font-family:'Poppins',sans-serif;font-weight:900;font-size:28px;letter-spacing:-0.8px;line-height:1;margin:0;padding:0;">
+            <span class="d-flex align-items-center justify-content-center"
+                  style="background:linear-gradient(135deg,#e94057 0%,#ff5c75 100%);width:38px;height:38px;border-radius:10px;box-shadow:0 4px 15px rgba(233,64,87,0.25);animation:heartSmoothPulse 2s infinite ease-in-out;">
+            <i class="fa-solid fa-heart text-white" style="font-size:16px"></i>
+          </span>
+            <span style="background:linear-gradient(135deg,#0f172a 30%,#334155 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;padding-left:2px;">
+              Forever<span style="background:linear-gradient(135deg,#e94057 0%,#facc15 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Bond</span>
+            </span>
+          </h2>
+          <style>
+            @keyframes heartSmoothPulse {
+              0%   { transform: scale(1); }
+              50%  { transform: scale(1.05); box-shadow: 0 6px 20px rgba(233,64,87,0.4); }
+              100% { transform: scale(1); }
+            }
+          </style>
+          <p class="footer-brand-tagline">India's trusted choice for premium, private and verified matchmaking networks.</p>
+        </div>
+
+        <div class="footer-link-col">
+              <h4>Search</h4>
+              <ul>
+                <li><a href="{% url 'basic_search' %}">Basic Search</a></li>
+                <li><a href="{% url 'advanced_search' %}">Advanced Filter</a></li>
+                <li><a href="{% url 'ai_search' %}">AI Match Finder</a></li>
+              </ul>
+            </div>
+
+        <div class="footer-link-col">
+              <h4>Profiles</h4>
+              <ul>
+                <li><a href="{% url 'recomended_matches' %}">Top Matches</a></li>
+                <li><a href="{% url 'saved_profiles' %}">Saved Profiles</a></li>
+                <li><a href="{% url 'verified_profiles' %}">Verified Profiles</a></li>
+              </ul>
+            </div>
+
+        <div class="footer-link-col">
+              <h4>Support</h4>
+              <ul>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'contact' %}">FAQs</a></li>
+                <li><a href="{{ global_privacy_policy_url }}">Privacy Policy</a></li>
+              </ul>
+            </div>
+
+        <div class="footer-badges-col">
+          <div class="badge-strip-node"><i class="fa-solid fa-shield-halved badge-rose"></i>100% Verified</div>
+          <div class="badge-strip-node"><i class="fa-solid fa-lock badge-gold"></i>Private &amp; Secure</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p class="advanced-copyright-txt">
+          &copy; 2026 <span class="signature-rose-txt">ForeverBond</span> Matrimony. All rights reserved.
+        </p>
+        <div class="footer-social-spheres">
+          <a href="https://www.instagram.com/omya_.x07" target="_blank" aria-label="Instagram" class="social-sphere-item"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/omkar.misal.587" target="_blank" aria-label="Facebook" class="social-sphere-item"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.linkedin.com/in/omkar-misal-aa191336b/" target="_blank" aria-label="LinkedIn" class="social-sphere-item"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@OmkarMisal-ug8ks" target="_blank" aria-label="YouTube" class="social-sphere-item"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Profile Modals -->
+  {% for match in matches %}
+    {% get_interaction_status request.user match.user as int_status %}
+    {% include 'web/profile_modal.html' %}
+  {% endfor %}
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/web/js/navbar.js?v=5"></script>
+  <script src="/static/web/js/global-interactions.js"></script>
+
+  <script>
+  /* ── Save/Unsave handler for Saved Profiles page ─────────────── */
+  document.addEventListener('DOMContentLoaded', function () {
+
+    function getCsrf() {
+      let v = null;
+      if (document.cookie) {
+        document.cookie.split(';').forEach(c => {
+          c = c.trim();
+          if (c.startsWith('csrftoken=')) v = decodeURIComponent(c.slice(10));
+        });
+      }
+      return v;
+    }
+
+    function doSaveToggle(profileId, allBtns, card) {
+      // Set all related btns to spinner
+      allBtns.forEach(b => {
+        b.style.pointerEvents = 'none';
+        const ic = b.querySelector('i');
+        if (ic) ic.className = 'fa-solid fa-spinner fa-spin';
+      });
+
+      fetch('/interactions/api/save-profile/', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCsrf() || ''
+        },
+        body: JSON.stringify({ profile_id: parseInt(profileId) })
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.status === 'unsaved' || data.status === 'removed') {
+          /* Remove card from saved page with animation */
+          if (card) {
+            card.classList.add('removing');
+            setTimeout(() => card.remove(), 420);
+          }
+          if (window.showSmToast) window.showSmToast('Profile removed from saved profiles.', 'info');
+        } else if (data.status === 'saved') {
+          /* Re-saved (shouldn't happen here, but handle gracefully) */
+          allBtns.forEach(b => {
+            b.style.pointerEvents = 'auto';
+            const ic = b.querySelector('i');
+            if (ic) ic.className = 'fa-solid fa-bookmark';
+          });
+          if (window.showSmToast) window.showSmToast('Profile is already in your saved list!', 'info');
+        } else {
+          allBtns.forEach(b => {
+            b.style.pointerEvents = 'auto';
+            const ic = b.querySelector('i');
+            if (ic) ic.className = 'fa-solid fa-bookmark';
+          });
+          if (window.showSmToast) window.showSmToast(data.message || 'Could not update saved profile.', 'info');
+        }
+      })
+      .catch(() => {
+        allBtns.forEach(b => {
+          b.style.pointerEvents = 'auto';
+          const ic = b.querySelector('i');
+          if (ic) ic.className = 'fa-solid fa-bookmark';
+        });
+        if (window.showSmToast) window.showSmToast('Network error. Please try again.', 'info');
+      });
+    }
+
+    /* Intercept ALL save-related buttons on this page */
+    document.querySelectorAll('[data-profile-id]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopImmediatePropagation(); // prevent global-interactions.js double-fire
+        const profileId = btn.getAttribute('data-profile-id');
+        if (!profileId) return;
+
+        const card = document.getElementById('sp-card-' + profileId);
+        // Collect both the photo bookmark and the body bookmark buttons
+        const allBtns = [
+          document.getElementById('sp-save-btn-' + profileId),
+          document.getElementById('sp-save-btn-body-' + profileId)
+        ].filter(Boolean);
+
+        doSaveToggle(profileId, allBtns.length ? allBtns : [btn], card);
+      });
+    });
+  });
+  </script>
+
+</body>
+</html>

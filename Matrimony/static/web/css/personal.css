@@ -1,0 +1,621 @@
+/* ==========================================================================
+   ForeverBond PREMIUM WIZARD STYLESHEET
+   ========================================================================== */
+
+/* 1. Global Reset & Variables */
+:root {
+    --primary-color: #e94057;
+    /* Core Rose */
+    --primary-hover: #d23249;
+    /* Darker Rose */
+    --primary-light: #fff0f2;
+    /* Soft Pink/Red Tint */
+    --accent-success: #198754;
+    /* Green for Complete */
+    --text-dark: #212529;
+    /* Deep Charcoal */
+    --text-muted: #6c757d;
+    /* Soft Gray */
+    --bg-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.04);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --border-radius-lg: 16px;
+    --border-radius-md: 10px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 2. Wizard Layout Container */
+.wizard-section {
+    padding: 130px 0;
+    padding-bottom: 0px !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.wizard-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 40px rgba(233, 64, 87, 0.08);
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 900px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* 3. Premium Top Stepper */
+.wizard-header {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #edf2f7;
+    overflow-x: auto;
+    /* Mobile view compatibility */
+}
+
+.stepper-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 10px 0;
+    gap: 10px;
+}
+
+.step {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    flex: 0 0 auto;
+    cursor: default;
+}
+
+.step-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid #e2e8f0;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin: 0 auto 10px auto;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.step p {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin: 0;
+    transition: var(--transition-smooth);
+}
+
+/* Stepper States (Active & Completed) */
+.step.active .step-circle {
+    border-color: #e94057;
+    color: #e94057;
+    background-color: #fff0f2;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 5px rgba(233, 64, 87, 0.15);
+}
+
+.step.active p {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.step.completed .step-circle {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.step-circle.success {
+    border-color: var(--accent-success);
+    color: var(--accent-success);
+}
+
+.step.completed .step-circle.success {
+    background-color: var(--accent-success);
+    border-color: var(--accent-success);
+    color: #ffffff;
+}
+
+/* Connecting Lines */
+.step-line {
+    flex: 1 1 auto;
+    height: 3px;
+    background-color: #e2e8f0;
+    margin-top: -25px;
+    z-index: 1;
+    transition: var(--transition-smooth);
+    border-radius: 2px;
+}
+
+.step-line.active {
+    background-color: #e94057;
+}
+
+/* 4. Wizard Progress Bar */
+.wizard-progress {
+    margin-bottom: 40px;
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: var(--border-radius-md);
+    border: 1px solid #edf2f7;
+}
+
+.wizard-progress .progress {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #e9ecef;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.wizard-progress .progress-bar {
+    background-color: var(--primary-color);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+#progressPercent {
+    color: var(--primary-color);
+}
+
+/* 5. Form Cards & Pages Controls */
+.wizard-page {
+    display: none;
+    /* Hidden by default, controlled via JS */
+}
+
+.wizard-page.active {
+    display: block;
+    animation: fadeInSlide 0.5s ease forward;
+}
+
+.form-card {
+    padding: 10px 5px;
+}
+
+.form-title {
+    margin-bottom: 35px;
+}
+
+.form-title h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.form-title h2 i {
+    color: var(--primary-color);
+}
+
+.form-title p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 8px;
+}
+
+/* 6. Form Inputs & Premium Controls UI */
+.form-label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+.form-control,
+.form-select {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    border: 1px solid #ced4da;
+    border-radius: var(--border-radius-md);
+    background-color: #ffffff;
+    color: var(--text-dark);
+    transition: var(--transition-smooth);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.1);
+    outline: 0;
+}
+
+.form-control::placeholder {
+    color: #adb5bd;
+    font-size: 0.9rem;
+}
+
+textarea.form-control {
+    resize: none;
+    line-height: 1.6;
+}
+
+/* 7. Buttons & Navigation Footer */
+.wizard-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 45px;
+    padding-top: 25px;
+    border-top: 1px solid #edf2f7;
+}
+
+.btn {
+    padding: 12px 28px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--border-radius-md);
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Primary Next Button */
+.btn-danger {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Secondary Previous Button */
+.btn-outline-danger {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* 8. Bottom Sticky/Fixed Actions Panel */
+.wizard-bottom {
+    margin-top: 35px;
+    padding: 20px 25px;
+    background: #f8f9fa;
+    border-radius: var(--border-radius-md);
+    border: 1px solid #edf2f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.wizard-progress-info {
+    font-size: 0.95rem;
+    color: #495057;
+}
+
+#profilePercentage {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-left: 5px;
+    border: 1px solid rgba(220, 53, 69, 0.15);
+}
+
+.wizard-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.wizard-buttons .btn-light {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    color: #495057;
+}
+
+.wizard-buttons .btn-light:hover {
+    background-color: #f1f3f5;
+    color: #212529;
+    border-color: #ced4da;
+}
+
+.wizard-buttons .btn-outline-secondary {
+    border-color: #ced4da;
+    color: #6c757d;
+}
+
+.wizard-buttons .btn-outline-secondary:hover {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+/* 9. Premium Keyframe Animations */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 10. Smooth Responsive Layout adjustments */
+@media (max-width: 991px) {
+    .wizard-card {
+        padding: 30px 20px;
+    }
+
+    .stepper-wrapper {
+        padding-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .wizard-section {
+        padding: 100px 0 20px 0;
+    }
+
+    .form-title h2 {
+        font-size: 1.35rem;
+    }
+
+    .wizard-bottom {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .wizard-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* Real-time Validation Highlights */
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: #dc3545 !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5' stroke-dasharray='4'/%3e%3cpath stroke-width='2' stroke-linecap='round' d='M6 3v3.5M6 8.5h.01'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.15) !important;
+}
+
+
+/* Drag & Drop Area Styles */
+.upload-container {
+    border: 2px dashed #ced4da;
+    border-radius: var(--border-radius-lg);
+    background-color: #f8f9fa;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.upload-container.dragover {
+    border-color: var(--primary-color);
+    background-color: var(--primary-light);
+}
+
+/* Image Preview Cards */
+.preview-card {
+    position: relative;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    height: 150px;
+}
+
+.preview-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.delete-preview-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.delete-preview-btn:hover {
+    background: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+
+/* Pricing Plan Cards Graphic Setup */
+.plan-card {
+    background: #ffffff;
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    position: relative;
+    border: 2px solid #e9ecef !important;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow);
+    border-color: #ced4da !important;
+}
+
+/* Selected Plan Accent State triggers */
+.plan-card.active-plan {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 10px 25px rgba(220, 53, 69, 0.1);
+    background: var(--primary-light);
+}
+
+.plan-card.premium {
+    background: linear-gradient(180deg, #fffcfc 0%, #ffffff 100%);
+}
+
+
+/* Success Celebratory Card Setup */
+.summary-status-card {
+    background: #f8f9fa;
+    border-color: #e9ecef !important;
+    transition: var(--transition-smooth);
+}
+
+.summary-status-card:hover {
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+/* Premium CSS Checkmark Animation */
+.success-checkmark {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+.success-checkmark .check-icon {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px #198754;
+}
+
+.success-checkmark .check-icon .icon-line {
+    height: 5px;
+    background-color: #198754;
+    display: block;
+    position: absolute;
+    z-index: 10;
+    border-radius: 2px;
+}
+
+.success-checkmark .check-icon .icon-line.line-tip {
+    top: 43px;
+    left: 14px;
+    width: 25px;
+    transform: rotate(45deg);
+    animation: icon-line-tip 0.75s;
+}
+
+.success-checkmark .check-icon .icon-line.line-long {
+    top: 38px;
+    right: 12px;
+    width: 45px;
+    transform: rotate(-45deg);
+    animation: icon-line-long 0.75s;
+}
+
+@keyframes icon-line-tip {
+    0% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+    }
+
+    54% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+    }
+
+    70% {
+        width: 50px;
+        left: -8px;
+        top: 37px;
+    }
+
+    84% {
+        width: 17px;
+        left: 21px;
+        top: 48px;
+    }
+
+    100% {
+        width: 25px;
+        left: 14px;
+        top: 43px;
+    }
+}
+
+@keyframes icon-line-long {
+    0% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+    }
+
+    65% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+    }
+
+    84% {
+        width: 55px;
+        right: 0px;
+        top: 35px;
+    }
+
+    100% {
+        width: 45px;
+        right: 12px;
+        top: 38px;
+    }
+}

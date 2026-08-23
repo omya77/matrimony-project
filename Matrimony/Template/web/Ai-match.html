@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForeverBond</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- url_icon  -->
+    <link rel="icon" type="image/png" href="/static/web/images/favicon.png" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Font Awesome -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- AOS Animation -->
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+    <link rel="stylesheet" href="/static/web/css/A-match.css?v=3" />
+    <link rel="stylesheet" href="/static/web/css/footer.css" />
+  </head>
+  <body>
+    {% include 'web/secondary_navbar.html' %}
+
+    <section class="aim-hero-section">
+      <div class="aim-hero-container">
+        <div class="aim-hero-content">
+          <span class="aim-small-title"> 🤖 AI Powered Matchmaking </span>
+
+          <h1>AI Matches <span>Just For You</span></h1>
+
+          <p>
+            Our intelligent AI analyzes your profile, partner preferences,
+            lifestyle and compatibility score to suggest your perfect life
+            partner.
+          </p>
+
+          <div class="aim-hero-features">
+            <div class="aim-feature-box">
+              <i class="bi bi-stars"></i>
+              Smart Matching
+            </div>
+
+            <div class="aim-feature-box">
+              <i class="bi bi-cpu"></i>
+              AI Compatibility
+            </div>
+
+            <div class="aim-feature-box">
+              <i class="bi bi-heart-fill"></i>
+              Better Connections
+            </div>
+          </div>
+        </div>
+
+        <!-- Robot Image -->
+
+        <div class="aim-hero-image">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLaJObAyd3ks-yKcWD67awmYDyKFh-rEMVujwarQPSrQ&s=10"
+            alt="AI Robot"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+        AI MATCHES HERO SECTION END
+=========================================== -->
+
+    <!-- ==========================================
+        AI SUMMARY SECTION START
+=========================================== -->
+
+    <section class="aim-summary-section">
+      <div class="aim-summary-container">
+        <div class="aim-summary-heading">
+          <h2>
+            <i class="bi bi-stars"></i>
+
+            AI Compatibility Summary
+          </h2>
+
+          <p>Based on your profile and partner preferences.</p>
+        </div>
+
+        <div class="aim-summary-grid">
+          <div class="aim-summary-card">
+            <div class="aim-summary-icon pink">
+              <i class="bi bi-heart-fill"></i>
+            </div>
+
+            <h3>96%</h3>
+
+            <span> Overall Match </span>
+          </div>
+
+          <div class="aim-summary-card">
+            <div class="aim-summary-icon green">
+              <i class="bi bi-mortarboard-fill"></i>
+            </div>
+
+            <h3>100%</h3>
+
+            <span> Education </span>
+          </div>
+
+          <div class="aim-summary-card">
+            <div class="aim-summary-icon blue">
+              <i class="bi bi-briefcase-fill"></i>
+            </div>
+
+            <h3>95%</h3>
+
+            <span> Career </span>
+          </div>
+
+          <div class="aim-summary-card">
+            <div class="aim-summary-icon orange">
+              <i class="bi bi-people-fill"></i>
+            </div>
+
+            <h3>93%</h3>
+
+            <span> Lifestyle </span>
+          </div>
+
+          <div class="aim-summary-card">
+            <div class="aim-summary-icon purple">
+              <i class="bi bi-house-heart-fill"></i>
+            </div>
+
+            <h3>94%</h3>
+
+            <span> Family Values </span>
+          </div>
+
+          <div class="aim-summary-card">
+            <div class="aim-summary-icon red">
+              <i class="bi bi-star-fill"></i>
+            </div>
+
+            <h3>90%</h3>
+
+            <span> Interests </span>
+          </div>
+        </div>
+
+        <div class="aim-summary-note">
+          <i class="bi bi-info-circle-fill"></i>
+
+          AI selected these profiles by comparing your education, career,
+          lifestyle, hobbies and partner preferences.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+        AI SUMMARY SECTION END
+=========================================== -->
+
+    <!-- card section start -->
+
+    <section class="mat-card-section">
+      <div class="mat-card-container">
+        {% for match in matches %}
+        <div class="mat-card">
+          <div class="mat-card-image">
+            <img src="{% if match.photo and match.is_photo_approved %}{{ match.photo.url }}?v={{ match.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ match.full_name|default:'User'|urlencode }}&background=e94057&color=fff{% endif %}" alt="{{ match.full_name|default:'Profile' }}" />
+
+            <!-- MATCH BADGE -->
+            <div class="profile-match-badge" title="{{ match.ai_reason|default:'AI Match' }}">
+              <span class="match-number"> {{ match.ai_score|default:'90' }}% </span>
+              <span class="match-text"> Match </span>
+            </div>
+
+            <!-- LIKE BUTTON -->
+            <button class="mat-save-btn" title="Save Profile" data-profile-id="{{ match.user.id }}">
+              <i class="bi bi-bookmark"></i>
+              <span style="display: none;">save</span>
+            </button>
+          </div>
+
+          <div class="mat-card-content">
+            <h2>{{ match.full_name|default:'ForeverBond User' }}</h2>
+
+            <p class="mat-age">{{ match.age|default:"N/A" }} Years • {{ match.height|default:"N/A" }}</p>
+
+            <div class="mat-tags">
+              <span>🎓 {{ match.highest_education|default:"N/A" }}</span>
+              <span>💼 {{ match.profession|default:"N/A" }}</span>
+              <span>📍 {{ match.city|default:"N/A" }}</span>
+              <span>🗣 {{ match.mother_tongue|default:"N/A" }}</span>
+              <span><i class="fa-solid fa-om" style="margin-right: 5px;"></i> {{ match.religion|default:"N/A" }}</span>
+            </div>
+
+            <div class="ai-reason-text" style="font-size: 0.85rem; color: #22c55e; margin: 10px 0; display: flex; align-items: center; gap: 5px;">
+              <i class="fa-solid fa-robot"></i> <span>{{ match.ai_reason|default:'AI considers this a potential match.' }}</span>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn-view" data-bs-toggle="modal" data-bs-target="#profileModal{{ match.user.id }}">
+                  <i class="fa-regular fa-eye"></i> View Profile
+              </button>
+             {% if match.interest_status == 'pending' %}
+                 <button type="button" class="btn-connect" style="background: #6c757d; color: #fff; cursor: not-allowed;" disabled>
+                    <i class="fa-solid fa-check"></i> Pending
+                 </button>
+             {% elif match.interest_status == 'accepted' %}
+                 <button type="button" class="btn-connect" style="background: #28a745; color: #fff; cursor: not-allowed;" disabled>
+                    <i class="fa-solid fa-heart"></i> Connected
+                 </button>
+             {% else %}
+                 <button type="button" class="btn-connect" onclick="sendInterest('{{ match.user.id }}', this)">
+                    <i class="fa-solid fa-heart"></i> Connect
+                 </button>
+             {% endif %}
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="empty-state" style="text-align: center; padding: 50px; width: 100%; grid-column: 1 / -1;">
+            <i class="fa-solid fa-robot" style="font-size: 50px; color: #cbd5e1; margin-bottom: 15px;"></i>
+            <h3>No AI Matches Found</h3>
+            <p style="color: #64748b;">Please complete your profile to let our AI find the best matches.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- card section end -->
+
+    <!--=========================================
+        PAGINATION START
+==========================================-->
+
+    
+<section class="pm-pagination-section" style="margin-top: 30px; margin-bottom: 50px;">
+    {% if matches.has_other_pages %}
+    <div class="pm-pagination" style="display: flex; justify-content: center; gap: 10px;">
+        {% if matches.has_previous %}
+        <a href="?page={{ matches.previous_page_number }}" class="btn btn-outline-primary pm-page-btn" style="border-radius: 20px; padding: 8px 20px;">
+            <span>&#10094;</span> Previous
+        </a>
+        {% else %}
+        <button class="btn btn-outline-primary pm-page-btn" disabled style="border-radius: 20px; padding: 8px 20px; opacity: 0.5;">
+            <span>&#10094;</span> Previous
+        </button>
+        {% endif %}
+
+        {% for num in matches.paginator.page_range %}
+            {% if matches.number == num %}
+            <button class="btn btn-primary pm-page-number active" style="border-radius: 50%; width: 40px; height: 40px; padding: 0;">{{ num }}</button>
+            {% elif num > matches.number|add:'-3' and num < matches.number|add:'3' %}
+            <a href="?page={{ num }}" class="btn btn-outline-primary pm-page-number" style="border-radius: 50%; width: 40px; height: 40px; padding: 0; line-height: 38px;">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if matches.has_next %}
+        <a href="?page={{ matches.next_page_number }}" class="btn btn-outline-primary pm-page-btn" style="border-radius: 20px; padding: 8px 20px;">
+            Next <span>&#10095;</span>
+        </a>
+        {% else %}
+        <button class="btn btn-outline-primary pm-page-btn" disabled style="border-radius: 20px; padding: 8px 20px; opacity: 0.5;">
+            Next <span>&#10095;</span>
+        </button>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
+
+
+    <!--=========================================
+        PAGINATION END
+==========================================-->
+
+    <!-- footer start  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <footer class="sm-footer">
+      <div class="footer-radial-aura"></div>
+      <div class="sm-container">
+        <div class="footer-main-row">
+          <div class="footer-brand-col">
+            <h2
+              class="footer-main-logo d-flex align-items-center gap-2"
+              style="
+                font-family: &quot;Poppins&quot;, sans-serif;
+                font-weight: 900;
+                font-size: 28px;
+                letter-spacing: -0.8px;
+                line-height: 1;
+                margin: 0;
+                padding: 0;
+              "
+            >
+              <!-- Interactive Pulsing Premium Heart Icon -->
+              <span
+                class="d-flex align-items-center justify-content-center"
+                style="
+                  background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+                  width: 38px;
+                  height: 38px;
+                  border-radius: 10px;
+                  box-shadow: 0 4px 15px rgba(233, 64, 87, 0.25);
+                  animation: heartSmoothPulse 2s infinite ease-in-out;
+                "
+              >
+                <i
+                  class="fa-solid fa-heart text-white"
+                  style="font-size: 16px"
+                ></i>
+              </span>
+
+              <!-- Typography Brand Identity -->
+              <span
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    #0f172a 30%,
+                    #334155 100%
+                  );
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  padding-left: 2px;
+                "
+              >
+                Forever<span
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #e94057 0%,
+                      #facc15 100%
+                    );
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                  "
+                  >Bond</span
+                >
+              </span>
+            </h2>
+
+            <!-- Core CSS Keyframe Injection (Aap ise apne CSS file ya global <style> me bhi daal sakte hain) -->
+            <style>
+              @keyframes heartSmoothPulse {
+                0% {
+                  transform: scale(1);
+                }
+                50% {
+                  transform: scale(1.05);
+                  box-shadow: 0 6px 20px rgba(233, 64, 87, 0.4);
+                }
+                100% {
+                  transform: scale(1);
+                }
+              }
+            </style>
+            <p class="footer-brand-tagline">
+              India's trusted choice for premium, private and verified
+              matchmaking networks.
+            </p>
+          </div>
+
+          <div class="footer-link-col">
+              <h4>Search</h4>
+              <ul>
+                <li><a href="{% url 'basic_search' %}">Basic Search</a></li>
+                <li><a href="{% url 'advanced_search' %}">Advanced Filter</a></li>
+                <li><a href="{% url 'ai_search' %}">AI Match Finder</a></li>
+              </ul>
+            </div>
+
+          <div class="footer-link-col">
+              <h4>Profiles</h4>
+              <ul>
+                <li><a href="{% url 'recomended_matches' %}">Top Matches</a></li>
+                <li><a href="{% url 'saved_profiles' %}">Saved Profiles</a></li>
+                <li><a href="{% url 'verified_profiles' %}">Verified Profiles</a></li>
+              </ul>
+            </div>
+
+          <div class="footer-link-col">
+              <h4>Support</h4>
+              <ul>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'contact' %}">FAQs</a></li>
+                <li><a href="{{ global_privacy_policy_url }}">Privacy Policy</a></li>
+              </ul>
+            </div>
+
+          <div class="footer-badges-col">
+            <div class="badge-strip-node">
+              <i class="fa-solid fa-shield-halved badge-rose"></i>100% Verified
+            </div>
+            <div class="badge-strip-node">
+              <i class="fa-solid fa-lock badge-gold"></i>Private &amp; Secure
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+          <p class="advanced-copyright-txt">
+            &copy; 2026
+            <span class="signature-rose-txt">ForeverBond</span> Matrimony. All
+            rights reserved.
+          </p>
+          <div class="footer-social-spheres">
+            <a
+              href="https://www.instagram.com/omya_.x07"
+              target="_blank"
+              aria-label="Instagram"
+              class="social-sphere-item"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.facebook.com/omkar.misal.587"
+              target="_blank"
+              aria-label="Facebook"
+              class="social-sphere-item"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/omkar-misal-aa191336b/"
+              target="_blank"
+              aria-label="LinkedIn"
+              class="social-sphere-item"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@OmkarMisal-ug8ks"
+              target="_blank"
+              aria-label="YouTube"
+              class="social-sphere-item"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- footer end -->
+
+    <!-- Modals -->
+    {% for match in matches %}
+        {% include 'web/profile_modal.html' %}
+    {% endfor %}
+
+    <!-- Global Auth, Locks, & Profile Manager -->
+    <script src="/static/web/js/navbar.js?v=5"></script>
+    <script src="/static/web/js/global-interactions.js?v=3"></script>
+  </body>
+</html>

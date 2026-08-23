@@ -1,0 +1,383 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced Search | ForeverBond</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/static/web/images/favicon.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="/static/web/css/navbar.css" />
+    <link rel="stylesheet" href="/static/web/css/basic_search.css?v=3" />
+    <link rel="stylesheet" href="/static/web/css/footer.css" />
+    
+    <style>
+        body { background: #f8fafc; font-family: 'Inter', sans-serif; }
+        
+        /* Small Elegant Hero */
+        .advanced-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+            padding: 80px 0;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+        .hero-title { font-size: 40px; font-weight: 800; font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+        .hero-subtitle { font-size: 16px; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        
+        /* Layout Container */
+        .search-layout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        /* Advanced Sidebar */
+        .advanced-sidebar {
+            flex: 0 0 320px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border: 1px solid #f0f0f0;
+            position: sticky;
+            top: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        
+        .sidebar-header {
+            padding: 20px 25px;
+            background: #fff;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sidebar-header h3 {
+            margin: 0; font-size: 18px; font-weight: 700; color: #1e293b;
+        }
+        
+        /* Accordion Customization */
+        .accordion-item { border: none; border-bottom: 1px solid #f0f0f0; }
+        .accordion-item:last-child { border-bottom: none; }
+        .accordion-button {
+            padding: 18px 25px;
+            font-weight: 600;
+            color: #334155;
+            background: #fff;
+            box-shadow: none !important;
+            font-size: 15px;
+        }
+        .accordion-button:not(.collapsed) {
+            color: #e94057;
+            background: #fff0f2;
+        }
+        .accordion-button i { margin-right: 10px; width: 16px; text-align: center; }
+        .accordion-body { padding: 20px 25px; background: #fff; }
+        
+        /* Form Elements */
+        .adv-label {
+            font-size: 13px; font-weight: 600; color: #64748b; margin-bottom: 6px; display: block; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .adv-select, .adv-input {
+            width: 100%; height: 42px; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0 12px; font-size: 14px; color: #334155; margin-bottom: 15px; outline: none; background: #f8fafc;
+        }
+        .adv-select:focus, .adv-input:focus { border-color: #e94057; background: #fff; }
+        
+        .btn-adv-search {
+            background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+            color: #fff; border: none; border-radius: 8px; height: 48px; width: 100%; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; transition: 0.3s;
+        }
+        .btn-adv-search:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(233, 64, 87, 0.3); }
+        
+        @media(max-width: 992px) {
+            .search-layout-container { flex-direction: column; align-items: stretch !important; }
+            .advanced-sidebar { flex: 1 1 100%; width: 100%; position: static; }
+            .main-results { width: 100% !important; }
+        }
+    </style>
+</head>
+<body>
+    {% include 'web/secondary_navbar.html' %}
+
+    <div class="advanced-hero">
+        <div class="container">
+            <span style="display: inline-block; background: rgba(233, 64, 87, 0.15); color: #ff7aa2; padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-bottom: 15px; border: 1px solid rgba(233, 64, 87, 0.4);">
+                <i class="fa-solid fa-sliders"></i> Advanced Search
+            </span>
+            <h1 class="hero-title">Refine Your <span style="color: #ff5c75;">Perfect Match</span></h1>
+            <p class="hero-subtitle">Use our detailed filters to narrow down the exact profiles you are looking for.</p>
+        </div>
+    </div>
+
+    <div class="search-layout-container">
+        
+        <!-- Left Sidebar Accordion Form -->
+        <aside class="advanced-sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-filter" style="color: #e94057; font-size: 18px;"></i>
+                <h3>Filter Profiles</h3>
+            </div>
+            
+            <form action="/interactions/search/advanced/" method="GET" id="advancedSearchForm">
+                <div class="accordion" id="advancedSearchAccordion">
+                  
+                  <!-- Personal Details -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fa-solid fa-user"></i> Personal Details
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#advancedSearchAccordion">
+                      <div class="accordion-body">
+                        <div class="col-12" style="margin-bottom: 18px;">
+                            <label style="display:block; font-size: 12px; font-weight: 700; color: #64748b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
+                                Age Range: <span id="ageRangeLabel" style="color:#e94057; font-size:14px;">{% if request.GET.age_min %}{{ request.GET.age_min }}{% else %}18{% endif %} - {% if request.GET.age_max %}{{ request.GET.age_max }}{% else %}35{% endif %} Years</span>
+                            </label>
+                            <div class="d-flex gap-2 align-items-center">
+                                <div style="flex:1;">
+                                    <input type="range" name="age_min" id="age_min_slider" class="form-range" min="18" max="99" value="{% if request.GET.age_min %}{{ request.GET.age_min }}{% else %}18{% endif %}" oninput="updateAgeLabel()">
+                                </div>
+                                <div style="flex:1;">
+                                    <input type="range" name="age_max" id="age_max_slider" class="form-range" min="18" max="99" value="{% if request.GET.age_max %}{{ request.GET.age_max }}{% else %}35{% endif %}" oninput="updateAgeLabel()">
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                        function updateAgeLabel() {
+                            var minVal = document.getElementById("age_min_slider").value;
+                            var maxVal = document.getElementById("age_max_slider").value;
+                            if(parseInt(minVal) > parseInt(maxVal)){
+                                document.getElementById("age_max_slider").value = minVal;
+                                maxVal = minVal;
+                            }
+                            document.getElementById("ageRangeLabel").innerText = minVal + " - " + maxVal + " Years";
+                        }
+                        </script>
+                        
+                        <label class="adv-label">Height</label>
+                        <input type="text" name="height" class="adv-input" placeholder="e.g. 5' 6&quot;" value="{{ request.GET.height }}">
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <!-- Career & Location -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="fa-solid fa-briefcase"></i> Career & Location
+                      </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#advancedSearchAccordion">
+                      <div class="accordion-body">
+                        <label class="adv-label">Education</label>
+                        <select name="highest_education" class="adv-select">
+                            <option value="">Any Education</option>
+                            <option value="B.E / B.Tech" {% if request.GET.highest_education == 'B.E / B.Tech' %}selected{% endif %}>B.E / B.Tech</option>
+                            <option value="BCA / MCA" {% if request.GET.highest_education == 'BCA / MCA' %}selected{% endif %}>BCA / MCA</option>
+                            <option value="MBA / PGDM" {% if request.GET.highest_education == 'MBA / PGDM' %}selected{% endif %}>MBA / PGDM</option>
+                            <option value="MBBS / BDS" {% if request.GET.highest_education == 'MBBS / BDS' %}selected{% endif %}>MBBS / BDS</option>
+                            <option value="B.Com / M.Com" {% if request.GET.highest_education == 'B.Com / M.Com' %}selected{% endif %}>B.Com / M.Com</option>
+                            <option value="B.Sc / M.Sc" {% if request.GET.highest_education == 'B.Sc / M.Sc' %}selected{% endif %}>B.Sc / M.Sc</option>
+                            <option value="B.A / M.A" {% if request.GET.highest_education == 'B.A / M.A' %}selected{% endif %}>B.A / M.A</option>
+                            <option value="Any Other" {% if request.GET.highest_education == 'Any Other' %}selected{% endif %}>Any Other</option>
+                        </select>
+                        
+                        <label class="adv-label">Profession</label>
+                        <select name="profession" class="adv-select">
+                            <option value="">Any Profession</option>
+                            <option value="Private Company" {% if request.GET.profession == 'Private Company' %}selected{% endif %}>Private Company</option>
+                            <option value="Government/Public Sector" {% if request.GET.profession == 'Government/Public Sector' %}selected{% endif %}>Government/Public Sector</option>
+                            <option value="Defense/Civil Services" {% if request.GET.profession == 'Defense/Civil Services' %}selected{% endif %}>Defense/Civil Services</option>
+                            <option value="Business/Self-Employed" {% if request.GET.profession == 'Business/Self-Employed' %}selected{% endif %}>Business/Self-Employed</option>
+                            <option value="Not Working" {% if request.GET.profession == 'Not Working' %}selected{% endif %}>Not Working</option>
+                        </select>
+                        
+                        <label class="adv-label">City</label>
+                        <input type="text" name="city" class="adv-input" placeholder="e.g. Mumbai" value="{{ request.GET.city }}">
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+                <div style="padding: 20px 25px; background: #fff; border-top: 1px solid #f0f0f0;">
+                    <button type="submit" class="btn-adv-search">
+                        <i class="fa-solid fa-search"></i> Show Results
+                    </button>
+                </div>
+            </form>
+        </aside>
+
+        <!-- Right Main: Results -->
+        <main class="main-results" style="flex: 1; min-width: 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <h2 style="font-size: 20px; font-weight: 700; color: #1e293b; margin: 0;">Search Results</h2>
+            </div>
+            
+            <div class="list-profile-container">
+                {% for match in matches %}
+                <!-- Horizontal Profile Row -->
+                <div class="horizontal-match-row {% if match.payment_status == 'Paid' %}premium-row{% endif %}">
+                  <div class="row-image-container">
+                    <img src="{% if match.photo and match.is_photo_approved %}{{ match.photo.url }}?v={{ match.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ match.full_name|default:'User'|urlencode }}&background=e94057&color=fff{% endif %}" alt="{{ match.full_name|default:'User' }}" />
+                    {% if match.payment_status == 'Paid' %}
+                    <div class="premium-badge"><i class="fa-solid fa-crown"></i></div>
+                    {% endif %}
+                  </div>
+                  
+                  <div class="row-details-container">
+                    <div class="row-header">
+                      <h3 class="row-name">
+                        {{ match.full_name|default:'ForeverBond User' }} 
+                        {% if match.approval_status == 'Approved' %}<i class="fa-solid fa-circle-check verify-icon" title="Verified Profile"></i>{% endif %}
+                      </h3>
+                      <div style="display: flex; gap: 10px; align-items: center;">
+                          {% if match.match_score %}
+                          <span style="background: linear-gradient(135deg, #1fa55b, #10b981); color: white; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 2px 5px rgba(31,165,91,0.3);"><i class="fa-solid fa-bolt"></i> {{ match.match_score }}% Match</span>
+                          {% endif %}
+                          <span class="row-id">ID: FB{{ match.user.id|add:"1000" }}</span>
+                      </div>
+                    </div>
+                    
+                    <div class="row-info-grid">
+                      <div class="info-item"><i class="fa-solid fa-user"></i> <span>{{ match.age|default:"N/A" }} Yrs, {{ match.height|default:"N/A" }}</span></div>
+                      <div class="info-item"><i class="fa-solid fa-briefcase"></i> <span>{{ match.profession|default:"N/A" }}</span></div>
+                      <div class="info-item"><i class="fa-solid fa-graduation-cap"></i> <span>{{ match.highest_education|default:"N/A" }}</span></div>
+                      <div class="info-item"><i class="fa-solid fa-location-dot"></i> <span>{{ match.city|default:"N/A" }}{% if match.state %}, {{ match.state }}{% endif %}</span></div>
+                      <div class="info-item"><i class="fa-solid fa-om"></i> <span>{{ match.religion|default:"N/A" }} - {{ match.caste|default:"N/A" }}</span></div>
+                      <div class="info-item"><i class="fa-solid fa-language"></i> <span>{{ match.mother_tongue|default:"N/A" }}</span></div>
+                    </div>
+                  </div>
+                  
+                  <div class="row-actions-container">
+             <button type="button" class="btn-list-view" data-bs-toggle="modal" data-bs-target="#profileModal{{ match.user.id }}">
+                <i class="fa-regular fa-eye"></i> View Profile
+             </button>
+             {% if match.interest_status == 'pending' %}
+                 <button type="button" class="btn-list-interest" style="background: #6c757d; color: #fff; cursor: not-allowed;" disabled>
+                    <i class="fa-solid fa-check"></i> Pending
+                 </button>
+             {% elif match.interest_status == 'accepted' %}
+                 <button type="button" class="btn-list-interest" style="background: #28a745; color: #fff; cursor: not-allowed;" disabled>
+                    <i class="fa-solid fa-heart"></i> Connected
+                 </button>
+             {% else %}
+                 <button type="button" class="btn-list-interest" style="background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); color: #fff; box-shadow: 0 4px 15px rgba(233, 64, 87, 0.2);" onclick="sendInterest('{{ match.user.id }}', this)">
+                    <i class="fa-solid fa-heart"></i> Connect
+                 </button>
+             {% endif %}
+                  </div>
+                </div>
+                
+                {% include 'web/profile_modal.html' %}
+
+                {% empty %}
+                <div class="empty-state-row" style="text-align: center; padding: 60px 20px; background: #fff; border-radius: 12px; border: 1px dashed #cbd5e1;">
+                    <i class="fa-solid fa-users-slash empty-icon" style="font-size: 40px; color: #94a3b8; margin-bottom: 15px;"></i>
+                    <h4 style="font-size: 20px; color: #334155;">No matches found</h4>
+                    <p style="color: #64748b; font-size: 15px;">Try adjusting your advanced filters to see more results.</p>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination -->
+            <nav class="pagination-container mt-5 mb-5" style="padding-bottom: 60px;">
+              <ul class="advanced-pagination" style="display: flex; justify-content: center; gap: 5px; list-style: none; padding: 0;">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.age_min %}&age_min={{ request.GET.age_min }}{% endif %}{% if request.GET.age_max %}&age_max={{ request.GET.age_max }}{% endif %}{% if request.GET.highest_education %}&highest_education={{ request.GET.highest_education|urlencode }}{% endif %}{% if request.GET.city %}&city={{ request.GET.city|urlencode }}{% endif %}{% if request.GET.profession %}&profession={{ request.GET.profession|urlencode }}{% endif %}{% if request.GET.religion %}&religion={{ request.GET.religion|urlencode }}{% endif %}{% if request.GET.caste %}&caste={{ request.GET.caste|urlencode }}{% endif %}{% if request.GET.mother_tongue %}&mother_tongue={{ request.GET.mother_tongue|urlencode }}{% endif %}{% if request.GET.height %}&height={{ request.GET.height|urlencode }}{% endif %}" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #e94057; border: 1px solid #ffe4e8; font-weight: 600; text-decoration: none;">
+                    <i class="fa-solid fa-arrow-left"></i>
+                  </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                  <span class="page-link" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #cbd5e1; border: 1px solid #f1f5f9; font-weight: 600; background: #f8fafc; cursor: not-allowed;">
+                    <i class="fa-solid fa-arrow-left"></i>
+                  </span>
+                </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                  {% if page_obj.number == num %}
+                    <li class="page-item active"><a class="page-link" href="javascript:void(0);" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); color: #fff; border: none; font-weight: 600; text-decoration: none; box-shadow: 0 4px 10px rgba(233,64,87,0.3);">{{ num }}</a></li>
+                  {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}{% if request.GET.age_min %}&age_min={{ request.GET.age_min }}{% endif %}{% if request.GET.age_max %}&age_max={{ request.GET.age_max }}{% endif %}{% if request.GET.highest_education %}&highest_education={{ request.GET.highest_education|urlencode }}{% endif %}{% if request.GET.city %}&city={{ request.GET.city|urlencode }}{% endif %}{% if request.GET.profession %}&profession={{ request.GET.profession|urlencode }}{% endif %}{% if request.GET.religion %}&religion={{ request.GET.religion|urlencode }}{% endif %}{% if request.GET.caste %}&caste={{ request.GET.caste|urlencode }}{% endif %}{% if request.GET.mother_tongue %}&mother_tongue={{ request.GET.mother_tongue|urlencode }}{% endif %}{% if request.GET.height %}&height={{ request.GET.height|urlencode }}{% endif %}" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #e94057; border: 1px solid #ffe4e8; font-weight: 600; text-decoration: none;">{{ num }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.age_min %}&age_min={{ request.GET.age_min }}{% endif %}{% if request.GET.age_max %}&age_max={{ request.GET.age_max }}{% endif %}{% if request.GET.highest_education %}&highest_education={{ request.GET.highest_education|urlencode }}{% endif %}{% if request.GET.city %}&city={{ request.GET.city|urlencode }}{% endif %}{% if request.GET.profession %}&profession={{ request.GET.profession|urlencode }}{% endif %}{% if request.GET.religion %}&religion={{ request.GET.religion|urlencode }}{% endif %}{% if request.GET.caste %}&caste={{ request.GET.caste|urlencode }}{% endif %}{% if request.GET.mother_tongue %}&mother_tongue={{ request.GET.mother_tongue|urlencode }}{% endif %}{% if request.GET.height %}&height={{ request.GET.height|urlencode }}{% endif %}" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #e94057; border: 1px solid #ffe4e8; font-weight: 600; text-decoration: none;">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                  <span class="page-link" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #cbd5e1; border: 1px solid #f1f5f9; font-weight: 600; background: #f8fafc; cursor: not-allowed;">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </span>
+                </li>
+                {% endif %}
+              </ul>
+            </nav>
+        </main>
+    </div>
+
+    {% include 'web/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/web/js/navbar.js?v=5"></script>
+    <script>
+        function saveProfile(userId, btnElement) {
+            btnElement.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            fetch('/interactions/api/save-profile/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') || '' },
+                body: JSON.stringify({ profile_id: userId })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === 'saved') {
+                    btnElement.innerHTML = '<i class="fa-solid fa-check"></i> Saved';
+                    btnElement.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                } else if(data.status === 'removed') {
+                    btnElement.innerHTML = '<i class="fa-solid fa-star"></i> Shortlist';
+                    btnElement.style.background = 'linear-gradient(135deg, #e94057 0%, #ff5c75 100%)';
+                } else {
+                    alert(data.message);
+                    btnElement.innerHTML = '<i class="fa-solid fa-star"></i> Shortlist';
+                }
+            })
+            .catch(err => {
+                alert('Error saving profile');
+                btnElement.innerHTML = '<i class="fa-solid fa-star"></i> Shortlist';
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+import os
+
+admin_dir = r'c:\Users\Omkar\Desktop\Matrimony_regis omkar\Matrimony_regis omkar\Matrimony\Matrimony\Template\admin'
+if not os.path.exists(admin_dir):
+    os.makedirs(admin_dir)
+
+login_html = """{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    /* Premium Glassmorphic Admin Login */
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #fce4ec 0%, #ffebee 100%);
+        font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #header {
+        display: none !important; /* Hide default admin header */
+    }
+    
+    .breadcrumbs {
+        display: none !important;
+    }
+    
+    #content {
+        padding: 0;
+        width: 100%;
+        max-width: 420px;
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 24px;
+        box-shadow: 0 25px 50px -12px rgba(233, 64, 87, 0.25);
+        margin: 2rem auto;
+        overflow: hidden;
+    }
+    
+    .admin-login-header {
+        text-align: center;
+        padding: 40px 30px 20px;
+    }
+    
+    .admin-login-header img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 15px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        padding: 15px;
+        box-shadow: 0 10px 25px rgba(233, 64, 87, 0.3);
+    }
+    
+    .admin-login-header h1 {
+        font-size: 28px;
+        font-weight: 800;
+        color: #1e293b;
+        margin: 0 0 5px;
+        letter-spacing: -0.5px;
+    }
+    
+    .admin-login-header p {
+        color: #64748b;
+        font-size: 14px;
+        margin: 0;
+        font-weight: 500;
+    }
+    
+    .login-form-container {
+        padding: 20px 40px 40px;
+    }
+    
+    .form-row {
+        margin-bottom: 25px;
+        border: none;
+        padding: 0;
+    }
+    
+    .form-row label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        color: #475569;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .form-row input[type="text"],
+    .form-row input[type="password"] {
+        width: 100%;
+        padding: 14px 20px;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.6);
+        font-size: 15px;
+        color: #1e293b;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+    
+    .form-row input[type="text"]:focus,
+    .form-row input[type="password"]:focus {
+        outline: none;
+        border-color: #e94057;
+        background: #ffffff;
+        box-shadow: 0 0 0 4px rgba(233, 64, 87, 0.1);
+    }
+    
+    .submit-row {
+        padding: 0;
+        border: none;
+        background: none;
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    .submit-row input[type="submit"] {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(233, 64, 87, 0.2);
+    }
+    
+    .submit-row input[type="submit"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 25px rgba(233, 64, 87, 0.3);
+    }
+    
+    .errornote {
+        background: #fee2e2;
+        border-left: 4px solid #ef4444;
+        color: #b91c1c;
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        font-size: 14px;
+        font-weight: 600;
+        list-style: none;
+    }
+    
+    .password-reset-link {
+        display: block;
+        text-align: center;
+        margin-top: 25px;
+    }
+    
+    .password-reset-link a {
+        color: #64748b;
+        font-size: 13.5px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    
+    .password-reset-link a:hover {
+        color: #e94057;
+    }
+    
+    /* Background decorations */
+    .bg-shape-1, .bg-shape-2 {
+        position: fixed;
+        border-radius: 50%;
+        z-index: -1;
+        filter: blur(80px);
+    }
+    .bg-shape-1 {
+        top: -10%;
+        right: -5%;
+        width: 400px;
+        height: 400px;
+        background: rgba(233, 64, 87, 0.3);
+    }
+    .bg-shape-2 {
+        bottom: -10%;
+        left: -5%;
+        width: 500px;
+        height: 500px;
+        background: rgba(161, 98, 56, 0.2);
+    }
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+<div class="bg-shape-1"></div>
+<div class="bg-shape-2"></div>
+
+<div class="admin-login-header">
+    <i class="fa-solid fa-crown" style="font-size: 40px; color: white; background: linear-gradient(135deg, #e94057 0%, #ff5c75 100%); padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(233, 64, 87, 0.3); margin-bottom: 20px;"></i>
+    <h1>Admin Portal</h1>
+    <p>Secure Management Gateway</p>
+</div>
+
+<div class="login-form-container">
+    {% if form.errors and not form.non_field_errors %}
+    <p class="errornote">
+    {% if form.errors.items|length == 1 %}{% translate "Please correct the error below." %}{% else %}{% translate "Please correct the errors below." %}{% endif %}
+    </p>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <p class="errornote">
+        {{ error }}
+    </p>
+    {% endfor %}
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <p class="errornote">
+    {% blocktranslate trimmed %}
+        You are authenticated as {{ username }}, but are not authorized to
+        access this page. Would you like to login to a different account?
+    {% endblocktranslate %}
+    </p>
+    {% endif %}
+
+    <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+        <div class="form-row">
+            {{ form.username.errors }}
+            <label for="id_username">{{ form.username.label }}</label>
+            {{ form.username }}
+        </div>
+        <div class="form-row">
+            {{ form.password.errors }}
+            <label for="id_password">{{ form.password.label }}</label>
+            {{ form.password }}
+            <input type="hidden" name="next" value="{{ next }}">
+        </div>
+        
+        {% url 'admin_password_reset' as password_reset_url %}
+        {% if password_reset_url %}
+        <div class="password-reset-link">
+            <a href="{{ password_reset_url }}">{% translate 'Forgotten your password or username?' %}</a>
+        </div>
+        {% endif %}
+        
+        <div class="submit-row">
+            <input type="submit" value="{% translate 'Secure Login' %}">
+        </div>
+    </form>
+</div>
+{% endblock %}
+"""
+
+with open(os.path.join(admin_dir, 'login.html'), 'w', encoding='utf-8') as f:
+    f.write(login_html)
+
+print("Created premium admin login.html")

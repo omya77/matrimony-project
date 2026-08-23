@@ -1,0 +1,434 @@
+{% load interaction_tags %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Featured Grooms — ForeverBond</title>
+  <meta name="description" content="Browse our handpicked Featured Grooms on ForeverBond — verified, premium profiles ready to connect with you.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/static/web/images/favicon.png" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="/static/web/css/navbar.css" />
+  <link rel="stylesheet" href="/static/web/css/featured_grooms.css?v=20260727_v1" />
+  <link rel="stylesheet" href="/static/web/css/footer.css">
+</head>
+<body>
+
+  {% include 'web/secondary_navbar.html' %}
+
+  <!-- ══════════════════════════════════════════════════
+       HERO BANNER — Ultra-Premium Light Curated Redesign
+  ══════════════════════════════════════════════════ -->
+  <section class="fb-banner">
+    <!-- Soft background glow blobs -->
+    <div class="fb-banner-particles">
+      <div class="fb-particle"></div><div class="fb-particle"></div><div class="fb-particle"></div>
+      <div class="fb-particle"></div><div class="fb-particle"></div><div class="fb-particle"></div>
+    </div>
+    
+    <div class="container">
+      <div class="fb-banner-inner">
+
+        <!-- Left: Text Content -->
+        <div class="fb-banner-left">
+          <!-- Eyebrow pill -->
+          <div class="fb-banner-eyebrow">
+            <span class="fb-dot"></span>
+            • 100% HANDPICKED &amp; VERIFIED
+          </div>
+
+          <h1>
+            <span class="fb-accent">Featured</span> Grooms
+          </h1>
+          <p>Our curated collection of premium, verified grooms ready to find their perfect match. Connect with authentic, elite profiles with confidence.</p>
+
+          <!-- Floating feature chips -->
+          <div class="fb-chips">
+            <div class="fb-chip">
+              <span class="fb-chip-icon" style="background:linear-gradient(135deg,#e94057,#ff5c75);">
+                <i class="fa-solid fa-circle-check"></i>
+              </span>
+              Handpicked Profiles
+            </div>
+            <div class="fb-chip">
+              <span class="fb-chip-icon" style="background:linear-gradient(135deg,#d4af37,#facc15);">
+                <i class="fa-solid fa-crown"></i>
+              </span>
+              100% Verified
+            </div>
+            <div class="fb-chip">
+              <span class="fb-chip-icon" style="background:linear-gradient(135deg,#ff7aa2,#e94057);">
+                <i class="fa-solid fa-gem"></i>
+              </span>
+              Elite Match
+            </div>
+          </div>
+
+          <!-- CTA row -->
+          <div class="fb-cta-row">
+            <a href="{% url 'basic_search' %}" class="fb-discover-btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>Explore All Matches</span>
+            </a>
+            <a href="/profiles/saved-profiles/" class="fb-ghost-btn">
+              <i class="fa-solid fa-bookmark"></i> Saved Profiles
+            </a>
+          </div>
+
+          <!-- Stats block -->
+          <div class="fb-banner-stats">
+            <div class="fb-bstat">
+              <span class="fb-bstat-num">{{ matches.paginator.count|default:"0" }}+ <i class="fa-solid fa-trophy" style="color: #d4af37; font-size: 1.2rem; margin-left: 4px;"></i></span>
+              <span class="fb-bstat-label">Featured Profiles</span>
+            </div>
+            <div class="fb-bstat">
+              <span class="fb-bstat-num" style="color: #e94057;">100% <i class="fa-solid fa-shield-halved" style="color: #d4af37; font-size: 1.2rem; margin-left: 4px;"></i></span>
+              <span class="fb-bstat-label">Verified Members</span>
+            </div>
+            <div class="fb-bstat">
+              <span class="fb-bstat-num">{{ matches.number }}/{{ matches.paginator.num_pages }} <i class="fa-solid fa-circle-check" style="color: #d4af37; font-size: 1.2rem; margin-left: 4px;"></i></span>
+              <span class="fb-bstat-label">Active Page</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Clean White Showcase Frame -->
+        <div class="fb-banner-right">
+          <!-- Glow ring -->
+          <div class="fb-hero-ring"></div>
+          
+          <!-- White Card Container -->
+          <div class="fb-showcase-frame">
+            <!-- Top Gold Pill -->
+            <div class="fb-badge-top">
+              <i class="fa-solid fa-crown"></i> Top Featured
+            </div>
+
+            <!-- Bride Photo -->
+            <div class="fb-img-container">
+              <img
+                src="/static/web/images/groom_1.png"
+                alt="Featured Groom Showcase"
+                class="fb-showcase-img"
+              />
+            </div>
+
+            <!-- Bottom Frosted Info Card -->
+            <div class="fb-badge-bottom">
+              <div class="fb-badge-icon">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <div class="fb-badge-text">
+                <div class="fb-bt-title">Aarav Sharma</div>
+                <div class="fb-bt-sub">Featured Member • 100% Verified</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Decorative Elements -->
+          <div class="fb-float-card fb-float-1">
+            <i class="fa-solid fa-star" style="color: #d4af37;"></i> Handpicked Match
+          </div>
+          <div class="fb-float-card fb-float-2">
+            <i class="fa-solid fa-heart" style="color: #e94057;"></i> 100% Genuine Profile
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SUMMARY BAR
+  ══════════════════════════════════════════════════ -->
+  <div class="fb-summary-bar">
+    <div class="container">
+      <div class="fb-summary-inner">
+        <div class="fb-count-badge">
+          <span class="fb-count-pill">{{ matches.paginator.count|default:"0" }}</span>
+          Featured Grooms
+        </div>
+        <div class="fb-bar-right">
+          <span class="fb-bar-tag"><i class="fa-solid fa-star"></i> Premium Profiles</span>
+          <span class="fb-bar-tag fb-bar-tag-gold"><i class="fa-solid fa-crown"></i> Top Picks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       PROFILE GRID
+  ══════════════════════════════════════════════════ -->
+  <section class="fb-profile-section">
+    <div class="container">
+      <div class="fb-grid">
+
+        {% for match in matches %}
+          {% get_interaction_status request.user match.user as int_status %}
+        <div class="fb-card" id="fb-card-{{ match.id }}">
+
+          <!-- Photo -->
+          <div class="fb-card-photo">
+            <img src="{% if match.photo and match.is_photo_approved %}{{ match.photo.url }}?v={{ match.updated_at.timestamp }}{% else %}https://ui-avatars.com/api/?name={{ match.full_name|default:'User'|urlencode }}&background=e94057&color=fff&size=400{% endif %}"
+                 alt="{{ match.full_name|default:'Profile' }}"
+                 loading="lazy">
+
+            <!-- Single clean badge row -->
+            <div class="fb-card-top">
+              <!-- Verified only — whole page is already "Featured" -->
+              {% if match.approval_status == 'Approved' %}
+              <span class="fb-verified-badge">
+                <i class="fa-solid fa-circle-check" style="font-size:0.65rem;"></i> Verified
+              </span>
+              {% else %}<span></span>{% endif %}
+
+              <!-- Star icon only — no text -->
+              <span class="fb-star-icon" title="Featured">
+                <i class="fa-solid fa-star"></i>
+              </span>
+            </div>
+
+            <!-- Name + age overlay -->
+            <div class="fb-photo-overlay">
+              <h3>{{ match.full_name|default:'ForeverBond User' }}</h3>
+              <div class="fb-age-line">
+                <span>{{ match.age|default:'N/A' }} Yrs</span>
+                <span class="fb-age-sep"></span>
+                <span>{{ match.height|default:'N/A' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="fb-card-body">
+
+            <!-- Tag pills -->
+            <div class="fb-tags">
+              <span class="fb-tag fb-tag-edu">
+                <i class="fa-solid fa-graduation-cap"></i>
+                {{ match.highest_education|default:'N/A'|truncatechars:13 }}
+              </span>
+              <span class="fb-tag fb-tag-prof">
+                <i class="fa-solid fa-briefcase"></i>
+                {{ match.profession|default:'N/A'|truncatechars:13 }}
+              </span>
+              <span class="fb-tag fb-tag-lang">
+                <i class="fa-solid fa-language"></i>
+                {{ match.mother_tongue|default:'N/A' }}
+              </span>
+              <span class="fb-tag fb-tag-rel">
+                <i class="fa-solid fa-om"></i>
+                {{ match.religion|default:'N/A' }}
+              </span>
+            </div>
+
+            <!-- Location -->
+            <div class="fb-location">
+              <div class="fb-loc-dot"><i class="fa-solid fa-location-dot"></i></div>
+              <span class="fb-loc-text">
+                {{ match.city|default:'N/A' }}{% if match.state %}, {{ match.state }}{% endif %}
+              </span>
+            </div>
+
+            <!-- Bio -->
+            {% if match.about_me %}
+            <p class="fb-bio">{{ match.about_me|truncatewords:12 }}</p>
+            {% endif %}
+
+            <!-- Buttons -->
+            <div class="fb-btn-row">
+              <button type="button" class="fb-view-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#profileModal{{ match.user.id }}">
+                <i class="fa-regular fa-eye"></i> View Profile
+              </button>
+            </div>
+
+          </div>
+        </div>
+        {% empty %}
+        <div class="fb-empty">
+          <div class="fb-empty-icon">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <h3>No Featured Grooms Yet</h3>
+          <p>Our team is curating the finest profiles. Check back soon!</p>
+          <a href="{% url 'basic_search' %}" class="fb-explore-btn">
+            <i class="fa-solid fa-magnifying-glass"></i> Explore Profiles
+          </a>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGINATION
+  ══════════════════════════════════════════════════ -->
+  <div class="fb-pagination-wrap">
+    <div class="fb-pagination">
+
+      <!-- Prev -->
+      {% if matches.has_previous %}
+      <a href="?page={{ matches.previous_page_number }}" class="fb-page-btn">
+        <i class="fa-solid fa-chevron-left"></i> Prev
+      </a>
+      {% else %}
+      <button class="fb-page-btn" disabled>
+        <i class="fa-solid fa-chevron-left"></i> Prev
+      </button>
+      {% endif %}
+
+      <!-- Page numbers -->
+      {% for num in matches.paginator.page_range %}
+        {% if matches.number == num %}
+        <button class="fb-page-num active">{{ num }}</button>
+        {% elif num > matches.number|add:'-3' and num < matches.number|add:'3' %}
+        <a href="?page={{ num }}" class="fb-page-num" style="text-decoration:none;">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      <!-- Next -->
+      {% if matches.has_next %}
+      <a href="?page={{ matches.next_page_number }}" class="fb-page-btn">
+        Next <i class="fa-solid fa-chevron-right"></i>
+      </a>
+      {% else %}
+      <button class="fb-page-btn" disabled>
+        Next <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      {% endif %}
+
+    </div>
+
+    <!-- Page info text -->
+    <div class="fb-page-info">
+      Page {{ matches.number }} of {{ matches.paginator.num_pages }}
+      &nbsp;·&nbsp;
+      {{ matches.paginator.count }} Profile{{ matches.paginator.count|pluralize }}
+    </div>
+  </div>
+
+  <!-- Smooth scroll to top on page change -->
+  <script>
+    document.querySelectorAll('.fb-page-btn, .fb-page-num').forEach(function(el) {
+      if (el.tagName === 'A') {
+        el.addEventListener('click', function() {
+          sessionStorage.setItem('fbScrollTop', '1');
+        });
+      }
+    });
+    if (sessionStorage.getItem('fbScrollTop')) {
+      sessionStorage.removeItem('fbScrollTop');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+  <!-- ══════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════ -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <footer class="sm-footer">
+    <div class="footer-radial-aura"></div>
+    <div class="sm-container">
+      <div class="footer-main-row">
+        <div class="footer-brand-col">
+          <h2 class="footer-main-logo d-flex align-items-center gap-2"
+              style="font-family:'Poppins',sans-serif;font-weight:900;font-size:28px;letter-spacing:-0.8px;line-height:1;margin:0;padding:0;">
+            <span class="d-flex align-items-center justify-content-center"
+                  style="background:linear-gradient(135deg,#e94057 0%,#ff5c75 100%);width:38px;height:38px;border-radius:10px;box-shadow:0 4px 15px rgba(233,64,87,0.25);animation:heartSmoothPulse 2s infinite ease-in-out;">
+            <i class="fa-solid fa-heart text-white" style="font-size:16px"></i>
+          </span>
+            <span style="background:linear-gradient(135deg,#0f172a 30%,#334155 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;padding-left:2px;">
+              Forever<span style="background:linear-gradient(135deg,#e94057 0%,#facc15 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Bond</span>
+            </span>
+          </h2>
+          <style>
+            @keyframes heartSmoothPulse {
+              0%   { transform: scale(1); }
+              50%  { transform: scale(1.05); box-shadow: 0 6px 20px rgba(233,64,87,0.4); }
+              100% { transform: scale(1); }
+            }
+          </style>
+          <p class="footer-brand-tagline">India's trusted choice for premium, private and verified matchmaking networks.</p>
+        </div>
+
+        <div class="footer-link-col">
+              <h4>Search</h4>
+              <ul>
+                <li><a href="{% url 'basic_search' %}">Basic Search</a></li>
+                <li><a href="{% url 'advanced_search' %}">Advanced Filter</a></li>
+                <li><a href="{% url 'ai_search' %}">AI Match Finder</a></li>
+              </ul>
+            </div>
+
+        <div class="footer-link-col">
+              <h4>Profiles</h4>
+              <ul>
+                <li><a href="{% url 'recomended_matches' %}">Top Matches</a></li>
+                <li><a href="{% url 'saved_profiles' %}">Saved Profiles</a></li>
+                <li><a href="{% url 'verified_profiles' %}">Verified Profiles</a></li>
+              </ul>
+            </div>
+
+        <div class="footer-link-col">
+              <h4>Support</h4>
+              <ul>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'contact' %}">FAQs</a></li>
+                <li><a href="{{ global_privacy_policy_url }}">Privacy Policy</a></li>
+              </ul>
+            </div>
+
+        <div class="footer-badges-col">
+          <div class="badge-strip-node"><i class="fa-solid fa-shield-halved badge-rose"></i>100% Verified</div>
+          <div class="badge-strip-node"><i class="fa-solid fa-lock badge-gold"></i>Private &amp; Secure</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p class="advanced-copyright-txt">
+          &copy; 2026 <span class="signature-rose-txt">ForeverBond</span> Matrimony. All rights reserved.
+        </p>
+        <div class="footer-social-spheres">
+          <a href="https://www.instagram.com/omya_.x07" target="_blank" aria-label="Instagram" class="social-sphere-item"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/omkar.misal.587" target="_blank" aria-label="Facebook" class="social-sphere-item"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.linkedin.com/in/omkar-misal-aa191336b/" target="_blank" aria-label="LinkedIn" class="social-sphere-item"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@OmkarMisal-ug8ks" target="_blank" aria-label="YouTube" class="social-sphere-item"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Profile Modals -->
+  {% for match in matches %}
+    {% get_interaction_status request.user match.user as int_status %}
+    {% include 'web/profile_modal.html' %}
+  {% endfor %}
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/web/js/navbar.js?v=5"></script>
+  <script src="/static/web/js/global-interactions.js"></script>
+
+</body>
+</html>
