@@ -278,6 +278,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            min-width: 0;
             background: var(--bg-main);
         }
 
@@ -426,8 +427,10 @@
 
         /* Content Container Spacing */
         .page-content {
-            padding: 32px 36px 60px;
+            padding: 24px 32px 50px;
             flex: 1;
+            min-width: 0;
+            max-width: 100%;
         }
 
         /* 👑 GLOBAL ENTERPRISE OVERRIDES FOR ALL 27 ADMIN PAGES 👑 */
@@ -437,6 +440,7 @@
             border-radius: 16px !important;
             padding: 24px !important;
             box-shadow: var(--shadow-sm) !important;
+            max-width: 100%;
             color: var(--text-main) !important;
             margin-bottom: 24px;
             transition: all 0.25s ease;
